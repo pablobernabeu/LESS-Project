@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HeaderFilename>C:\Users\chath1626\UiT Office 365\Pablo Bernabeu - LESS Project A2006\LESS Project\Session 3\Raw\14.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\chath1626\UiT Office 365\Pablo Bernabeu - LESS Project A2006\LESS Project\Session 3\Raw\14.eeg</RawFilename>
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>14/Raw Data</string>
+    <string>14/Raw Data/Raw Data Inspection</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101/Average</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102/Average</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection/Segmentation S101</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection/Segmentation S101/Average</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection/Segmentation S102</string>
+    <string>14/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection/Segmentation S102/Average</string>
+  </Nodes>
+  <TIDs>
+    <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>3aeb6735-a50a-435e-94ea-21a9fa8d1f27</guid>
+    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
+    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
+    <guid>c553fe80-4d44-4e1a-bbfc-7f788c3d13f6</guid>
+    <guid>669ee3db-08a2-4915-8b44-c2818091b7bd</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>07ba274f-ac97-423c-b0cd-430b4f839cfb</guid>
+    <guid>5ecd300d-decf-4d5d-8910-c5a0ae36a06f</guid>
+    <guid>42ebdf44-04ec-4c25-bb3b-b0c249d71deb</guid>
+    <guid>61114ae9-7cb4-4f6d-a8a4-a28af7155fdc</guid>
+    <guid>2659b72b-7fff-4c2e-8108-a727630a9f0f</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>07ba274f-ac97-423c-b0cd-430b4f839cfb</guid>
+    <guid>5ecd300d-decf-4d5d-8910-c5a0ae36a06f</guid>
+    <guid>42ebdf44-04ec-4c25-bb3b-b0c249d71deb</guid>
+    <guid>61114ae9-7cb4-4f6d-a8a4-a28af7155fdc</guid>
+  </TIDs>
+  <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-5CD2025NW8</Computer>
+</HistoryInfoFile>

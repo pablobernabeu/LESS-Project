@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HeaderFilename>C:\Users\chath1626\UiT Office 365\Pablo Bernabeu - LESS Project A2006\LESS Project\Session 2\Session 2\Raw\7.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\chath1626\UiT Office 365\Pablo Bernabeu - LESS Project A2006\LESS Project\Session 2\Session 2\Raw\7.eeg</RawFilename>
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>7/Raw Data</string>
+    <string>7/Raw Data/Raw Data Inspection</string>
+    <string>7/Raw Data/Edit Markers</string>
+    <string>7/Raw Data/Edit Markers/Segmentation</string>
+    <string>7/Raw Data/Edit Markers/Segmentation/Raw Data Inspection</string>
+    <string>7/Raw Data/Edit Markers/Segmentation/Raw Data Inspection/New Reference</string>
+    <string>7/Raw Data/Edit Markers/Segmentation/Raw Data Inspection/New Reference/Filters</string>
+    <string>7/Raw Data/Edit Markers/Segmentation/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+  </Nodes>
+  <TIDs>
+    <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>d6ca6dd0-d602-4896-9049-377c460636de</guid>
+    <guid>b006e367-d601-4610-a2dd-4590b8bfc2b8</guid>
+    <guid>a59476a3-5edf-4b67-adaa-61d952f987c0</guid>
+    <guid>f5e5aff9-a4fd-4c30-bc25-a501a703cb39</guid>
+    <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
+    <guid>e191b91a-cdf5-46e8-899f-e5515b7a84ec</guid>
+    <guid>54802aff-2fac-43a6-9c64-7aa76e572923</guid>
+  </TIDs>
+  <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-5CD2025NW8</Computer>
+</HistoryInfoFile>
