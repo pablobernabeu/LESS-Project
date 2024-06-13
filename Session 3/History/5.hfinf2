@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <HeaderFilename>C:\Users\stpis0397\UiT Office 365\Pablo Bernabeu - LESS Project\Session 3\Raw\5.vhdr</HeaderFilename>
+  <HeaderFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS with RAs 2\LESS-Project-with-RAs-2\Session 3\Raw\5.vhdr</HeaderFilename>
   <RawFilename>C:\Users\stpis0397\UiT Office 365\Pablo Bernabeu - LESS Project\Session 3\Raw\5.eeg</RawFilename>
   <AppendedFiles />
   <Sequence>1</Sequence>
@@ -11,6 +11,8 @@
     <string>5/Raw Data/Raw Data Inspection/New Reference</string>
     <string>5/Raw Data/Raw Data Inspection/New Reference/Filters</string>
     <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
+    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -18,6 +20,8 @@
     <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
     <guid>e191b91a-cdf5-46e8-899f-e5515b7a84ec</guid>
     <guid>54802aff-2fac-43a6-9c64-7aa76e572923</guid>
+    <guid>1491674b-6692-4e5f-b035-9fa7ef8f45d5</guid>
+    <guid>91cc8b7e-9916-451e-af83-90eb310232cd</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
