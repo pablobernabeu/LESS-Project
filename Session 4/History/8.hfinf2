@@ -7,9 +7,11 @@
   <Sequences>1</Sequences>
   <Nodes>
     <string>8/Raw Data</string>
+    <string>8/Raw Data/Raw Data Inspection</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>ad03c25a-f866-4305-8983-3d751416f481</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
