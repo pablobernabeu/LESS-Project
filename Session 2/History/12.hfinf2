@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HeaderFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\12.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\12.eeg</RawFilename>
+  <AppendedFiles>
+    <string>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\12-continued.vhdr</string>
+  </AppendedFiles>
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>12/Raw Data</string>
+    <string>12/Raw Data/Raw Data Inspection</string>
+  </Nodes>
+  <TIDs>
+    <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>02d62d11-34e2-413a-b702-d0ee98e3d653</guid>
+  </TIDs>
+  <ReaderID>607fdfaf-74c0-4a5f-a27e-d1fe289b7841</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>stpis0397</User>
+  <Computer>UIT-5CD2025NW8</Computer>
+</HistoryInfoFile>
