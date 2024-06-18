@@ -10,12 +10,18 @@
     <string>15/Raw Data/Raw Data Inspection</string>
     <string>15/Raw Data/Raw Data Inspection/New Reference</string>
     <string>15/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+    <string>15/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+    <string>15/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
+    <string>15/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>46f18869-d10d-4d0c-b805-5ef2f1241fc1</guid>
     <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
     <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
+    <guid>c553fe80-4d44-4e1a-bbfc-7f788c3d13f6</guid>
+    <guid>4eb00976-ca3a-4a62-a379-eb48287d02ae</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
