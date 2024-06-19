@@ -10,18 +10,12 @@
     <string>5/Raw Data/Raw Data Inspection</string>
     <string>5/Raw Data/Raw Data Inspection/New Reference</string>
     <string>5/Raw Data/Raw Data Inspection/New Reference/Filters</string>
-    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
-    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
-    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
-    <guid>00b23372-7edb-49f1-9717-b9207aba5d72</guid>
-    <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
-    <guid>e191b91a-cdf5-46e8-899f-e5515b7a84ec</guid>
-    <guid>54802aff-2fac-43a6-9c64-7aa76e572923</guid>
-    <guid>1491674b-6692-4e5f-b035-9fa7ef8f45d5</guid>
-    <guid>91cc8b7e-9916-451e-af83-90eb310232cd</guid>
+    <guid>c12562b1-8adf-4001-b0fe-b86489201bce</guid>
+    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
+    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
