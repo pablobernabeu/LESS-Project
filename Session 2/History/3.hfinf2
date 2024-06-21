@@ -13,19 +13,27 @@
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection/Average</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection/Average</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>cf954a4f-f559-4505-87de-3c6544ce9fe5</guid>
     <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
     <guid>ef96ec6e-c80a-4556-8688-a17d72751330</guid>
-    <guid>4666deb7-43d7-44df-ac11-da05d302d989</guid>
+    <guid>f8643144-b5d0-4d9a-98d1-e49e2d82d57f</guid>
     <guid>c2a5c458-86c0-40e7-bac7-76931e8a83cb</guid>
     <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>908787bb-8aa6-4035-ab1f-62be31104847</guid>
+    <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>9c1da3d8-5605-46cb-a124-d03cd7361336</guid>
     <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>532bf4a3-6704-4f55-9efc-a66c679e35ee</guid>
+    <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
