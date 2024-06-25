@@ -8,12 +8,14 @@
   <Nodes>
     <string>5/Raw Data</string>
     <string>5/Raw Data/Raw Data Inspection</string>
-    <string>5/Raw Data/Raw Data Inspection/New Reference</string>
-    <string>5/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+    <string>5/Raw Data/Raw Data Inspection/Edit Markers</string>
+    <string>5/Raw Data/Raw Data Inspection/Edit Markers/New Reference</string>
+    <string>5/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>c12562b1-8adf-4001-b0fe-b86489201bce</guid>
+    <guid>6870c15e-2499-4e74-9907-947a3ccb44a0</guid>
     <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
     <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
   </TIDs>
