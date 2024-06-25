@@ -8,10 +8,18 @@
   <Nodes>
     <string>7/Raw Data</string>
     <string>7/Raw Data/Raw Data Inspection</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers/Edit Markers</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>d6ca6dd0-d602-4896-9049-377c460636de</guid>
+    <guid>65f0c572-892a-4ef3-811e-ce450a1bfe2b</guid>
+    <guid>63c90851-a3a1-4fa2-a38e-5c8727c7dab0</guid>
+    <guid>10915e94-cbad-4686-b83d-0f4ab3f58991</guid>
+    <guid>0c508eda-fe6a-47d6-b020-7d41345099da</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
