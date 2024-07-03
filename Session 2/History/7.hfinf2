@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <HeaderFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\7.vhdr</HeaderFilename>
-  <RawFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\7.eeg</RawFilename>
+  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\7.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 2\Raw\7.eeg</RawFilename>
   <AppendedFiles />
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
@@ -12,6 +12,8 @@
     <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers</string>
     <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers</string>
     <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers/Edit Markers</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers/Edit Markers/New Reference</string>
+    <string>7/Raw Data/Raw Data Inspection/Edit Markers/Edit Markers/Edit Markers/Edit Markers/New Reference/Filters</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -20,9 +22,11 @@
     <guid>63c90851-a3a1-4fa2-a38e-5c8727c7dab0</guid>
     <guid>10915e94-cbad-4686-b83d-0f4ab3f58991</guid>
     <guid>0c508eda-fe6a-47d6-b020-7d41345099da</guid>
+    <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
+    <guid>a1eff52f-a0b4-41cc-a63d-4d437e2c4f29</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
-  <User>stpis0397</User>
+  <User>chath1626</User>
   <Computer>UIT-5CD2025NW8</Computer>
 </HistoryInfoFile>
