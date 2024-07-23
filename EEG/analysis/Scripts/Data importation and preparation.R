@@ -7,7 +7,7 @@ library(readr)
 library(rmarkdown)
 
 
-setwd("C:/Users/chath1626/OneDrive - UiT Office 365/Desktop/LESS-Project-with-RAs-2/Session 2/Session2_Export")
+setwd("EEG/data/Session 2/Session2_Export")
 
 #analysing per Session, per condition of grammaticality (Segmentation S101 = grammatical, Segmentation S102 = violation of grammaticality) while maintaining the ERP
 
