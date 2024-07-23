@@ -7,7 +7,7 @@ library(readr)
 library(rmarkdown)
 
 
-setwd("EEG/data/Session 2/Session2_Export")
+setwd("EEG/data/Session 2/Export")
 
 #analysing per Session, per condition of grammaticality (Segmentation S101 = grammatical, Segmentation S102 = violation of grammaticality) while maintaining the ERP
 
@@ -554,7 +554,7 @@ summary(anova_result_wide)
 print(left_medial_Grammatical_S2_N600)
 #########################################################################################
 
-setwd("C:/Users/chath1626/OneDrive - UiT Office 365/Desktop/LESS-Project-with-RAs-2/Session 3/Session3_Export")
+setwd("EEG/data/Session 3/Export")
 
 getwd()
 
