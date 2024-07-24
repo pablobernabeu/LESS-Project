@@ -493,66 +493,7 @@ print(midline_posterior_Ungrammatical_S2_N600)
 print(midline_posterior_Grammatical_S2_N600)
 
 
-############################
-
-  TESTS
-
-#produces a board to directly compare with no statistical analysis
-Regions_N600 <- c('left_medial', 'right_medial', 'left_anterior', 'right_anterior', 'left_posterior', 'right_posterior', 'midline_anterior', 'midline_medial', 'midline_posterior')
-Ungrammatical_condition <- c(left_medial_Ungrammatical_S2_N600, right_medial_Ungrammatical_S2_N600, left_anterior_Ungrammatical_S2_N600, right_anterior_Ungrammatical_S2_N600, left_posterior_Ungrammatical_S2_N600, right_posterior_Ungrammatical_S2_N600, midline_anterior_Ungrammatical_S2_N600, midline_medial_Ungrammatical_S2_N600, midline_posterior_Ungrammatical_S2_N600)
-Grammatical_condition <- c(left_medial_Grammatical_S2_N600, right_medial_Grammatical_S2_N600, left_anterior_Grammatical_S2_N600, right_anterior_Grammatical_S2_N600, left_posterior_Grammatical_S2_N600, right_posterior_Grammatical_S2_N600, midline_anterior_Grammatical_S2_N600, midline_medial_Grammatical_S2_N600, midline_posterior_Grammatical_S2_N600)
-df <- data.frame(Regions_N600, Ungrammatical_condition, Grammatical_condition)
-View(df)
-print(Regions_N600)
-
-# same as above
-#Creating a table with the average values of each region per grammatical condition
-Regions <- c('left_medial', 'right_medial', 'left_anterior', 'right_anterior', 'left_posterior', 'right_posterior', 'midline_anterior', 'midline_medial', 'midline_posterior')
-Grammatical <- c(left_medial_Grammatical_S2_N600, right_medial_Grammatical_S2_N600, left_anterior_Grammatical_S2_N600, right_anterior_Grammatical_S2_N600, left_posterior_Grammatical_S2_N600, right_posterior_Grammatical_S2_N600, midline_anterior_Grammatical_S2_N600, midline_medial_Grammatical_S2_N600, midline_posterior_Grammatical_S2_N600)
-Ungrammatical <- c(left_medial_Ungrammatical_S2_N600, right_medial_Ungrammatical_S2_N600, left_anterior_Ungrammatical_S2_N600, right_anterior_Ungrammatical_S2_N600, left_posterior_Ungrammatical_S2_N600, right_posterior_Ungrammatical_S2_N600, midline_anterior_Ungrammatical_S2_N600, midline_medial_Ungrammatical_S2_N600, midline_posterior_Ungrammatical_S2_N600)
-N600_regions_per_condition <- data.frame(
-  Regions = Regions,
-  Grammatical = Grammatical,
-  Ungrammatical = Ungrammatical
-)
-View(N600_regions_per_condition)
-
-#ANOVAs for Session2 N600
-# Sample data
-AnovaforN600 <- data.frame(
-  ROIs = rep(c("A", "B", "C"), each = 10),
-  Grammaticality = c(rnorm(10, mean=5), rnorm(10, mean=6), rnorm(10, mean=7))
-)
-
-# Display the first few rows of the data
-head(df)
-
-#create anova, test last discussion on chatgpt
-#see if it is necessary to have the average of everything or if it ruins things by comparibgn different datafiles
-#explore the possibility of creating new dataframes
-
-
-# Direct ANOVA using wide format data
-# Combine all data into one dataframe for simplicity
-Grammatical <- c(left_medial_Grammatical_S2_N600, right_medial_Grammatical_S2_N600, left_anterior_Grammatical_S2_N600, right_anterior_Grammatical_S2_N600, left_posterior_Grammatical_S2_N600, right_posterior_Grammatical_S2_N600, midline_anterior_Grammatical_S2_N600, midline_medial_Grammatical_S2_N600, midline_posterior_Grammatical_S2_N600)
-Ungrammatical <- c(left_medial_Ungrammatical_S2_N600, right_medial_Ungrammatical_S2_N600, left_anterior_Ungrammatical_S2_N600, right_anterior_Ungrammatical_S2_N600, left_posterior_Ungrammatical_S2_N600, right_posterior_Ungrammatical_S2_N600, midline_anterior_Ungrammatical_S2_N600, midline_medial_Ungrammatical_S2_N600, midline_posterior_Ungrammatical_S2_N600)
-
-# Define the vectors
-ROI <- rep(c("left_medial", "right_medial", "left_anterior", "right_anterior", "left_posterior", "right_posterior", "midline_anterior", "midline_medial", "midline_posterior"), 2)
-Condition <- rep(c("Grammatical", "Ungrammatical"), each = 9)
-Level_of_Activation <- c(left_medial_Grammatical_S2_N600, right_medial_Grammatical_S2_N600, left_anterior_Grammatical_S2_N600, right_anterior_Grammatical_S2_N600, left_posterior_Grammatical_S2_N600, right_posterior_Grammatical_S2_N600, midline_anterior_Grammatical_S2_N600, midline_medial_Grammatical_S2_N600, midline_posterior_Grammatical_S2_N600,
-                         left_medial_Ungrammatical_S2_N600, right_medial_Ungrammatical_S2_N600, left_anterior_Ungrammatical_S2_N600, right_anterior_Ungrammatical_S2_N600, left_posterior_Ungrammatical_S2_N600, right_posterior_Ungrammatical_S2_N600, midline_anterior_Ungrammatical_S2_N600, midline_medial_Ungrammatical_S2_N600, midline_posterior_Ungrammatical_S2_N600)
-
-# Combine them into a data frame
-df_wide <- data.frame(ROI, Condition, Level_of_Activation)
-
-# Perform a two-way ANOVA
-anova_result_wide <- aov(Level_of_Activation ~ Condition + ROI + Condition:ROI, data = df_wide)
-
-# Display the results
-summary(anova_result_wide)
-print(left_medial_Grammatical_S2_N600)
-#########################################################################################
+###############################################################################
 
 setwd("EEG/data/Session 3/Export")
 
@@ -1489,4 +1430,1703 @@ print(midline_posterior_Grammatical_S3_DOM_N600)
 
 ##############################################################
 
+#Session 3, N600
+
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different properties and two different conditions in order to create two sets of data
+#pattern1 (S1_S101) tests gender agreement in the Grammatical condition
+#pattern2 (S1_S102) tests gender agreement in the Ungrammatical condition
+#pattern3 (S2S101) tests differential object marking in the Grammatical condition
+#pattern4 (S2S102) tests differential object marking in the Ungrammatical condition
+
+
+pattern1_S3_N600 = "^[0-9].*N600_S1_S101.txt"
+print(pattern1_S3_N600)
+pattern2_S3_N600 = "^[0-9].*N600_S1_S102.txt"
+pattern3_S3_N600 = "^[0-9].*N600_S2_S101.txt"
+pattern4_S3_N600 = "^[0-9].*N600_S2_S102.txt"
+
+#creation of two tables on the property of gender, one for the Grammatical and one for the Ungrammatical condition
+file_listS101_S3_N600 <- list.files(pattern = pattern1_S3_N600)
+print(file_listS101_S3_N600)
+
+file_listS102_S3_N600 <- list.files(pattern = pattern2_S3_N600)
+print(file_listS102_S3_N600)
+
+
+#creation of two tables on the property of differential object marking, one for the Grammatical and one for the Ungrammatical condition
+file_listS103_S3_N600 <- list.files(pattern = pattern3_S3_N600)
+print(file_listS103_S3_N600)
+
+file_listS104_S3_N600 <- list.files(pattern = pattern4_S3_N600)
+print(file_listS104_S3_N600)
+
+
+#reading the tables
+data_listS101_S3_N600 <- lapply(file_listS101_S3_N600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+data_listS102_S3_N600 <- lapply(file_listS102_S3_N600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+data_listS103_S3_N600 <- lapply(file_listS103_S3_N600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+data_listS104_S3_N600 <- lapply(file_listS104_S3_N600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frames
+
+str(data_listS101_S3_N600[[1]])
+str(data_listS102_S3_N600[[1]])
+str(data_listS103_S3_N600[[1]])
+str(data_listS104_S3_N600[[1]])
+
+
+#checking if rows are missing and removing them
+
+if (all(sapply(data_listS101_S3_N600, nrow) > 0)) {
+  S3_S101_N600 <- Reduce(function(...) merge(..., all = TRUE), data_listS101_S3_N600)
+  View(S3_S101_N600)
+} else {
+  print("Some data frames in data_listS101_S3_N600 have no rows.")
+}
+
+
+if (all(sapply(data_listS102_S3_N600, nrow) > 0)) {
+  S3_S102_N600 <- Reduce(function(...) merge(..., all = TRUE), data_listS102_S3_N600)
+  View(S3_S102_N600)
+} else {
+  print("Some data frames in data_list2_S3_N600 have no rows.")
+}
+
+
+if (all(sapply(data_listS103_S3_N600, nrow) > 0)) {
+  S3_S103_N600 <- Reduce(function(...) merge(..., all = TRUE), data_listS103_S3_N600)
+  View(S3_S103_N600)
+} else {
+  print("Some data frames in data_listS101_S3_N600 have no rows.")
+}
+
+
+if (all(sapply(data_listS104_S3_N600, nrow) > 0)) {
+  S3_S104_N600 <- Reduce(function(...) merge(..., all = TRUE), data_listS104_S3_N600)
+  View(S3_S104_N600)
+} else {
+  print("Some data frames in data_listS101_S3_N600 have no rows.")
+}
+
+# Combine data frames from the list into one data frame
+#GEN encoding = Gender
+#DOM encoding = Differential Object Marking
+
+S3_GEN_Grammatical_N600 <- do.call(rbind, data_listS101_S3_N600)
+str(S3_GEN_Grammatical_N600)
+head(S3_GEN_Grammatical_N600)
+
+S3_GEN_Ungrammatical_N600 <- do.call(rbind, data_listS102_S3_N600)
+head(S3_GEN_Ungrammatical_N600)
+
+S3_DOM_Grammatical_N600 <- do.call(rbind, data_listS103_S3_N600)
+head(S3_DOM_Grammatical_N600)
+
+S3_DOM_Ungrammatical_N600 <- do.call(rbind, data_listS104_S3_N600)
+head(S3_DOM_Ungrammatical_N600)
+
+#converting the tables into data frames
+S3_GEN_Grammatical_N600 <- as.data.frame(S3_GEN_Grammatical_N600)
+S3_GEN_Ungrammatical_N600 <- as.data.frame(S3_GEN_Ungrammatical_N600)
+S3_DOM_Grammatical_N600 <- as.data.frame(S3_DOM_Grammatical_N600)
+S3_DOM_Ungrammatical_N600 <- as.data.frame(S3_DOM_Ungrammatical_N600)
+
+#testing dataframes
+View(S3_GEN_Grammatical_N600)
+View(S3_GEN_Ungrammatical_N600)
+View(S3_DOM_Grammatical_N600)
+View(S3_DOM_Grammatical_N600)
+
+#the decimal point is a comma in BrainVision analyzer export files
+#converting commas to periods in the dataframe
+S3_GEN_Grammatical_N600 <- S3_GEN_Grammatical_N600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S3_GEN_Ungrammatical_N600 <- S3_GEN_Ungrammatical_N600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S3_DOM_Grammatical_N600 <- S3_DOM_Grammatical_N600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S3_DOM_Ungrammatical_N600 <- S3_DOM_Ungrammatical_N600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+
+#Converting columns to numeric if necessary
+S3_GEN_Grammatical_N600 <-S3_GEN_Grammatical_N600 %>% mutate(across(everything(), as.numeric))
+S3_GEN_Ungrammatical_N600 <- S3_GEN_Ungrammatical_N600 %>% mutate(across(everything(), as.numeric))
+S3_DOM_Grammatical_N600 <-S3_DOM_Grammatical_N600 %>% mutate(across(everything(), as.numeric))
+S3_DOM_Ungrammatical_N600 <- S3_DOM_Ungrammatical_N600 %>% mutate(across(everything(), as.numeric))
+
+# dividing electrode placements into areas of interest
+# averaging all rows and columns so that only one value per region
+# Extracting columns and converting to numeric
+# Calculating row-wise means excluding NA
+# Calculating the overall mean of row means
+# TP9, TP10 have been removed from the left and right posterior areas, as they have been used for the re-referencing across sessions
+# removed as per the recommendation of Brain Vision products in order to avoid rejecting segments
+
+# For Gender
+
+# For Gender in the Grammatical condition
+
+left_medial_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S3_GEN_N600 <- mean(left_medial_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S3_GEN_N600 <- mean(right_medial_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S3_GEN_N600 <- mean(left_anterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S3_GEN_N600 <- mean(right_anterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S3_GEN_N600 <- mean(left_posterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S3_GEN_N600 <- mean(right_posterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S3_GEN_N600 <- mean(midline_anterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S3_GEN_N600 <- mean(midline_medial_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Grammatical_N600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S3_GEN_N600 <- mean(midline_posterior_Grammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+
+# For Gender in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S3_GEN_N600 <- mean(left_medial_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S3_GEN_N600 <- mean(right_medial_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S3_GEN_N600 <- mean(left_anterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S3_GEN_N600 <- mean(right_anterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S3_GEN_N600 <- mean(left_posterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S3_GEN_N600 <- mean(right_posterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S3_GEN_N600 <- mean(midline_anterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S3_GEN_N600 <- mean(midline_medial_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S3_GEN_N600 <- rowMeans(S3_GEN_Ungrammatical_N600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S3_GEN_N600 <- mean(midline_posterior_Ungrammatical_row_means_S3_GEN_N600, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S3_GEN_N600)
+print(left_medial_Grammatical_S3_GEN_N600)
+print(right_medial_Ungrammatical_S3_GEN_N600)
+print(right_medial_Grammatical_S3_GEN_N600)
+print(left_anterior_Ungrammatical_S3_GEN_N600)
+print(left_anterior_Grammatical_S3_GEN_N600)
+print(right_anterior_Ungrammatical_S3_GEN_N600)
+print(right_anterior_Grammatical_S3_GEN_N600)
+print(left_posterior_Ungrammatical_S3_GEN_N600)
+print(left_posterior_Grammatical_S3_GEN_N600)
+print(right_posterior_Ungrammatical_S3_GEN_N600)
+print(right_posterior_Grammatical_S3_GEN_N600)
+print(midline_anterior_Ungrammatical_S3_GEN_N600)
+print(midline_anterior_Grammatical_S3_GEN_N600)
+print(midline_medial_Ungrammatical_S3_GEN_N600)
+print(midline_medial_Grammatical_S3_GEN_N600)
+print(midline_posterior_Ungrammatical_S3_GEN_N600)
+print(midline_posterior_Grammatical_S3_GEN_N600)
+
+# For Differential Object Marking
+
+# For Differential Object Marking in the Grammatical condition
+
+left_medial_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S3_DOM_N600 <- mean(left_medial_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S3_DOM_N600 <- mean(right_medial_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S3_DOM_N600 <- mean(left_anterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S3_DOM_N600 <- mean(right_anterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S3_DOM_N600 <- mean(left_posterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S3_DOM_N600 <- mean(right_posterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S3_DOM_N600 <- mean(midline_anterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S3_DOM_N600 <- mean(midline_medial_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Grammatical_N600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S3_DOM_N600 <- mean(midline_posterior_Grammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+
+# For Differential Object Marking in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S3_DOM_N600 <- mean(left_medial_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S3_DOM_N600 <- mean(right_medial_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S3_DOM_N600 <- mean(left_anterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S3_DOM_N600 <- mean(right_anterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S3_DOM_N600 <- mean(left_posterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S3_DOM_N600 <- mean(right_posterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S3_DOM_N600 <- mean(midline_anterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S3_DOM_N600 <- mean(midline_medial_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S3_DOM_N600 <- rowMeans(S3_DOM_Ungrammatical_N600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S3_DOM_N600 <- mean(midline_posterior_Ungrammatical_row_means_S3_DOM_N600, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S3_DOM_N600)
+print(left_medial_Grammatical_S3_DOM_N600)
+print(right_medial_Ungrammatical_S3_DOM_N600)
+print(right_medial_Grammatical_S3_DOM_N600)
+print(left_anterior_Ungrammatical_S3_DOM_N600)
+print(left_anterior_Grammatical_S3_DOM_N600)
+print(right_anterior_Ungrammatical_S3_DOM_N600)
+print(right_anterior_Grammatical_S3_DOM_N600)
+print(left_posterior_Ungrammatical_S3_DOM_N600)
+print(left_posterior_Grammatical_S3_DOM_N600)
+print(right_posterior_Ungrammatical_S3_DOM_N600)
+print(right_posterior_Grammatical_S3_DOM_N600)
+print(midline_anterior_Ungrammatical_S3_DOM_N600)
+print(midline_anterior_Grammatical_S3_DOM_N600)
+print(midline_medial_Ungrammatical_S3_DOM_N600)
+print(midline_medial_Grammatical_S3_DOM_N600)
+print(midline_posterior_Ungrammatical_S3_DOM_N600)
+print(midline_posterior_Grammatical_S3_DOM_N600)
+
+###############################################################################
+
+
+setwd("EEG/data/Session 4/Export")
+
+
+
+#analysing per Session, per condition of grammaticality (Segmentation S101 = grammatical, Segmentation S102 = violation of grammaticality) while maintaining the ERP
+
+#Session 4, N200
+
+
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different conditions in order to create three sets of data
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different properties and two different conditions in order to create two sets of data
+
+#pattern1 (S1_S101) tests gender agreement in the Grammatical condition
+#pattern2 (S1_S102) tests gender agreement in the Ungrammatical condition
+#pattern3 (S2_S101) tests differential object marking in the Grammatical condition
+#pattern4 (S2_S102) tests differential object marking in the Ungrammatical condition
+#pattern5 (S3_S101) tests verb-object number agreement in the Grammatical condition
+#pattern6 (S3_S102) tests verb-object number agreement in the Ungrammatical condition
+
+
+pattern1_S4_N200 = "^[0-9].*N200_S1_S101.txt"
+print(pattern1_S4_N200)
+pattern2_S4_N200 = "^[0-9].*N200_S1_S102.txt"
+
+pattern3_S4_N200 = "^[0-9].*N200_S2_S101.txt"
+pattern4_S4_N200 = "^[0-9].*N200_S2_S102.txt"
+
+pattern5_S4_N200 = "^[0-9].*N200_S3_S101.txt"
+pattern6_S4_N200 = "^[0-9].*N200_S3_S102.txt"
+
+
+#creation of six tables, one for each condition
+#explain more
+file_listS101_S4_N200 <- list.files(pattern = pattern1_S4_N200)
+print(file_listS101_S4_N200)
+
+file_listS102_S4_N200 <- list.files(pattern = pattern2_S4_N200)
+print(file_listS102_S4_N200)
+
+file_listS103_S4_N200 <- list.files(pattern = pattern3_S4_N200)
+print(file_listS101_S4_N200)
+
+file_listS104_S4_N200 <- list.files(pattern = pattern4_S4_N200)
+print(file_listS102_S4_N200)
+
+file_listS105_S4_N200 <- list.files(pattern = pattern5_S4_N200)
+print(file_listS101_S4_N200)
+
+file_listS106_S4_N200 <- list.files(pattern = pattern6_S4_N200)
+print(file_listS102_S4_N200)
+
+
+#reading the tables
+data_listS101_S4_N200 <- lapply(file_listS101_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS101_S4_N200[[1]])
+head(data_listS101_S4_N200[[1]])
+
+data_listS102_S4_N200 <- lapply(file_listS102_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS102_S4_N200[[1]])
+head(data_listS102_S4_N200[[1]])
+
+data_listS103_S4_N200 <- lapply(file_listS103_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS103_S4_N200[[1]])
+head(data_listS103_S4_N200[[1]])
+
+
+data_listS104_S4_N200 <- lapply(file_listS104_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS104_S4_N200[[1]])
+head(data_listS104_S4_N200[[1]])
+
+
+data_listS105_S4_N200 <- lapply(file_listS105_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS105_S4_N200[[1]])
+head(data_listS105_S4_N200[[1]])
+
+
+data_listS106_S4_N200 <- lapply(file_listS106_S4_N200, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS106_S4_N200[[1]])
+head(data_listS106_S4_N200[[1]])
+
+
+#checking if rows are missing and removing them
+if (all(sapply(data_listS101_S4_N200, nrow) > 0)) {
+  S101_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS101_S4_N200)
+  View(S101_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS102_S4_N200, nrow) > 0)) {
+  S102_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS102_S4_N200)
+  View(S102_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS103_S4_N200, nrow) > 0)) {
+  S103_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS103_S4_N200)
+  View(S103_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS104_S4_N200, nrow) > 0)) {
+  S104_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS104_S4_N200)
+  View(S104_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS105_S4_N200, nrow) > 0)) {
+  S105_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS105_S4_N200)
+  View(S105_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS106_S4_N200, nrow) > 0)) {
+  S106_N200 <- Reduce(function(...) merge(..., all = TRUE), data_listS106_S4_N200)
+  View(S106_N200)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+
+# Combine data frames from the list into one data frame for the Gender condition
+
+S4_GEN_Grammatical_N200 <- do.call(rbind, data_listS101_S4_N200)
+str(S4_GEN_Grammatical_N200)
+head(S4_GEN_Grammatical_N200)
+
+S4_GEN_Ungrammatical_N200 <- do.call(rbind, data_listS102_S4_N200)
+head(S4_GEN_Ungrammatical_N200)
+
+# Combine data frames from the list into one data frame for the Differential Object Marking condition
+
+S4_DOM_Grammatical_N200 <- do.call(rbind, data_listS103_S4_N200)
+head(S4_DOM_Grammatical_N200)
+
+S4_DOM_Ungrammatical_N200 <- do.call(rbind, data_listS104_S4_N200)
+head(S4_DOM_Ungrammatical_N200)
+
+# Combine data frames from the list into one data frame for the Verb-Object Number Agreement condition
+
+S4_VON_Grammatical_N200 <- do.call(rbind, data_listS105_S4_N200)
+head(S4_VON_Grammatical_N200)
+
+S4_VON_Ungrammatical_N200 <- do.call(rbind, data_listS106_S4_N200)
+head(S4_VON_Ungrammatical_N200)
+
+
+#converting the tables into data frames
+S4_GEN_Grammatical_N200 <- as.data.frame(S4_GEN_Grammatical_N200)
+S4_GEN_Ungrammatical_N200 <- as.data.frame(S4_GEN_Ungrammatical_N200)
+S4_DOM_Grammatical_N200 <- as.data.frame(S4_DOM_Grammatical_N200)
+S4_DOM_Ungrammatical_N200 <- as.data.frame(S4_DOM_Ungrammatical_N200)
+S4_VON_Grammatical_N200 <- as.data.frame(S4_VON_Grammatical_N200)
+S4_VON_Ungrammatical_N200 <- as.data.frame(S4_VON_Ungrammatical_N200)
+
+
+#testing dataframes
+View(S4_GEN_Grammatical_N200)
+View(S4_GEN_Ungrammatical_N200)
+View(S4_DOM_Grammatical_N200)
+View(S4_DOM_Ungrammatical_N200)
+View(S4_VON_Grammatical_N200)
+View(S4_VON_Ungrammatical_N200)
+
+#the decimal point is a comma in BrainVision analyzer export files
+#converting commas to periods in the dataframe
+S4_GEN_Grammatical_N200 <- S4_GEN_Grammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_GEN_Ungrammatical_N200 <- S4_GEN_Ungrammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Grammatical_N200 <- S4_DOM_Grammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Ungrammatical_N200 <- S4_DOM_Ungrammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Grammatical_N200 <- S4_VON_Grammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Ungrammatical_N200 <- S4_VON_Ungrammatical_N200 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+
+#Converting columns to numeric if necessary
+S4_GEN_Grammatical_N200 <-S4_GEN_Grammatical_N200 %>% mutate(across(everything(), as.numeric))
+S4_GEN_Ungrammatical_N200 <- S4_GEN_Ungrammatical_N200 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Grammatical_N200 <-S4_DOM_Grammatical_N200 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Ungrammatical_N200 <- S4_DOM_Ungrammatical_N200 %>% mutate(across(everything(), as.numeric))
+S4_VON_Grammatical_N200 <- S4_VON_Grammatical_N200 %>% mutate(across(everything(), as.numeric))
+S4_VON_Ungrammatical_N200 <- S4_VON_Ungrammatical_N200 %>% mutate(across(everything(), as.numeric))
+
+
+# dividing electrode placements into areas of interest
+# averaging all rows and columns so that only one value per region
+# Extracting columns and converting to numeric
+# Calculating row-wise means excluding NA
+# Calculating the overall mean of row means
+
+# For Gender
+
+# For Gender in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_GEN_N200 <- mean(left_medial_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_GEN_N200 <- mean(right_medial_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_GEN_N200 <- mean(left_anterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_GEN_N200 <- mean(right_anterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_GEN_N200 <- mean(left_posterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_GEN_N200 <- mean(right_posterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_GEN_N200 <- mean(midline_anterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_GEN_N200 <- mean(midline_medial_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Grammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_GEN_N200 <- mean(midline_posterior_Grammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+
+# For Gender in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_GEN_N200 <- mean(left_medial_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_GEN_N200 <- mean(right_medial_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_GEN_N200 <- mean(left_anterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_GEN_N200 <- mean(right_anterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_GEN_N200 <- mean(left_posterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_GEN_N200 <- mean(right_posterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_GEN_N200 <- mean(midline_anterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_GEN_N200 <- mean(midline_medial_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_GEN_N200 <- rowMeans(S4_GEN_Ungrammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_GEN_N200 <- mean(midline_posterior_Ungrammatical_row_means_S4_GEN_N200, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_GEN_N200)
+print(left_medial_Grammatical_S4_GEN_N200)
+print(right_medial_Ungrammatical_S4_GEN_N200)
+print(right_medial_Grammatical_S4_GEN_N200)
+print(left_anterior_Ungrammatical_S4_GEN_N200)
+print(left_anterior_Grammatical_S4_GEN_N200)
+print(right_anterior_Ungrammatical_S4_GEN_N200)
+print(right_anterior_Grammatical_S4_GEN_N200)
+print(left_posterior_Ungrammatical_S4_GEN_N200)
+print(left_posterior_Grammatical_S4_GEN_N200)
+print(right_posterior_Ungrammatical_S4_GEN_N200)
+print(right_posterior_Grammatical_S4_GEN_N200)
+print(midline_anterior_Ungrammatical_S4_GEN_N200)
+print(midline_anterior_Grammatical_S4_GEN_N200)
+print(midline_medial_Ungrammatical_S4_GEN_N200)
+print(midline_medial_Grammatical_S4_GEN_N200)
+print(midline_posterior_Ungrammatical_S4_GEN_N200)
+print(midline_posterior_Grammatical_S4_GEN_N200)
+
+# For Differential Object Marking
+
+# For Differential Object Marking in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_DOM_N200 <- mean(left_medial_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_DOM_N200 <- mean(right_medial_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_DOM_N200 <- mean(left_anterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_DOM_N200 <- mean(right_anterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_DOM_N200 <- mean(left_posterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_DOM_N200 <- mean(right_posterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_DOM_N200 <- mean(midline_anterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_DOM_N200 <- mean(midline_medial_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Grammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_DOM_N200 <- mean(midline_posterior_Grammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+
+# For Differential Object Marking in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_DOM_N200 <- mean(left_medial_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_DOM_N200 <- mean(right_medial_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_DOM_N200 <- mean(left_anterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_DOM_N200 <- mean(right_anterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_DOM_N200 <- mean(left_posterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_DOM_N200 <- mean(right_posterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_DOM_N200 <- mean(midline_anterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_DOM_N200 <- mean(midline_medial_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_DOM_N200 <- rowMeans(S4_DOM_Ungrammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_DOM_N200 <- mean(midline_posterior_Ungrammatical_row_means_S4_DOM_N200, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_DOM_N200)
+print(left_medial_Grammatical_S4_DOM_N200)
+print(right_medial_Ungrammatical_S4_DOM_N200)
+print(right_medial_Grammatical_S4_DOM_N200)
+print(left_anterior_Ungrammatical_S4_DOM_N200)
+print(left_anterior_Grammatical_S4_DOM_N200)
+print(right_anterior_Ungrammatical_S4_DOM_N200)
+print(right_anterior_Grammatical_S4_DOM_N200)
+print(left_posterior_Ungrammatical_S4_DOM_N200)
+print(left_posterior_Grammatical_S4_DOM_N200)
+print(right_posterior_Ungrammatical_S4_DOM_N200)
+print(right_posterior_Grammatical_S4_DOM_N200)
+print(midline_anterior_Ungrammatical_S4_DOM_N200)
+print(midline_anterior_Grammatical_S4_DOM_N200)
+print(midline_medial_Ungrammatical_S4_DOM_N200)
+print(midline_medial_Grammatical_S4_DOM_N200)
+print(midline_posterior_Ungrammatical_S4_DOM_N200)
+print(midline_posterior_Grammatical_S4_DOM_N200)
+
+
+# For Verb-Object Number Agreement
+
+# For Verb-Object Number Agreement in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_VON_N200 <- mean(left_medial_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_VON_N200 <- mean(right_medial_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_VON_N200 <- mean(left_anterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_VON_N200 <- mean(right_anterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_VON_N200 <- mean(left_posterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_VON_N200 <- mean(right_posterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_VON_N200 <- mean(midline_anterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_VON_N200 <- mean(midline_medial_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Grammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_VON_N200 <- mean(midline_posterior_Grammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+
+# For Verb-Object Number Agreement in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_VON_N200 <- mean(left_medial_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_VON_N200 <- mean(right_medial_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_VON_N200 <- mean(left_anterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_VON_N200 <- mean(right_anterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_VON_N200 <- mean(left_posterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_VON_N200 <- mean(right_posterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_VON_N200 <- mean(midline_anterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_VON_N200 <- mean(midline_medial_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_VON_N200 <- rowMeans(S4_VON_Ungrammatical_N200[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_VON_N200 <- mean(midline_posterior_Ungrammatical_row_means_S4_VON_N200, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_VON_N200)
+print(left_medial_Grammatical_S4_VON_N200)
+print(right_medial_Ungrammatical_S4_VON_N200)
+print(right_medial_Grammatical_S4_VON_N200)
+print(left_anterior_Ungrammatical_S4_VON_N200)
+print(left_anterior_Grammatical_S4_VON_N200)
+print(right_anterior_Ungrammatical_S4_VON_N200)
+print(right_anterior_Grammatical_S4_VON_N200)
+print(left_posterior_Ungrammatical_S4_VON_N200)
+print(left_posterior_Grammatical_S4_VON_N200)
+print(right_posterior_Ungrammatical_S4_VON_N200)
+print(right_posterior_Grammatical_S4_VON_N200)
+print(midline_anterior_Ungrammatical_S4_VON_N200)
+print(midline_anterior_Grammatical_S4_VON_N200)
+print(midline_medial_Ungrammatical_S4_VON_N200)
+print(midline_medial_Grammatical_S4_VON_N200)
+print(midline_posterior_Ungrammatical_S4_VON_N200)
+print(midline_posterior_Grammatical_S4_VON_N200)
+
+#Session 4, P3oo
+
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different conditions in order to create three sets of data
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different properties and two different conditions in order to create two sets of data
+
+#pattern1 (S1_S101) tests gender agreement in the Grammatical condition
+#pattern2 (S1_S102) tests gender agreement in the Ungrammatical condition
+#pattern3 (S2_S101) tests differential object marking in the Grammatical condition
+#pattern4 (S2_S102) tests differential object marking in the Ungrammatical condition
+#pattern5 (S3_S101) tests verb-object number agreement in the Grammatical condition
+#pattern6 (S3_S102) tests verb-object number agreement in the Ungrammatical condition
+
+
+pattern1_S4_P300 = "^[0-9].*P300_S1_S101.txt"
+print(pattern1_S4_P300)
+pattern2_S4_P300 = "^[0-9].*P300_S1_S102.txt"
+
+pattern3_S4_P300 = "^[0-9].*P300_S2_S101.txt"
+pattern4_S4_P300 = "^[0-9].*P300_S2_S102.txt"
+
+pattern5_S4_P300 = "^[0-9].*P300_S3_S101.txt"
+pattern6_S4_P300 = "^[0-9].*P300_S3_S102.txt"
+
+
+#creation of six tables, one for each condition
+#explain more
+file_listS101_S4_P300 <- list.files(pattern = pattern1_S4_P300)
+print(file_listS101_S4_P300)
+
+file_listS102_S4_P300 <- list.files(pattern = pattern2_S4_P300)
+print(file_listS102_S4_P300)
+
+file_listS103_S4_P300 <- list.files(pattern = pattern3_S4_P300)
+print(file_listS101_S4_P300)
+
+file_listS104_S4_P300 <- list.files(pattern = pattern4_S4_P300)
+print(file_listS102_S4_P300)
+
+file_listS105_S4_P300 <- list.files(pattern = pattern5_S4_P300)
+print(file_listS101_S4_P300)
+
+file_listS106_S4_P300 <- list.files(pattern = pattern6_S4_P300)
+print(file_listS102_S4_P300)
+
+
+#reading the tables
+data_listS101_S4_P300 <- lapply(file_listS101_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS101_S4_P300[[1]])
+head(data_listS101_S4_P300[[1]])
+
+data_listS102_S4_P300 <- lapply(file_listS102_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS102_S4_P300[[1]])
+head(data_listS102_S4_P300[[1]])
+
+data_listS103_S4_P300 <- lapply(file_listS103_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS103_S4_P300[[1]])
+head(data_listS103_S4_P300[[1]])
+
+
+data_listS104_S4_P300 <- lapply(file_listS104_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS104_S4_P300[[1]])
+head(data_listS104_S4_P300[[1]])
+
+
+data_listS105_S4_P300 <- lapply(file_listS105_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS105_S4_P300[[1]])
+head(data_listS105_S4_P300[[1]])
+
+
+data_listS106_S4_P300 <- lapply(file_listS106_S4_P300, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS106_S4_P300[[1]])
+head(data_listS106_S4_P300[[1]])
+
+
+#checking if rows are missing and removing them
+if (all(sapply(data_listS101_S4_P300, nrow) > 0)) {
+  S101_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS101_S4_P300)
+  View(S101_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS102_S4_P300, nrow) > 0)) {
+  S102_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS102_S4_P300)
+  View(S102_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS103_S4_P300, nrow) > 0)) {
+  S103_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS103_S4_P300)
+  View(S103_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS104_S4_P300, nrow) > 0)) {
+  S104_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS104_S4_P300)
+  View(S104_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS105_S4_P300, nrow) > 0)) {
+  S105_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS105_S4_P300)
+  View(S105_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS106_S4_P300, nrow) > 0)) {
+  S106_P300 <- Reduce(function(...) merge(..., all = TRUE), data_listS106_S4_P300)
+  View(S106_P300)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+
+# Combine data frames from the list into one data frame for the Gender condition
+
+S4_GEN_Grammatical_P300 <- do.call(rbind, data_listS101_S4_P300)
+str(S4_GEN_Grammatical_P300)
+head(S4_GEN_Grammatical_P300)
+
+S4_GEN_Ungrammatical_P300 <- do.call(rbind, data_listS102_S4_P300)
+head(S4_GEN_Ungrammatical_P300)
+
+# Combine data frames from the list into one data frame for the Differential Object Marking condition
+
+S4_DOM_Grammatical_P300 <- do.call(rbind, data_listS103_S4_P300)
+head(S4_DOM_Grammatical_P300)
+
+S4_DOM_Ungrammatical_P300 <- do.call(rbind, data_listS104_S4_P300)
+head(S4_DOM_Ungrammatical_P300)
+
+# Combine data frames from the list into one data frame for the Verb-Object Number Agreement condition
+
+S4_VON_Grammatical_P300 <- do.call(rbind, data_listS105_S4_P300)
+head(S4_VON_Grammatical_P300)
+
+S4_VON_Ungrammatical_P300 <- do.call(rbind, data_listS106_S4_P300)
+head(S4_VON_Ungrammatical_P300)
+
+
+#converting the tables into data frames
+S4_GEN_Grammatical_P300 <- as.data.frame(S4_GEN_Grammatical_P300)
+S4_GEN_Ungrammatical_P300 <- as.data.frame(S4_GEN_Ungrammatical_P300)
+S4_DOM_Grammatical_P300 <- as.data.frame(S4_DOM_Grammatical_P300)
+S4_DOM_Ungrammatical_P300 <- as.data.frame(S4_DOM_Ungrammatical_P300)
+S4_VON_Grammatical_P300 <- as.data.frame(S4_VON_Grammatical_P300)
+S4_VON_Ungrammatical_P300 <- as.data.frame(S4_VON_Ungrammatical_P300)
+
+
+#testing dataframes
+View(S4_GEN_Grammatical_P300)
+View(S4_GEN_Ungrammatical_P300)
+View(S4_DOM_Grammatical_P300)
+View(S4_DOM_Ungrammatical_P300)
+View(S4_VON_Grammatical_P300)
+View(S4_VON_Ungrammatical_P300)
+
+#the decimal point is a comma in BrainVision analyzer export files
+#converting commas to periods in the dataframe
+S4_GEN_Grammatical_P300 <- S4_GEN_Grammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_GEN_Ungrammatical_P300 <- S4_GEN_Ungrammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Grammatical_P300 <- S4_DOM_Grammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Ungrammatical_P300 <- S4_DOM_Ungrammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Grammatical_P300 <- S4_VON_Grammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Ungrammatical_P300 <- S4_VON_Ungrammatical_P300 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+
+#Converting columns to numeric if necessary
+S4_GEN_Grammatical_P300 <-S4_GEN_Grammatical_P300 %>% mutate(across(everything(), as.numeric))
+S4_GEN_Ungrammatical_P300 <- S4_GEN_Ungrammatical_P300 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Grammatical_P300 <-S4_DOM_Grammatical_P300 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Ungrammatical_P300 <- S4_DOM_Ungrammatical_P300 %>% mutate(across(everything(), as.numeric))
+S4_VON_Grammatical_P300 <- S4_VON_Grammatical_P300 %>% mutate(across(everything(), as.numeric))
+S4_VON_Ungrammatical_P300 <- S4_VON_Ungrammatical_P300 %>% mutate(across(everything(), as.numeric))
+
+# dividing electrode placements into areas of interest
+# averaging all rows and columns so that only one value per region
+# Extracting columns and converting to numeric
+# Calculating row-wise means excluding NA
+# Calculating the overall mean of row means
+
+# For Gender
+
+# For Gender in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_GEN_P300 <- mean(left_medial_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_GEN_P300 <- mean(right_medial_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_GEN_P300 <- mean(left_anterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_GEN_P300 <- mean(right_anterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_GEN_P300 <- mean(left_posterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_GEN_P300 <- mean(right_posterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_GEN_P300 <- mean(midline_anterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_GEN_P300 <- mean(midline_medial_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Grammatical_P300[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_GEN_P300 <- mean(midline_posterior_Grammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+
+# For Gender in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_GEN_P300 <- mean(left_medial_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_GEN_P300 <- mean(right_medial_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_GEN_P300 <- mean(left_anterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_GEN_P300 <- mean(right_anterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_GEN_P300 <- mean(left_posterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_GEN_P300 <- mean(right_posterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_GEN_P300 <- mean(midline_anterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_GEN_P300 <- mean(midline_medial_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_GEN_P300 <- rowMeans(S4_GEN_Ungrammatical_P300[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_GEN_P300 <- mean(midline_posterior_Ungrammatical_row_means_S4_GEN_P300, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_GEN_P300)
+print(left_medial_Grammatical_S4_GEN_P300)
+print(right_medial_Ungrammatical_S4_GEN_P300)
+print(right_medial_Grammatical_S4_GEN_P300)
+print(left_anterior_Ungrammatical_S4_GEN_P300)
+print(left_anterior_Grammatical_S4_GEN_P300)
+print(right_anterior_Ungrammatical_S4_GEN_P300)
+print(right_anterior_Grammatical_S4_GEN_P300)
+print(left_posterior_Ungrammatical_S4_GEN_P300)
+print(left_posterior_Grammatical_S4_GEN_P300)
+print(right_posterior_Ungrammatical_S4_GEN_P300)
+print(right_posterior_Grammatical_S4_GEN_P300)
+print(midline_anterior_Ungrammatical_S4_GEN_P300)
+print(midline_anterior_Grammatical_S4_GEN_P300)
+print(midline_medial_Ungrammatical_S4_GEN_P300)
+print(midline_medial_Grammatical_S4_GEN_P300)
+print(midline_posterior_Ungrammatical_S4_GEN_P300)
+print(midline_posterior_Grammatical_S4_GEN_P300)
+
+# For Differential Object Marking
+
+# For Differential Object Marking in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_DOM_P300 <- mean(left_medial_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_DOM_P300 <- mean(right_medial_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_DOM_P300 <- mean(left_anterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_DOM_P300 <- mean(right_anterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_DOM_P300 <- mean(left_posterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_DOM_P300 <- mean(right_posterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_DOM_P300 <- mean(midline_anterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_DOM_P300 <- mean(midline_medial_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Grammatical_P300[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_DOM_P300 <- mean(midline_posterior_Grammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+
+# For Differential Object Marking in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_DOM_P300 <- mean(left_medial_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_DOM_P300 <- mean(right_medial_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_DOM_P300 <- mean(left_anterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_DOM_P300 <- mean(right_anterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_DOM_P300 <- mean(left_posterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_DOM_P300 <- mean(right_posterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_DOM_P300 <- mean(midline_anterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_DOM_P300 <- mean(midline_medial_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_DOM_P300 <- rowMeans(S4_DOM_Ungrammatical_P300[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_DOM_P300 <- mean(midline_posterior_Ungrammatical_row_means_S4_DOM_P300, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_DOM_P300)
+print(left_medial_Grammatical_S4_DOM_P300)
+print(right_medial_Ungrammatical_S4_DOM_P300)
+print(right_medial_Grammatical_S4_DOM_P300)
+print(left_anterior_Ungrammatical_S4_DOM_P300)
+print(left_anterior_Grammatical_S4_DOM_P300)
+print(right_anterior_Ungrammatical_S4_DOM_P300)
+print(right_anterior_Grammatical_S4_DOM_P300)
+print(left_posterior_Ungrammatical_S4_DOM_P300)
+print(left_posterior_Grammatical_S4_DOM_P300)
+print(right_posterior_Ungrammatical_S4_DOM_P300)
+print(right_posterior_Grammatical_S4_DOM_P300)
+print(midline_anterior_Ungrammatical_S4_DOM_P300)
+print(midline_anterior_Grammatical_S4_DOM_P300)
+print(midline_medial_Ungrammatical_S4_DOM_P300)
+print(midline_medial_Grammatical_S4_DOM_P300)
+print(midline_posterior_Ungrammatical_S4_DOM_P300)
+print(midline_posterior_Grammatical_S4_DOM_P300)
+
+
+# For Verb-Object Number Agreement
+
+# For Verb-Object Number Agreement in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_VON_P300 <- mean(left_medial_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_VON_P300 <- mean(right_medial_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_VON_P300 <- mean(left_anterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_VON_P300 <- mean(right_anterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_VON_P300 <- mean(left_posterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_VON_P300 <- mean(right_posterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_VON_P300 <- mean(midline_anterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_VON_P300 <- mean(midline_medial_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Grammatical_P300[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_VON_P300 <- mean(midline_posterior_Grammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+
+# For Verb-Object Number Agreement in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_VON_P300 <- mean(left_medial_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_VON_P300 <- mean(right_medial_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_VON_P300 <- mean(left_anterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_VON_P300 <- mean(right_anterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_VON_P300 <- mean(left_posterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_VON_P300 <- mean(right_posterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_VON_P300 <- mean(midline_anterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_VON_P300 <- mean(midline_medial_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_VON_P300 <- rowMeans(S4_VON_Ungrammatical_P300 [,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_VON_P300 <- mean(midline_posterior_Ungrammatical_row_means_S4_VON_P300, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_VON_P300)
+print(left_medial_Grammatical_S4_VON_P300)
+print(right_medial_Ungrammatical_S4_VON_P300)
+print(right_medial_Grammatical_S4_VON_P300)
+print(left_anterior_Ungrammatical_S4_VON_P300)
+print(left_anterior_Grammatical_S4_VON_P300)
+print(right_anterior_Ungrammatical_S4_VON_P300)
+print(right_anterior_Grammatical_S4_VON_P300)
+print(left_posterior_Ungrammatical_S4_VON_P300)
+print(left_posterior_Grammatical_S4_VON_P300)
+print(right_posterior_Ungrammatical_S4_VON_P300)
+print(right_posterior_Grammatical_S4_VON_P300)
+print(midline_anterior_Ungrammatical_S4_VON_P300)
+print(midline_anterior_Grammatical_S4_VON_P300)
+print(midline_medial_Ungrammatical_S4_VON_P300)
+print(midline_medial_Grammatical_S4_VON_P300)
+print(midline_posterior_Ungrammatical_S4_VON_P300)
+print(midline_posterior_Grammatical_S4_VON_P300)
+
+##Session 4, P600
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different conditions in order to create three sets of data
+#creation of regex pattern in order for the programme to look for the pattern of participantNumber_ERP in two different properties and two different conditions in order to create two sets of data
+
+#pattern1 (S1_S101) tests gender agreement in the Grammatical condition
+#pattern2 (S1_S102) tests gender agreement in the Ungrammatical condition
+#pattern3 (S2_S101) tests differential object marking in the Grammatical condition
+#pattern4 (S2_S102) tests differential object marking in the Ungrammatical condition
+#pattern5 (S3_S101) tests verb-object number agreement in the Grammatical condition
+#pattern6 (S3_S102) tests verb-object number agreement in the Ungrammatical condition
+
+
+pattern1_S4_P600 = "^[0-9].*P600_S1_S101.txt"
+print(pattern1_S4_P600)
+pattern2_S4_P600 = "^[0-9].*P600_S1_S102.txt"
+
+pattern3_S4_P600 = "^[0-9].*P600_S2_S101.txt"
+pattern4_S4_P600 = "^[0-9].*P600_S2_S102.txt"
+
+pattern5_S4_P600 = "^[0-9].*P600_S3_S101.txt"
+pattern6_S4_P600 = "^[0-9].*P600_S3_S102.txt"
+
+
+#creation of six tables, one for each condition
+#explain more
+file_listS101_S4_P600 <- list.files(pattern = pattern1_S4_P600)
+print(file_listS101_S4_P600)
+
+file_listS102_S4_P600 <- list.files(pattern = pattern2_S4_P600)
+print(file_listS102_S4_P600)
+
+file_listS103_S4_P600 <- list.files(pattern = pattern3_S4_P600)
+print(file_listS101_S4_P600)
+
+file_listS104_S4_P600 <- list.files(pattern = pattern4_S4_P600)
+print(file_listS102_S4_P600)
+
+file_listS105_S4_P600 <- list.files(pattern = pattern5_S4_P600)
+print(file_listS101_S4_P600)
+
+file_listS106_S4_P600 <- list.files(pattern = pattern6_S4_P600)
+print(file_listS102_S4_P600)
+
+
+#reading the tables
+data_listS101_S4_P600 <- lapply(file_listS101_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS101_S4_P600[[1]])
+head(data_listS101_S4_P600[[1]])
+
+data_listS102_S4_P600 <- lapply(file_listS102_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS102_S4_P600[[1]])
+head(data_listS102_S4_P600[[1]])
+
+data_listS103_S4_P600 <- lapply(file_listS103_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS103_S4_P600[[1]])
+head(data_listS103_S4_P600[[1]])
+
+
+data_listS104_S4_P600 <- lapply(file_listS104_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS104_S4_P600[[1]])
+head(data_listS104_S4_P600[[1]])
+
+
+data_listS105_S4_P600 <- lapply(file_listS105_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS105_S4_P600[[1]])
+head(data_listS105_S4_P600[[1]])
+
+
+data_listS106_S4_P600 <- lapply(file_listS106_S4_P600, function(file) {
+  read.table(file, header = TRUE, sep = "")
+})
+
+#Checking dimensions of the data frame
+str(data_listS106_S4_P600[[1]])
+head(data_listS106_S4_P600[[1]])
+
+
+#checking if rows are missing and removing them
+if (all(sapply(data_listS101_S4_P600, nrow) > 0)) {
+  S101_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS101_S4_P600)
+  View(S101_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS102_S4_P600, nrow) > 0)) {
+  S102_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS102_S4_P600)
+  View(S102_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS103_S4_P600, nrow) > 0)) {
+  S103_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS103_S4_P600)
+  View(S103_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS104_S4_P600, nrow) > 0)) {
+  S104_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS104_S4_P600)
+  View(S104_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS105_S4_P600, nrow) > 0)) {
+  S105_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS105_S4_P600)
+  View(S105_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+if (all(sapply(data_listS106_S4_P600, nrow) > 0)) {
+  S106_P600 <- Reduce(function(...) merge(..., all = TRUE), data_listS106_S4_P600)
+  View(S106_P600)
+} else {
+  print("Some data frames in data_listS101_S2_N200 have no rows.")
+}
+
+
+# Combine data frames from the list into one data frame for the Gender condition
+
+S4_GEN_Grammatical_P600 <- do.call(rbind, data_listS101_S4_P600)
+str(S4_GEN_Grammatical_P600)
+head(S4_GEN_Grammatical_P600)
+
+S4_GEN_Ungrammatical_P600 <- do.call(rbind, data_listS102_S4_P600)
+head(S4_GEN_Ungrammatical_P600)
+
+# Combine data frames from the list into one data frame for the Differential Object Marking condition
+
+S4_DOM_Grammatical_P600 <- do.call(rbind, data_listS103_S4_P600)
+head(S4_DOM_Grammatical_P600)
+
+S4_DOM_Ungrammatical_P600 <- do.call(rbind, data_listS104_S4_P600)
+head(S4_DOM_Ungrammatical_P600)
+
+# Combine data frames from the list into one data frame for the Verb-Object Number Agreement condition
+
+S4_VON_Grammatical_P600 <- do.call(rbind, data_listS105_S4_P600)
+head(S4_VON_Grammatical_P600)
+
+S4_VON_Ungrammatical_P600 <- do.call(rbind, data_listS106_S4_P600)
+head(S4_VON_Ungrammatical_P600)
+
+
+#converting the tables into data frames
+S4_GEN_Grammatical_P600 <- as.data.frame(S4_GEN_Grammatical_P600)
+S4_GEN_Ungrammatical_P600 <- as.data.frame(S4_GEN_Ungrammatical_P600)
+S4_DOM_Grammatical_P600 <- as.data.frame(S4_DOM_Grammatical_P600)
+S4_DOM_Ungrammatical_P600 <- as.data.frame(S4_DOM_Ungrammatical_P600)
+S4_VON_Grammatical_P600 <- as.data.frame(S4_VON_Grammatical_P600)
+S4_VON_Ungrammatical_P600 <- as.data.frame(S4_VON_Ungrammatical_P600)
+
+
+#testing dataframes
+View(S4_GEN_Grammatical_P600)
+View(S4_GEN_Ungrammatical_P600)
+View(S4_DOM_Grammatical_P600)
+View(S4_DOM_Ungrammatical_P600)
+View(S4_VON_Grammatical_P600)
+View(S4_VON_Ungrammatical_P600)
+
+#the decimal point is a comma in BrainVision analyzer export files
+#converting commas to periods in the dataframe
+S4_GEN_Grammatical_P600 <- S4_GEN_Grammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_GEN_Ungrammatical_P600 <- S4_GEN_Ungrammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Grammatical_P600 <- S4_DOM_Grammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_DOM_Ungrammatical_P600 <- S4_DOM_Ungrammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Grammatical_P600 <- S4_VON_Grammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+S4_VON_Ungrammatical_P600 <- S4_VON_Ungrammatical_P600 %>% 
+  mutate(across(everything(), ~ gsub(",",".",., fixed = TRUE)))
+
+#Converting columns to numeric if necessary
+S4_GEN_Grammatical_P600 <-S4_GEN_Grammatical_P600 %>% mutate(across(everything(), as.numeric))
+S4_GEN_Ungrammatical_P600 <- S4_GEN_Ungrammatical_P600 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Grammatical_P600 <-S4_DOM_Grammatical_P600 %>% mutate(across(everything(), as.numeric))
+S4_DOM_Ungrammatical_P600 <- S4_DOM_Ungrammatical_P600 %>% mutate(across(everything(), as.numeric))
+S4_VON_Grammatical_P600 <- S4_VON_Grammatical_P600 %>% mutate(across(everything(), as.numeric))
+S4_VON_Ungrammatical_P600 <- S4_VON_Ungrammatical_P600 %>% mutate(across(everything(), as.numeric))
+
+# dividing electrode placements into areas of interest
+# averaging all rows and columns so that only one value per region
+# Extracting columns and converting to numeric
+# Calculating row-wise means excluding NA
+# Calculating the overall mean of row means
+
+# For Gender
+
+# For Gender in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_GEN_P600 <- mean(left_medial_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_GEN_P600 <- mean(right_medial_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_GEN_P600 <- mean(left_anterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_GEN_P600 <- mean(right_anterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_GEN_P600 <- mean(left_posterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_GEN_P600 <- mean(right_posterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_GEN_P600 <- mean(midline_anterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_GEN_P600 <- mean(midline_medial_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Grammatical_P600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_GEN_P600 <- mean(midline_posterior_Grammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+
+# For Gender in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_GEN_P600 <- mean(left_medial_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_GEN_P600 <- mean(right_medial_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_GEN_P600 <- mean(left_anterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_GEN_P600 <- mean(right_anterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_GEN_P600 <- mean(left_posterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_GEN_P600 <- mean(right_posterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_GEN_P600 <- mean(midline_anterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_GEN_P600 <- mean(midline_medial_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_GEN_P600 <- rowMeans(S4_GEN_Ungrammatical_P600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_GEN_P600 <- mean(midline_posterior_Ungrammatical_row_means_S4_GEN_P600, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_GEN_P600)
+print(left_medial_Grammatical_S4_GEN_P600)
+print(right_medial_Ungrammatical_S4_GEN_P600)
+print(right_medial_Grammatical_S4_GEN_P600)
+print(left_anterior_Ungrammatical_S4_GEN_P600)
+print(left_anterior_Grammatical_S4_GEN_P600)
+print(right_anterior_Ungrammatical_S4_GEN_P600)
+print(right_anterior_Grammatical_S4_GEN_P600)
+print(left_posterior_Ungrammatical_S4_GEN_P600)
+print(left_posterior_Grammatical_S4_GEN_P600)
+print(right_posterior_Ungrammatical_S4_GEN_P600)
+print(right_posterior_Grammatical_S4_GEN_P600)
+print(midline_anterior_Ungrammatical_S4_GEN_P600)
+print(midline_anterior_Grammatical_S4_GEN_P600)
+print(midline_medial_Ungrammatical_S4_GEN_P600)
+print(midline_medial_Grammatical_S4_GEN_P600)
+print(midline_posterior_Ungrammatical_S4_GEN_P600)
+print(midline_posterior_Grammatical_S4_GEN_P600)
+
+# For Differential Object Marking
+
+# For Differential Object Marking in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_DOM_P600 <- mean(left_medial_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_DOM_P600 <- mean(right_medial_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_DOM_P600 <- mean(left_anterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_DOM_P600 <- mean(right_anterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_DOM_P600 <- mean(left_posterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_DOM_P600 <- mean(right_posterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_DOM_P600 <- mean(midline_anterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_DOM_P600 <- mean(midline_medial_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Grammatical_P600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_DOM_P600 <- mean(midline_posterior_Grammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+
+# For Differential Object Marking in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_DOM_P600 <- mean(left_medial_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_DOM_P600 <- mean(right_medial_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_DOM_P600 <- mean(left_anterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_DOM_P600 <- mean(right_anterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_DOM_P600 <- mean(left_posterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_DOM_P600 <- mean(right_posterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_DOM_P600 <- mean(midline_anterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_DOM_P600 <- mean(midline_medial_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_DOM_P600 <- rowMeans(S4_DOM_Ungrammatical_P600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_DOM_P600 <- mean(midline_posterior_Ungrammatical_row_means_S4_DOM_P600, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_DOM_P600)
+print(left_medial_Grammatical_S4_DOM_P600)
+print(right_medial_Ungrammatical_S4_DOM_P600)
+print(right_medial_Grammatical_S4_DOM_P600)
+print(left_anterior_Ungrammatical_S4_DOM_P600)
+print(left_anterior_Grammatical_S4_DOM_P600)
+print(right_anterior_Ungrammatical_S4_DOM_P600)
+print(right_anterior_Grammatical_S4_DOM_P600)
+print(left_posterior_Ungrammatical_S4_DOM_P600)
+print(left_posterior_Grammatical_S4_DOM_P600)
+print(right_posterior_Ungrammatical_S4_DOM_P600)
+print(right_posterior_Grammatical_S4_DOM_P600)
+print(midline_anterior_Ungrammatical_S4_DOM_P600)
+print(midline_anterior_Grammatical_S4_DOM_P600)
+print(midline_medial_Ungrammatical_S4_DOM_P600)
+print(midline_medial_Grammatical_S4_DOM_P600)
+print(midline_posterior_Ungrammatical_S4_DOM_P600)
+print(midline_posterior_Grammatical_S4_DOM_P600)
+
+
+# For Verb-Object Number Agreement
+
+# For Verb-Object Number Agreement in the Grammatical condition
+
+left_medial_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Grammatical_S4_VON_P600 <- mean(left_medial_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+right_medial_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Grammatical_S4_VON_P600 <- mean(right_medial_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+left_anterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Grammatical_S4_VON_P600 <- mean(left_anterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+right_anterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Grammatical_S4_VON_P600 <- mean(right_anterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+left_posterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Grammatical_S4_VON_P600 <- mean(left_posterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE) 
+
+right_posterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Grammatical_S4_VON_P600 <- mean(right_posterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_anterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Grammatical_S4_VON_P600 <- mean(midline_anterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_medial_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Grammatical_S4_VON_P600 <- mean(midline_medial_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_posterior_Grammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Grammatical_P600[,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Grammatical_S4_VON_P600 <- mean(midline_posterior_Grammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+
+# For Verb-Object Number Agreement in the Ungrammatical condition
+
+left_medial_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600[, c("T7.Average", "C3.Average", "CP5.Average")], na.rm = TRUE)
+left_medial_Ungrammatical_S4_VON_P600 <- mean(left_medial_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+right_medial_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [, c("C4.Average", "T8.Average", "CP6.Average")], na.rm = TRUE)
+right_medial_Ungrammatical_S4_VON_P600 <- mean(right_medial_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+left_anterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600[, c("Fp1.Average", "F3.Average", "F7.Average", "FT9.Average", "FC5.Average")], na.rm = TRUE)
+left_anterior_Ungrammatical_S4_VON_P600 <- mean(left_anterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+right_anterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600[, c("Fp2.Average", "F4.Average", "F8.Average", "FC6.Average", "FT10.Average")], na.rm = TRUE)
+right_anterior_Ungrammatical_S4_VON_P600 <- mean(right_anterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+left_posterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [, c("P7.Average", "P3.Average", "O1.Average")], na.rm = TRUE)
+left_posterior_Ungrammatical_S4_VON_P600 <- mean(left_posterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE) 
+
+right_posterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [,c ("P4.Average", "P8.Average", "O2.Average")], na.rm = TRUE)
+right_posterior_Ungrammatical_S4_VON_P600 <- mean(right_posterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_anterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [, c ("Fz.Average", "FC1.Average", "FC2.Average")], na.rm = TRUE)
+midline_anterior_Ungrammatical_S4_VON_P600 <- mean(midline_anterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_medial_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [,c ("Cz.Average", "CP1.Average", "CP2.Average")], na.rm = TRUE)
+midline_medial_Ungrammatical_S4_VON_P600 <- mean(midline_medial_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+midline_posterior_Ungrammatical_row_means_S4_VON_P600 <- rowMeans(S4_VON_Ungrammatical_P600 [,c ("Pz.Average", "Oz.Average")], na.rm = TRUE)
+midline_posterior_Ungrammatical_S4_VON_P600 <- mean(midline_posterior_Ungrammatical_row_means_S4_VON_P600, na.rm = TRUE)
+
+
+# Print results
+print(left_medial_Ungrammatical_S4_VON_P600)
+print(left_medial_Grammatical_S4_VON_P600)
+print(right_medial_Ungrammatical_S4_VON_P600)
+print(right_medial_Grammatical_S4_VON_P600)
+print(left_anterior_Ungrammatical_S4_VON_P600)
+print(left_anterior_Grammatical_S4_VON_P600)
+print(right_anterior_Ungrammatical_S4_VON_P600)
+print(right_anterior_Grammatical_S4_VON_P600)
+print(left_posterior_Ungrammatical_S4_VON_P600)
+print(left_posterior_Grammatical_S4_VON_P600)
+print(right_posterior_Ungrammatical_S4_VON_P600)
+print(right_posterior_Grammatical_S4_VON_P600)
+print(midline_anterior_Ungrammatical_S4_VON_P600)
+print(midline_anterior_Grammatical_S4_VON_P600)
+print(midline_medial_Ungrammatical_S4_VON_P600)
+print(midline_medial_Grammatical_S4_VON_P600)
+print(midline_posterior_Ungrammatical_S4_VON_P600)
+print(midline_posterior_Grammatical_S4_VON_P600)
 
