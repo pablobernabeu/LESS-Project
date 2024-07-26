@@ -1,9 +1,9 @@
 {
     "id": "857AD992",
-    "path": "~/GitHub/LESS-Project-with-RAs-2/EEG/analysis/Data importation and preparation.R",
+    "path": "C:/Users/chath1626/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/EEG/analysis/Data importation and preparation.R",
     "project_path": "EEG/analysis/Data importation and preparation.R",
     "type": "r_source",
-    "hash": "3752408397",
+    "hash": "3605575695",
     "contents": "",
     "dirty": false,
     "created": 1721746045525.0,
@@ -12,15 +12,16 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "2475,0",
-        "scrollLine": "2435"
+        "cursorPosition": "9,7",
+        "scrollLine": "0",
+        "docOutlineVisible": "1"
     },
     "folds": "",
-    "lastKnownWriteTime": 1721823055,
+    "lastKnownWriteTime": 1721828705,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1721823055614,
+    "last_content_update": 1721828705,
     "read_only": false,
     "read_only_alternatives": []
 }
