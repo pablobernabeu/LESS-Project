@@ -4,7 +4,7 @@ library(stringr)
 library(ggplot2)
 library(dplyr)
 library(readr)
-library(rmarkdown)
+library(rmarkdown) 
 
 
 setwd("EEG/data/Session 2/Session2_Export")
