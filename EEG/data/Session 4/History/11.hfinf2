@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 4\Raw\11.vhdr</HeaderFilename>
-  <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 4\Raw\11.eeg</RawFilename>
+  <HeaderFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 4\Raw\11.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 4\Raw\11.eeg</RawFilename>
   <AppendedFiles />
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
@@ -12,13 +12,8 @@
     <string>11/Raw Data/Raw Data Inspection/New Reference/Filters</string>
     <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
     <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
-    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
     <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
-    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
-    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
     <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3</string>
-    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Baseline Correction</string>
-    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Baseline Correction/Artifact Rejection</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -27,16 +22,11 @@
     <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
     <guid>031a0308-682b-471d-9135-e8085681ad0e</guid>
     <guid>4eb00976-ca3a-4a62-a379-eb48287d02ae</guid>
-    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
     <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
-    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
-    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>dc183240-cc60-41fb-b259-0c69b4713666</guid>
-    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
-    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
-  <User>chath1626</User>
-  <Computer>UIT-PF2HW38K</Computer>
+  <User>stpis0397</User>
+  <Computer>UIT-5CD2025NW8</Computer>
 </HistoryInfoFile>
