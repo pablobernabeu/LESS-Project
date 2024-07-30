@@ -28,7 +28,10 @@ print(file_listS101_S2_N200)
 file_listS102_S2_N200 <- list.files(pattern = pattern2_S2_N200)
 print(file_listS102_S2_N200)
 
-#reading the tables
+View(data_listS101_S2_N200)
+str(data_listS101_S2_N200)
+
+#reading the tables 
 data_listS101_S2_N200 <- lapply(file_listS101_S2_N200, function(file) {
   read.table(file, header = TRUE, sep = "")
 })
@@ -67,6 +70,8 @@ head(S2_Ungrammatical_N200)
 #converting the tables into data frames
 S2_Grammatical_N200 <- as.data.frame(S2_Grammatical_N200)
 S2_Ungrammatical_N200 <- as.data.frame(S2_Ungrammatical_N200)
+View(S2_Grammatical_N200)
+
 
 #the decimal point is a comma in BrainVision analyzer export files
 #converting commas to periods in the dataframe
