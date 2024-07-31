@@ -45,6 +45,9 @@ Session2_gram_data = ldply(Session2_gram_list, data.frame)
 Session2_violation_interest_data = ldply(Session2_violation_interest_list, data.frame)
 Session2_ancillary_violation_data = ldply (Session2_ancillary_violation_list, data.frame)
 
+
+#should i combine the frames first before the manipulation?
+
 #Sorting out column names
 #time is organised in miliseconds, from -100 to 1098, and counted every 2 ms
 seq = seq(-100, 1098, 2)
@@ -105,6 +108,37 @@ list(n_ancillary_violation_rows)
 
 
 
+
+
+
+
+
+
+
+ 
+
+# Ensure the number of participants matches the number of rows in the melted data
+Session2_Gram_fulllist <- rep(participants_gr, each = n_gram_rows / length(participants_gr))
+Session2_violation_interest_fulllist <- rep(participants_violint, each = n_violation_interest_rows / length(participants_violint))
+Session2_ancillary_violation_fulllist <- rep(participants_ancvil, each = n_ancillary_violation_rows / length(participants_ancvil))
+
+
+# Add participant columns to the melted data frames
+Session2_gram_melted <- Session2_gram_melted %>%
+  mutate(participant = Session2_Gram_fulllist)
+
+Session2_violation_interest_melted <- Session2_violation_interest_melted %>%
+  mutate(participant = Session2_violation_interest_fulllist)
+
+Session2_ancillary_violation_melted <- Session2_ancillary_violation_melted %>%
+  mutate(participant = Session2_ancillary_violation_fulllist)
+
+# Combine the data frames
+Session2_combined_dtf <- bind_rows(
+  Session2_gram_melted, 
+  Session2_violation_interest_melted, 
+  Session2_ancillary_violation_melted
+)
 
 
 
