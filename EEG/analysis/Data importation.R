@@ -2,8 +2,10 @@ library(plyr)
 library(reshape2)
 library(magrittr)
 library(dplyr)
+library(ggplot2)
 
-#Grammaticality condition
+
+# Grammaticality condition
 # 101: correct 
 # 102: violation of interest
 # 103: ancillary violation
@@ -49,188 +51,158 @@ Session2_ancillary_violation_data = ldply (Session2_ancillary_violation_list, da
 #should i combine the frames first before the manipulation?
 
 #Sorting out column names
-#time is organised in miliseconds, from -100 to 1098, and counted every 2 ms
+
+# the time column is organised in miliseconds, from -100 to 1098, and counted every 2 ms
 seq = seq(-100, 1098, 2)
 
-#assigning column names per electrode and time intervals
+# the electrode column is formulated as a vector of electrode names that correspond to the time interval sequence
 names(Session2_gram_data) = c('Electrode', seq)
 names(Session2_violation_interest_data) = c('Electrode', seq)
 names(Session2_ancillary_violation_data) = c ('Electrode', seq)
 #View(Session2_gram_data)
 
-#assigning participants' names
-#removing the path from the participants' names so their column can be named accurately
+# working on the participants' name column
+#removing the path from the participants' names so their column can be named succintly
 file_names_gram <- basename(Session2_gram_files)
 files_names_violation_interest <- basename(Session2_violation_interest)
 files_names_ancillary_violation <- basename(Session2_ancillary_violation)
-View(Session2_gram_data)
+#View(Session2_gram_data)
 
 #Extract participant numbers
 participants_gr <- sub("_.*", "", file_names_gram)
 participants_violint = sub("_.*", "", files_names_violation_interest)
 participants_ancvil = sub("_.*", "", files_names_ancillary_violation)
 
-head(participants_gr)
-head(participants_violint)
-head(participants_ancvil)
+# adding participant columns to the data frames
+Session2_gram_data$Participant <- rep(participants_gr, each = nrow(Session2_gram_data) / length(participants_gr))
+Session2_violation_interest_data$Participant <- rep(participants_violint, each = nrow(Session2_violation_interest_data) / length(participants_violint))
+Session2_ancillary_violation_data$Participant <- rep(participants_ancvil, each = nrow(Session2_ancillary_violation_data) / length(participants_ancvil))
 
-####### IMPROVE by separating the Session and condition columns
+# adding condition column to the dataframes
+Session2_gram_data$Condition <- 'Grammatical'
+Session2_violation_interest_data$Condition <- 'Violation of Interest'
+Session2_ancillary_violation_data$Condition <- 'Ancillary Violation'
 
-# Melt the data frames and add a condition column
-Session2_gram_melted = melt(Session2_gram_data, id.vars="Electrode") %>%
- mutate(condition = "Session2_grammatical")
-names(Session2_gram_melted) = c('Electrode', 'Time', 'Activation','Condition')
-#View(Session2_gram_melted)
-
-Session2_violation_interest_melted = melt(Session2_violation_interest_data, id.vars="Electrode") %>%
- mutate(condition = "Session2_violation_interest")
-names(Session2_violation_interest_melted) = c('Electrode', 'Time', 'Activation','Condition')
-#View(Session2_violation_interest_melted)
-
-Session2_ancillary_violation_melted = melt(Session2_violation_interest_data, id.vars="Electrode") %>%
-  mutate(condition = "Session2_ancillary_violation")
-names(Session2_ancillary_violation_melted) = c('Electrode', 'Time', 'Activation','Condition')
-#View(Session2_ancillary_violation)
-
-# Check the number of rows in each melted data frame
-n_gram_rows <- nrow(Session2_gram_melted)
-n_violation_interest_rows <- nrow(Session2_violation_interest_melted)
-n_ancillary_violation_rows <- nrow(Session2_ancillary_violation_melted)
-
-
-list(n_gram_rows)
-list (n_violation_interest_rows)
-list(n_ancillary_violation_rows)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-# Ensure the number of participants matches the number of rows in the melted data
-Session2_Gram_fulllist <- rep(participants_gr, each = n_gram_rows / length(participants_gr))
-Session2_violation_interest_fulllist <- rep(participants_violint, each = n_violation_interest_rows / length(participants_violint))
-Session2_ancillary_violation_fulllist <- rep(participants_ancvil, each = n_ancillary_violation_rows / length(participants_ancvil))
-
-
-# Add participant columns to the melted data frames
-Session2_gram_melted <- Session2_gram_melted %>%
-  mutate(participant = Session2_Gram_fulllist)
-
-Session2_violation_interest_melted <- Session2_violation_interest_melted %>%
-  mutate(participant = Session2_violation_interest_fulllist)
-
-Session2_ancillary_violation_melted <- Session2_ancillary_violation_melted %>%
-  mutate(participant = Session2_ancillary_violation_fulllist)
-
-# Combine the data frames
-Session2_combined_dtf <- bind_rows(
-  Session2_gram_melted, 
-  Session2_violation_interest_melted, 
-  Session2_ancillary_violation_melted
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# create participant lists
-Session2_Gram_fulllist <- rep(participants_gr, each = nrow(Session2_gram_melted) / length(participants_gr))
-Session2_violation_interest_fulllist <- rep(participants_violint, each = nrow(Session2_violation_interest_melted) / length(participants_violint))
-Session2_ancillary_violation_fulllist <- rep(participants_ancvil, each = nrow(Session2_ancillary_violation_melted) / length(participants_ancvil))
-
-# Adjust the lengths of the participant lists vectors if they don't match
-#Session2_Gram_fulllist <- rep(Session2_Gram_fulllist, length.out = nrow(Session2_gram_melted))
-#Session2_violation_interest_fulllist <- rep(Session2_violation_interest_fulllist, length.out = nrow(Session2_violation_interest_melted))
-#Session2_ancillary_violation_fulllist <- rep(Session2_ancillary_violation_fulllist, length.out = nrow(Session2_ancillary_violation_melted))
-
-# create a column in the melted dataframes saying which participant is at each data point
-Session2_gram_melted <- Session2_gram_melted %>%
-  mutate(participant = Session2_Gram_fulllist)
-
-Session2_violation_interest_melted <- Session2_violation_interest_melted %>%
-  mutate(participant = Session2_violation_interest_fulllist)
-
-Session2_ancillary_violation_melted <- Session2_ancillary_violation_melted %>%
-  mutate(participant = Session2_ancillary_violation_fulllist)
-
-#testing the frame
-print(Session2_gram_melted)
-head(Session2_gram_melted)
-View(Session2_gram_melted)
-print(Session2_violation_interest_melted)
-head(Session2_violation_interest_melted)
-#View(Session2_violation_interest_melted)
-print(Session2_ancillary_violation_melted)
-head(Session2_ancillary_violation_melted)
-#View(Session2_ancillary_violation_melted)
-
-
-# Combine the two data frames
-#Session2_combined_dtf <- rbind(Session2_gram_melted, Session2_violation_interest_melted, Session2_ancillary_violation_melted)
-Session2_combined_dtf <- bind_rows(
-  Session2_gram_melted, 
-  Session2_violation_interest_melted, 
-  Session2_ancillary_violation_melted
-)
-
-
-# Check the combined data
-print(Session2_combined_dtf)
-head(Session2_combined_dtf)
-View(Session2_combined_dtf)
-
-# Check unique values in Electrode column before subsetting
-print(unique(Session2_combined_dtf$Electrode))
+# Combine all data frames into one
+Session2_combined_data <- rbind(Session2_gram_data, Session2_violation_interest_data, Session2_ancillary_violation_data)
 
 #dividing the electrodes into brain regions
-Session2_combined_dtf <- Session2_combined_dtf %>%
-  mutate(Region = case_when(
-    Electrode %in% c("T7", "C3", "CP5") ~ "left medial",
-    Electrode %in% c("T8", "C4", "CP6") ~ "right medial",
-    Electrode %in% c("Fp1", "F3", "F7", "FT9", "FC5") ~ "left anterior",
-    Electrode %in% c("Fp2", "F4", "F8", "FT10", "FC6") ~ "right anterior",
-    Electrode %in% c("P7", "P3", "O1") ~ "left posterior",
-    Electrode %in% c("P8", "P4", "O2", "FC6") ~ "right posterior",
-    Electrode %in% c("Fz", "FC1", "FC2") ~ "midline anterior",
-    Electrode %in% c("Cz", "CP1", "CP2") ~ "midline medial",
-    Electrode %in% c("Pz", "Oz") ~ "midline posterior",
-    TRUE ~ "Other"
-  ))
+# Define the mapping of electrodes to regions
+electrode_to_region <- c(
+  "T7" = "left medial",
+  "C3" = "left medial",
+  "CP5" = "left medial",
+  "T8" = "right medial",
+  "C4" = "right medial",
+  "CP6" = "right medial",
+  "Fp1" = "left anterior",
+  "F3" = "left anterior",
+  "F7" = "left anterior",
+  "FT9" = "left anterior",
+  "FC5" = "left anterior",
+  "Fp2" = "right anterior",
+  "F4" = "right anterior",
+  "F8" = "right anterior",
+  "FT10" = "right anterior",
+  "FC6" = "right anterior",
+  "P7" = "left posterior",
+  "P3" = "left posterior",
+  "O1" = "left posterior",
+  "P8" = "right posterior",
+  "P4" = "right posterior",
+  "O2" = "right posterior",
+  "Fz" = "midline anterior",
+  "FC1" = "midline anterior",
+  "FC2" = "midline anterior",
+  "Cz" = "midline medial",
+  "CP1" = "midline medial",
+  "CP2" = "midline medial",
+  "Pz" = "midline posterior",
+  "Oz" = "midline posterior"
+)
 
-# Check unique values in Region column
-print(unique(Session2_combined_dtf$Region))
-# View the updated data frame
-View(Session2_combined_dtf)
+# Add Region column based on electrode_to_region mapping
+Session2_combined_data <- Session2_combined_data %>%
+  mutate(Region = electrode_to_region[Electrode])
 
-# Subset the data frame for the N200 time window (200-500 ms)
-S2_N200 <- Session2_combined_dtf[Session2_combined_dtf$Time %in% seq(200, 500, 2),]
+# Melt the combined data frame to convert it from wide to long format
+Session2_melted_data_dirty <- melt(Session2_combined_data, id.vars = c('Participant', 'Electrode', 'Condition', 'Region'), variable.name = 'Time', value.name = 'Activation')
+
+# Convert the 'Time' column to numeric
+Session2_melted_data_dirty$Time <- as.numeric(as.character(Session2_melted_data_dirty$Time))
+
+# Add the Session column
+Session2_melted_data_dirty$Session <- 'Session 2'
+
+# View the resulting melted data
+View(Session2_melted_data_dirty)
+
+
+# Removing rows where any column has NA or NaN values
+Session2_melted_data <- Session2_melted_data_dirty %>%
+  filter(complete.cases(.))  # Removes rows with NA values in any column
+
+# Alternatively, if you want to remove rows with NaN values specifically
+Session2_melted_data <- Session2_melted_data_dirty %>%
+  filter(!is.nan(Activation)) %>%
+  filter(complete.cases(.))  # Ensure no NA values are left
+
+# View the cleaned data
+View(Session2_melted_data)
+
+
+# making sure that no Nas or NaNs have been introduced by coercion
+rows_with_any_na_nan <- Session2_melted_data %>%
+  filter(if_any(everything(), ~ is.na(.) | is.nan(.)))
+
+print(rows_with_any_na_nan)
+
+
+############################
+
+
+
+
+
+
+
+# Aggregate mean and SD activation for each region
+region_summary <- Session2_melted_data %>%
+  group_by(Region, Condition, Time) %>%
+  summarize(Mean_Activation = mean(Activation, na.rm = TRUE),
+            SD_Activation = sd(Activation, na.rm = TRUE),
+            .groups = 'drop')
+
+
+
+
+# Line plot showing mean activation over time for each region
+ggplot(region_summary, aes(x = Time, y = Mean_Activation, color = Region)) +
+  geom_line() +
+  facet_wrap(~ Condition) +
+  labs(title = "Activation Over Time by Region",
+       x = "Time (ms)",
+       y = "Mean Activation") +
+  theme_minimal()
+
+# Bar plot showing average activation by region and condition
+ggplot(region_summary, aes(x = Region, y = Mean_Activation, fill = Condition)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Average Activation by Region and Condition",
+       x = "Region",
+       y = "Mean Activation") +
+  theme_minimal()
+
+
+# Filter data for a specific condition, e.g., "Grammatical"
+data_condition <- filter(Session2_melted_data, Condition == "Grammatical")
+
+# Perform ANOVA
+anova_result <- aov(Activation ~ Region, data = data_condition)
+summary(anova_result)
+
+# Post-hoc test if ANOVA shows significant differences
+TukeyHSD(anova_result)
 
 
 
@@ -240,6 +212,26 @@ S2_N200 <- Session2_combined_dtf[Session2_combined_dtf$Time %in% seq(200, 500, 2
 
 ########################################################
 ######################################################
+
+
+# Subset the data frame for the N200 time window (200-500 ms)
+S2_N200 <- Session2_melted_data [Session2_melted_data$Time %in% seq(200, 500, 2),]
+
+View(S2_N200)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
