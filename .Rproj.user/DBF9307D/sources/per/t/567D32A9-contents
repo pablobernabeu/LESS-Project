@@ -40,7 +40,7 @@ Session2_violation_interest_list = lapply(1:length(Session2_violation_interest),
 
 Session2_ancillary_violation_list = lapply(1:length(Session2_ancillary_violation),function(x) {
   read.table(Session2_ancillary_violation [x], header=FALSE) } )
-#View(Session2_ancillary_violation_list)
+View(Session2_ancillary_violation_list)
 
 # converting the lists into data frames
 Session2_gram_data = ldply(Session2_gram_list, data.frame)
@@ -160,9 +160,64 @@ print(rows_with_any_na_nan)
 
 ############################
 
+# Inspecting the subset data to check for any NA/NaN/Inf values
+subset_data_large <- subset_data_large %>%
+  filter(!is.na(Activation) & !is.nan(Activation) & is.finite(Activation))
+
+# Check the subset data after removing problematic values
+print(head(subset_data_large, 10))
+
+# Running ANOVA on the cleaned subset
+anova_result_large <- aov(Activation ~ Condition + Time + Error(Participant/Condition), data = subset_data_large)
+summary(anova_result_large)
+
+
+# Ensure 'Condition' and 'Participant' are factors
+subset_data_large$Condition <- as.factor(Session2_melted_data$Condition)
+subset_data_large$Participant <- as.factor(subset_data_large$Participant)
+subset_data_large$Time <- as.numeric(subset_data_large$Time)
 
 
 
+# Check levels of the factors
+levels(Session2_melted_data$Condition)
+levels(Session2_melted_data$Time)
+levels(subset_data_large$Participant)
+
+# Ensuring that the factors have at least two levels
+subset_data_large <- subset_data_large %>%
+  filter(Condition %in% c("Grammatical", "Violation of Interest", "Ancillary Violation")) %>%
+  filter(Time >= 0 & Time <= 500)
+
+# Check the number of levels for each factor again
+print(unique(subset_data_large$Condition))
+print(unique(subset_data_large$Time))
+print(unique(subset_data_large$Participant))
+
+# Ensure 'Condition' and 'Participant' are factors
+subset_data_large$Condition <- as.factor(subset_data_large$Condition)
+subset_data_large$Participant <- as.factor(subset_data_large$Participant)
+subset_data_large$Time <- as.numeric(subset_data_large$Time)
+
+# Running ANOVA on the cleaned subset
+anova_result_large <- aov(Activation ~ Condition * Time + Error(Participant/Condition), data = subset_data_large)
+summary(anova_result_large)
+
+
+
+
+# Example of running ANOVA on a more meaningful subset
+# Subsetting data for a specific time range and conditions
+subset_data_large <- Session2_melted_data %>%
+  filter(Time >= 0 & Time <= 500) %>%
+  filter(Condition %in% c("Grammatical", "Violation of Interest", "Ancillary Violation"))
+
+# Running ANOVA on the larger subset
+anova_result_large <- aov(Activation ~ Condition + Time + Error(Participant/Condition), data = subset_data_large)
+summary(anova_result_large)
+
+
+###################################
 
 
 
