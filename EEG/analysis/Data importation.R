@@ -5,7 +5,7 @@ library(dplyr)
 library(ggplot2)
 
 
-# Grammaticality condition
+# Grammaticality Grammaticality
 # 101: correct 
 # 102: violation of interest
 # 103: ancillary violation
@@ -78,10 +78,10 @@ Session2_gram_data$Participant <- rep(participants_gr, each = nrow(Session2_gram
 Session2_violation_interest_data$Participant <- rep(participants_violint, each = nrow(Session2_violation_interest_data) / length(participants_violint))
 Session2_ancillary_violation_data$Participant <- rep(participants_ancvil, each = nrow(Session2_ancillary_violation_data) / length(participants_ancvil))
 
-# adding condition column to the dataframes
-Session2_gram_data$Condition <- 'Grammatical'
-Session2_violation_interest_data$Condition <- 'Violation of Interest'
-Session2_ancillary_violation_data$Condition <- 'Ancillary Violation'
+# adding Grammaticality column to the dataframes
+Session2_gram_data$Grammaticality <- 'Grammatical'
+Session2_violation_interest_data$Grammaticality <- 'Violation of Interest'
+Session2_ancillary_violation_data$Grammaticality <- 'Ancillary Violation'
 
 # Combine all data frames into one
 Session2_combined_data <- rbind(Session2_gram_data, Session2_violation_interest_data, Session2_ancillary_violation_data)
@@ -126,7 +126,7 @@ Session2_combined_data <- Session2_combined_data %>%
   mutate(Region = electrode_to_region[Electrode])
 
 # Melt the combined data frame to convert it from wide to long format
-Session2_melted_data_dirty <- melt(Session2_combined_data, id.vars = c('Participant', 'Electrode', 'Condition', 'Region'), variable.name = 'Time', value.name = 'Activation')
+Session2_melted_data_dirty <- melt(Session2_combined_data, id.vars = c('Participant', 'Electrode', 'Grammaticality', 'Region'), variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session2_melted_data_dirty$Time <- as.numeric(as.character(Session2_melted_data_dirty$Time))
@@ -158,112 +158,10 @@ rows_with_any_na_nan <- Session2_melted_data %>%
 print(rows_with_any_na_nan)
 
 
-############################
-
-# Inspecting the subset data to check for any NA/NaN/Inf values
-subset_data_large <- subset_data_large %>%
-  filter(!is.na(Activation) & !is.nan(Activation) & is.finite(Activation))
-
-# Check the subset data after removing problematic values
-print(head(subset_data_large, 10))
-
-# Running ANOVA on the cleaned subset
-anova_result_large <- aov(Activation ~ Condition + Time + Error(Participant/Condition), data = subset_data_large)
-summary(anova_result_large)
-
-
-# Ensure 'Condition' and 'Participant' are factors
-subset_data_large$Condition <- as.factor(Session2_melted_data$Condition)
-subset_data_large$Participant <- as.factor(subset_data_large$Participant)
-subset_data_large$Time <- as.numeric(subset_data_large$Time)
-
-
-
-# Check levels of the factors
-levels(Session2_melted_data$Condition)
-levels(Session2_melted_data$Time)
-levels(subset_data_large$Participant)
-
-# Ensuring that the factors have at least two levels
-subset_data_large <- subset_data_large %>%
-  filter(Condition %in% c("Grammatical", "Violation of Interest", "Ancillary Violation")) %>%
-  filter(Time >= 0 & Time <= 500)
-
-# Check the number of levels for each factor again
-print(unique(subset_data_large$Condition))
-print(unique(subset_data_large$Time))
-print(unique(subset_data_large$Participant))
-
-# Ensure 'Condition' and 'Participant' are factors
-subset_data_large$Condition <- as.factor(subset_data_large$Condition)
-subset_data_large$Participant <- as.factor(subset_data_large$Participant)
-subset_data_large$Time <- as.numeric(subset_data_large$Time)
-
-# Running ANOVA on the cleaned subset
-anova_result_large <- aov(Activation ~ Condition * Time + Error(Participant/Condition), data = subset_data_large)
-summary(anova_result_large)
-
-
-
-
-# Example of running ANOVA on a more meaningful subset
-# Subsetting data for a specific time range and conditions
-subset_data_large <- Session2_melted_data %>%
-  filter(Time >= 0 & Time <= 500) %>%
-  filter(Condition %in% c("Grammatical", "Violation of Interest", "Ancillary Violation"))
-
-# Running ANOVA on the larger subset
-anova_result_large <- aov(Activation ~ Condition + Time + Error(Participant/Condition), data = subset_data_large)
-summary(anova_result_large)
-
-
-###################################
-
-
-
-# Aggregate mean and SD activation for each region
-region_summary <- Session2_melted_data %>%
-  group_by(Region, Condition, Time) %>%
-  summarize(Mean_Activation = mean(Activation, na.rm = TRUE),
-            SD_Activation = sd(Activation, na.rm = TRUE),
-            .groups = 'drop')
-
-
-
-
-# Line plot showing mean activation over time for each region
-ggplot(region_summary, aes(x = Time, y = Mean_Activation, color = Region)) +
-  geom_line() +
-  facet_wrap(~ Condition) +
-  labs(title = "Activation Over Time by Region",
-       x = "Time (ms)",
-       y = "Mean Activation") +
-  theme_minimal()
-
-# Bar plot showing average activation by region and condition
-ggplot(region_summary, aes(x = Region, y = Mean_Activation, fill = Condition)) +
-  geom_bar(stat = "identity", position = position_dodge()) +
-  labs(title = "Average Activation by Region and Condition",
-       x = "Region",
-       y = "Mean Activation") +
-  theme_minimal()
-
-
-# Filter data for a specific condition, e.g., "Grammatical"
-data_condition <- filter(Session2_melted_data, Condition == "Grammatical")
-
-# Perform ANOVA
-anova_result <- aov(Activation ~ Region, data = data_condition)
-summary(anova_result)
-
-# Post-hoc test if ANOVA shows significant differences
-TukeyHSD(anova_result)
-
-
-
-
-
-
+Session2_melted_data$Time <- as.factor(Session2_melted_data$Time)
+Session2_melted_data$Region <- as.factor(Session2_melted_data$Region)
+Session2_melted_data$Grammaticality <- as.factor(Session2_melted_data$Grammaticality)
+Session2_melted_data$Participant <- as.factor(Session2_melted_data$Participant)
 
 ########################################################
 ######################################################
@@ -388,6 +286,19 @@ unique(S2_N200_clean$Time)
 # Assuming Time has only one level, run ANOVA only on Region
 anova_result <- aov(Activation ~ Region, data = S2_N200_clean)
 summary(anova_result)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
