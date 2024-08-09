@@ -1,0 +1,82 @@
+---
+title: "DGS_24.05"
+author: "Gabriella Silva"
+date: "2024-05-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(janitor)
+library(readxl)
+# Leer los datos
+path_to_DGS <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+DGS_1 <- read_excel(file.path(path_to_DGS, "DGS_DGS.xlsx"))
+DGS_2 <- read_excel(file.path(path_to_DGS, "DGS_STROOP.xlsx"))
+DGS_3 <- read_excel(file.path(path_to_DGS, "DGS_ASRT.xlsx"))
+
+# Limpiar nombres de columnas
+colnames(DGS_1) <- make.names(colnames(DGS_1))
+colnames(DGS_2) <- make.names(colnames(DGS_2))
+colnames(DGS_3) <- make.names(colnames(DGS_3))
+
+
+# Seleccionar columnas para combinar
+DGS_1 <- DGS_1 %>%
+  select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
+
+DGS_2 <- DGS_2 %>%
+  select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
+
+DGS_3 <- DGS_3 %>%
+  select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
+
+# Combinar los dataframes
+merged_DGS <- bind_rows(DGS_1, DGS_2, DGS_3)
+
+
+# Agrupar los datos por Participant.Private.ID
+grouped_DGS <- merged_DGS %>%
+  group_by(Participant.Public.ID)
+
+# Para calcular el promedio de Correct por participante:
+avg_correct <- grouped_DGS %>%
+  summarize(avg_correct = mean(Correct))
+
+print(avg_correct)
+
+# Calcular el número total de dígitos correctos por participante
+total_correct <- merged_DGS %>%
+  group_by(Participant.Public.ID) %>%
+  summarize(total_correct = sum(Correct))
+
+print(total_correct)
+
+# Calcular el número de dígitos correctos para cada longitud de lista por participante
+scores_by_length <- merged_DGS %>%
+  group_by(Participant.Public.ID, listLength) %>%
+  summarize(total_correct = sum(Correct))
+
+print(scores_by_length)
+
+# Calcular la cantidad de errores por tipo y por participante
+errors <- merged_DGS %>%
+  group_by(Participant.Public.ID) %>%
+  summarize(omissions = sum(ifelse(Correct == 0 & is.na(display), 1, 0)),
+            intrusions = sum(ifelse(Correct == 0 & !is.na(display), 1, 0)),
+            repetitions = sum(ifelse(Correct == 0 & display == "Repeat", 1, 0)))
+
+print(errors)
+
+# Combinar los resultados en una tabla única
+analysis_table_DGS <- left_join(total_correct, scores_by_length, by = "Participant.Public.ID") %>%
+  left_join(errors, by = "Participant.Public.ID")
+
+print(analysis_table_DGS)
+
+write_csv(analysis_table_DGS, "analysis_table_DGS.csv")
+#Un mayor número de dígitos recordados correctamente indica una mayor capacidad de memoria de trabajo.
+```
+

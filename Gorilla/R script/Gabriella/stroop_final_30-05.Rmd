@@ -1,0 +1,76 @@
+---
+title: "stroop2"
+author: "Gabriella Silva"
+date: "2024-05-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(janitor)
+library(readxl)
+
+# Leer los datos
+path_to_STROOP <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+STROOP_1 <- read_excel(file.path(path_to_STROOP, "STROOP_DGS.xlsx"))
+STROOP_2 <- read_excel(file.path(path_to_STROOP, "STROOP_STROOP.xlsx"))
+STROOP_3 <- read_excel(file.path(path_to_STROOP, "STROOP_ASRT.xlsx"))
+
+# Limpiar nombres de columnas
+colnames(STROOP_1) <- make.names(colnames(STROOP_1))
+colnames(STROOP_2) <- make.names(colnames(STROOP_2))
+colnames(STROOP_3) <- make.names(colnames(STROOP_3))
+
+print(colnames(STROOP_1))
+
+# Seleccionar columnas relevantes
+STROOP_1 <- STROOP_1 %>%
+  select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency, Zone.Type)
+
+STROOP_2 <- STROOP_2 %>%
+  select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency,Zone.Type)
+
+STROOP_3 <- STROOP_3 %>%
+  select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency, Zone.Type)
+
+# Combinar los dataframes
+merged_STROOP_2 <- bind_rows(STROOP_1, STROOP_2, STROOP_3)
+
+
+
+# Filtro para eliminar filas donde Zone.Type no es "response"
+merged_STROOP_2 <- merged_STROOP_2 %>%
+  filter(Zone.Type == "response_keyboard")
+
+
+ # Filtrar y limpiar los datos eliminando NA y asegurándose de que Congruency sea un factor
+cleaned_data_STROOP <- merged_STROOP %>%
+  drop_na(Reaction.Time, Congruency) %>%
+  mutate(Congruency = factor(Congruency, levels = c(0, 1), labels = c("incongruent", "congruent")))
+
+
+# Calcular la media del tiempo de reacción según la congruencia por cada participante
+mean_reaction_time_stroop <- cleaned_data_STROOP %>%
+  group_by(Participant.Public.ID, Congruency) %>%
+  summarize(mean_reaction_time = mean(Reaction.Time, na.rm = TRUE))
+
+# Ver el resultado
+print(mean_reaction_time)
+
+# Calcular la diferencia entre los tiempos de reacción de cada congruencia por cada participante
+difference_reaction_time <- mean_reaction_time_stroop %>%
+  group_by(Participant.Public.ID) %>%
+  pivot_wider(names_from = Congruency, values_from = mean_reaction_time) %>%
+  mutate(difference_reaction_time = congruent - incongruent)
+
+# Ver el resultado
+View(difference_reaction_time)
+
+# Guardar el resultado en un archivo CSV
+write_csv(difference_reaction_time, "difference_reaction_time_stroop.csv")
+
+
+````
+
