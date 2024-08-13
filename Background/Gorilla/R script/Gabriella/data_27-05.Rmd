@@ -6,18 +6,38 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE} 
+# Install necessary packages
+# install.packages(c("dplyr", "tidyr", "stringr"))
+# install.packages("readr")
+
+
+
 # Cargar las librerías necesarias
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(readr)
+
 
 # Definir el path
-path_to_ASRT <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+path_to_ASRT <- "C:/Users/stpis0397/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/Gorilla/data_exp_143587-v32"
+
 
 # Leer los datos
 ASRT_1 <- read_csv(file.path(path_to_ASRT, "ASRT_DGS.csv"))
 ASRT_2 <- read_csv(file.path(path_to_ASRT, "ASRT_STROOP.csv"))
 ASRT_3 <- read_csv(file.path(path_to_ASRT, "ASRT_ASRT.csv"))
+
+# Load the additional CSV files
+ASRT_1_extra <- read_csv(file.path(path_to_ASRT, "qdvg4_ASRT_DGS.csv"))
+ASRT_2_extra <- read_csv(file.path(path_to_ASRT, "wbij5_ASRT_STROOP.csv"))
+ASRT_3_extra <- read_csv(file.path(path_to_ASRT, "xqls8_ASRT_STROOP.csv"))
+
+# Merge the data frames
+ASRT_1 <- bind_rows(ASRT_1, ASRT_1_extra)
+ASRT_2 <- bind_rows(ASRT_2, ASRT_2_extra)
+ASRT_3 <- bind_rows(ASRT_3, ASRT_3_extra)
+
 
 # Seleccionar columnas relevantes
 columns_to_select <- c('Participant Public ID', 'time_elapsed', 'rt', 'correct', 'triplet_type', 
