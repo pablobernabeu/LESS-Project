@@ -3,9 +3,9 @@
     "path": "C:/Users/chath1626/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/LHQ3 importation script.R",
     "project_path": "LHQ3 importation script.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3965699096",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1723125728017.0,
     "source_on_save": false,
     "relative_order": 2,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "647,0",
-        "scrollLine": "608"
+        "cursorPosition": "708,0",
+        "scrollLine": "660"
     },
     "folds": "",
-    "lastKnownWriteTime": 1723646831,
+    "lastKnownWriteTime": 1723649313,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1723649044313,
+    "last_content_update": 1723649313634,
     "read_only": false,
     "read_only_alternatives": []
 }

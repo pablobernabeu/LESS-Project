@@ -459,7 +459,7 @@ LHQ3_results_raw[2, 205:209] <- lapply(LHQ3_results_raw[2, 205:209], function(x)
 #you mix and estimate the frequency of mixing in normal conversation with the 
 #following groups of people.
 
-LHQ3_results_raw[1, 210] <- "Code_switching_h/day"
+LHQ3_results_raw[1, 210] <- "Codeswitching"
 Q_Daily_codeswitching <- LHQ3_results_raw[1, 210]
 Q_Daily_codeswitching <- as.character(Q_Daily_codeswitching)
 LHQ3_results_raw[2, 210:221] <- lapply(LHQ3_results_raw[2, 210:221], function(x) {
@@ -633,10 +633,57 @@ LHQ3_data_compact <- LHQ3_results_raw %>%
 
 View(LHQ3_data_compact)
 
-#calculating an aggregated score for code-switching between languages for each
-#participant
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#change all the codeswitching and tests
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#calculating the average score for code-switching between languages for each participant
+#NA values are ignored
+
+# Columns to aggregate
+codeswitching_score <- c("Codeswitching_Frequency of mixing with family members", "Codeswitching_Frequency of mixing with friends", "Codeswitching_Frequency of mixing with classmates", "Codeswitching_Frequency of mixing with others")
+
+# Sum with NA values ignored
+LHQ3_data_compact <- LHQ3_data_compact %>%
+  rowwise() %>%
+  mutate(Aggregated_Score = sum(c_across(all_of(codeswitching_score)), na.rm = TRUE)) %>%
+  ungroup()
+
+# Mean with NA values ignored
+LHQ3_data_compact <- LHQ3_data_compact %>%
+  rowwise() %>%
+  mutate(Average_Score = mean(c_across(all_of(codeswitching_score)), na.rm = TRUE)) %>%
+  ungroup()
+
+# View the updated data frame
+print(LHQ3_data_compact)
 
 
 
