@@ -1,9 +1,9 @@
-#LHQ3 data importation and transformation
 library(readxl)
 library(dplyr)
 library(tidyr)
 library(here)
 library(tidyverse)
+library(janitor)
 
 file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
 
@@ -33,7 +33,7 @@ LHQ3_results_raw[2, 306] <- "Comments1"
 LHQ3_results_raw[2, 307] <- "Comments2"
 LHQ3_results_raw[2, 308] <- "Dialects"
 
-#A more automated verion was preferred for questions that span multiple columns
+#A more automated version was preferred for questions that span multiple columns
 #I will be transforming them by first making sure that the question parameters 
 #are visible in every column for analysis
 #I will be updating the value that corresponds to row 1 and column x (where the 
@@ -82,7 +82,7 @@ LHQ3_results_raw[2, 9:14] <- lapply(LHQ3_results_raw[2, 9:14], function(x) {
 })
 
 
-View(LHQ3_results_raw)
+#View(LHQ3_results_raw)
 #continuing as outlined for L2, L3, L4, and other questions
 
 LHQ3_results_raw[1, 15] <- "L2_Acquisition"
@@ -589,8 +589,8 @@ LHQ3_results_raw[2, 299:305] <- lapply(LHQ3_results_raw[2, 299:305], function(x)
 
 #Organising the data frame so it can be easily analysed, first by making the 
 #question/condition the header
-#Remove the first row which includes the shorthanded questions and Na values
-#make the more informative second row a header
+#Removing the first row which includes the shorthanded questions and Na values
+#making the more informative second row a header
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 new_header <- LHQ3_results_raw[1, ]
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
@@ -605,8 +605,7 @@ View(LHQ3_results_raw)
 
 logbook_path <- here("Background", "LHQ3", "Norway site, session_logbook.xlsx")
 Norway_session_logbook <- read_excel(logbook_path, col_names = TRUE)
-View(Norway_session_logbook)
-
+#View(Norway_session_logbook)
 # Rename columns to match LHQ3_results_raw to ease merging
 Norway_session_logbook <- Norway_session_logbook %>%
   rename(
@@ -616,7 +615,7 @@ Norway_session_logbook <- Norway_session_logbook %>%
   ) %>%
   select(Participant_ID, Participant_number, Pseudolanguage_version)
 
-#View(Norway_session_logbook)
+View(Norway_session_logbook)
 
 #merging the two data frames and removing the extra Participant_number column
 LHQ3_data_compact <- LHQ3_results_raw %>%
@@ -634,110 +633,61 @@ LHQ3_data_compact <- LHQ3_results_raw %>%
 View(LHQ3_data_compact)
 
 
+#calculating the average score for code-switching between languages for each 
+#participant #NA values are ignored
 
+codeswitching_score <- c("Codeswitching_Frequency of mixing with family\r\nmembers", 
+                         "Codeswitching_Frequency of mixing with\r\nfriends", 
+                         "Codeswitching_Frequency of mixing with\r\nclassmates", 
+                         "Codeswitching_Frequency of mixing with\r\nothers")
 
+# Convert the relevant columns to numeric
+LHQ3_data_compact <- LHQ3_data_compact %>%
+  mutate(across(all_of(codeswitching_score), ~ as.numeric(as.character(.)), .names = "num_{col}"))
 
+#Define the new numeric column names
+num_codeswitching_score <- paste0("num_", codeswitching_score)
 
-
-
-
-
-
-
-
-
-
-#change all the codeswitching and tests
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#calculating the average score for code-switching between languages for each participant
-#NA values are ignored
-
-# Columns to aggregate
-codeswitching_score <- c("Codeswitching_Frequency of mixing with family members", "Codeswitching_Frequency of mixing with friends", "Codeswitching_Frequency of mixing with classmates", "Codeswitching_Frequency of mixing with others")
-
-# Sum with NA values ignored
+# Calculate the Codeswitching average ignoring NA values
 LHQ3_data_compact <- LHQ3_data_compact %>%
   rowwise() %>%
-  mutate(Aggregated_Score = sum(c_across(all_of(codeswitching_score)), na.rm = TRUE)) %>%
+  mutate(Codeswitching_average = mean(c_across(all_of(num_codeswitching_score)), na.rm = TRUE)) %>%
   ungroup()
 
-# Mean with NA values ignored
-LHQ3_data_compact <- LHQ3_data_compact %>%
-  rowwise() %>%
-  mutate(Average_Score = mean(c_across(all_of(codeswitching_score)), na.rm = TRUE)) %>%
-  ungroup()
+# Print updated data frame
+#View(LHQ3_data_compact)
+
+#import the automatically processed data from LHQ3 in order to extract relevant
+#info on Proficiency scores and language entropy
+# Removing the first row that reads "LHQ3" and creating new header
+#renaming the Participant ID column to match Participant_ID that is found in the
+#LHQ3_data_compact
+
+file_path2 <- here("Background", "LHQ3", "LHQ3 Aggregate Scores.xlsx")
+LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
+LHQ3_processed <- LHQ3_processed [-1, ]
+LHQ3_processed <- LHQ3_processed %>%
+  row_to_names(row_number = 1)
+LHQ3_processed <- LHQ3_processed %>%
+  rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
+         Multilingual_Language_Diversity_Score = 22 ) 
 
 # View the updated data frame
-print(LHQ3_data_compact)
+#View(LHQ3_processed)
+
+# Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
+# combining the two data frames based on Participant_ID, and finally removing
+# participant_ID, since the session data use the Participant_number
+LHQ3_data_compact_selected <- LHQ3_data_compact %>%
+  select(Participant_ID, Participant_number, Pseudolanguage_version, 
+         Codeswitching_average)
+LHQ3_processed_selected <- LHQ3_processed %>%
+  select(Participant_ID, L1_Proficiency_Score, L2_Proficiency_Score, 
+         Multilingual_Language_Diversity_Score)
+LHQ3_final <- LHQ3_data_compact_selected %>%
+  left_join(LHQ3_processed_selected, by = "Participant_ID")
+LHQ3_final <- subset(LHQ3_final, select = -Participant_ID)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#calculating the participants' language entropy by using the Jason Gullifer scipt
-#https://github.com/jasongullifer/languageEntropy
-#no spaces can exist on the headline
-
-names(LHQ3_data) <- gsub(" ", "_", names(LHQ3_data))
-
-
-
-
-
-
-
-LHQ3_data <- likert2prop(LHQ3_data, Participant_number, L1_Acquisition_Language 1, L2_Acquisition_Language 2,  )
-print(LHQ3_data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#isolate language proficiency
+# View the final data frame
+View(LHQ3_final)
