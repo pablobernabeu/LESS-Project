@@ -3,7 +3,7 @@
     "path": "C:/Users/chath1626/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/EEG/analysis/Session Data importation.R",
     "project_path": "EEG/analysis/Session Data importation.R",
     "type": "r_source",
-    "hash": "1223680850",
+    "hash": "3201748707",
     "contents": "",
     "dirty": false,
     "created": 1723727774042.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "322,0",
-        "scrollLine": "272"
+        "cursorPosition": "484,0",
+        "scrollLine": "454"
     },
     "folds": "",
-    "lastKnownWriteTime": 1723734701,
+    "lastKnownWriteTime": 1723819634,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1723734701869,
+    "last_content_update": 1723819634372,
     "read_only": false,
     "read_only_alternatives": []
 }

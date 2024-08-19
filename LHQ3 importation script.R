@@ -11,7 +11,6 @@ file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
 #stating the type of questionnaire used when automatically downloaded form the 
 #LHQ3 website
 LHQ3_results_raw <- read_excel(file_path, sheet = "Sheet1", col_names = FALSE)
-
 # Remove the first row that reads "LHQ3"
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 
