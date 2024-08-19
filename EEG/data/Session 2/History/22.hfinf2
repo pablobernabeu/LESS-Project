@@ -8,10 +8,14 @@
   <Nodes>
     <string>22/Raw Data</string>
     <string>22/Raw Data/Raw Data Inspection</string>
+    <string>22/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>22/Raw Data/Raw Data Inspection/New Reference/Filters</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>ed7fdeee-25f9-4994-b260-a10779ddb568</guid>
+    <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
+    <guid>a1eff52f-a0b4-41cc-a63d-4d437e2c4f29</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
