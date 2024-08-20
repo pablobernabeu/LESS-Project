@@ -1,11 +1,10 @@
 library(readxl)
 library(dplyr)
 library(tidyr)
-library(here)
 library(tidyverse)
 library(janitor)
 
-file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
+file_path <- ("Background/LHQ3/LHQ3 results raw.xlsx")
 
 # Read the Excel file and treat the first row as regular text as it is just 
 #stating the type of questionnaire used when automatically downloaded form the 
@@ -393,10 +392,14 @@ LHQ3_results_raw[2, 162:168] <- lapply(LHQ3_results_raw[2, 162:168], function(x)
   paste(Q_daily1, x, sep = "_")
 })
 
+
+
+
+
 LHQ3_results_raw[1, 169] <- "Daily_engagement_L2"
 Q_daily2 <- LHQ3_results_raw[1, 169]
 Q_daily2 <- as.character(Q_daily2)
-LHQ3_results_raw[2, 169:175] <- lapply(LHQ3_results_raw[2, 162:175], function(x) {
+LHQ3_results_raw[2, 169:175] <- lapply(LHQ3_results_raw[2, 169:175], function(x) {
   x <- as.character(x)
   paste(Q_daily2, x, sep = "_")
 })
@@ -602,32 +605,39 @@ View(LHQ3_results_raw)
 #matching the participants' ID with the participants' number by using the Norway
 #session logbook as guide
 
-logbook_path <- here("Background", "LHQ3", "Norway site, session_logbook.xlsx")
+logbook_path <- ("Background/LHQ3/Norway site, session_logbook.xlsx")
 Norway_session_logbook <- read_excel(logbook_path, col_names = TRUE)
 #View(Norway_session_logbook)
 # Rename columns to match LHQ3_results_raw to ease merging
+#Norway_session_logbook <- Norway_session_logbook %>%
+ # rename(
+  #  Participant_ID = 1,
+   # Participant_number = 2,
+    #Pseudolanguage_version = 3
+ # ) %>%
+#  select(Participant_ID, Participant_number, Pseudolanguage_version)
+
 Norway_session_logbook <- Norway_session_logbook %>%
-  rename(
-    Participant_ID = 1,
-    Participant_number = 2,
-    Pseudolanguage_version = 3
+  janitor::clean_names() %>%
+  dplyr::rename(
+    Participant_ID = participant_home_id,
+    Participant_number = participant_lab_id,
+    Pseudolanguage_version = language
   ) %>%
-  select(Participant_ID, Participant_number, Pseudolanguage_version)
+select(Participant_ID, Participant_number, Pseudolanguage_version)  # Keep only the first three columns
+
+# Combine data frames using left join
+combined_data <- Norway_session_logbook %>%
+  left_join(LHQ3_results_raw, by = "Participant_ID")
 
 View(Norway_session_logbook)
+  
+#removing the Participant_number column from the LHQ3_results_raw data frame
+LHQ3_results_raw$Participant_number <- NULL
 
-#merging the two data frames and removing the extra Participant_number column
-LHQ3_data_compact <- LHQ3_results_raw %>%
-  left_join(Norway_session_logbook, by = "Participant_ID") %>%
-  rename(
-    Participant_number_original = Participant_number.x,
-    Participant_number_new = Participant_number.y
-  ) %>%
-  mutate(
-    Participant_number = ifelse(is.na(Participant_number_new), 
-                              Participant_number_original, Participant_number_new)
-  ) %>%
-  select(-Participant_number_original, -Participant_number_new)   
+#combinging the two dataframes
+LHQ3_data_compact <- Norway_session_logbook %>%
+  inner_join(LHQ3_results_raw, by = "Participant_ID")
 
 View(LHQ3_data_compact)
 
@@ -654,7 +664,7 @@ LHQ3_data_compact <- LHQ3_data_compact %>%
   ungroup()
 
 # Print updated data frame
-#View(LHQ3_data_compact)
+View(LHQ3_data_compact)
 
 #import the automatically processed data from LHQ3 in order to extract relevant
 #info on Proficiency scores and language entropy
@@ -662,11 +672,12 @@ LHQ3_data_compact <- LHQ3_data_compact %>%
 #renaming the Participant ID column to match Participant_ID that is found in the
 #LHQ3_data_compact
 
-file_path2 <- here("Background", "LHQ3", "LHQ3 Aggregate Scores.xlsx")
+file_path2 <- ("Background/LHQ3/LHQ3 Aggregate Scores.xlsx")
 LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
 LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
+
 LHQ3_processed <- LHQ3_processed %>%
   rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
          Multilingual_Language_Diversity_Score = 22 ) 
