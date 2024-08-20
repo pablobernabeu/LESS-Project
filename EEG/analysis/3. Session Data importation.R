@@ -1,5 +1,5 @@
 # importing lhq3 script, which will be used to complete the session data frames
-source("EEG/analysis/1. LHQ3 Importation script.R")
+source("EEG/analysis/LHQ3 Importation script.R")
 
 library(tidyverse)
 library(janitor)

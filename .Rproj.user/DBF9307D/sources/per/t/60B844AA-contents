@@ -1,7 +1,6 @@
 # importing lhq3 script, which will be used to complete the session data frames
-source("EEG/analysis/LHQ3 Importation script.R")
+source("EEG/analysis/1. LHQ3 Importation script.R")
 
-library(here)
 library(tidyverse)
 library(janitor)
 library(plyr)
@@ -159,6 +158,7 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 
 # View the cleaned data
 View(Session2_melted_data)
+View(LHQ3_final)
 
 # making sure that no Nas or NaNs have been introduced by coercion
 rows_with_any_na_nan <- Session2_melted_data %>%
@@ -166,10 +166,21 @@ rows_with_any_na_nan <- Session2_melted_data %>%
 
 print(rows_with_any_na_nan)
 
+rows_with_any_na_nan <- LHQ3_final %>%
+  filter(if_any(everything(), ~ is.na(.) | is.nan(.)))
+
+print(rows_with_any_na_nan)
+
 
 #adding the LHQ3 data to the Session2_melted_data
+#Converting Participant_number in LHQ3_final to character, in order to match 
+#the Session2 data. Character has been chosen because Participant_number 
+#is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
+
+LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
+
 Session2_LHQ3 <- full_join(LHQ3_final, Session2_melted_data, by = "Participant_number")
 
 
@@ -472,10 +483,14 @@ Session3_melted_data$Region <- as.factor(Session3_melted_data$Region)
 Session3_melted_data$Grammaticality <- as.factor(Session3_melted_data$Grammaticality)
 Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Participant_number)
 
-
 #adding the LHQ3 data to the Session2_melted_data
+#Converting Participant_number in LHQ3_final to character, in order to match 
+#the Session2 data. Character has been chosen because Participant_number 
+#is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
+
+LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data, by = "Participant_number")
 
 # Print combined data frame
@@ -544,21 +559,21 @@ Session4_GEN_violation_interest_list = lapply(1:length(Session4_GEN_violation_in
 
 Session4_GEN_ancillary_violation_list = lapply(1:length(Session4_GEN_ancillary_violation),
 function(x) { read.table(Session4_GEN_ancillary_violation [x], header=FALSE) } )
-View(Session3_GEN_ancillary_violation_list)
+View(Session4_GEN_ancillary_violation_list)
 
 #Differential object marking
 
 Session4_DOM_gram_list = lapply(1:length(Session4_DOM_gram_files),function(x) {
   read.table(Session4_DOM_gram_files[x], header=FALSE) } )
-#View(Session3_DOM_gram_list)
+#View(Session4_DOM_gram_list)
 
 Session4_DOM_violation_interest_list = lapply(1:length(Session4_DOM_violation_interest),
   function(x) { read.table(Session4_DOM_violation_interest[x], header=FALSE) } )
-#View(Session3_DOM_violation_interest_list)
+#View(Session4_DOM_violation_interest_list)
 
 Session4_DOM_ancillary_violation_list = lapply(1:length(Session4_DOM_ancillary_violation),
 function(x) { read.table(Session4_DOM_ancillary_violation [x], header=FALSE) } )
-#View(Session3_DOM_ancillary_violation_list)
+#View(Session4_DOM_ancillary_violation_list)
 
 
 
@@ -803,10 +818,14 @@ rows_with_any_na_nan <- Session4_melted_data %>%
 
 print(rows_with_any_na_nan)
 
-
 #adding the LHQ3 data to the Session2_melted_data
+#Converting Participant_number in LHQ3_final to character, in order to match 
+#the Session2 data. Character has been chosen because Participant_number 
+#is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
+
+LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
 Session4_LHQ3 <- full_join(LHQ3_final, Session4_melted_data, by = "Participant_number")
 
 # Print combined data frame
@@ -850,7 +869,7 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 
 
 # Ensure the Time column is a factor
-S2_N200_df$Time <- factor(S2_N200_df$Time)
+S3_N200_df$Time <- factor(S3_N200_df$Time)
 
 # Perform ANOVA with Electrode and Time as factors
 anova_result <- aov(Activation ~ Electrode * Time, data = df)
