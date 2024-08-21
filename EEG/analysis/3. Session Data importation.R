@@ -484,6 +484,10 @@ print(rows_with_any_na_nan)
 Session3_melted_data_S1$Region <- as.factor(Session3_melted_data_S1$Region)
 Session3_melted_data_S1$Grammaticality <- as.factor(Session3_melted_data_S1$Grammaticality)
 Session3_melted_data_S1$Participant_number <- as.factor(Session3_melted_data_S1$Participant_number)
+<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
+=======
+
+>>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 #adding the LHQ3 data to the Session2_melted_data
 #Converting Participant_number in LHQ3_final to character, in order to match 
@@ -492,9 +496,13 @@ Session3_melted_data_S1$Participant_number <- as.factor(Session3_melted_data_S1$
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 <<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
+<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 
 LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data, by = "Participant_number")
+=======
+Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data_S1, by = "Participant_number")
+>>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 =======
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data_S1, by = "Participant_number")
 >>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
@@ -513,6 +521,7 @@ View(Session3_LHQ3)
 
 
 
+<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 <<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 Session4_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
                                       path = Session4path, full.names = TRUE)
@@ -542,6 +551,17 @@ Session4_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt",
 Session4_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
                                                path = Session4path, full.names = TRUE)
 =======
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 
 
@@ -577,6 +597,7 @@ Session4_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt",
 
 
 
+<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 
 
 
@@ -864,6 +885,26 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 #start importing that, oonly use Accuracy,  NOT reaction times
 #go for anovas
 =======
+>>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 >>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 
