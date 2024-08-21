@@ -1,5 +1,6 @@
 {
     "left": {
+<<<<<<< HEAD
         "splitterpos": 252,
         "topwindowstate": "HIDE",
         "panelheight": 592,
@@ -7,8 +8,17 @@
     },
     "right": {
         "splitterpos": 378,
+=======
+        "splitterpos": 343,
         "topwindowstate": "NORMAL",
-        "panelheight": 592,
-        "windowheight": 630
+        "panelheight": 1311,
+        "windowheight": 1349
+    },
+    "right": {
+        "splitterpos": 801,
+>>>>>>> parent of 57018cb (midday updates)
+        "topwindowstate": "NORMAL",
+        "panelheight": 1311,
+        "windowheight": 1349
     }
 }

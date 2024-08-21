@@ -1,5 +1,4 @@
 library(readxl)
-library(plyr)
 library(dplyr)
 library(tidyr)
 library(here)
@@ -12,7 +11,6 @@ file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
 #stating the type of questionnaire used when automatically downloaded form the 
 #LHQ3 website
 LHQ3_results_raw <- read_excel(file_path, sheet = "Sheet1", col_names = FALSE)
-
 # Remove the first row that reads "LHQ3"
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 
@@ -642,13 +640,18 @@ codeswitching_score <- c("Codeswitching_Frequency of mixing with family\r\nmembe
                          "Codeswitching_Frequency of mixing with\r\nclassmates", 
                          "Codeswitching_Frequency of mixing with\r\nothers")
 
-# Convert the specified columns to numeric
-LHQ3_data_compact[, codeswitching_score] <- lapply(LHQ3_data_compact[, 
-  codeswitching_score], function(x) {as.numeric(as.character(x))})
+# Convert the relevant columns to numeric
+LHQ3_data_compact <- LHQ3_data_compact %>%
+  mutate(across(all_of(codeswitching_score), ~ as.numeric(as.character(.)), .names = "num_{col}"))
 
-# Calculate the row-wise average for the specified columns, ignoring NA values
-LHQ3_data_compact$Codeswitching_average <- 
-  rowMeans(LHQ3_data_compact[, codeswitching_score], na.rm = TRUE)
+#Define the new numeric column names
+num_codeswitching_score <- paste0("num_", codeswitching_score)
+
+# Calculate the Codeswitching average ignoring NA values
+LHQ3_data_compact <- LHQ3_data_compact %>%
+  rowwise() %>%
+  mutate(Codeswitching_average = mean(c_across(all_of(num_codeswitching_score)), na.rm = TRUE)) %>%
+  ungroup()
 
 # Print updated data frame
 #View(LHQ3_data_compact)
@@ -664,25 +667,12 @@ LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
 LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
-<<<<<<<< HEAD:EEG/analysis/1. LHQ3 importation script.R
-
-
-# Rename columns using indices
-names(LHQ3_processed)[c(1, 6, 7, 22)] <- c("Participant_ID", "L1_Proficiency_Score", 
-                "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
-
-
-#LHQ3_processed <- LHQ3_processed %>%
- # rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
-  #       Multilingual_Language_Diversity_Score = 22 ) 
-========
 LHQ3_processed <- LHQ3_processed %>%
   rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
          Multilingual_Language_Diversity_Score = 22 ) 
->>>>>>>> parent of 57018cb (midday updates):.Rproj.user/DBF9307D/sources/per/t/1F83BB77-contents
 
 # View the updated data frame
-View(LHQ3_processed)
+#View(LHQ3_processed)
 
 # Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
 # combining the two data frames based on Participant_ID, and finally removing
@@ -696,6 +686,7 @@ LHQ3_processed_selected <- LHQ3_processed %>%
 LHQ3_final <- LHQ3_data_compact_selected %>%
   left_join(LHQ3_processed_selected, by = "Participant_ID")
 LHQ3_final <- subset(LHQ3_final, select = -Participant_ID)
+
 
 # View the final data frame
 View(LHQ3_final)

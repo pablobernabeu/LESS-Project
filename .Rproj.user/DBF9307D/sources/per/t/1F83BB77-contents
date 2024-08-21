@@ -1,15 +1,18 @@
 library(readxl)
+library(plyr)
 library(dplyr)
 library(tidyr)
+library(here)
 library(tidyverse)
 library(janitor)
 
-file_path <- ("Background/LHQ3/LHQ3 results raw.xlsx")
+file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
 
 # Read the Excel file and treat the first row as regular text as it is just 
 #stating the type of questionnaire used when automatically downloaded form the 
 #LHQ3 website
 LHQ3_results_raw <- read_excel(file_path, sheet = "Sheet1", col_names = FALSE)
+
 # Remove the first row that reads "LHQ3"
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 
@@ -392,14 +395,10 @@ LHQ3_results_raw[2, 162:168] <- lapply(LHQ3_results_raw[2, 162:168], function(x)
   paste(Q_daily1, x, sep = "_")
 })
 
-
-
-
-
 LHQ3_results_raw[1, 169] <- "Daily_engagement_L2"
 Q_daily2 <- LHQ3_results_raw[1, 169]
 Q_daily2 <- as.character(Q_daily2)
-LHQ3_results_raw[2, 169:175] <- lapply(LHQ3_results_raw[2, 169:175], function(x) {
+LHQ3_results_raw[2, 169:175] <- lapply(LHQ3_results_raw[2, 162:175], function(x) {
   x <- as.character(x)
   paste(Q_daily2, x, sep = "_")
 })
@@ -605,39 +604,32 @@ View(LHQ3_results_raw)
 #matching the participants' ID with the participants' number by using the Norway
 #session logbook as guide
 
-logbook_path <- ("Background/LHQ3/Norway site, session_logbook.xlsx")
+logbook_path <- here("Background", "LHQ3", "Norway site, session_logbook.xlsx")
 Norway_session_logbook <- read_excel(logbook_path, col_names = TRUE)
 #View(Norway_session_logbook)
 # Rename columns to match LHQ3_results_raw to ease merging
-#Norway_session_logbook <- Norway_session_logbook %>%
- # rename(
-  #  Participant_ID = 1,
-   # Participant_number = 2,
-    #Pseudolanguage_version = 3
- # ) %>%
-#  select(Participant_ID, Participant_number, Pseudolanguage_version)
-
 Norway_session_logbook <- Norway_session_logbook %>%
-  janitor::clean_names() %>%
-  dplyr::rename(
-    Participant_ID = participant_home_id,
-    Participant_number = participant_lab_id,
-    Pseudolanguage_version = language
+  rename(
+    Participant_ID = 1,
+    Participant_number = 2,
+    Pseudolanguage_version = 3
   ) %>%
-select(Participant_ID, Participant_number, Pseudolanguage_version)  # Keep only the first three columns
-
-# Combine data frames using left join
-combined_data <- Norway_session_logbook %>%
-  left_join(LHQ3_results_raw, by = "Participant_ID")
+  select(Participant_ID, Participant_number, Pseudolanguage_version)
 
 View(Norway_session_logbook)
-  
-#removing the Participant_number column from the LHQ3_results_raw data frame
-LHQ3_results_raw$Participant_number <- NULL
 
-#combinging the two dataframes
-LHQ3_data_compact <- Norway_session_logbook %>%
-  inner_join(LHQ3_results_raw, by = "Participant_ID")
+#merging the two data frames and removing the extra Participant_number column
+LHQ3_data_compact <- LHQ3_results_raw %>%
+  left_join(Norway_session_logbook, by = "Participant_ID") %>%
+  rename(
+    Participant_number_original = Participant_number.x,
+    Participant_number_new = Participant_number.y
+  ) %>%
+  mutate(
+    Participant_number = ifelse(is.na(Participant_number_new), 
+                              Participant_number_original, Participant_number_new)
+  ) %>%
+  select(-Participant_number_original, -Participant_number_new)   
 
 View(LHQ3_data_compact)
 
@@ -650,21 +642,16 @@ codeswitching_score <- c("Codeswitching_Frequency of mixing with family\r\nmembe
                          "Codeswitching_Frequency of mixing with\r\nclassmates", 
                          "Codeswitching_Frequency of mixing with\r\nothers")
 
-# Convert the relevant columns to numeric
-LHQ3_data_compact <- LHQ3_data_compact %>%
-  mutate(across(all_of(codeswitching_score), ~ as.numeric(as.character(.)), .names = "num_{col}"))
+# Convert the specified columns to numeric
+LHQ3_data_compact[, codeswitching_score] <- lapply(LHQ3_data_compact[, 
+  codeswitching_score], function(x) {as.numeric(as.character(x))})
 
-#Define the new numeric column names
-num_codeswitching_score <- paste0("num_", codeswitching_score)
-
-# Calculate the Codeswitching average ignoring NA values
-LHQ3_data_compact <- LHQ3_data_compact %>%
-  rowwise() %>%
-  mutate(Codeswitching_average = mean(c_across(all_of(num_codeswitching_score)), na.rm = TRUE)) %>%
-  ungroup()
+# Calculate the row-wise average for the specified columns, ignoring NA values
+LHQ3_data_compact$Codeswitching_average <- 
+  rowMeans(LHQ3_data_compact[, codeswitching_score], na.rm = TRUE)
 
 # Print updated data frame
-View(LHQ3_data_compact)
+#View(LHQ3_data_compact)
 
 #import the automatically processed data from LHQ3 in order to extract relevant
 #info on Proficiency scores and language entropy
@@ -672,18 +659,30 @@ View(LHQ3_data_compact)
 #renaming the Participant ID column to match Participant_ID that is found in the
 #LHQ3_data_compact
 
-file_path2 <- ("Background/LHQ3/LHQ3 Aggregate Scores.xlsx")
+file_path2 <- here("Background", "LHQ3", "LHQ3 Aggregate Scores.xlsx")
 LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
 LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
+<<<<<<<< HEAD:EEG/analysis/1. LHQ3 importation script.R
 
+
+# Rename columns using indices
+names(LHQ3_processed)[c(1, 6, 7, 22)] <- c("Participant_ID", "L1_Proficiency_Score", 
+                "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
+
+
+#LHQ3_processed <- LHQ3_processed %>%
+ # rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
+  #       Multilingual_Language_Diversity_Score = 22 ) 
+========
 LHQ3_processed <- LHQ3_processed %>%
   rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
          Multilingual_Language_Diversity_Score = 22 ) 
+>>>>>>>> parent of 57018cb (midday updates):.Rproj.user/DBF9307D/sources/per/t/1F83BB77-contents
 
 # View the updated data frame
-#View(LHQ3_processed)
+View(LHQ3_processed)
 
 # Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
 # combining the two data frames based on Participant_ID, and finally removing
@@ -697,7 +696,6 @@ LHQ3_processed_selected <- LHQ3_processed %>%
 LHQ3_final <- LHQ3_data_compact_selected %>%
   left_join(LHQ3_processed_selected, by = "Participant_ID")
 LHQ3_final <- subset(LHQ3_final, select = -Participant_ID)
-
 
 # View the final data frame
 View(LHQ3_final)
