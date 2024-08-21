@@ -2,17 +2,11 @@
 source("EEG/analysis/1. LHQ3 Importation script.R")
 
 library(tidyverse)
-library(janitor)
-library(plyr)
+library(janitor) 
+library(plyr)      
 library(reshape2)
-library(magrittr)
-library(dplyr)
-library(ggplot2)
 
 #session2, remove participants 2 and 7 from anovas
-
-
-
 Session2path <- "EEG/data/Session 2/Export/"
 
 #creating patterns to import the files and recognise them as distinct conditions
@@ -59,7 +53,7 @@ Session2_ancillary_violation_data = ldply (Session2_ancillary_violation_list,
 #and recorded with 2 ms intervals
 seq = seq(-100, 1098, 2)
 
-# the electrode column is formulated as a vector of electrode names that 
+# the Electrode column is formulated as a vector of electrode names that 
 #correspond to the time interval sequence
 names(Session2_gram_data) = c('Electrode', seq)
 names(Session2_violation_interest_data) = c('Electrode', seq)
@@ -97,7 +91,6 @@ Session2_combined_data <- rbind(Session2_gram_data,
 
 View(Session2_combined_data)
 
-
 #dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
 electrode_to_region <- c(
@@ -133,14 +126,32 @@ electrode_to_region <- c(
   "Oz" = "midline posterior"
 )
 
+# Ensure the 'electrode' column exists
+#if (!"electrode" %in% colnames(Session2_combined_data)) {
+ # stop("The 'electrode' column is missing from the data frame.")
+#}
+#clean data from NA values
+Session2_combined_data <- Session2_combined_data %>%
+  clean_names() 
+
+# Add a Region column based on the electrode_to_region mapping
+Session2_combined_data <- Session2_combined_data %>%
+  mutate(Region = ifelse(electrode %in% names(electrode_to_region),
+                         electrode_to_region[electrode],
+                         NA_character_))
+
+
+
 # Add a Region column on the data frame based on the electrode_to_region mapping
 Session2_combined_data <- Session2_combined_data %>%
-  mutate(Region = electrode_to_region[Electrode])
+ mutate(Region = electrode_to_region[electrode])
+
+
 
 # Melt the combined data frame to convert it from wide to long format
 Session2_melted_data_dirty <- melt(Session2_combined_data, id.vars = 
-    c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
-    variable.name = 'Time', value.name = 'Activation')
+   c('Participant_number', 'electrode', 'Grammaticality', 'Region'), 
+  variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session2_melted_data_dirty$Time <- as.numeric (as.character
