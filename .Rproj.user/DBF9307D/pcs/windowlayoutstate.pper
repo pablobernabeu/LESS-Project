@@ -1,5 +1,6 @@
 {
     "left": {
+<<<<<<< HEAD
         "splitterpos": 195,
         "topwindowstate": "NORMAL",
         "panelheight": 592,
@@ -10,5 +11,17 @@
         "topwindowstate": "NORMAL",
         "panelheight": 592,
         "windowheight": 630
+=======
+        "splitterpos": 340,
+        "topwindowstate": "NORMAL",
+        "panelheight": 1302,
+        "windowheight": 1340
+    },
+    "right": {
+        "splitterpos": 796,
+        "topwindowstate": "NORMAL",
+        "panelheight": 1302,
+        "windowheight": 1340
+>>>>>>> parent of cc21368 (updates)
     }
 }
