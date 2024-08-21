@@ -1,10 +1,8 @@
-library(readxl)
-library(plyr)
-library(dplyr)
-library(tidyr)
-library(here)
-library(tidyverse)
-library(janitor)
+library(tidyverse) 
+library(readxl)     
+library(janitor)  
+library(here)       
+library(plyr)      
 
 file_path <- here("Background", "LHQ3", "LHQ3 results raw.xlsx")
 
@@ -664,7 +662,6 @@ LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
 LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
-<<<<<<<< HEAD:EEG/analysis/1. LHQ3 importation script.R
 
 
 # Rename columns using indices
@@ -675,11 +672,9 @@ names(LHQ3_processed)[c(1, 6, 7, 22)] <- c("Participant_ID", "L1_Proficiency_Sco
 #LHQ3_processed <- LHQ3_processed %>%
  # rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
   #       Multilingual_Language_Diversity_Score = 22 ) 
-========
 LHQ3_processed <- LHQ3_processed %>%
   rename(Participant_ID = 1, L1_Proficiency_Score = 6, L2_Proficiency_Score = 7, 
          Multilingual_Language_Diversity_Score = 22 ) 
->>>>>>>> parent of 57018cb (midday updates):.Rproj.user/DBF9307D/sources/per/t/1F83BB77-contents
 
 # View the updated data frame
 View(LHQ3_processed)

@@ -1,10 +1,10 @@
 # importing lhq3 script, which will be used to complete the session data frames
 source("EEG/analysis/1. LHQ3 Importation script.R")
 
-library(tidyverse)
-library(janitor) 
-library(plyr)      
-library(reshape2)
+library(tidyverse)  
+library(reshape2)   
+library(janitor)   
+library(plyr)       
 
 #session2, remove participants 2 and 7 from anovas
 Session2path <- "EEG/data/Session 2/Export/"
@@ -337,38 +337,6 @@ Session3_DOM_ancillary_violation_data = ldply (Session3_DOM_ancillary_violation_
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
@@ -484,13 +452,7 @@ print(rows_with_any_na_nan)
 Session3_melted_data_S1$Region <- as.factor(Session3_melted_data_S1$Region)
 Session3_melted_data_S1$Grammaticality <- as.factor(Session3_melted_data_S1$Grammaticality)
 Session3_melted_data_S1$Participant_number <- as.factor(Session3_melted_data_S1$Participant_number)
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-=======
-=======
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 #adding the LHQ3 data to the Session2_melted_data
 #Converting Participant_number in LHQ3_final to character, in order to match 
@@ -498,21 +460,12 @@ Session3_melted_data_S1$Participant_number <- as.factor(Session3_melted_data_S1$
 #is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 
 LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data, by = "Participant_number")
-=======
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data_S1, by = "Participant_number")
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-=======
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data_S1, by = "Participant_number")
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-=======
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data_S1, by = "Participant_number")
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 # Print combined data frame
 View(Session3_LHQ3)
@@ -523,14 +476,6 @@ View(Session3_LHQ3)
 ########################
 #######################
 
-
-
-
-
-
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 Session4_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
                                       path = Session4path, full.names = TRUE)
 
@@ -558,93 +503,22 @@ Session4_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt",
 
 Session4_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
                                                path = Session4path, full.names = TRUE)
-=======
-=======
 
 
 
 
 
 
-
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-=======
-
-
-
-
-
-
-
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
-
-
-
-
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-
-
-
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 Session4_GEN_gram_list = lapply(1:length(Session4_GEN_gram_files),function(x) {
   read.table(Session4_GEN_gram_files[x], header=FALSE) } )
 #View(Session3_GEN_gram_list)
-=======
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 Session4_GEN_ancillary_violation_list = lapply(1:length(Session4_GEN_ancillary_violation),
 function(x) { read.table(Session4_GEN_ancillary_violation [x], header=FALSE) } )
 View(Session4_GEN_ancillary_violation_list)
-=======
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 Session4_DOM_gram_list = lapply(1:length(Session4_DOM_gram_files),function(x) {
   read.table(Session4_DOM_gram_files[x], header=FALSE) } )
 #View(Session4_DOM_gram_list)
@@ -671,23 +545,6 @@ function(x) { read.table(Session4_DOM_ancillary_violation [x], header=FALSE) } )
 
 
 
-=======
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-
-
-
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD:EEG/analysis/3. Session Data importation.R
 #Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
@@ -904,9 +761,6 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 #Adapt column names to behavioural files (csv)
 #start importing that, oonly use Accuracy,  NOT reaction times
 #go for anovas
-=======
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-=======
 
 
 
@@ -916,36 +770,6 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 
 
 
-
-
-
-
-
-
-
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> parent of cc21368 (updates):.Rproj.user/DBF9307D/sources/per/t/CBA42424-contents
 
 
 
