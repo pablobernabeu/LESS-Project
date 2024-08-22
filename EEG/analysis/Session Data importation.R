@@ -1,8 +1,3 @@
-# importing lhq3 script, which will be used to complete the session data frames
-source("EEG/analysis/1. LHQ3 Importation script.R")
-
-library(tidyverse)
-library(janitor)
 library(plyr)
 library(reshape2)
 library(magrittr)
@@ -10,6 +5,8 @@ library(dplyr)
 library(ggplot2)
 
 #session2, remove participants 2 and 7 from anovas
+
+
 
 
 
@@ -95,9 +92,6 @@ Session2_ancillary_violation_data$Grammaticality <- 'Ancillary Violation'
 Session2_combined_data <- rbind(Session2_gram_data, 
         Session2_violation_interest_data, Session2_ancillary_violation_data)
 
-View(Session2_combined_data)
-
-
 #dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
 electrode_to_region <- c(
@@ -158,31 +152,12 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 
 # View the cleaned data
 View(Session2_melted_data)
-View(LHQ3_final)
 
 # making sure that no Nas or NaNs have been introduced by coercion
 rows_with_any_na_nan <- Session2_melted_data %>%
   filter(if_any(everything(), ~ is.na(.) | is.nan(.)))
 
 print(rows_with_any_na_nan)
-
-rows_with_any_na_nan <- LHQ3_final %>%
-  filter(if_any(everything(), ~ is.na(.) | is.nan(.)))
-
-print(rows_with_any_na_nan)
-
-
-#adding the LHQ3 data to the Session2_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
-#the Session2 data. Character has been chosen because Participant_number 
-#is categorical (IDs)
-#Performing the inner join function,due to the discrepancy between the number of 
-#rows between the two data frames, so that no data is deleted
-
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
-
-Session2_LHQ3 <- full_join(LHQ3_final, Session2_melted_data, by = "Participant_number")
-
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
 #in order to run ANOVAs
@@ -191,27 +166,18 @@ Session2_melted_data$Region <- as.factor(Session2_melted_data$Region)
 Session2_melted_data$Grammaticality <- as.factor(Session2_melted_data$Grammaticality)
 Session2_melted_data$Participant_number <- as.factor(Session2_melted_data$Participant_number)
 
+
+#adding the LHQ3 data to the Session2_melted_data
+#Performing the inner join function,due to the discrepancy between the number of 
+#rows between the two data frames, so that no data is deleted
+Session2_LHQ3 <- full_join(LHQ3_final, Session2_melted_data, by = "Participant_number")
+
 # Print combined data frame
 View(Session2_LHQ3)
 ############################################
 
-
-
-
-
-
-
-
 #INSERT GORILLA DATA
 #CHANGE DATAFRAME NAME TO sESSION2_DATA
-
-
-
-
-
-
-
-
 
 ###############################################################################
 #Analysing per time window
@@ -483,14 +449,10 @@ Session3_melted_data$Region <- as.factor(Session3_melted_data$Region)
 Session3_melted_data$Grammaticality <- as.factor(Session3_melted_data$Grammaticality)
 Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Participant_number)
 
+
 #adding the LHQ3 data to the Session2_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
-#the Session2 data. Character has been chosen because Participant_number 
-#is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
-
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
 Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data, by = "Participant_number")
 
 # Print combined data frame
@@ -517,39 +479,71 @@ Session4path <- "EEG/data/Session 4/Export/"
 #Session 4 investigates Gender marking, here GEN, Differential 
 #Object Marking, here DOM, and Verb-Object Number Agreement, here VOA
 
-Session4_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session4_GEN_gram_files <- list.files(pattern = "*S1.S101.txt", 
+                                      path = Session3path, full.names = TRUE)
 
 Session4_GEN_violation_interest <- list.files(pattern = "*S1_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+                                              path = Session3path, full.names = TRUE)
 
 Session4_GEN_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+                                               path = Session3path, full.names = TRUE)
 
-Session4_DOM_gram_files <- list.files(pattern = "*S2_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session4_DOM_gram_files <- list.files(pattern = "*S2.S101.txt", 
+                                      path = Session3path, full.names = TRUE)
 
 Session4_DOM_violation_interest <- list.files(pattern = "*S2_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+                                              path = Session3path, full.names = TRUE)
 
 Session4_DOM_ancillary_violation <- list.files(pattern = "*S2_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+                                               path = Session3path, full.names = TRUE)
 
 
-Session4_VOA_gram_files <- list.files(pattern = "*S3_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session4_VOA_gram_files <- list.files(pattern = "*S3.S101.txt", 
+                                      path = Session3path, full.names = TRUE)
 
 Session4_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+                                              path = Session3path, full.names = TRUE)
 
 Session4_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+                                               path = Session3path, full.names = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Constructing lists of data, one for each property and condition
 
 #Gender
 
-Session4_GEN_gram_list = lapply(1:length(Session4_GEN_gram_files),function(x) {
+Session4_GEN_gram_list = lapply(1:length(Session3_GEN_gram_files),function(x) {
   read.table(Session4_GEN_gram_files[x], header=FALSE) } )
 #View(Session3_GEN_gram_list)
 
@@ -559,36 +553,21 @@ Session4_GEN_violation_interest_list = lapply(1:length(Session4_GEN_violation_in
 
 Session4_GEN_ancillary_violation_list = lapply(1:length(Session4_GEN_ancillary_violation),
 function(x) { read.table(Session4_GEN_ancillary_violation [x], header=FALSE) } )
-View(Session4_GEN_ancillary_violation_list)
+View(Session3_GEN_ancillary_violation_list)
 
 #Differential object marking
 
 Session4_DOM_gram_list = lapply(1:length(Session4_DOM_gram_files),function(x) {
   read.table(Session4_DOM_gram_files[x], header=FALSE) } )
-#View(Session4_DOM_gram_list)
+#View(Session3_DOM_gram_list)
 
 Session4_DOM_violation_interest_list = lapply(1:length(Session4_DOM_violation_interest),
   function(x) { read.table(Session4_DOM_violation_interest[x], header=FALSE) } )
-#View(Session4_DOM_violation_interest_list)
+#View(Session3_DOM_violation_interest_list)
 
 Session4_DOM_ancillary_violation_list = lapply(1:length(Session4_DOM_ancillary_violation),
 function(x) { read.table(Session4_DOM_ancillary_violation [x], header=FALSE) } )
-#View(Session4_DOM_ancillary_violation_list)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#View(Session3_DOM_ancillary_violation_list)
 
 #Verb Object Number Agreement
 
@@ -738,7 +717,7 @@ Session4_VOA_violation_interest_data$Grammaticality <- 'Violation_of_Interest'
 Session4_VOA_ancillary_violation_data$Grammaticality <- 'Ancillary_Violation'
 
 # Combine all data frames into one
-Session4_combined_data <- rbind(Session4_GEN_gram_data,
+Session3_combined_data <- rbind(Session4_GEN_gram_data,
                                 Session4_GEN_violation_interest_data, 
                                 Session4_GEN_ancillary_violation_data,
                                 Session4_DOM_gram_data, 
@@ -818,25 +797,23 @@ rows_with_any_na_nan <- Session4_melted_data %>%
 
 print(rows_with_any_na_nan)
 
-#adding the LHQ3 data to the Session2_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
-#the Session2 data. Character has been chosen because Participant_number 
-#is categorical (IDs)
-#Performing the inner join function,due to the discrepancy between the number of 
-#rows between the two data frames, so that no data is deleted
-
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
-Session4_LHQ3 <- full_join(LHQ3_final, Session4_melted_data, by = "Participant_number")
-
-# Print combined data frame
-View(Session4_LHQ3)
-
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
 #in order to run ANOVAs
 #Session3_melted_data$Time <- as.factor(Session4_melted_data_S1$Time)
 Session4_melted_data$Region <- as.factor(Session4_melted_data$Region)
 Session4_melted_data$Grammaticality <- as.factor(Session4_melted_data$Grammaticality)
 Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Participant_number)
+
+
+#adding the LHQ3 data to the Session2_melted_data
+#Performing the inner join function,due to the discrepancy between the number of 
+#rows between the two data frames, so that no data is deleted
+Session4_LHQ3 <- full_join(LHQ3_final, Session4_melted_data, by = "Participant_number")
+
+# Print combined data frame
+View(Session4_LHQ3)
+
+
 
 
 
@@ -869,7 +846,7 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 
 
 # Ensure the Time column is a factor
-S3_N200_df$Time <- factor(S3_N200_df$Time)
+S2_N200_df$Time <- factor(S2_N200_df$Time)
 
 # Perform ANOVA with Electrode and Time as factors
 anova_result <- aov(Activation ~ Electrode * Time, data = df)
