@@ -1,0 +1,11 @@
+"0","# Calculate the median reaction time (RT) for each combination of participant, 
+#group, trial, and triplet type
+TL_RT_wide <- merged_ASRT %>%
+  group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
+  summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
+  pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
+  ungroup() # Asegurarse de desagrupar para evitar problemas posteriores
+"
+"1","[38;5;232m`summarise()` has grouped output by 'Participant Public ID', 'p_or_r', 'epoch'. You can override using
+the `.groups` argument.[39m
+"
