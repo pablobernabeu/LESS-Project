@@ -2,6 +2,7 @@ library(plyr)
 library(tidyverse) 
 library(readxl)     
 library(janitor)  
+library(rmarkdown)
 
 file_path <- ("Background/LHQ3/LHQ3 results raw.xlsx")
 
@@ -720,9 +721,19 @@ View(LHQ3_final)
 
 
 #loading the behavioural data from Session1 
-Gorilla_file_path <- ("Background/Gorilla")
-DGS <- read.csv("analysis_table_DGS.csv")
-Stroop <- read.csv("difference_reaction_time_stroop.csv")
-TL <- read.csv("TL_RT_wide_1.csv")
+Stroop <- read.csv("Background/Gorilla/difference_reaction_time_stroop.csv")
+TL <- read.csv("Background/Gorilla/TL_RT_wide_1.csv")
+DGS <- read.csv("Background/Gorilla/analysis_table_DGS.csv")
 
+View(DGS)
 View(Stroop)
+View(TL)
+
+# Combine the data frames based on Participant Public ID using full_join
+Session1_data <- DGS %>%
+  full_join(Stroop, by = "Participant.Public.ID", relationship = "many-to-many") %>%
+  full_join(TL, by = "Participant.Public.ID", relationship = "many-to-many")
+
+# View the combined data
+View(Session1_data)
+
