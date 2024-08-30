@@ -709,7 +709,7 @@ LHQ3_processed_selected <- LHQ3_processed[, c("Participant_ID", "L1_Proficiency_
 LHQ3_final <- merge(LHQ3_data_compact_selected, LHQ3_processed_selected, by = "Participant_ID", all.x = TRUE)
 
 # Step 4: Remove the Participant_ID Column
-LHQ3_final <- LHQ3_final[, !names(LHQ3_final) %in% "Participant_ID"]
+#LHQ3_final <- LHQ3_final[, !names(LHQ3_final) %in% "Participant_ID"]
 
 # View the final data frame
 View(LHQ3_final)
@@ -737,3 +737,11 @@ Session1_data <- DGS %>%
 # View the combined data
 View(Session1_data)
 
+# Rename the column 'Participant.Public.ID' to 'Participant_ID'
+names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] <- "Participant_ID"
+
+# Merge the two data frames by 'Participant_ID'
+Backgound_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
+
+# View the merged data
+View(Backgound_data)

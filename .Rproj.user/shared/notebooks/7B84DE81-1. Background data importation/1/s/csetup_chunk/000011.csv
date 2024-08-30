@@ -1,7 +1,0 @@
-"0","# Read the Excel file and treat the first row as regular text as it is just 
-#stating the type of questionnaire used when automatically downloaded form the 
-#LHQ3 website
-LHQ3_results_raw <- read_excel(file_path, sheet = ""Sheet1"", col_names = FALSE)
-"
-"2","Error: `path` does not exist: ‘Background/LHQ3/LHQ3 results raw.xlsx’
-"
