@@ -639,18 +639,15 @@ LHQ3_data_compact <- LHQ3_data_compact[, !names(LHQ3_data_compact) %in% "Partici
 #calculating the average score for code-switching between languages for each 
 #participant #NA values are ignored
 
-codeswitching_score <- c("Codeswitching_Frequency of mixing with family\r\nmembers", 
-                         "Codeswitching_Frequency of mixing with\r\nfriends", 
-                         "Codeswitching_Frequency of mixing with\r\nclassmates", 
-                         "Codeswitching_Frequency of mixing with\r\nothers")
+codeswitching_score <- c("Codeswitching_Frequency of mixing with family\nmembers", 
+                         "Codeswitching_Frequency of mixing with\nfriends", 
+                         "Codeswitching_Frequency of mixing with\nclassmates", 
+                         "Codeswitching_Frequency of mixing with\nothers")
 
 
 # Step 2: Convert the specified columns to numeric
 LHQ3_data_compact[, codeswitching_score] <- lapply(LHQ3_data_compact[, codeswitching_score], function(x) {
-  # Convert to numeric, handling non-numeric values
   num_x <- as.numeric(as.character(x))
-  
-  # Return the numeric vector
   return(num_x)
 })
 
@@ -679,8 +676,7 @@ LHQ3_processed <- LHQ3_processed %>%
 
 # Rename columns using indices
 names(LHQ3_processed)[c(1, 6, 7, 22)] <- c("Participant_ID", "L1_Proficiency_Score", 
-                "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
-
+                 "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
 
 
 # View the updated data frame
@@ -698,7 +694,9 @@ new_names <- current_names
 new_names[1] <- "Participant_ID"
 new_names[6] <- "L1_Proficiency_Score"
 new_names[7] <- "L2_Proficiency_Score"
-new_names[22] <- "Multilingual_Language_Diversity_Score"
+# 22 Rename the specific column
+colnames(LHQ3_processed)[colnames(LHQ3_processed) == "Multilingual Language Diversity Score"] <- "Multilingual_Language_Diversity_Score"
+
 names(LHQ3_processed) <- new_names
 
 # Step 2: Select Relevant Columns

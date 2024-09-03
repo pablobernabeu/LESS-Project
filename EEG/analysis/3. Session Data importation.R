@@ -1,5 +1,5 @@
-# importing lhq3 script, which will be used to complete the session data frames
-source("EEG/analysis/1. LHQ3 Importation script.R")
+# importing Background script, which will be used to complete the session data frames
+source("EEG/analysis/1. LHQ3 importation script.R")
 
 library(tidyverse)  
 library(reshape2)   
@@ -152,19 +152,19 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 
 # View the cleaned data
 #View(Session2_melted_data)
-#View(LHQ3_final)
+#View(Backgound_data)
 
 
-#adding the LHQ3 data to the Session2_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
+#adding the Background data to the Session2_melted_data
+#Converting Participant_number in Backgound_data to character, in order to match 
 #the Session2 data. Character has been chosen because Participant_number 
 #is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
+Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
 
-Session2_LHQ3 <- full_join(LHQ3_final, Session2_melted_data, by = "Participant_number")
+Session2_Background <- full_join(Backgound_data, Session2_melted_data, by = "Participant_number")
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -175,7 +175,7 @@ Session2_melted_data$Grammaticality <- as.factor(Session2_melted_data$Grammatica
 Session2_melted_data$Participant_number <- as.factor(Session2_melted_data$Participant_number)
 
 # Print combined data frame
-View(Session2_LHQ3)
+View(Session2_Background)
 ############################################
 
 #INSERT GORILLA DATA
@@ -193,21 +193,21 @@ View(Session2_LHQ3)
 #Analysing per time window
 
 # Session 2, N200 time window (200-500 ms)
-S2_N200 <- Session2_LHQ3 [Session2_LHQ3$Time %in% seq(200, 500, 2),]
+S2_N200 <- Session2_Background [Session2_Background$Time %in% seq(200, 500, 2),]
 
 View(S2_N200)
 
 #####################################
 
 #Session 2, P300 (300 - 600 ms)
-S2_P300 <- Session2_LHQ3[Session2_LHQ3$Time %in% seq(300, 600, 2),]
+S2_P300 <- Session2_Background[Session2_Background$Time %in% seq(300, 600, 2),]
 
 View(S2_P300)
 
 #######################################
 
 #Session 2, P600 (400 - 900 ms)
-S2_P600 <- Session2_LHQ3[Session2_LHQ3$Time %in% seq(400, 900, 2),]
+S2_P600 <- Session2_Background[Session2_Background$Time %in% seq(400, 900, 2),]
 
 View(S2_P600)
 
@@ -440,16 +440,16 @@ View(Session3_melted_data_dirty)
 Session3_melted_data <- Session3_melted_data_dirty %>%
   filter(complete.cases(.))
 
-#adding the LHQ3 data to the Session3_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
+#adding the Background data to the Session3_melted_data
+#Converting Participant_number in Backgound_data to character, in order to match 
 #the Session2 data. Character has been chosen because Participant_number 
 #is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
+Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
 
-Session3_LHQ3 <- full_join(LHQ3_final, Session3_melted_data, by = "Participant_number")
+Session3_Background <- full_join(Backgound_data, Session3_melted_data, by = "Participant_number")
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -460,7 +460,7 @@ Session3_melted_data$Grammaticality <- as.factor(Session3_melted_data$Grammatica
 Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Participant_number)
 
 # Print combined data frame
-View(Session3_LHQ3)
+View(Session3_Background)
 
 ########################
 ####################
@@ -749,18 +749,18 @@ Session4_melted_data <- Session4_melted_data_dirty %>%
 # View the cleaned data
 View(Session4_melted_data)
 
-#adding the LHQ3 data to the Session2_melted_data
-#Converting Participant_number in LHQ3_final to character, in order to match 
+#adding the Background data to the Session2_melted_data
+#Converting Participant_number in Backgound_data to character, in order to match 
 #the Session2 data. Character has been chosen because Participant_number 
 #is categorical (IDs)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-LHQ3_final$Participant_number <- as.character(LHQ3_final$Participant_number)
-Session4_LHQ3 <- full_join(LHQ3_final, Session4_melted_data, by = "Participant_number")
+Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
+Session4_Background <- full_join(Backgound_data, Session4_melted_data, by = "Participant_number")
 
 # Print combined data frame
-View(Session4_LHQ3)
+View(Session4_Background)
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
 #in order to run ANOVAs
