@@ -1,5 +1,5 @@
-# importing Background script, which will be used to complete the session data frames
-source("EEG/analysis/1. LHQ3 importation script.R")
+# Load the Background data CSV file
+Background_data <- read.csv("Background/Background_data.csv", header = TRUE)
 
 library(tidyverse)  
 library(reshape2)   
@@ -152,7 +152,7 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 
 # View the cleaned data
 #View(Session2_melted_data)
-#View(Backgound_data)
+#View(Background_data)
 
 
 #adding the Background data to the Session2_melted_data
@@ -162,9 +162,9 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
+Background_data$Participant_number <- as.character(Background_data$Participant_number)
 
-Session2_Background <- full_join(Backgound_data, Session2_melted_data, by = "Participant_number")
+Session2_Background <- full_join(Background_data, Session2_melted_data, by = "Participant_number")
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -174,43 +174,29 @@ Session2_melted_data$Region <- as.factor(Session2_melted_data$Region)
 Session2_melted_data$Grammaticality <- as.factor(Session2_melted_data$Grammaticality)
 Session2_melted_data$Participant_number <- as.factor(Session2_melted_data$Participant_number)
 
-# Print combined data frame
+# Viewing and saving combined data frame
 View(Session2_Background)
-############################################
+write.csv(Session2_Background, "EEG/data/Session2_data_frame.csv", row.names = FALSE)
 
-#INSERT GORILLA DATA
-#CHANGE DATAFRAME NAME TO sESSION2_DATA
-
-
-
-
-
-
-
-
-
-###############################################################################
-#Analysing per time window
+#Analysing per time window and saving those data frames to be used in the analysis
 
 # Session 2, N200 time window (200-500 ms)
 S2_N200 <- Session2_Background [Session2_Background$Time %in% seq(200, 500, 2),]
 
 View(S2_N200)
-
-#####################################
+write.csv(S2_N200, "EEG/data/Session 2/Session2_N200_data_frame.csv", row.names = FALSE)
 
 #Session 2, P300 (300 - 600 ms)
 S2_P300 <- Session2_Background[Session2_Background$Time %in% seq(300, 600, 2),]
 
 View(S2_P300)
-
-#######################################
+write.csv(S2_P300, "EEG/data/Session 2/Session2_P300_data_frame.csv", row.names = FALSE)
 
 #Session 2, P600 (400 - 900 ms)
 S2_P600 <- Session2_Background[Session2_Background$Time %in% seq(400, 900, 2),]
 
 View(S2_P600)
-
+write.csv(S2_P600, "EEG/data/Session 2/Session2_P600_data_frame.csv", row.names = FALSE)
 
 
 
@@ -459,8 +445,31 @@ Session3_melted_data$Region <- as.factor(Session3_melted_data$Region)
 Session3_melted_data$Grammaticality <- as.factor(Session3_melted_data$Grammaticality)
 Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Participant_number)
 
-# Print combined data frame
+# View and save combined data frame
 View(Session3_Background)
+write.csv(Session3_Background, "EEG/data/Session3_data_frame.csv", row.names = FALSE)
+
+# separating into data frames per time window and saving them for analysis
+# Session 3, N200 time window (200-500 ms)
+S3_N200 <- Session3_Background [Session3_Background$Time %in% seq(200, 500, 2),]
+
+View(S3_N200)
+write.csv(S3_N200, "EEG/data/Session 3/Session3_N200_data_frame.csv", row.names = FALSE)
+
+#Session 3, P300 (300 - 600 ms)
+S3_P300 <- Session2_Background[Session3_Background$Time %in% seq(300, 600, 2),]
+
+View(S3_P300)
+write.csv(S3_P300, "EEG/data/Session 3/Session3_P300_data_frame.csv", row.names = FALSE)
+
+#Session 3, P600 (400 - 900 ms)
+S3_P600 <- Session2_Background[Session3_Background$Time %in% seq(400, 900, 2),]
+
+View(S3_P600)
+write.csv(S3_P600, "EEG/data/Session 3/Session3_P600_data_frame.csv", row.names = FALSE)
+
+
+
 
 ########################
 ####################
@@ -759,24 +768,223 @@ View(Session4_melted_data)
 Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
 Session4_Background <- full_join(Backgound_data, Session4_melted_data, by = "Participant_number")
 
-# Print combined data frame
+# View and save combined data frame and time windows to be analysed
 View(Session4_Background)
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs
-#Session3_melted_data$Time <- as.factor(Session4_melted_data_S1$Time)
-Session4_melted_data$Region <- as.factor(Session4_melted_data$Region)
-Session4_melted_data$Grammaticality <- as.factor(Session4_melted_data$Grammaticality)
-Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Participant_number)
+write.csv(Session4_Background, "EEG/data/Session4_data_frame.csv", row.names = FALSE)
+
+# Session 4, N200 time window (200-500 ms)
+S4_N200 <- Session4_Background [Session4_Background$Time %in% seq(200, 500, 2),]
+
+View(S4_N200)
+write.csv(S4_N200, "EEG/data/Session 4/Session4_N200_data_frame.csv", row.names = FALSE)
+
+#Session 4, P300 (300 - 600 ms)
+S4_P300 <- Session4_Background[Session4_Background$Time %in% seq(300, 600, 2),]
+
+View(S4_P300)
+write.csv(S4_P300, "EEG/data/Session 4/Session4_P300_data_frame.csv", row.names = FALSE)
+
+#Session 4, P600 (400 - 900 ms)
+S4_P600 <- Session4_Background[Session4_Background$Time %in% seq(400, 900, 2),]
+
+View(S4_P600)
+write.csv(S4_P600, "EEG/data/Session 4/Session4_P600_data_frame.csv", row.names = FALSE)
+
+#########################
+###########################
+
+
+#Session 6 importation
+
+
+
+Session6path <- "EEG/data/Session 6/Export/"
+
+
+#creating patterns to import the files and recognise them as distinct conditions
+# the final number in the file name indicates the Grammaticality of the trial
+#files that end in:
+# 101: the trial was grammatical 
+# 102: the trial presented a violation of interest
+# 103: the trial presented an ancillary violation
+#Session 4 investigates Gender marking, here GEN, as well as differential 
+#object marking, here DOM, as well as Verb-Object number Agreement, here VOA
+
+Session6_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
+                                      path = Session4path, full.names = TRUE)
+
+Session6_GEN_violation_interest <- list.files(pattern = "*S1_S102.txt", 
+                                              path = Session4path, full.names = TRUE)
+
+Session6_GEN_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
+                                               path = Session4path, full.names = TRUE)
+
+Session6_DOM_gram_files <- list.files(pattern = "*S2_S101.txt", 
+                                      path = Session4path, full.names = TRUE)
+
+Session6_DOM_violation_interest <- list.files(pattern = "*S2_S102.txt", 
+                                              path = Session4path, full.names = TRUE)
+
+Session6_DOM_ancillary_violation <- list.files(pattern = "*S2_S103.txt", 
+                                               path = Session4path, full.names = TRUE)
+
+
+Session6_VOA_gram_files <- list.files(pattern = "*S3_S101.txt", 
+                                      path = Session4path, full.names = TRUE)
+
+Session6_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt", 
+                                              path = Session4path, full.names = TRUE)
+
+Session6_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
+                                               path = Session4path, full.names = TRUE)
+
+#constructing lists of data from the files, once for each condition
+
+Session6_GEN_gram_list = lapply(1:length(Session6_GEN_gram_files),function(x) {
+  read.table(Session6_GEN_gram_files[x], header=FALSE) } )
+#View(Session6_GEN_gram_list)
+
+Session6_GEN_violation_interest_list = lapply(1:length(Session6_GEN_violation_interest),
+  function(x) { read.table(Session6_GEN_violation_interest [x], header=FALSE) } )
+#View(Session6_GEN_ancillary_violation_list)
+
+Session6_GEN_ancillary_violation_list = lapply(1:length(Session6_GEN_ancillary_violation),
+  function(x) { read.table(Session6_GEN_ancillary_violation [x], header=FALSE) } )
+#View(Session6_GEN_ancillary_violation_list)
+
+
+Session6_DOM_gram_list = lapply(1:length(Session6_DOM_gram_files),function(x) {
+  read.table(Session6_DOM_gram_files[x], header=FALSE) } )
+#View(Session6_DOM_gram_list)
+
+Session6_DOM_violation_interest_list = lapply(1:length(Session6_DOM_violation_interest),
+  function(x) { read.table(Session6_DOM_violation_interest[x], header=FALSE) } )
+#View(Session4_DOM_violation_interest_list)
+
+Session6_DOM_ancillary_violation_list = lapply(1:length(Session6_DOM_ancillary_violation),
+  function(x) { read.table(Session6_DOM_ancillary_violation [x], header=FALSE) } )
+#View(Session6_DOM_ancillary_violation_list)
+
+Session6_VOA_gram_list = lapply(1:length(Session6_VOA_gram_files),function(x) {
+  read.table(Session6_VOA_gram_files[x], header=FALSE) } )
+#View(Session6_VOA_gram_list)
+
+Session6_VOA_violation_interest_list = lapply(1:length(Session6_VOA_violation_interest),
+  function(x) { read.table(Session6_VOA_violation_interest[x], header=FALSE) } )
+#View(Session6_VOA_violation_interest_list)
+
+Session6_VOA_ancillary_violation_list = lapply(1:length(Session6_VOA_ancillary_violation),
+  function(x) { read.table(Session6_VOA_ancillary_violation [x], header=FALSE) } )
+#View(Session6_VOA_ancillary_violation_list)
+
+
+#constructing data frames 
+Session6_GEN_gram_data = ldply(Session6_GEN_gram_list, data.frame)
+Session6_GEN_violation_interest_data = ldply(Session6_GEN_violation_interest_list, 
+                                             data.frame)
+Session6_GEN_ancillary_violation_data = ldply (Session6_GEN_ancillary_violation_list, 
+                                               data.frame)
+
+Session6_DOM_gram_data = ldply(Session6_DOM_gram_list, data.frame)
+Session6_DOM_violation_interest_data = ldply(Session6_DOM_violation_interest_list, 
+                                             data.frame)
+Session6_DOM_ancillary_violation_data = ldply (Session6_DOM_ancillary_violation_list, 
+                                               data.frame)
+
+
+Session6_VOA_gram_data = ldply(Session6_VOA_gram_list, data.frame)
+Session6_VOA_violation_interest_data = ldply(Session6_VOA_violation_interest_list, 
+                                             data.frame)
+Session6_VOA_ancillary_violation_data = ldply (Session6_VOA_ancillary_violation_list, 
+                                               data.frame)
+#Sorting out column names and organising them
+
+# time during the recording is organised in milliseconds, from -100 to 1098, 
+#and recorded with 2 ms intervals
+seq = seq(-100, 1098, 2)
+
+
+# the electrode column is formulated as a vector of electrode names that 
+#correspond to the time interval sequence
+names(Session6_GEN_gram_data) = c('Electrode', seq)
+names(Session6_GEN_violation_interest_data) = c('Electrode', seq)
+names(Session6_GEN_ancillary_violation_data) = c ('Electrode', seq)
+#View(Session6_GEN_gram_data)
+
+names(Session6_DOM_gram_data) = c('Electrode', seq)
+names(Session6_DOM_violation_interest_data) = c('Electrode', seq)
+names(Session6_DOM_ancillary_violation_data) = c ('Electrode', seq)
+#View(Session6_DOM_gram_data)
+
+names(Session6_VOA_gram_data) = c('Electrode', seq)
+names(Session6_VOA_violation_interest_data) = c('Electrode', seq)
+names(Session6_VOA_ancillary_violation_data) = c ('Electrode', seq)
+#View(Session6_VOA_gram_data)
+
+
+# working on the participants' name column
+#removing the path from the participants' file names
+file_names_S6_GEN_grammatical <- basename(Session6_GEN_gram_files)
+files_names_S6_GEN_violation_interest <- basename(Session6_GEN_violation_interest)
+files_names_S6_GEN_ancillary_violation <- basename(Session6_GEN_ancillary_violation)
+
+#View(file_names_S6_GEN_grammatical)
+
+file_names_S6_DOM_grammatical <- basename(Session6_DOM_gram_files)
+files_names_S6_DOM_violation_interest <- basename(Session6_DOM_violation_interest)
+files_names_S6_DOM_ancillary_violation <- basename(Session6_DOM_ancillary_violation)
+
+#View(file_names_S6_DOM_grammatical)
+
+file_names_S6_VOA_grammatical <- basename(Session6_VOA_gram_files)
+files_names_S6_VOA_violation_interest <- basename(Session6_VOA_violation_interest)
+files_names_S6_VOA_ancillary_violation <- basename(Session6_VOA_ancillary_violation)
+
+#View(file_names_S6_VOA_grammatical)
+
+#Extracting the participant numbers from the file name
+participants_S6_GEN_grammatical <- sub("_.*", "", file_names_S6_GEN_grammatical)
+participants_S6_GEN_violint = sub("_.*", "", files_names_S6_GEN_violation_interest)
+participants_S6_GEN_ancvil = sub("_.*", "", files_names_S6_GEN_ancillary_violation)
+
+participants_S6_DOM_grammatical <- sub("_.*", "", file_names_S6_DOM_grammatical)
+participants_S6_DOM_violint = sub("_.*", "", files_names_S6_DOM_violation_interest)
+participants_S6_DOM_ancvil = sub("_.*", "", files_names_S6_DOM_ancillary_violation)
+
+participants_S6_VOA_grammatical <- sub("_.*", "", file_names_S6_VOA_grammatical)
+participants_S6_VOA_violint = sub("_.*", "", files_names_S6_VOA_violation_interest)
+participants_S6_VOA_ancvil = sub("_.*", "", files_names_S6_VOA_ancillary_violation)
+
+
+# adding a "Participant_number" column to the data frames
+Session6_GEN_gram_data$Participant_number <- rep(participants_S6_GEN_grammatical, 
+    each = nrow(Session6_GEN_gram_data) / length(participants_S6_GEN_grammatical))
+Session6_GEN_violation_interest_data$Participant_number <- rep(participants_S6_GEN_violint, 
+ each = nrow(Session6_GEN_violation_interest_data) / length(participants_S6_GEN_violint))
+Session6_GEN_ancillary_violation_data$Participant_number <- rep(participants_S6_GEN_ancvil, 
+each = nrow(Session6_GEN_ancillary_violation_data) / length(participants_S6_GEN_ancvil))
+
+
+Session6_DOM_gram_data$Participant_number <- rep(participants_S6_DOM_grammatical, 
+   each = nrow(Session6_DOM_gram_data) / length(participants_S6_DOM_grammatical))
+Session6_DOM_violation_interest_data$Participant_number <- rep(participants_S6_DOM_violint, 
+   each = nrow(Session6_DOM_violation_interest_data) / length(participants_S6_DOM_violint))
+Session6_DOM_ancillary_violation_data$Participant_number <- rep(participants_S6_DOM_ancvil, 
+   each = nrow(Session6_DOM_ancillary_violation_data) / length(participants_S6_DOM_ancvil))
+
+Session6_VOA_gram_data$Participant_number <- rep(participants_S6_VOA_grammatical, 
+   each = nrow(Session6_VOA_gram_data) / length(participants_S6_VOA_grammatical))
+Session6_VOA_violation_interest_data$Participant_number <- rep(participants_S6_VOA_violint, 
+   each = nrow(Session6_VOA_violation_interest_data) / length(participants_S6_VOA_violint))
+Session6_VOA_ancillary_violation_data$Participant_number <- rep(participants_S6_VOA_ancvil, 
+   each = nrow(Session6_VOA_ancillary_violation_data) / length(participants_S6_VOA_ancvil))
 
 
 
 
 
 
-#Adapt column names to behavioural files (csv)
-#start importing that, oonly use Accuracy,  NOT reaction times
-#go for anovas
 
 
 
@@ -793,34 +1001,6 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 
 
 
-
-
-
-#If you've made time a categorical variable and you want to analyze the 
-#differences across levels of time (e.g., different time points), you typically 
-#don't need to average the data beforehand. Instead, you can use the raw data 
-#and include time as a factor in your ANOVA model.
-#Averaging data is more common in cases where you want to reduce variability and 
-#focus on the mean responses. For example, if you are interested in the average 
-#response of each electrode across multiple time points, you might average the 
-#data first. However, for a repeated measures ANOVA or mixed-design ANOVA where
-#you want to account for within-subject variability across time points, using 
-#the raw data is more appropriate.
-
-
-# Ensure the Time column is a factor
-S3_N200_df$Time <- factor(S3_N200_df$Time)
-
-# Perform ANOVA with Electrode and Time as factors
-anova_result <- aov(Activation ~ Electrode * Time, data = df)
-
-# Check the ANOVA table
-summary(anova_result)
-######################
-
-# averaging all rows and columns so that only one value per region
-# Calculating column-wise means excluding NA
-# Calculating the overall mean of column means
 
 
 

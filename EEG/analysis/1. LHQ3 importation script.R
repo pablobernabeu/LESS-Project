@@ -673,43 +673,23 @@ LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
 
-
+View(LHQ3_processed)
 # Rename columns using indices
-names(LHQ3_processed)[c(1, 6, 7, 22)] <- c("Participant_ID", "L1_Proficiency_Score", 
+names(LHQ3_processed)[c(1, 6, 7, 14)] <- c("Participant_ID", "L1_Proficiency_Score", 
                  "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
 
 
-# View the updated data frame
-#View(LHQ3_processed)
+
+# Ensure 'Participant_ID' is present in both data frames for merging
+LHQ3_processed <- merge(LHQ3_data_compact, LHQ3_processed, by = "Participant_ID")
+View(LHQ3_processed)
 
 # Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
-# combining the two data frames based on Participant_ID, and finally removing
-# participant_ID, since the session data use the Participant_number
-
-
-
-# Step 1: Rename Columns in LHQ3_processed
-current_names <- names(LHQ3_processed)
-new_names <- current_names
-new_names[1] <- "Participant_ID"
-new_names[6] <- "L1_Proficiency_Score"
-new_names[7] <- "L2_Proficiency_Score"
-# 22 Rename the specific column
-colnames(LHQ3_processed)[colnames(LHQ3_processed) == "Multilingual Language Diversity Score"] <- "Multilingual_Language_Diversity_Score"
-
-names(LHQ3_processed) <- new_names
-
-# Step 2: Select Relevant Columns
+# combining the two data frames based on Participant_ID
 LHQ3_data_compact_selected <- LHQ3_data_compact[, c("Participant_ID", "Participant_number", "Pseudolanguage_version", "Codeswitching_average")]
 LHQ3_processed_selected <- LHQ3_processed[, c("Participant_ID", "L1_Proficiency_Score", "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")]
-
-# Step 3: Perform a Left Join
 LHQ3_final <- merge(LHQ3_data_compact_selected, LHQ3_processed_selected, by = "Participant_ID", all.x = TRUE)
 
-# Step 4: Remove the Participant_ID Column
-#LHQ3_final <- LHQ3_final[, !names(LHQ3_final) %in% "Participant_ID"]
-
-# View the final data frame
 View(LHQ3_final)
 
 
@@ -739,7 +719,11 @@ View(Session1_data)
 names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] <- "Participant_ID"
 
 # Merge the two data frames by 'Participant_ID'
-Backgound_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
+Background_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
 
 # View the merged data
-View(Backgound_data)
+View(Background_data)
+
+# Save to a specific directory
+write.csv(Background_data, "Background/Background_data.csv", row.names = FALSE)
+
