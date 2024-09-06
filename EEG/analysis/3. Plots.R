@@ -4,8 +4,55 @@ Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_fram
 Session2_P300_data_frame <- read.csv("EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
 Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
 
-View(Session2_N200_data_frame
-     )
+View(Session2_N200_data_frame)
+
+# Background data analysis
+
+#loading DGS
+
+#we don;t  have a number for how many times a 3- or 
+#4-number item was presented but we have a number of corretc responses received.
+
+
+#total.correct.x refers to the total number of correct responses per participant
+#across lists
+#total.correct.y refers to the total number of correct responses per participant
+#for each specific list
+
+#Mean: Average number of correct responses.
+#Median: Middle value of correct responses.
+#Standard Deviation: Variability in correct responses.
+#Minimum and Maximum: Range of correct responses.
+
+DGS <- read.csv("Background/Gorilla/analysis_table_DGS.csv")
+View(DGS)
+
+summary_statistics <-DGS %>%
+  summarize(
+    mean_correct = mean(total_correct.x, na.rm = TRUE),
+    median_correct = median(total_correct.x, na.rm = TRUE),
+    sd_correct = sd(total_correct.x, na.rm = TRUE),
+    min_correct = min(total_correct.x, na.rm = TRUE),
+    max_correct = max(total_correct.x, na.rm = TRUE),
+  )
+
+View(summary_statistics)
+
+
+#Examine how participants perform based on different task conditions, such as
+#list length. This helps to understand if task difficulty (list length) affects 
+#performance.
+performance_by_list_length <- DGS %>%
+  group_by(listLength) %>%
+  summarize(
+    mean_correct = mean(total_correct.y, na.rm = TRUE),
+    median_correct = median(total_correct.y, na.rm = TRUE),
+    sd_correct = sd(total_correct.y, na.rm = TRUE),
+    min_correct = min(total_correct.y, na.rm = TRUE),
+    max_correct = max(total_correct.y, na.rm = TRUE)
+  )
+
+View(performance_by_list_length)
 
 
 
@@ -15,13 +62,9 @@ View(Session2_N200_data_frame
 
 
 
-
-
-
-
-
-
-
+#correlation with stroop, DGS, 3rd
+#correlation_test <- cor.test(merged_DGS$Correct, merged_DGS$Reaction.Time, use = "complete.obs")
+#print(correlation_test)
 
 
 

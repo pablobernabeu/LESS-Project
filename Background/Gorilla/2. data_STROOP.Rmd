@@ -56,7 +56,6 @@ STROOP_3 <- STROOP_3 %>%
 merged_STROOP_2 <- bind_rows(STROOP_1, STROOP_2, STROOP_3)
 
 
-
 # Filter to remove rows where Zone.Type is not "response"
 merged_STROOP_2 <- merged_STROOP_2 %>%
   filter(Zone.Type == "response_keyboard")

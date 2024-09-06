@@ -6,7 +6,7 @@ date: "2024-05-24"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+#```{r setup, include=FALSE}
 library(dplyr)
 library(readr)
 library(tidyverse)
@@ -29,6 +29,8 @@ DGS_2_extra_2 <- read_csv(file.path(path_to_DGS, "xqls8_DGS_STROOP.csv"))
 # Combine the data frames
 DGS_1 <- bind_rows(DGS_1, DGS_1_extra)
 DGS_2 <- bind_rows(DGS_2, DGS_2_extra_1, DGS_2_extra_2)
+
+View(DGS_1)
 
 # Clear column names
 colnames(DGS_1) <- make.names(colnames(DGS_1))
@@ -67,6 +69,8 @@ total_correct <- merged_DGS %>%
 
 print(total_correct)
 
+######
+#####
 # Calculate the number of correct digits for each list length per participant
 scores_by_length <- merged_DGS %>%
   group_by(Participant.Public.ID, listLength) %>%
@@ -92,4 +96,8 @@ print(analysis_table_DGS)
 write_csv(analysis_table_DGS, "analysis_table_DGS.csv")
 #A greater number of correctly remembered digits indicates a greater 
 #working memory capacity.```
+#total.correct.x refers to the total number of correct responses per participant
+#across lists
+#total.correct.y refers to the total number of correct responses per participant
+#for each specific list
 
