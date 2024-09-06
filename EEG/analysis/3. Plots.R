@@ -1,4 +1,30 @@
-setwd("C:/Users/chath1626/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/EEG/analysis")
+#ANOVAs for Session 2
+Session2_data_frame <- read.csv("EEG/data/Session 2/Session2_data_frame.csv", header = TRUE)
+Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
+Session2_P300_data_frame <- read.csv("EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
+Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
+
+View(Session2_N200_data_frame
+     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -45,3 +71,4 @@ summary(anova_result)
 
 #in session3, exclude participant 3
 #in session 4, exclude participants 11 and 7
+

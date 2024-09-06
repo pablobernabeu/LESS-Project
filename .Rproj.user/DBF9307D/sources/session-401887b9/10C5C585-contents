@@ -16,13 +16,13 @@ Session2path <- "EEG/data/Session 2/Export/"
 # 102: the trial presented a violation of interest
 # 103: the trial presented an ancillary violation
 #Session 2 investigates Gender agreement, indicated by the marker S1
-Session2_gram_files <- list.files(pattern = "*S1.S101.txt", 
+Session2_gram_files <- list.files(pattern = "*^[0-9]_+S1.S101.txt", 
                                  path = Session2path, full.names = TRUE)
 
-Session2_violation_interest <- list.files(pattern = "*S1_S102.txt", 
+Session2_violation_interest <- list.files(pattern = "*^[0-9]_+S1_S102.txt", 
                                 path = Session2path, full.names = TRUE)
 
-Session2_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
+Session2_ancillary_violation <- list.files(pattern = "*^[0-9]_+S1_S103.txt", 
                                           path = Session2path, full.names = TRUE)
 
 # Constructing lists of data, one for each condition
@@ -164,7 +164,9 @@ Session2_melted_data <- Session2_melted_data_dirty %>%
 
 Background_data$Participant_number <- as.character(Background_data$Participant_number)
 
-Session2_Background <- full_join(Background_data, Session2_melted_data, by = "Participant_number")
+Session2_Background <- full_join(Background_data, Session2_melted_data, 
+                                 by = "Participant_number", 
+                                 relationship = "many-to-many")
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -176,7 +178,7 @@ Session2_melted_data$Participant_number <- as.factor(Session2_melted_data$Partic
 
 # Viewing and saving combined data frame
 View(Session2_Background)
-write.csv(Session2_Background, "EEG/data/Session2_data_frame.csv", row.names = FALSE)
+write.csv(Session2_Background, "EEG/data/Session 2/Session2_data_frame.csv", row.names = FALSE)
 
 #Analysing per time window and saving those data frames to be used in the analysis
 
@@ -215,22 +217,22 @@ Session3path <- "EEG/data/Session 3/Export/"
 #Session 3 investigates Gender marking, here GEN, as well as differential 
 #object marking, here DOM
 
-Session3_GEN_gram_files <- list.files(pattern = "*S1.S101.txt", 
+Session3_GEN_gram_files <- list.files(pattern = "*^[0-9]_S1.S101.txt", 
                                   path = Session3path, full.names = TRUE)
 
-Session3_GEN_violation_interest <- list.files(pattern = "*S1_S102.txt", 
+Session3_GEN_violation_interest <- list.files(pattern = "*^[0-9]_S1_S102.txt", 
                                           path = Session3path, full.names = TRUE)
 
-Session3_GEN_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
+Session3_GEN_ancillary_violation <- list.files(pattern = "*^[0-9]_S1_S103.txt", 
                                            path = Session3path, full.names = TRUE)
 
-Session3_DOM_gram_files <- list.files(pattern = "*S2.S101.txt", 
+Session3_DOM_gram_files <- list.files(pattern = "*^[0-9]_S2.S101.txt", 
                                       path = Session3path, full.names = TRUE)
 
-Session3_DOM_violation_interest <- list.files(pattern = "*S2_S102.txt", 
+Session3_DOM_violation_interest <- list.files(pattern = "*^[0-9]_S2_S102.txt", 
                                               path = Session3path, full.names = TRUE)
 
-Session3_DOM_ancillary_violation <- list.files(pattern = "*S2_S103.txt", 
+Session3_DOM_ancillary_violation <- list.files(pattern = "*^[0-9]_S2_S103.txt", 
                                                path = Session3path, full.names = TRUE)
 
 
@@ -358,7 +360,7 @@ Session3_combined_data <- rbind(Session3_GEN_gram_data, Session3_GEN_violation_i
                                 Session3_GEN_ancillary_violation_data,Session3_DOM_gram_data,
                                 Session3_DOM_violation_interest_data, Session3_DOM_ancillary_violation_data)
 
-View(Session2_combined_data)
+View(Session3_combined_data)
 
 
 #dividing the electrodes into brain regions
@@ -433,9 +435,10 @@ Session3_melted_data <- Session3_melted_data_dirty %>%
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
+Background_data$Participant_number <- as.character(Background_data$Participant_number)
 
-Session3_Background <- full_join(Backgound_data, Session3_melted_data, by = "Participant_number")
+Session3_Background <- full_join(Background_data, Session3_melted_data, by = "Participant_number", 
+                                 relationship = "many-to-many")
 
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -447,7 +450,7 @@ Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Partic
 
 # View and save combined data frame
 View(Session3_Background)
-write.csv(Session3_Background, "EEG/data/Session3_data_frame.csv", row.names = FALSE)
+write.csv(Session3_Background, "EEG/data/Session 3/Session3_data_frame.csv", row.names = FALSE)
 
 # separating into data frames per time window and saving them for analysis
 # Session 3, N200 time window (200-500 ms)
@@ -457,13 +460,13 @@ View(S3_N200)
 write.csv(S3_N200, "EEG/data/Session 3/Session3_N200_data_frame.csv", row.names = FALSE)
 
 #Session 3, P300 (300 - 600 ms)
-S3_P300 <- Session2_Background[Session3_Background$Time %in% seq(300, 600, 2),]
+S3_P300 <- Session3_Background[Session3_Background$Time %in% seq(300, 600, 2),]
 
 View(S3_P300)
 write.csv(S3_P300, "EEG/data/Session 3/Session3_P300_data_frame.csv", row.names = FALSE)
 
 #Session 3, P600 (400 - 900 ms)
-S3_P600 <- Session2_Background[Session3_Background$Time %in% seq(400, 900, 2),]
+S3_P600 <- Session3_Background[Session3_Background$Time %in% seq(400, 900, 2),]
 
 View(S3_P600)
 write.csv(S3_P600, "EEG/data/Session 3/Session3_P600_data_frame.csv", row.names = FALSE)
@@ -489,32 +492,32 @@ Session4path <- "EEG/data/Session 4/Export/"
 #Session 4 investigates Gender marking, here GEN, as well as differential 
 #object marking, here DOM, as well as Verb-Object bumber Agreement, here VOA
 
-Session4_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
+Session4_GEN_gram_files <- list.files(pattern = "*^[0-9]_S1_S101.txt", 
                                       path = Session4path, full.names = TRUE)
 
-Session4_GEN_violation_interest <- list.files(pattern = "*S1_S102.txt", 
+Session4_GEN_violation_interest <- list.files(pattern = "*^[0-9]_S1_S102.txt", 
                                               path = Session4path, full.names = TRUE)
 
-Session4_GEN_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
+Session4_GEN_ancillary_violation <- list.files(pattern = "*^[0-9]_S1_S103.txt", 
                                                path = Session4path, full.names = TRUE)
 
-Session4_DOM_gram_files <- list.files(pattern = "*S2_S101.txt", 
+Session4_DOM_gram_files <- list.files(pattern = "*^[0-9]_S2_S101.txt", 
                                       path = Session4path, full.names = TRUE)
 
-Session4_DOM_violation_interest <- list.files(pattern = "*S2_S102.txt", 
+Session4_DOM_violation_interest <- list.files(pattern = "*^[0-9]_S2_S102.txt", 
                                               path = Session4path, full.names = TRUE)
 
-Session4_DOM_ancillary_violation <- list.files(pattern = "*S2_S103.txt", 
+Session4_DOM_ancillary_violation <- list.files(pattern = "*^[0-9]_S2_S103.txt", 
                                                path = Session4path, full.names = TRUE)
 
 
-Session4_VOA_gram_files <- list.files(pattern = "*S3_S101.txt", 
+Session4_VOA_gram_files <- list.files(pattern = "*^[0-9]_S3_S101.txt", 
                                       path = Session4path, full.names = TRUE)
 
-Session4_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt", 
+Session4_VOA_violation_interest <- list.files(pattern = "*^[0-9]_S3_S102.txt", 
                                               path = Session4path, full.names = TRUE)
 
-Session4_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
+Session4_VOA_ancillary_violation <- list.files(pattern = "*^[0-9]_S3_S103.txt", 
                                                path = Session4path, full.names = TRUE)
 
 #constructing lists of data from the files, once for each condition
@@ -765,13 +768,13 @@ View(Session4_melted_data)
 #Performing the inner join function,due to the discrepancy between the number of 
 #rows between the two data frames, so that no data is deleted
 
-Backgound_data$Participant_number <- as.character(Backgound_data$Participant_number)
-Session4_Background <- full_join(Backgound_data, Session4_melted_data, by = "Participant_number")
+Background_data$Participant_number <- as.character(Background_data$Participant_number)
+Session4_Background <- full_join(Background_data, Session4_melted_data, by = "Participant_number")
 
 # View and save combined data frame and time windows to be analysed
 View(Session4_Background)
 
-write.csv(Session4_Background, "EEG/data/Session4_data_frame.csv", row.names = FALSE)
+write.csv(Session4_Background, "EEG/data/Session 4/Session4_data_frame.csv", row.names = FALSE)
 
 # Session 4, N200 time window (200-500 ms)
 S4_N200 <- Session4_Background [Session4_Background$Time %in% seq(200, 500, 2),]
@@ -811,33 +814,33 @@ Session6path <- "EEG/data/Session 6/Export/"
 #Session 4 investigates Gender marking, here GEN, as well as differential 
 #object marking, here DOM, as well as Verb-Object number Agreement, here VOA
 
-Session6_GEN_gram_files <- list.files(pattern = "*S1_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session6_GEN_gram_files <- list.files(pattern = "^[0-9]+_S1_S101.txt", 
+                                      path = Session6path, full.names = TRUE)
 
-Session6_GEN_violation_interest <- list.files(pattern = "*S1_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+Session6_GEN_violation_interest <- list.files(pattern = "^[0-9]+_S1_S102.txt", 
+                                              path = Session6path, full.names = TRUE)
 
-Session6_GEN_ancillary_violation <- list.files(pattern = "*S1_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+Session6_GEN_ancillary_violation <- list.files(pattern = "*^[0-9]+_S1_S103.txt", 
+                                               path = Session6path, full.names = TRUE)
 
-Session6_DOM_gram_files <- list.files(pattern = "*S2_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session6_DOM_gram_files <- list.files(pattern = "*^[0-9]+_S2_S101.txt", 
+                                      path = Session6path, full.names = TRUE)
 
-Session6_DOM_violation_interest <- list.files(pattern = "*S2_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+Session6_DOM_violation_interest <- list.files(pattern = "*^[0-9]+_S2_S102.txt", 
+                                              path = Session6path, full.names = TRUE)
 
-Session6_DOM_ancillary_violation <- list.files(pattern = "*S2_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+Session6_DOM_ancillary_violation <- list.files(pattern = "*^[0-9]+_S2_S103.txt", 
+                                               path = Session6path, full.names = TRUE)
 
 
-Session6_VOA_gram_files <- list.files(pattern = "*S3_S101.txt", 
-                                      path = Session4path, full.names = TRUE)
+Session6_VOA_gram_files <- list.files(pattern = "*^[0-9]+_S3_S101.txt", 
+                                      path = Session6path, full.names = TRUE)
 
-Session6_VOA_violation_interest <- list.files(pattern = "*S3_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+Session6_VOA_violation_interest <- list.files(pattern = "*^[0-9]+_S3_S102.txt", 
+                                              path = Session6path, full.names = TRUE)
 
-Session6_VOA_ancillary_violation <- list.files(pattern = "*S3_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+Session6_VOA_ancillary_violation <- list.files(pattern = "*^[0-9]+_S3_S103.txt", 
+                                               path = Session6path, full.names = TRUE)
 
 #constructing lists of data from the files, once for each condition
 
@@ -981,9 +984,146 @@ Session6_VOA_ancillary_violation_data$Participant_number <- rep(participants_S6_
    each = nrow(Session6_VOA_ancillary_violation_data) / length(participants_S6_VOA_ancvil))
 
 
+#Adding a Property column to the data frames
+Session6_GEN_gram_data$Property <- 'Gender_Agreement'
+Session6_GEN_violation_interest_data$Property <- 'Gender_Agreement'
+Session6_GEN_ancillary_violation_data$Property <- 'Gender_Agreement'
+
+Session6_DOM_gram_data$Property <- 'Differential_Object_Marking'
+Session6_DOM_violation_interest_data$Property <- 'Differential_Object_Marking'
+Session6_DOM_ancillary_violation_data$Property <- 'Differential_Object_Marking'
+
+Session6_VOA_gram_data$Property <- 'Verb_Object_Number_Agreement'
+Session6_VOA_violation_interest_data$Property <- 'Verb_Object_Number_Agreement'
+Session6_VOA_ancillary_violation_data$Property <- 'Verb_Object_Number_Agreement'
+
+# adding a Grammaticality column to the data frames
+
+Session6_GEN_gram_data$Grammaticality <- 'Grammatical'
+Session6_GEN_violation_interest_data$Grammaticality <- 'Violation_of_Interest'
+Session6_GEN_ancillary_violation_data$Grammaticality <- 'Ancillary_Violation'
+
+Session6_DOM_gram_data$Grammaticality <- 'Grammatical'
+Session6_DOM_violation_interest_data$Grammaticality <- 'Violation_of_Interest'
+Session6_DOM_ancillary_violation_data$Grammaticality <- 'Ancillary_Violation'
+
+Session6_VOA_gram_data$Grammaticality <- 'Grammatical'
+Session6_VOA_violation_interest_data$Grammaticality <- 'Violation_of_Interest'
+Session6_VOA_ancillary_violation_data$Grammaticality <- 'Ancillary_Violation'
+
+
+Session6_combined_data <- rbind(Session6_GEN_gram_data,
+                                Session6_GEN_violation_interest_data, 
+                                Session6_GEN_ancillary_violation_data,
+                                Session6_DOM_gram_data, 
+                                Session6_DOM_violation_interest_data,  
+                                Session6_DOM_ancillary_violation_data,
+                                Session6_VOA_gram_data, 
+                                Session6_VOA_violation_interest_data,  
+                                Session6_VOA_ancillary_violation_data)
+
+#View(Session6_combined_data)
+
+
+#dividing the electrodes into brain regions
+# Define the mapping of electrodes to regions
+electrode_to_region <- c(
+  "T7" = "left medial",
+  "C3" = "left medial",
+  "CP5" = "left medial",
+  "T8" = "right medial",
+  "C4" = "right medial",
+  "CP6" = "right medial",
+  "Fp1" = "left anterior",
+  "F3" = "left anterior",
+  "F7" = "left anterior",
+  "FT9" = "left anterior",
+  "FC5" = "left anterior",
+  "Fp2" = "right anterior",
+  "F4" = "right anterior",
+  "F8" = "right anterior",
+  "FT10" = "right anterior",
+  "FC6" = "right anterior",
+  "P7" = "left posterior",
+  "P3" = "left posterior",
+  "O1" = "left posterior",
+  "P8" = "right posterior",
+  "P4" = "right posterior",
+  "O2" = "right posterior",
+  "Fz" = "midline anterior",
+  "FC1" = "midline anterior",
+  "FC2" = "midline anterior",
+  "Cz" = "midline medial",
+  "CP1" = "midline medial",
+  "CP2" = "midline medial",
+  "Pz" = "midline posterior",
+  "Oz" = "midline posterior"
+)
+
+# Add a Region column on the data frame based on the electrode_to_region mapping
+Session6_combined_data <- Session6_combined_data %>%
+  mutate(Region = electrode_to_region[Electrode])
 
 
 
+# Add a Region column on the data frame based on the electrode_to_region mapping
+Session6_combined_data <- Session6_combined_data %>%
+  mutate(Region = electrode_to_region[Electrode])
+
+# Melt the combined data frame to convert it from wide to long format
+Session6_melted_data_dirty <- melt(Session6_combined_data, id.vars = 
+  c('Participant_number', 'Electrode', 'Grammaticality', 'Region', 'Property'), 
+   variable.name = 'Time', value.name = 'Activation')
+
+# Convert the 'Time' column to numeric
+Session6_melted_data_dirty$Time <- as.numeric (as.character
+    (Session6_melted_data_dirty$Time))
+
+# Add a Session column
+Session6_melted_data_dirty$Session <- 'Session 6'
+
+# View the resulting melted data
+View(Session6_melted_data_dirty)
+
+# Removing rows where any column has NA or NaN values
+Session6_melted_data <- Session6_melted_data_dirty %>%
+  filter(complete.cases(.))
+
+# View the cleaned data
+View(Session6_melted_data)
+
+#adding the Background data to the Session2_melted_data
+#Converting Participant_number in Backgound_data to character, in order to match 
+#the Session2 data. Character has been chosen because Participant_number 
+#is categorical (IDs)
+#Performing the inner join function,due to the discrepancy between the number of 
+#rows between the two data frames, so that no data is deleted
+
+Background_data$Participant_number <- as.character(Background_data$Participant_number)
+Session6_Background <- full_join(Background_data, Session6_melted_data, by = "Participant_number")
+
+# View and save combined data frame and time windows to be analysed
+View(Session6_Background)
+
+write.csv(Session6_Background, "EEG/data/Session 6/Session6_data_frame.csv", row.names = FALSE)
+
+# Session 6, N200 time window (200-500 ms)
+S6_N200 <- Session6_Background [Session6_Background$Time %in% seq(200, 500, 2),]
+
+View(S6_N200)
+write.csv(S6_N200, "EEG/data/Session 6/Session6_N200_data_frame.csv", row.names = FALSE)
+
+#Session 6, P300 (300 - 600 ms)
+S6_P300 <- Session6_Background[Session6_Background$Time %in% seq(300, 600, 2),]
+
+View(S6_P300)
+write.csv(S6_P300, "EEG/data/Session 6/Session6_P300_data_frame.csv", row.names = FALSE)
+
+#Session 6, P600 (400 - 900 ms)
+S6_P600 <- Session6_Background[Session6_Background$Time %in% seq(400, 900, 2),]
+
+View(S6_P600)
+write.csv(S6_P600, "EEG/data/Session 6/Session6_P600_data_frame.csv", row.names = FALSE)
 
 
 
