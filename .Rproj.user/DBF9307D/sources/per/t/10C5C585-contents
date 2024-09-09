@@ -1127,20 +1127,65 @@ write.csv(S6_P600, "EEG/data/Session 6/Session6_P600_data_frame.csv", row.names 
 
 
 
+###############################
+
+
+
+###Trial by trial Session data importation
+
+
+#Session2
+
+#session2, remove participants 2 and 7 from anovas
+
+Session2pathtbt <- "EEG/data/Session 2/Export/"
+
+#creating patterns to import the files and recognise them as distinct conditions
+# the final number in the file name indicates the Grammaticality of the trial
+#files that end in:
+# 101: the trial was grammatical 
+# 102: the trial presented a violation of interest
+# 103: the trial presented an ancillary violation
+#Session 2 investigates Gender agreement, indicated by the marker S1
+Session2_tbt_gram_files <- list.files(pattern = "*^[0-9]_+trialbytrial_S1.S101.txt", 
+                                  path = Session2pathtbt, full.names = TRUE)
+
+list(Session2_tbt_gram_files)
+
+Session2_tbt_violation_interest <- list.files(pattern = "*^[0-9]_+S1_S102.txt", 
+                                          path = Session2pathtbt, full.names = TRUE)
+
+Session2_tbt_ancillary_violation <- list.files(pattern = "*^[0-9]_+S1_S103.txt", 
+                                           path = Session2pathtbt, full.names = TRUE)
+
+
+
+# Constructing lists of data, one for each condition
+Session2_tbt_gram_list = lapply(1:length(Session2_tbt_gram_files),function(x) {
+  read.table(Session2_tbt_gram_files[x], header=FALSE) } )
+#View(Session2_tbt_gram_list)
+
+Session2_tbt_violation_interest_list = lapply(1:length(Session2_tbt_violation_interest),
+                                          function(x) {
+                                            read.table(Session2_tbt_violation_interest[x], header=FALSE) } )
+#View(Session2_tbt_violation_interest_list)
+
+Session2_tbt_ancillary_violation_list = lapply(1:length(Session2_tbt_ancillary_violation),
+                                           function(x) {
+                                             read.table(Session2_tbt_ancillary_violation [x], header=FALSE) } )
+View(Session2_tbt_ancillary_violation_list)
+
+# converting the lists into data frames
+Session2_tbt_gram_data = ldply(Session2_tbt_gram_list, data.frame)
+Session2_tbt_violation_interest_data = ldply(Session2_tbt_violation_interest_list, 
+                                         data.frame)
+Session2_tbt_ancillary_violation_data = ldply (Session2_tbt_ancillary_violation_list, 
+                                           data.frame)
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+#huge files, R too slow, best to have separate file for tbt
 
 
 
