@@ -7,18 +7,21 @@ Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_fram
 View(Session2_N200_data_frame)
 
 
+Session2_N200_data_frame$Region <- as.factor(Session2_N200_data_frame$Region)
+levels(Session2_N200_data_frame$Region)
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs
-#Session3_melted_data$Time <- as.factor(Session4_melted_data_S1$Time)
-Session4_melted_data$Region <- as.factor(Session4_melted_data$Region)
-Session4_melted_data$Grammaticality <- as.factor(Session4_melted_data$Grammaticality)
-Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Participant_number)
+Session2_N200_data_frame$Grammaticality <- as.factor(Session2_N200_data_frame$Grammaticality)
+levels(Session2_N200_data_frame$Grammaticality)
+
+Session2_N200_data_frame$Participant_number <- as.factor(Session2_N200_data_frame$Participant_number)
+levels(Session2_N200_data_frame$Participant_number)
 
 #Adapt column names to behavioural files (csv)
-#start importing that, oonly use Accuracy,  NOT reaction times
+#start importing that, only use Accuracy,  NOT reaction times
 #go for anovas
 
+# Convert Activation to numeric (if necessary)
+Session2_N200_data_frame$Activation <- as.numeric(Session2_N200_data_frame$Activation)
 
 #If you've made time a categorical variable and you want to analyze the 
 #differences across levels of time (e.g., different time points), you typically 
@@ -29,26 +32,51 @@ Session4_melted_data$Participant_number <- as.factor(Session4_melted_data$Partic
 #response of each electrode across multiple time points, you might average the 
 #data first. However, for a repeated measures ANOVA or mixed-design ANOVA where
 #you want to account for within-subject variability across time points, using 
-#the raw data is more appropriate.
+#the raw data is more appropriate
 
-
-# Ensure the Time column is a factor
-S3_N200_df$Time <- factor(S3_N200_df$Time)
-
-# Perform ANOVA with Electrode and Time as factors
-anova_result <- aov(Activation ~ Electrode * Time, data = df)
-
-# Check the ANOVA table
-summary(anova_result)
 ######################
 
 # averaging all rows and columns so that only one value per region
 # Calculating column-wise means excluding NA
 # Calculating the overall mean of column means
 
+# Load necessary library
+library(dplyr)
+
+# Aggregate data to get mean Activation per Region per Participant
+aggregated_data <- Session2_N200_data_frame %>%
+  group_by(Participant_ID, Region) %>%
+  summarize(Mean_Activation = mean(Activation, na.rm = TRUE))
+
+# View the aggregated data
+head(aggregated_data)
 
 
+cleaned_data <- Session2_N200_data_frame %>%
+  filter(!is.na(Activation) & !is.nan(Activation))
 
+# Check if the issue is resolved
+aggregated_data <- cleaned_data %>%
+  group_by(Participant_ID, Region) %>%
+  summarize(Mean_Activation = mean(Activation, na.rm = TRUE))
+View(aggregated_data)
+
+
+# Remove rows with missing values in Activation
+Session2_N200_data_frame <- na.omit(Session2_N200_data_frame)
+
+# Ensure Activation is numeric
+Session2_N200_data_frame$Activation <- as.numeric(Session2_N200_data_frame$Activation)
+
+# Ensure Electrode is a factor
+Session2_N200_data_frame$Region <- as.factor(Session2_N200_data_frame$Electrode)
+
+# Perform one-way ANOVA with Electrode as the factor
+anova_result <- aov(Activation ~ Region, data = Session2_N200_data_frame)
+
+# Summary of the ANOVA result
+summary(anova_result)
+View(Session2_N200_data_frame)
 
 #in session3, exclude participant 3
 #in session 4, exclude participants 11 and 7
