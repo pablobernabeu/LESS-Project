@@ -158,9 +158,10 @@ Session2_Background <- full_join(Background_data, Session2_melted_data,
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
 #in order to run ANOVAs later
-Session2_melted_data$Region <- as.factor(Session2_melted_data$Region)
-Session2_melted_data$Grammaticality <- as.factor(Session2_melted_data$Grammaticality)
-Session2_melted_data$Participant_number <- as.factor(Session2_melted_data$Participant_number)
+Session2_Background$Region <- as.factor(Session2_Background$Region)
+Session2_Background$Grammaticality <- as.factor(Session2_Background$Grammaticality)
+Session2_Background$Participant_number <- as.factor(Session2_Background$Participant_number)
+Session2_Background$Activation <- as.numeric(gsub(",", ".", Session2_Background$Activation))
 
 # Viewing and saving combined data frame
 View(Session2_Background)
@@ -411,10 +412,11 @@ Session3_Background <- full_join(Background_data, Session3_melted_data, by = "Pa
                                  relationship = "many-to-many")
 
 #setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs
-Session3_melted_data$Region <- as.factor(Session3_melted_data$Region)
-Session3_melted_data$Grammaticality <- as.factor(Session3_melted_data$Grammaticality)
-Session3_melted_data$Participant_number <- as.factor(Session3_melted_data$Participant_number)
+#in order to run ANOVAs later
+Session3_Background$Region <- as.factor(Session3_Background$Region)
+Session3_Background$Grammaticality <- as.factor(Session3_Background$Grammaticality)
+Session3_Background$Participant_number <- as.factor(Session3_Background$Participant_number)
+Session3_Background$Activation <- as.numeric(gsub(",", ".", Session3_Background$Activation))
 
 # Viewing and save combined data frame
 head(Session3_Background)
@@ -715,6 +717,14 @@ head(Session4_melted_data)
 Background_data$Participant_number <- as.character(Background_data$Participant_number)
 Session4_Background <- full_join(Background_data, Session4_melted_data, by = "Participant_number")
 
+
+#setting the columns Time, Region, Grammaticality and Participant_number as factors 
+#in order to run ANOVAs later
+Session4_Background$Region <- as.factor(Session4_Background$Region)
+Session4_Background$Grammaticality <- as.factor(Session4_Background$Grammaticality)
+Session4_Background$Participant_number <- as.factor(Session4_Background$Participant_number)
+Session4_Background$Activation <- as.numeric(gsub(",", ".", Session4_Background$Activation))
+
 # View and save combined data frame and time windows to be analysed
 head(Session4_Background)
 
@@ -1012,6 +1022,12 @@ Session6_Background <- full_join(Background_data, Session6_melted_data,
                                  by = "Participant_number", 
                                  relationship = "many-to-many")
 
+#setting the columns Time, Region, Grammaticality and Participant_number as factors 
+#in order to run ANOVAs later
+Session6_Background$Region <- as.factor(Session6_Background$Region)
+Session6_Background$Grammaticality <- as.factor(Session6_Background$Grammaticality)
+Session6_Background$Participant_number <- as.factor(Session6_Background$Participant_number)
+Session6_Background$Activation <- as.numeric(gsub(",", ".", Session6_Background$Activation))
 # View and save combined data frame and time windows to be analysed
 head(Session6_Background)
 

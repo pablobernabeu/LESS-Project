@@ -1,27 +1,22 @@
 #ANOVAs for Session 2
-Session2_data_frame <- read.csv("EEG/data/Session 2/Session2_data_frame.csv", header = TRUE)
 Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
-Session2_P300_data_frame <- read.csv("EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
-Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
 
 View(Session2_N200_data_frame)
 
 
-Session2_N200_data_frame$Region <- as.factor(Session2_N200_data_frame$Region)
-levels(Session2_N200_data_frame$Region)
 
-Session2_N200_data_frame$Grammaticality <- as.factor(Session2_N200_data_frame$Grammaticality)
-levels(Session2_N200_data_frame$Grammaticality)
 
-Session2_N200_data_frame$Participant_number <- as.factor(Session2_N200_data_frame$Participant_number)
-levels(Session2_N200_data_frame$Participant_number)
+
+
+
+
+
 
 #Adapt column names to behavioural files (csv)
 #start importing that, only use Accuracy,  NOT reaction times
 #go for anovas
 
-# Convert Activation to numeric (if necessary)
-Session2_N200_data_frame$Activation <- as.numeric(Session2_N200_data_frame$Activation)
+
 
 #If you've made time a categorical variable and you want to analyze the 
 #differences across levels of time (e.g., different time points), you typically 
@@ -43,13 +38,13 @@ Session2_N200_data_frame$Activation <- as.numeric(Session2_N200_data_frame$Activ
 # Load necessary library
 library(dplyr)
 
-# Aggregate data to get mean Activation per Region per Participant
 aggregated_data <- Session2_N200_data_frame %>%
   group_by(Participant_ID, Region) %>%
-  summarize(Mean_Activation = mean(Activation, na.rm = TRUE))
+  summarize(Mean_Activation = mean(Activation, na.rm = TRUE), .groups = 'drop')
+
 
 # View the aggregated data
-head(aggregated_data)
+View(aggregated_data)
 
 
 cleaned_data <- Session2_N200_data_frame %>%
