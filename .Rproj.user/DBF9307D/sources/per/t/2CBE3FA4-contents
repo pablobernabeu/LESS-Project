@@ -1,16 +1,4 @@
 #ANOVAs for Session 2
-Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
-
-View(Session2_N200_data_frame)
-
-
-
-
-
-
-
-
-
 
 #Adapt column names to behavioural files (csv)
 #start importing that, only use Accuracy,  NOT reaction times
@@ -35,43 +23,239 @@ View(Session2_N200_data_frame)
 # Calculating column-wise means excluding NA
 # Calculating the overall mean of column means
 
+
+#anovas on the entire dataset to see the progress of activation
+#anova_result <- aov(Activation ~ Region, data = Session2_N200_data_frame)
+#but maybe do on the entire data frame?
+
 # Load necessary library
 library(dplyr)
+library(tidyverse)
+library(car)
+library(ggplot2)
+library(forcats)
 
-aggregated_data <- Session2_N200_data_frame %>%
-  group_by(Participant_ID, Region) %>%
-  summarize(Mean_Activation = mean(Activation, na.rm = TRUE), .groups = 'drop')
-
-
-# View the aggregated data
-View(aggregated_data)
-
-
-cleaned_data <- Session2_N200_data_frame %>%
-  filter(!is.na(Activation) & !is.nan(Activation))
-
-# Check if the issue is resolved
-aggregated_data <- cleaned_data %>%
-  group_by(Participant_ID, Region) %>%
-  summarize(Mean_Activation = mean(Activation, na.rm = TRUE))
-View(aggregated_data)
+# ANOVAs on aggregated data to see the overall activation differences between 
+# brain regions in the N200, irrespective of time specifics
 
 
-# Remove rows with missing values in Activation
-Session2_N200_data_frame <- na.omit(Session2_N200_data_frame)
+# For Session 2, time window N200
 
-# Ensure Activation is numeric
-Session2_N200_data_frame$Activation <- as.numeric(Session2_N200_data_frame$Activation)
+Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
+#View(Session2_N200_data_frame)
 
-# Ensure Electrode is a factor
-Session2_N200_data_frame$Region <- as.factor(Session2_N200_data_frame$Electrode)
+#removing participant rqed8 due to incomplete file
+Session2_N200_data_frame_filtered <- Session2_N200_data_frame %>%
+  filter(Participant_ID != "rqed8")
 
-# Perform one-way ANOVA with Electrode as the factor
-anova_result <- aov(Activation ~ Region, data = Session2_N200_data_frame)
+S2_N200_aggregated_data <- aggregate(Activation ~ Participant_ID + Region, 
+                data = Session2_N200_data_frame_filtered, FUN = mean)
+head(S2_N200_aggregated_data)
 
-# Summary of the ANOVA result
-summary(anova_result)
-View(Session2_N200_data_frame)
+#aggregating the data to run Anovas
+#testing to see if there's an overall effect of region on activation
+S2_N200_RegionxActivation <- aov(Activation ~ Region, data = Session2_N200_data_frame_filtered)
+head(S2_N200_RegionxActivation)
+
+
+
+#creating a new data frame to run anovas on with the aggregated values
+# Select the columns you need from Session2_N200_data_frame_filtered
+#Select only the columns you need from Session2_N200_data_frame_filtered
+# Select only the columns you need from Session2_N200_data_frame_filtered
+#selected_columns <- Session2_N200_data_frame_filtered [c("Participant_ID", "Pseudolanguage_version", "Grammaticality")]
+
+# Ensure the key column is of the same type in both data frames
+#S2_N200_aggregated_data$Participant_ID <- as.character(S2_N200_aggregated_data$Participant_ID)
+#selected_columns$Participant_ID <- as.character(selected_columns$Participant_ID)
+
+# Perform the inner join using merge function in base R
+#S2_N200_aggregated_data <- merge(S2_N200_aggregated_data, selected_columns, 
+  #                   by = "Participant_ID",  # The key column to join on
+ #                    all = FALSE)  # all = FALSE performs an inner join
+
+#View(S2_N200_aggregated_data)
+
+
+#seeing where the differences lie between regions
+TukeyHSD(S2_N200_RegionxActivation)
+
+# calculating mean and standard error values for plotting and visual interpretation
+# The mean is already calculated, using the original data frame to calculate the SD
+# Re-run the code using dplyr's functions
+# Calculate the mean Activation per Region
+mean_activation_S2_N200 <- aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, FUN = mean)
+
+# Calculate the standard error (SE) per Region using tapply
+se_activation_S2_N200 <- aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, 
+                          FUN = function(x) sd(x) / sqrt(length(x)))
+
+
+# Combine the mean and SE into one data frame
+S2_N200_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation_S2_N200$Region,
+  Mean = mean_activation_S2_N200$Activation,
+  SE = se_activation_S2_N200$Activation
+)
+
+# Print the result
+head(S2_N200_Activation_per_Region_plot)
+
+# Reorder regions based on mean activation
+S2_N200_Activation_per_Region_plot <- S2_N200_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars using ggplot2
+ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), width = 0.2) +
+  labs(title = "Mean Activation by Brain Region S2_N200", x = "Brain Region", y = "Mean Activation") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Calculating the Activation per Region, per Grammaticality
+
+# Combine the mean and SE into one data frame
+S2_N200_Activation_per_Region_Grammaticality_plot <- data.frame(
+  Region = mean_activation_S2_N200$Region,
+  Grammaticality = mean_activation_S2_N200$Grammaticality,
+  Mean = mean_activation_S2_N200$Activation,
+  SE = se_activation_S2_N200$Activation
+)
+
+# Print the result
+print(S2_N200_Activation_per_Region_Grammaticality_plot)
+
+
+
+
+
+
+
+################################
+
+# For Session 2, time window P300
+
+Session2_P300_data_frame <- read.csv("EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
+#View(Session2_P300_data_frame)
+
+#removing participant rqed8 due to incomplete file
+Session2_P300_data_frame_filtered <- Session2_P300_data_frame %>%
+  filter(Participant_ID != "rqed8")
+
+S2_P300_aggregated_data <- aggregate(Activation ~ Participant_ID + Region, 
+                                     data = Session2_P300_data_frame, FUN = mean)
+head(S2_P300_aggregated_data)
+
+#aggregating the data to run Anovas
+#testing to see if there's an overall effect of region on activation
+S2_P300_RegionxActivation <- aov(Activation ~ Region, data = S2_P300_aggregated_data)
+head(S2_P300_RegionxActivation)
+
+#seeing where the differences lie between regions
+TukeyHSD(S2_P300_RegionxActivation)
+
+# calculating mean and standard error values for plotting and visual interpretation
+# The mean is already calculated, using the original data frame to calculate the SD
+# Re-run the code using dplyr's functions
+# Calculate the mean Activation per Region
+mean_activation <- aggregate(Activation ~ Region, data = S2_P300_aggregated_data, FUN = mean)
+
+# Calculate the standard error (SE) per Region using tapply
+se_activation <- aggregate(Activation ~ Region, data = S2_P300_aggregated_data, 
+                           FUN = function(x) sd(x) / sqrt(length(x)))
+
+# Combine the mean and SE into one data frame
+S2_P300_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation$Region,
+  Mean = mean_activation$Activation,
+  SE = se_activation$Activation
+)
+
+# Print the result
+head(S2_P300_Activation_per_Region_plot)
+
+# Reorder regions based on mean activation
+S2_P300_Activation_per_Region_plot <- S2_P300_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars using ggplot2
+ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), width = 0.2) +
+  labs(title = "Mean Activation by Brain Region S2_P300", x = "Brain Region", y = "Mean Activation") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+###########################################
+
+# For Session 2, time window P600
+
+Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
+#View(Session2_P600_data_frame)
+
+#removing participant rqed8 due to incomplete file
+Session2_P600_data_frame_filtered <- Session2_P600_data_frame %>%
+  filter(Participant_ID != "rqed8")
+
+S2_P600_aggregated_data <- aggregate(Activation ~ Participant_ID + Region, 
+                                     data = Session2_P600_data_frame, FUN = mean)
+head(S2_P600_aggregated_data)
+
+#aggregating the data to run Anovas
+#testing to see if there's an overall effect of region on activation
+S2_P600_RegionxActivation <- aov(Activation ~ Region, data = S2_P600_aggregated_data)
+head(S2_P600_RegionxActivation)
+
+#seeing where the differences lie between regions
+TukeyHSD(S2_P600_RegionxActivation)
+
+# calculating mean and standard error values for plotting and visual interpretation
+# The mean is already calculated, using the original data frame to calculate the SD
+# Re-run the code using dplyr's functions
+# Calculate the mean Activation per Region
+mean_activation <- aggregate(Activation ~ Region, data = S2_P600_aggregated_data, FUN = mean)
+
+# Calculate the standard error (SE) per Region using tapply
+se_activation <- aggregate(Activation ~ Region, data = S2_P600_aggregated_data, 
+                           FUN = function(x) sd(x) / sqrt(length(x)))
+
+# Combine the mean and SE into one data frame
+S2_P600_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation$Region,
+  Mean = mean_activation$Activation,
+  SE = se_activation$Activation
+)
+
+# Print the result
+head(S2_P600_Activation_per_Region_plot)
+
+# Reorder regions based on mean activation
+S2_P600_Activation_per_Region_plot <- S2_P600_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars using ggplot2
+ggplot(S2_P600_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), width = 0.2) +
+  labs(title = "Mean Activation by Brain Region S2_P600", x = "Brain Region", y = "Mean Activation") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+
 
 #in session3, exclude participant 3
 #in session 4, exclude participants 11 and 7
