@@ -1,3 +1,0 @@
-setwd("C:/Users/chath1626/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/Session 2/Export")
-getwd()
-file_list <- list.files(pattern = "*.txt")
