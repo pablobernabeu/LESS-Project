@@ -319,6 +319,8 @@ The complete key to the triggers is provided below.
       
       	7: incorrect response 
 
+      8: end of trial (marker only present in Session 2)
+
     255: end of Experiment part
 
 
@@ -327,14 +329,5 @@ each trial. The trigger that is sent at the exact onset of the word is the ID of
 Ten milliseconds later, another trigger marks the ID of the sentence. After another ten 
 milliseconds, a trigger marks the current grammatical property of interest. Yet another 
 ten milliseconds later, a trigger marks the grammaticality condition.
-
-
-send_trigger(var.target_word_trigger)
-
-send_trigger(var.sentence_trigger)
-
-send_trigger(var.grammatical_property_trigger)
-
-send_trigger(var.grammaticality_trigger)
 
 
