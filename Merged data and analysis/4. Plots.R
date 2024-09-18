@@ -41,41 +41,17 @@ library(forcats)
 
 # For Session 2, time window N200
 
-Session2_N200_data_frame <- read.csv("EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
+Session2_N200_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
 #View(Session2_N200_data_frame)
 
 #removing participant rqed8 due to incomplete file
 Session2_N200_data_frame_filtered <- Session2_N200_data_frame %>%
   filter(Participant_ID != "rqed8")
 
-#S2_N200_aggregated_data <- aggregate(Activation ~ Participant_ID + Region, 
-#                data = Session2_N200_data_frame_filtered, FUN = mean)
-#head(S2_N200_aggregated_data)
-
 #aggregating the data to run Anovas
 #testing to see if there's an overall effect of region on activation
 S2_N200_RegionxActivation <- aov(Activation ~ Region, data = Session2_N200_data_frame_filtered)
 head(S2_N200_RegionxActivation)
-
-
-
-#creating a new data frame to run anovas on with the aggregated values
-# Select the columns you need from Session2_N200_data_frame_filtered
-#Select only the columns you need from Session2_N200_data_frame_filtered
-# Select only the columns you need from Session2_N200_data_frame_filtered
-#selected_columns <- Session2_N200_data_frame_filtered [c("Participant_ID", "Pseudolanguage_version", "Grammaticality")]
-
-# Ensure the key column is of the same type in both data frames
-#S2_N200_aggregated_data$Participant_ID <- as.character(S2_N200_aggregated_data$Participant_ID)
-#selected_columns$Participant_ID <- as.character(selected_columns$Participant_ID)
-
-# Perform the inner join using merge function in base R
-#S2_N200_aggregated_data <- merge(S2_N200_aggregated_data, selected_columns, 
-  #                   by = "Participant_ID",  # The key column to join on
- #                    all = FALSE)  # all = FALSE performs an inner join
-
-#View(S2_N200_aggregated_data)
-
 
 #seeing where the differences lie between regions
 TukeyHSD(S2_N200_RegionxActivation)
@@ -114,16 +90,6 @@ ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
 
 
 
-
-
-
-
-
-
-
-
-
-
 # Calculating the Activation per Region, per Grammaticality
 
 # Calculate mean activation by Region and Grammaticality
@@ -159,6 +125,41 @@ ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 
 
 
+# visualising the interaction between Activation, Grammaticality, and Pseudolanguage_version
+
+# Calculate mean activation by Region, Grammaticality, and Pseudolanguage
+mean_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                     data = Session2_N200_data_frame_filtered, FUN = mean)
+
+# Calculate standard error (SE) by Region, Grammaticality, and Pseudolanguage
+se_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                   data = Session2_N200_data_frame_filtered, 
+                                   FUN = function(x) sd(x) / sqrt(length(x)))
+
+# Combine the mean and SE into one data frame
+S2_N200_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation_S2_N200$Region,
+  Grammaticality = mean_activation_S2_N200$Grammaticality,
+  Pseudolanguage = mean_activation_S2_N200$Pseudolanguage_version,
+  Mean = mean_activation_S2_N200$Activation,
+  SE = se_activation_S2_N200$Activation
+)
+
+# Reorder regions based on mean activation
+S2_N200_Activation_per_Region_plot <- S2_N200_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars, showing the interaction between Activation,
+# Grammaticality, and Pseudolanguage
+ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Grammaticality)) +
+  geom_bar(stat = "identity", position = "dodge") +  # Bars grouped by Grammaticality
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), 
+                width = 0.2, position = position_dodge(0.9)) +  
+  labs(title = "Mean Activation by Region, Grammaticality, and Pseudolanguage S2_N200",
+       x = "Brain Region", y = "Mean Activation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~ Pseudolanguage)  # Create separate subplots for each Pseudolanguage
 
 
 
@@ -202,7 +203,7 @@ ggplot(mean_activation_per_participant, aes(x = Participant_ID, y = Activation, 
 
 # For Session 2, time window P300
 
-Session2_P300_data_frame <- read.csv("EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
+Session2_P300_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
 #View(Session2_P300_data_frame)
 
 #removing participant rqed8 due to incomplete file
@@ -291,6 +292,41 @@ ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 
 
 
+# visualising the interaction between Activation, Grammaticality, and Pseudolanguage_version
+
+# Calculate mean activation by Region, Grammaticality, and Pseudolanguage
+mean_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                     data = Session2_P300_data_frame_filtered, FUN = mean)
+
+# Calculate standard error (SE) by Region, Grammaticality, and Pseudolanguage
+se_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                   data = Session2_P300_data_frame_filtered, 
+                                   FUN = function(x) sd(x) / sqrt(length(x)))
+
+# Combine the mean and SE into one data frame
+S2_P300_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation_S2_P300$Region,
+  Grammaticality = mean_activation_S2_P300$Grammaticality,
+  Pseudolanguage = mean_activation_S2_P300$Pseudolanguage_version,
+  Mean = mean_activation_S2_P300$Activation,
+  SE = se_activation_S2_P300$Activation
+)
+
+# Reorder regions based on mean activation
+S2_P300_Activation_per_Region_plot <- S2_P300_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars, showing the interaction between Activation, 
+# Grammaticality, and Pseudolanguage
+ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Grammaticality)) +
+  geom_bar(stat = "identity", position = "dodge") +  
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), 
+                width = 0.2, position = position_dodge(0.9)) + 
+  labs(title = "Mean Activation by Region, Grammaticality, and Pseudolanguage, S2_P300",
+       x = "Brain Region", y = "Mean Activation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~ Pseudolanguage)  # Create separate subplots for each Pseudolanguage
 
 
 
@@ -299,7 +335,7 @@ ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 
 # For Session 2, time window P600
 
-Session2_P600_data_frame <- read.csv("EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
+Session2_P600_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
 #View(Session2_P600_data_frame)
 
 #removing participant rqed8 due to incomplete file
@@ -380,6 +416,45 @@ ggplot(S2_P600_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
        x = "Brain Region", y = "Mean Activation") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+#Visualising the activation between Region, Grammaticality, and Pseudolanguage
+
+# Calculate mean activation by Region, Grammaticality, and Pseudolanguage
+mean_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                     data = Session2_P600_data_frame_filtered, FUN = mean)
+
+# Calculate standard error (SE) by Region, Grammaticality, and Pseudolanguage
+se_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality + Pseudolanguage_version, 
+                                   data = Session2_P600_data_frame_filtered, 
+                                   FUN = function(x) sd(x) / sqrt(length(x)))
+
+# Combine the mean and SE into one data frame
+S2_P600_Activation_per_Region_plot <- data.frame(
+  Region = mean_activation_S2_P600$Region,
+  Grammaticality = mean_activation_S2_P600$Grammaticality,
+  Pseudolanguage = mean_activation_S2_P600$Pseudolanguage_version,
+  Mean = mean_activation_S2_P600$Activation,
+  SE = se_activation_S2_P600$Activation
+)
+
+# Reorder regions based on mean activation
+S2_P600_Activation_per_Region_plot <- S2_P600_Activation_per_Region_plot %>%
+  mutate(Region = fct_reorder(Region, Mean))
+
+# Create a bar plot with error bars, showing the interaction between Activation,
+# Grammaticality, and Pseudolanguage
+ggplot(S2_P600_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Grammaticality)) +
+  geom_bar(stat = "identity", position = "dodge") +  # Bars grouped by Grammaticality
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), 
+                width = 0.2, position = position_dodge(0.9)) +  
+  labs(title = "Mean Activation by Region, Grammaticality, and Pseudolanguage S2_P600",
+       x = "Brain Region", y = "Mean Activation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~ Pseudolanguage)  # Create separate subplots for each Pseudolanguage
+
 
 
 
