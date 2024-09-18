@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 2\Raw\15.vhdr</HeaderFilename>
-  <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\EEG\data\Session 2\Raw\15.eeg</RawFilename>
+  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Raw data\EEG\Session 2\Raw\15.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Raw data\EEG\Session 2\Raw\15.eeg</RawFilename>
   <AppendedFiles />
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
@@ -32,7 +32,7 @@
     <guid>02d62d11-34e2-413a-b702-d0ee98e3d653</guid>
     <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
     <guid>a1eff52f-a0b4-41cc-a63d-4d437e2c4f29</guid>
-    <guid>4761989d-ab02-41c9-abf7-57cc13c7ecbd</guid>
+    <guid>aa072b38-72f3-40fa-8cae-85e3da935139</guid>
     <guid>c2a5c458-86c0-40e7-bac7-76931e8a83cb</guid>
     <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
     <guid>532bf4a3-6704-4f55-9efc-a66c679e35ee</guid>
