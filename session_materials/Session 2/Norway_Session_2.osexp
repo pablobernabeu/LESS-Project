@@ -1,0 +1,1293 @@
+---
+API: 2.1
+OpenSesame: 3.3.14
+Platform: nt
+---
+set width 1024
+set uniform_coordinates yes
+set title "Norway Session 2"
+set subject_parity even
+set subject_nr 0
+set start Session2
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend xpyriment
+set keyboard_backend legacy
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "C:/Users/pbe044/OneDrive - UiT Office 365/Pablo_LESS/session_materials/Session 2"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend xpyriment
+set background "#242424"
+
+define sketchpad EEG_OK
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Nå er signalet gyldig.<br>Prøv å ikke bevege deg under følgende oppgave. Ytterligere instruksjoner kommer snart.<br></div>" x=0 y=0 z_index=0
+	draw circle color="#00c55f" fill=1 penwidth=1 r=71.55417527999327 show_if=always x=0 y=160 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad EEG_OK_en
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Now the signal is valid.<br>Please try not to move during the following task. Further instructions will appear next.<br></div>" x=0 y=0 z_index=0
+	draw circle color="#00c55f" fill=1 penwidth=1 r=71.55417527999327 show_if=always x=0 y=160 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad EEG_check
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Når du er komfortabel, behold holdningen din slik at EEG-signalet stabiliserer seg. Når signalet er gyldig, skal en ny skjerm med en grønn sirkel dukke opp.<br></div>" x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=192 penwidth=1 show_if=always w=192 x=-96 y=96 z_index=0
+	draw textline center=1 color="#ff5996" font_bold=no font_family=serif font_italic=no font_size=80 html=yes show_if=always text="i.s.r" x=0 y=192 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad EEG_check_en
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Once you are comfortable, please maintain your posture so that the EEG signal stabilises. When the signal is valid, a new screen with a green circle will appear.<br></div>" x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=192 penwidth=1 show_if=always w=192 x=-96 y=96 z_index=0
+	draw textline center=1 color="#ff5996" font_bold=no font_family=serif font_italic=no font_size=80 html=yes show_if=always text="i.s.r" x=0 y=192 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad EEG_instructions
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>I de neste oppgavene, vennligst prøv å ikke bevege noen muskler. Plasser venstre hånd nær tastaturet og høyre hånd på musen. Deretter må du innta en komfortabel holdning, med begge føttene på gulvet, og prøve å opprettholde denne holdningen gjennom oppgavene.<br><br>For å fortsette, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad EEG_instructions_en
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>In the next tasks, please try not to move any muscles. Place your left hand near the keyboard and your right hand on the mouse. Next, please adopt a comfortable posture, with both your feet on the floor, and try to maintain this posture throughout the tasks.<br><br>To continue, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define sequence EEG_preparation
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run EEG_instructions "[language] != 'Mini-English'"
+	run EEG_instructions_en "[language] == 'Mini-English'"
+	run EEG_check "[language] != 'Mini-English'"
+	run EEG_check_en "[language] == 'Mini-English'"
+	run continue_c always
+	run continue_c always
+	run EEG_OK "[language] != 'Mini-English'"
+	run EEG_OK_en "[language] == 'Mini-English'"
+	run continue_c always
+	run continue_c always
+
+define inline_script EEG_trigger_setup
+	set description "Executes Python code"
+	set _run ""
+	___prepare__
+	
+	# This script is used to set up the system for sending triggers to the 
+	# EEG recording software (e.g., BrainVision Recorder). The code 
+	# automatically looks for an available serial port at the beginning 
+	# of the session. If there are any available ports, a connection is 
+	# established to the first port in the list. If there are no available 
+	# ports, no connection is established, and a warning is shown on 
+	# the screen, informing the user that no triggers will be sent to the 
+	# EEG recorder. In the latter case, the triggers are only printed in 
+	# the Python console of OpenSesame.
+	# 
+	# The code is in part based on a tutorial by Kate Stone, available at 
+	# https://stonekate.github.io/blog/opensesame, and on an answer 
+	# on StackOverflow by user 'quamrana', available at 
+	# https://stackoverflow.com/a/76829646/7050882. 
+	# The rest is based on pyserial:
+	# https://pyserial.readthedocs.io/en/latest/pyserial_api.html
+	
+	
+	# For development purposes, the test mode can be set to 'yes' 
+	# below, which will prevent attempting to connect to a port. As 
+	# a result, no EEG triggers will be sent to the EEG recorder, and 
+	# instead the triggers will be printed in the Python console of 
+	# OpenSesame.
+	
+	var.test_mode = 'no' 
+	
+	
+	#_______________________________________________________________
+	
+	import serial
+	import serial.tools.list_ports
+	import time
+	
+	# If no serial ports are available, activate test mode
+	if serial.tools.list_ports.comports() == []:
+	    var.test_mode = 'yes' 
+	
+	# Define `send_trigger` function, which should be used in inline 
+	# scripts as in the following example: `send_trigger(1)`
+	
+	# If we are not in test mode...
+	if(var.test_mode == 'no'):
+	
+	    # Open the first serial port available
+	    serialport = serial.Serial(serial.tools.list_ports.comports()[0].device)
+	    
+	    # Send triggers to the port
+	    def send_trigger(trigger):
+	        serialport.write(trigger.to_bytes(length = 1, byteorder = 'big'))
+	        time.sleep(0.01) # 10 ms separation from next trigger (see manual of BrainVision Recorder)
+	        serialport.write(int(0).to_bytes(length = 1, byteorder = 'big')) # reset port
+	        return;
+	    
+	# When in test mode, show warning at the beginning of the experiment. 
+	# To continue, the letter C must be pressed twice. 
+	else:
+	    test_canvas = Canvas(color = 'red', font_size = 38, font_family = 'sans');
+	    test_canvas.text('<div style="line-height:200%; margin-right:150px; margin-left:150px; text-align:left;">WARNING. Triggers cannot be sent to the EEG recorder, either because <tt>test_mode</tt> is activated in the trigger-setup script, or because no serial ports are available. Press <b>Esc</b> to quit the session, or press <b>C</b> twice to continue. If you continue, the triggers will only be printed in the Python console of OpenSesame.</div>');
+	    test_canvas.show();
+	    my_keyboard = Keyboard();
+	    key, end_time = my_keyboard.get_key(keylist=['c']);
+	    key, end_time = my_keyboard.get_key(keylist=['c']);
+	    
+	    # In the `send_trigger` function, only print the triggers
+	    def send_trigger(trigger):
+	        print(trigger)
+	        time.sleep(0.01) # 10 ms separation from next trigger
+	        print(0)
+	        return;
+	    
+	# Reset EEG port at the beginning of the session
+	send_trigger(0)
+	__end__
+
+define sequence EXPERIMENT
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_experiment_part always
+	run reset_accuracy always
+	run initialise_variables always
+	run EEG_preparation always
+	run experiment_instructions always
+	run experiment_start_trigger always
+	run experiment_loop always
+	run experiment_end_trigger always
+	run stop_recording always
+	run continue_c always
+	run continue_c always
+
+define sequence PRETRAINING
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_pretraining_part always
+	run pretraining_instructions "[language] != 'Mini-English'"
+	run pretraining_instructions_en "[language] == 'Mini-English'"
+	run pretraining_loop always
+	run end_of_task "[language] != 'Mini-English'"
+	run end_of_task_en "[language] == 'Mini-English'"
+
+define sequence RESTING_STATE_EEG
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run EEG_preparation always
+	run eyes_open "[resting_state_order] == 1"
+	run eyes_closed always
+	run eyes_open "[resting_state_order] == 2"
+	run stop_recording always
+	run continue_c always
+	run continue_c always
+
+define sequence Session2
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run message_for_experimenter always
+	run session_start_time always
+	run EEG_trigger_setup always
+	run study_site always
+	run session always
+	run participant_parameters always
+	run select_beginning always
+	run process_beginning always
+	run selected_tasks always
+	run session_end_time always
+	run logger always
+	run end_of_session "[language] != 'Mini-English'"
+	run end_of_session_en "[language] == 'Mini-English'"
+	run continue_c always
+
+define loop TEST
+	set source_file "../[session]/stimuli/test/[study_site] site, [language], Session2_Test_gender_agreement, List [test_list].csv"
+	set source file
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 empty_column ""
+	run test_sequence
+
+define sequence TRAINING
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_training_part always
+	run training_instructions "[language] != 'Mini-English'"
+	run training_instructions_en "[language] == 'Mini-English'"
+	run training_loop always
+	run set_test_attempt_1 always
+	run reset_accuracy always
+	run initialise_variables always
+	run end_of_task "[language] != 'Mini-English'"
+	run end_of_task_en "[language] == 'Mini-English'"
+	run test_instructions "[language] != 'Mini-English'"
+	run test_instructions_en "[language] == 'Mini-English'"
+	run set_test_part always
+	run TEST always
+	run process_test_results always
+	run test_result "[test_passed] == 'yes' and [language] != 'Mini-English'"
+	run test_result_en "[test_passed] == 'yes' and [language] == 'Mini-English'"
+	run continue_c "[test_passed] == 'yes'"
+	run continue_c "[test_passed] == 'yes'"
+	run test_1_failed "[test_passed] == 'no' and [language] != 'Mini-English'"
+	run test_1_failed_en "[test_passed] == 'no' and [language] == 'Mini-English'"
+	run repeat_TRAINING "[test_passed] == 'no'"
+	run end_of_task "[test_passed] == 'yes' and [language] != 'Mini-English'"
+	run end_of_task_en "[test_passed] == 'yes' and [language] == 'Mini-English'"
+	run null_test_variables always
+	run reset_accuracy always
+	run initialise_variables always
+
+define inline_script adjust_word3_ISI
+	set description "Executes Python code"
+	___run__
+	
+	# Extend duration of interstimulus interval after ERP-target word if the word lasted less than 550 ms. 
+	# This is necessary to preserve the critical period of 700 ms after word onset.
+	
+	clock.sleep(450 - var.word3_duration)
+	__end__
+	set _prepare ""
+
+define inline_script adjust_word4_ISI
+	set description "Executes Python code"
+	___run__
+	
+	# Extend duration of interstimulus interval after ERP-target word if the word lasted less than 550 ms. 
+	# This is necessary to preserve the critical period of 700 ms after word onset.
+	
+	clock.sleep(450 - var.word4_duration)
+	__end__
+	set _prepare ""
+
+define inline_script apply_word3_duration
+	set description "Executes Python code"
+	___run__
+	
+	# Apply duration of third word by administering the appropriate lag.
+	# This duration is applied in the present script, as it could not
+	# be set on the word itself to allow the sending of an EEG 
+	# trigger at the onset of the word in the appropriate trials.
+	
+	clock.sleep(var.word3_duration)
+	__end__
+	set _prepare ""
+
+define inline_script apply_word4_duration
+	set description "Executes Python code"
+	___run__
+	
+	# Apply duration of fourth word by administering the appropriate lag.
+	# This duration is applied in the present script, as it could not
+	# be set on the word itself to allow the sending of an EEG 
+	# trigger at the onset of the word in the appropriate trials.
+	
+	clock.sleep(var.word4_duration)
+	__end__
+	set _prepare ""
+
+define sketchpad blank_screen_5min
+	set duration 300000
+	set description "Displays stimuli"
+
+define sketchpad blank_screen_dot_5min
+	set duration 300000
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define feedback break_40_trials
+	set reset_variables no
+	set duration keypress
+	set description "Presents break when appropriate."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if="=var.language != 'Mini-English' and var.trial % 40 == 0" text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Dette er en pause. Vennligst hvil øynene ved å blinke og lukke dem i noen sekunder.<br><br>Vennligst innta en komfortabel holdning og prøv å holde deg så rolig som mulig under neste del.<br><br>For å la EEG-signalet stabilisere seg, vent i minst 10 sekunder før du fortsetter. Deretter, for å gjenoppta oppgaven, trykk en tast.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=grey font_bold=no font_family=mono font_italic=no font_size=10 html=yes show_if="=var.language != 'Mini-English' and var.trial % 40 == 0" text="[trial]" x=448 y=320 z_index=0
+
+define feedback break_40_trials_en
+	set reset_variables no
+	set duration keypress
+	set description "Presents break when appropriate."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if="=var.language == 'Mini-English' and var.trial % 4 == 0" text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>This is a pause. Please let your eyes rest by blinking and closing them for a few seconds.<br><br>Please adopt a comfortable posture and try not to move during the next part.<br><br>To let the EEG signal stabilise, please wait for at least 10 seconds before continuing. Next, to resume the task, press any key.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=grey font_bold=no font_family=mono font_italic=no font_size=10 html=yes show_if="=var.language == 'Mini-English' and var.trial % 4 == 0" text="[trial]" x=448 y=320 z_index=0
+
+define feedback conditional_ISI
+	set reset_variables no
+	set duration 250
+	set description "Presents ISI when appropriate."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="" x=0 y=0 z_index=0
+
+define keyboard_response continue_c
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response not_applicable
+	set allowed_responses c
+
+define sketchpad determiner_phrase
+	# set background white
+	set duration 500
+	set description "Displays stimuli"
+	draw image center=1 file="../images/[study_site] site/[image]" scale=0.7 show_if=always x=0 y=-62 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[determiner_phrase]" x=0 y=277 z_index=0
+
+define sketchpad determiner_phrase_1
+	# set background white
+	set duration keypress
+	set description "Displays stimuli"
+	draw image center=1 file="../images/[study_site] site/[image]" scale=0.7 show_if=always x=0 y=-62 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[determiner_phrase]" x=0 y=277 z_index=0
+
+define sketchpad end_of_session
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="../images/Norway site/happy-face-from-flaticon-com.png" scale=0.25 show_if=always x=340 y=-240 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=30 html=yes show_if=always text="Takk for at du fullførte denne økten.<br><br>Vennligst vent litt." x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad end_of_session_en
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="../images/Norway site/happy-face-from-flaticon-com.png" scale=0.25 show_if=always x=340 y=-240 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=30 html=yes show_if=always text="Thank you for completing this session.<br><br>Please wait a moment." x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad end_of_task
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Takk for at du fullførte den oppgaven. Vennligst ta en kort pause. Når du ønsker å fortsette, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad end_of_task_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Thank you for completing the task. Please take a short break. When you wish to continue, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define sketchpad experiment_ISI
+	set duration 250
+	set description "Displays stimuli"
+
+define inline_script experiment_end_trigger
+	set description "Executes Python code"
+	___run__
+	
+	# Mark end of experiment
+	send_trigger(255)
+	__end__
+	set _prepare ""
+
+define sequence experiment_instructions
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run experiment_instructions_1 "[language] != 'Mini-English'"
+	run experiment_instructions_1_en "[language] == 'Mini-English'"
+	run experiment_instructions_2 "[language] != 'Mini-English'"
+	run experiment_instructions_2_en "[language] == 'Mini-English'"
+
+define sketchpad experiment_instructions_1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>I denne oppgaven skal du lese setninger presentert ord for ord i midten av skjermen. På slutten av hver setning, vennligst <b>venstreklikk</b> hvis du mener setningen var riktig, eller <b>høyreklikk</b> hvis du mener den var feil. For å minne deg på disse valgene, skal en mus med to ansikter vises på slutten av hver setning.<br><br>Trykk på en bokstav eller mellomromstasten for å lese videre.</div>" x=0 y=0 z_index=0
+	draw image center=1 file="../images/Norway site/mouse.png" scale=0.07 show_if=always x=-430 y=8 z_index=0
+
+define sketchpad experiment_instructions_1_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>In this task, you will read sentences presented word by word in the centre of the screen. At the end of each sentence, please <b>left-click</b> on the mouse if you think the sentence was correct, or <b>right-click</b> if you think it was incorrect. To remind you of these choices, a mouse with two faces will appear at the end of each sentence.<br><br>Please press any letter or the space bar to read further.</div>" x=0 y=0 z_index=0
+	draw image center=1 file="../images/Norway site/mouse.png" scale=0.07 show_if=always x=-430 y=8 z_index=0
+
+define sketchpad experiment_instructions_2
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Vennligst innta en behagelig holdning og prøv å ikke flytte fra nå. Under oppgaven, prøv å ikke blinke mens enkeltordene blir presentert, men gjerne blink når musen med ansiktene vises.<br><br>For å la EEG-signalet stabilisere seg, vent i minst 10 sekunder før du fortsetter. Deretter, for å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad experiment_instructions_2_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Please adopt a comfortable posture and try not to move from now. During the task, please try not to blink while the single words are being presented, but feel free to blink when the mouse with the faces is displayed.<br><br>To let the EEG signal stabilise, please wait for at least 10 seconds before continuing. Next, to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define loop experiment_loop
+	set source_file "../[session]/stimuli/experiment/[study_site] site, [language], Session2_Experiment_gender_agreement, List [experiment_list].csv"
+	set source file
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 empty_column ""
+	run experiment_sequence
+
+define sequence experiment_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run increase_trial always
+	run fixation always
+	run fixation_trigger always
+	run experiment_ISI always
+	run word1 always
+	run experiment_ISI always
+	run word2 always
+	run experiment_ISI always
+	run word3 always
+	run send_word3_triggers "[target_word_location] == 'word3'"
+	run apply_word3_duration always
+	run experiment_ISI always
+	run adjust_word3_ISI "[target_word_location] == 'word3' and [word3_duration] < 450"
+	run word4 always
+	run send_word4_triggers "[target_word_location] == 'word4'"
+	run apply_word4_duration always
+	run experiment_ISI always
+	run adjust_word4_ISI "[target_word_location] == 'word4' and [word4_duration] < 450"
+	run word5 always
+	run experiment_ISI always
+	run word6 always
+	run experiment_ISI always
+	run word7 "[word7] != ''"
+	run conditional_ISI "[word7] != ''"
+	run word8 "[word8] != ''"
+	run conditional_ISI "[word8] != ''"
+	run word9 "[word9] != ''"
+	run conditional_ISI "[word9] != ''"
+	run word10 "[word10] != ''"
+	run conditional_ISI "[word10] != ''"
+	run grammaticality_judgement_screen always
+	run grammaticality_judgement_response always
+	run logger always
+	run send_trial_end_triggers always
+	run break_40_trials "=var.language != 'Mini-English' and var.trial % 40 == 0 and var.trial != 240"
+	run break_40_trials_en "=var.language == 'Mini-English' and var.trial % 40 == 0 and var.trial != 240"
+	run intertrial_interval always
+	run intertrial_interval_duration always
+
+define inline_script experiment_start_trigger
+	set description "Executes Python code"
+	___run__
+	
+	# Mark beginning of experiment
+	send_trigger(254)
+	__end__
+	set _prepare ""
+
+define sequence eyes_closed
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_eyes_closed_part always
+	run eyes_closed_instructions "[language] != 'Mini-English'"
+	run eyes_closed_instructions_en "[language] == 'Mini-English'"
+	run trigger_start_eyes_closed always
+	run blank_screen_5min always
+	run trigger_end_eyes_closed always
+	run knock_door always
+	run continue_c always
+	run continue_c always
+	run end_of_task "[language] != 'Mini-English'"
+	run end_of_task_en "[language] == 'Mini-English'"
+
+define sketchpad eyes_closed_instructions
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Vi skal nå ta opp hjernebølgene dine mens du hviler med <b>øynene lukket</b>. Varigheten av denne oppgaven er fem minutter, på slutten av denne vil du høre tre banker på døren.<br><br>For å begynne oppgaven, vennligst lukk øynene dine og trykk på en bokstav eller mellomromstasten.</div>" x=0 y=32 z_index=0
+
+define sketchpad eyes_closed_instructions_en
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>We will now record your brain waves while you are resting with your <b>eyes closed</b>. The duration of this task is five minutes, at the end of which you will hear three knocks on the door.<br><br>To begin the task, please close your eyes and press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define sequence eyes_open
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_eyes_open_part always
+	run eyes_open_instructions "[language] != 'Mini-English'"
+	run eyes_open_instructions_en "[language] == 'Mini-English'"
+	run trigger_start_eyes_open always
+	run blank_screen_dot_5min always
+	run trigger_end_eyes_open always
+	run end_of_task "[language] != 'Mini-English'"
+	run end_of_task_en "[language] == 'Mini-English'"
+
+define sketchpad eyes_open_instructions
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Vi skal nå ta opp hjernebølgene dine mens du hviler med <b>øynene åpne</b>. Vennligst fest blikket rett under pilen nederst på skjermen, og forbli på denne måten til et <b>pip</b> høres. Varigheten av oppgaven er fem minutter.<br><br>For å begynne oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=-160 z_index=0
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad eyes_open_instructions_en
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>We will now record your brain waves while you are resting with your <b>eyes open</b>. The duration of the task is five minutes.<br><br>To begin, please fix your gaze on the circle, and press any letter or the space bar. Please keep your gaze on the circle throughout the task.</div>" x=0 y=-160 z_index=0
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad filler_contrast
+	set duration 1500
+	set description "Displays stimuli"
+	draw rect color="#ffffff" fill=1 h=768 penwidth=1 show_if=always w=1024 x=-512 y=-384 z_index=0
+	draw image center=1 file="../images/[study_site] site/[upper_image1]" scale=0.42 show_if=always x=-255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[lower_image1]" scale=0.42 show_if=always x=-255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence1]" x=-255 y=320 z_index=0
+	draw line color=grey penwidth=3 show_if=always x1=0 x2=0 y1=-390 y2=390 z_index=0
+	draw image center=1 file="../images/[study_site] site/[upper_image2]" scale=0.42 show_if=always x=255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[lower_image2]" scale=0.42 show_if=always x=255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence2]" x=255 y=320 z_index=0
+
+define sketchpad filler_contrast_1
+	set duration keypress
+	set description "Displays stimuli"
+	draw rect color="#ffffff" fill=1 h=768 penwidth=1 show_if=always w=1024 x=-512 y=-384 z_index=0
+	draw image center=1 file="../images/[study_site] site/[upper_image1]" scale=0.42 show_if=always x=-255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[lower_image1]" scale=0.42 show_if=always x=-255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence1]" x=-255 y=320 z_index=0
+	draw line color=grey penwidth=3 show_if=always x1=0 x2=0 y1=-390 y2=390 z_index=0
+	draw image center=1 file="../images/[study_site] site/[upper_image2]" scale=0.42 show_if=always x=255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[lower_image2]" scale=0.42 show_if=always x=255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence2]" x=255 y=320 z_index=0
+
+define sketchpad fixation
+	# set background white
+	set duration 670
+	set description "Muestra estímulos"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define inline_script fixation_trigger
+	set description "Executes Python code"
+	___run__
+	
+	# Fixation 
+	send_trigger(5)
+	__end__
+	set _prepare ""
+
+define mouse_response grammaticality_judgement_response
+	set timeout infinite
+	set show_cursor no
+	set linked_sketchpad ""
+	set flush yes
+	set event_type mouseclick
+	set duration mouseclick
+	set description "Collects mouse responses"
+	set allowed_responses "left_button;right_button"
+
+define sketchpad grammaticality_judgement_screen
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="../images/Norway site/mouse.png" scale=0.1 show_if=always x=0 y=0 z_index=0
+
+define inline_script increase_trial
+	set description "Executes Python code"
+	___run__
+	
+	# Increase trial count
+	var.trial += 1
+	__end__
+	set _prepare ""
+
+define inline_script initialise_variables
+	set description "Executes Python code"
+	___run__
+	
+	# Set/reset variables
+	
+	var.total_correct = 0
+	
+	var.trial = 0
+	
+	var.accuracy = 'NA'
+	
+	var.acc = 'NA'
+	__end__
+	set _prepare ""
+
+define sketchpad intertrial_interval
+	set duration 0
+	set description "Displays stimuli"
+
+define advanced_delay intertrial_interval_duration
+	set jitter_mode "Std. Dev."
+	set jitter 10
+	set duration 750
+	set description "Waits for a specified duration"
+
+define form_base item
+	set timeout infinite
+	set spacing 10
+	set rows "1;1;1;1;1"
+	set only_render no
+	set margins "50;50;50;50"
+	set description "A generic form plug-in"
+	set cols "0.8;1"
+	set _theme gray
+	widget 0 0 1 3 image adjust=yes frame=no path="../images/[study_site] site/[noun_image]"
+	widget 0 3 1 2 image adjust=yes frame=no path="../images/[study_site] site/[adjective_image]"
+	widget 1 0 1 1 button center=yes frame=yes text="[sentence_1]" var=response_sentence_1
+	widget 1 1 1 1 button center=yes frame=yes text="[sentence_2]" var=response_sentence_2
+	widget 1 2 1 1 button center=yes frame=yes text="[sentence_3]" var=response_sentence_3
+	widget 1 3 1 1 button center=yes frame=yes text="[sentence_4]" var=response_sentence_4
+	widget 1 4 1 1 button center=yes frame=yes text="[sentence_5]" var=response_sentence_5
+
+
+define sketchpad knock_door
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw circle color="#00c55f" fill=1 penwidth=1 r=71.55417527999327 show_if=always x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define notepad message_for_experimenter
+	__note__
+	
+	The experimenter should become familiar with 
+	
+	the guidance in the file 'README.txt' before
+	
+	administering the present session.
+	__end__
+	set description "A simple notepad to document your experiment. This plug-in does nothing."
+
+define inline_script null_test_variables
+	set description "Executes Python code"
+	___run__
+	
+	var.test_attempt = 'NA'
+	
+	test_passed = 'NA'
+	__end__
+	set _prepare ""
+
+define inline_script participant_parameters
+	set description "Executes Python code"
+	___run__
+	
+	# Take participant-specific values from the appropriate factors. These values will 
+	# be used in the assignment of conditions and in the selection of stimulus files.
+	
+	import csv  # handle csv file
+	import pandas as pd  # handle data frames
+	
+	participant_parameters = pd.read_csv(exp.get_file('../parameters per participant/' + var.study_site + ' site, parameters per participant.csv'))
+	
+	var.resting_state_order = participant_parameters.loc[participant_parameters['participant'] == var.subject_nr]['Session2_resting_state_order'].iloc[0]
+	
+	var.language = participant_parameters.loc[participant_parameters['participant'] == var.subject_nr]['language'].iloc[0]
+	
+	var.training_list = participant_parameters.loc[participant_parameters['participant'] == var.subject_nr]['Session2_training_list'].iloc[0]
+	
+	var.test_list = participant_parameters.loc[participant_parameters['participant'] == var.subject_nr]['Session2_test_list'].iloc[0]
+	
+	var.experiment_list = participant_parameters.loc[participant_parameters['participant'] == var.subject_nr]['Session2_experiment_list'].iloc[0]
+	__end__
+	set _prepare ""
+
+define sketchpad pretraining_instructions
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Deretter skal du se ulike objekter som er til stede gjennom denne studien. I hvert lysbilde, les ordet og se på illustrasjonen. For å endre lysbildet, trykk en tast.<br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad pretraining_instructions_en
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Next, you will see various objects that are present throughout this study. In each slide, please read the word and look at the illustration. To change the slide, press any key.<br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define loop pretraining_loop
+	set source_file "../[session]/stimuli/pre-training/[study_site] site, [language], Session2_Pretraining_vocabulary.csv"
+	set source file
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 empty_column ""
+	run sequence
+
+define inline_script process_Test_response
+	set description "Executes Python code"
+	___run__
+	
+	# Increase trial count
+	var.trial += 1
+	
+	# Set response as incorrect and 
+	# modify below if appropriate.
+	var.correct = 0
+	
+	if var.response_sentence_1 == 'yes' and var.sentence_1 == var.correct_sentence:
+	    var.correct = 1 
+	    var.total_correct += 1 
+	
+	elif var.response_sentence_2 == 'yes' and var.sentence_2 == var.correct_sentence:
+	    var.correct = 1 
+	    var.total_correct += 1 
+	
+	elif var.response_sentence_3 == 'yes' and var.sentence_3 == var.correct_sentence:
+	    var.correct = 1 
+	    var.total_correct += 1 
+	
+	elif var.response_sentence_4 == 'yes' and var.sentence_4 == var.correct_sentence:
+	    var.correct = 1 
+	    var.total_correct += 1 
+	
+	elif var.response_sentence_5 == 'yes' and var.sentence_5 == var.correct_sentence:
+	    var.correct = 1 
+	    var.total_correct += 1
+	
+	# Accuracy
+	var.accuracy = var.total_correct / var.trial * 100
+	var.acc = var.accuracy
+	__end__
+	set _prepare ""
+
+define inline_script process_beginning
+	set description "Executes Python code"
+	___run__
+	
+	# By default, all tasks are administered
+	
+	var.resting_state_EEG = 'active'
+	var.pretraining = 'active'
+	var.training = 'active'
+	var.experiment = 'active'
+	
+	# However, since the session is fairly long and costly, if an experiment is 
+	# ever interrupted in the middle, the experimenter can reopen it and have 
+	# the participant complete only the remaining tasks. Whenever this 
+	# happens, the experimenter should note this incident in their session 
+	# logbook, and enter a different subject number on the second run to 
+	# prevent overwriting the first file. Afterwards, both files must be safely 
+	# merged into one file, keeping only the fully completed tasks and the 
+	# original subject number.
+	
+	if var.first_part == 'Pre-training':
+	    var.resting_state_EEG = 'inactive'
+	
+	if var.first_part == 'Training':
+	    var.resting_state_EEG = 'inactive'
+	    var.pretraining = 'inactive'
+	    
+	elif var.first_part == 'Experiment':
+	    var.resting_state_EEG = 'inactive'
+	    var.pretraining = 'inactive'
+	    var.training = 'inactive'
+	__end__
+	set _prepare ""
+
+define inline_script process_test_results
+	set description "Executes Python code"
+	___run__
+	
+	# Assess result
+	
+	if var.accuracy > 80:
+	    var.test_passed = 'yes'
+	else: 
+	    var.test_passed = 'no'
+	__end__
+	set _prepare ""
+
+define sequence repeat_TRAINING
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run set_training_part always
+	run training_instructions "[language] != 'Mini-English'"
+	run training_instructions_en "[language] == 'Mini-English'"
+	run training_loop always
+	run set_test_attempt_2 always
+	run reset_accuracy always
+	run initialise_variables always
+	run test_instructions "[language] != 'Mini-English'"
+	run test_instructions_en "[language] == 'Mini-English'"
+	run set_test_part always
+	run TEST always
+	run process_test_results always
+	run test_result "[language] != 'Mini-English'"
+	run test_result_en "[language] == 'Mini-English'"
+	run continue_c always
+	run continue_c always
+
+define reset_feedback reset_accuracy
+	set description "Resets the feedback variables, such as 'avg_rt' and 'acc'"
+
+define form_multiple_choice select_beginning
+	set timeout infinite
+	set spacing 10
+	__question__
+	ONLY SELECTED BY THE EXPERIMENTER
+	
+	Participant: [subject_nr]
+	__end__
+	__options__
+	Resting-state EEG (default)
+	Pre-training
+	Training
+	Experiment
+	__end__
+	set margins "50;50;50;50"
+	set form_var first_part
+	set form_title "CAUTION: Begin session from the part selected below?"
+	set description "A simple multiple choice item"
+	set button_text "Click to confirm or to begin from default part if nothing selected"
+	set allow_multiple no
+	set advance_immediately no
+	set _theme gray
+
+define sequence selected_tasks
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run warn_inactive_tasks "[language] != 'Mini-English' and [first_part] != 'no' and [first_part] != 'Resting-state EEG (default)'"
+	run warn_inactive_tasks_en "[language] == 'Mini-English' and [first_part] != 'no' and [first_part] != 'Resting-state EEG (default)'"
+	run continue_c "[first_part] != 'no' and [first_part] != 'Resting-state EEG (default)'"
+	run continue_c "[first_part] != 'no' and [first_part] != 'Resting-state EEG (default)'"
+	run welcome "[language] != 'Mini-English'"
+	run welcome_en "[language] == 'Mini-English'"
+	run RESTING_STATE_EEG "[resting_state_EEG] == 'active'"
+	run PRETRAINING "[pretraining] == 'active'"
+	run TRAINING "[training] == 'active'"
+	run EXPERIMENT always
+
+define inline_script send_trial_end_triggers
+	set description "Executes Python code"
+	___run__
+	
+	# Response accuracy
+	send_trigger(6) if var.correct == 1 else send_trigger(7)
+	
+	# End of trial 
+	send_trigger(8)
+	__end__
+	set _prepare ""
+
+define inline_script send_word3_triggers
+	set description "Executes Python code"
+	___run__
+	
+	# Send triggers if appropriate. Only the target word trigger is time-locked to the onset of the word. 
+	# The other triggers are sent afterwards. 
+	
+	send_trigger(var.target_word_trigger)
+	
+	send_trigger(var.sentence_trigger)
+	
+	send_trigger(var.grammatical_property_trigger)
+	
+	send_trigger(var.grammaticality_trigger)
+	__end__
+	set _prepare ""
+
+define inline_script send_word4_triggers
+	set description "Executes Python code"
+	___run__
+	
+	# Send triggers if appropriate. Only the target word trigger is time-locked to the onset of the word. 
+	# The other triggers are sent afterwards. 
+	
+	send_trigger(var.target_word_trigger)
+	
+	send_trigger(var.sentence_trigger)
+	
+	send_trigger(var.grammatical_property_trigger)
+	
+	send_trigger(var.grammaticality_trigger)
+	__end__
+	set _prepare ""
+
+define sequence sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run determiner_phrase always
+	run determiner_phrase_1 always
+
+define inline_script session
+	set description "Executes Python code"
+	___run__
+	
+	var.session = 'Session 2'
+	__end__
+	set _prepare ""
+
+define inline_script session_end_time
+	set description "Executes Python code"
+	___run__
+	
+	from datetime import datetime
+	
+	var.session_end_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+	__end__
+	set _prepare ""
+
+define inline_script session_start_time
+	set description "Executes Python code"
+	___run__
+	
+	from datetime import datetime
+	
+	var.session_start_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+	__end__
+	set _prepare ""
+
+define inline_script set_experiment_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Experiment'
+	__end__
+	set _prepare ""
+
+define inline_script set_eyes_closed_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Eyes-closed resting-state EEG'
+	__end__
+	set _prepare ""
+
+define inline_script set_eyes_open_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Eyes-open resting-state EEG'
+	__end__
+	set _prepare ""
+
+define inline_script set_pretraining_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Pre-training'
+	__end__
+	set _prepare ""
+
+define inline_script set_test_attempt_1
+	set description "Executes Python code"
+	___run__
+	
+	var.test_attempt = 1
+	__end__
+	set _prepare ""
+
+define inline_script set_test_attempt_2
+	set description "Executes Python code"
+	___run__
+	
+	var.test_attempt = 2
+	__end__
+	set _prepare ""
+
+define inline_script set_test_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Test'
+	__end__
+	set _prepare ""
+
+define inline_script set_training_part
+	set description "Executes Python code"
+	___run__
+	
+	var.session_part = 'Training'
+	__end__
+	set _prepare ""
+
+define sketchpad stop_recording
+	set duration 0
+	set description "Displays stimuli"
+	draw rect color=white fill=1 h=192 penwidth=1 show_if=always w=192 x=-96 y=-96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=80 html=yes show_if=always text="<s>R</s>" x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define inline_script study_site
+	set description "Executes Python code"
+	___run__
+	
+	# Set study site, which is passed to 
+	# the names of the stimulus files.
+	
+	var.study_site = 'Norway'
+	__end__
+	set _prepare ""
+
+define feedback test_1_failed
+	set reset_variables yes
+	set duration keypress
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Testen er avsluttet, og [accuracy] % av svarene var korrekte.<br><br>Trykk på en bokstav eller mellomromstasten for å gjenta treningen og testen." x=0 y=0 z_index=0
+
+define feedback test_1_failed_en
+	set reset_variables yes
+	set duration keypress
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="The test has ended, and [accuracy]% of the responses were correct.<br><br>Press any letter or the space bar to repeat the training and the test." x=0 y=0 z_index=0
+
+define sketchpad test_instructions
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Nå er det tid for en liten test om innholdet du nettopp så. I hvert lysbilde skal du se et bilde og fem setninger. Vennligst velg én setning som beskriver bildet godt og som er riktig konstruert.<br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad test_instructions_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Now it's time to do a small test about the content you just saw. In each slide, you will see an image and five sentences. Please select a sentence that describes the image well and that is correctly constructed.<br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define feedback test_result
+	set reset_variables yes
+	set duration 0
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Testen er avsluttet, og [accuracy] % av svarene var korrekte.<br><br>Vennligst vent et øyeblikk." x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define feedback test_result_en
+	set reset_variables yes
+	set duration 0
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="The test has ended, and [accuracy]% of the responses were correct.<br><br>Please wait for a moment." x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sequence test_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run item always
+	run process_Test_response always
+	run logger always
+
+define sketchpad training_contrast
+	set duration 1500
+	set description "Displays stimuli"
+	draw rect color="#ffffff" fill=1 h=768 penwidth=1 show_if=always w=1024 x=-512 y=-384 z_index=0
+	draw image center=1 file="../images/[study_site] site/[noun_image]" scale=0.45 show_if=always x=-255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[adjective1_image]" scale=0.35 show_if=always x=-255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence1]" x=-255 y=320 z_index=0
+	draw line color=grey penwidth=3 show_if=always x1=0 x2=0 y1=-390 y2=390 z_index=0
+	draw image center=1 file="../images/[study_site] site/[noun_image]" scale=0.45 show_if=always x=255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[adjective2_image]" scale=0.35 show_if=always x=255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence2]" x=255 y=320 z_index=0
+
+define sketchpad training_contrast_1
+	set duration keypress
+	set description "Displays stimuli"
+	draw rect color="#ffffff" fill=1 h=768 penwidth=1 show_if=always w=1024 x=-512 y=-384 z_index=0
+	draw image center=1 file="../images/[study_site] site/[noun_image]" scale=0.45 show_if=always x=-255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[adjective1_image]" scale=0.35 show_if=always x=-255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence1]" x=-255 y=320 z_index=0
+	draw line color=grey penwidth=3 show_if=always x1=0 x2=0 y1=-390 y2=390 z_index=0
+	draw image center=1 file="../images/[study_site] site/[noun_image]" scale=0.45 show_if=always x=255 y=-200 z_index=0
+	draw image center=1 file="../images/[study_site] site/[adjective2_image]" scale=0.35 show_if=always x=255 y=125 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=25 html=yes show_if=always text="[sentence2]" x=255 y=320 z_index=0
+
+define sketchpad training_instructions
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Følgende lysbilder viser bilder med en beskrivende tekst under. Det er to sett med lysbilder. Ett sett viser posisjonen til noen objekter i forhold til andre objekter. Det andre settet viser en egenskap til noen objekter, representert av et bilde som vises under objektet.<br><br>For å gå gjennom lysbildene, trykk en tast.<br>Etter denne oppgaven blir det en liten test.<br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+
+define sketchpad training_instructions_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>The following slides present images with a descriptive text underneath. There are two sets of slides. One set depicts the position of some objects relative to other objects. The other set depicts a property of some objects, represented by an image that appears under the object.<br><br>To change the slide, press any key. After this task, there will be a small test.<br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+
+define loop training_loop
+	set source_file "../[session]/stimuli/training/[study_site] site, [language], Session2_Training_gender_agreement, List [training_list].csv"
+	set source file
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 empty_column ""
+	run training_sequence
+
+define sequence training_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run training_contrast "[upper_image1] == 'NA.png'"
+	run training_contrast_1 "[upper_image1] == 'NA.png'"
+	run filler_contrast "[upper_image1] != 'NA.png'"
+	run filler_contrast_1 "[upper_image1] != 'NA.png'"
+
+define inline_script trigger_end_eyes_closed
+	set description "Executes Python code"
+	___run__
+	
+	# mark end of eyes-closed resting-state EEG
+	
+	send_trigger(13)
+	__end__
+	set _prepare ""
+
+define inline_script trigger_end_eyes_open
+	set description "Executes Python code"
+	___run__
+	
+	# mark end of eyes-open resting-state EEG
+	
+	send_trigger(11)
+	__end__
+	set _prepare ""
+
+define inline_script trigger_start_eyes_closed
+	set description "Executes Python code"
+	___run__
+	
+	# mark start of eyes-closed resting-state EEG
+	
+	send_trigger(12)
+	__end__
+	set _prepare ""
+
+define inline_script trigger_start_eyes_open
+	set description "Executes Python code"
+	___run__
+	
+	# mark start of eyes-open resting-state EEG
+	
+	send_trigger(10)
+	__end__
+	set _prepare ""
+
+define feedback warn_inactive_tasks
+	set reset_variables yes
+	set duration 0
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=pink font_bold=yes font_family=serif font_italic=no font_size=40 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>MERK: Denne økten starter fra [first_part].</div>" x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define feedback warn_inactive_tasks_en
+	set reset_variables yes
+	set duration 0
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=pink font_bold=yes font_family=serif font_italic=no font_size=40 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>NOTE: This session will begin from the [first_part].</div>" x=0 y=0 z_index=0
+	draw rect color="#ff5500" fill=1 h=64 penwidth=1 show_if=always w=1024 x=-512 y=320 z_index=0
+	draw rect color="#ff5500" fill=1 h=704 penwidth=1 show_if=always w=32 x=480 y=-384 z_index=0
+
+define sketchpad welcome
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Takk for samarbeidet i denne studien, som omfatter flere oppgaver. Før hver oppgave, vennligst les instruksjonene nøye.<br><br>Vi ønsker å gi alle deltakerne de samme innspillene. Derfor ber vi deg avstå fra å stille oss spørsmål med mindre det er nødvendig.<br><br>Trykk på en bokstav eller mellomromstasten for å begynne.</div>" x=0 y=0 z_index=0
+
+define sketchpad welcome_en
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Thank you for your collaboration in this study, which consists of several tasks. Before each task, please read the instructions carefully.<br><br>We would like to provide all participants with the same input. Therefore, please refrain from asking us any questions unless it is necessary.<br><br>Please press any letter or the space bar to begin.</div>" x=0 y=0 z_index=0
+
+define sketchpad word1
+	set duration "[word1_duration]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word1]" x=0 y=0 z_index=0
+
+define feedback word10
+	set reset_variables no
+	set duration "[word10_duration]"
+	set description "Presents words if they exist."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word10]" x=0 y=0 z_index=0
+
+define sketchpad word2
+	set duration "[word2_duration]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word2]" x=0 y=0 z_index=0
+
+define sketchpad word3
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word3]" x=0 y=0 z_index=0
+
+define sketchpad word4
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word4]" x=0 y=0 z_index=0
+
+define sketchpad word5
+	set duration "[word5_duration]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word5]" x=0 y=0 z_index=0
+
+define sketchpad word6
+	set duration "[word6_duration]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word6]" x=0 y=0 z_index=0
+
+define feedback word7
+	set reset_variables no
+	set duration "[word7_duration]"
+	set description "Presents words if they exist."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word7]" x=0 y=0 z_index=0
+
+define feedback word8
+	set reset_variables no
+	set duration "[word8_duration]"
+	set description "Presents words if they exist."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word8]" x=0 y=0 z_index=0
+
+define feedback word9
+	set reset_variables no
+	set duration "[word9_duration]"
+	set description "Presents words if they exist."
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=40 html=yes show_if=always text="[word9]" x=0 y=0 z_index=0
+

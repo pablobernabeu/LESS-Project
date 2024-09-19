@@ -1,3 +1,7 @@
+stimulus_preparation/external_corpora/nowac-1.1.lemma.frek.sort_alf_frek.txt
 *.mp4
 *.eeg
+*.wksp2
+*.Rdata
+*.Rhistory
 .Rproj.user
