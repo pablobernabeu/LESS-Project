@@ -9,7 +9,7 @@ DataFormat=ASCII
 DataOrientation=VECTORIZED
 DataType=TIMEDOMAIN
 NumberOfChannels=36
-DataPoints=25800
+DataPoints=28800
 ; Sampling interval in microseconds if time domain (convert to Hertz:
 ; 1000000 / SamplingInterval) or in Hertz if frequency domain:
 SamplingInterval=2000
