@@ -73,7 +73,7 @@ mean_reaction_time_stroop <- cleaned_data_STROOP %>%
   summarize(mean_reaction_time_stroop = mean(Reaction.Time, na.rm = TRUE))
 
 # See the result
-View(mean_reaction_time_stroop)
+# View(mean_reaction_time_stroop)
 
 # Calculate the difference between the reaction times of each congruence for 
 # each participant
@@ -106,7 +106,7 @@ difference_list <- lapply(split_data, function(participant_data) {
 difference_reaction_time <- do.call(rbind, difference_list)
 
 # View the result
-View(difference_reaction_time)
+# View(difference_reaction_time)
 
 
 # Save the result in a CSV file

@@ -15,8 +15,7 @@ library(rmarkdown)
 
 
 # Read the Excel file and treat the first row as regular text, as it is just 
-# stating the type of questionnaire used when automatically downloaded from 
-# the LHQ3 website
+# stating the type of questionnaire used.
 LHQ3_results_raw <- read_excel("Raw data/Language history/LHQ3 results raw.xlsx", 
                                sheet = "Sheet1", col_names = FALSE)
 
@@ -664,11 +663,11 @@ LHQ3_data_compact$Codeswitching_average <- rowMeans(LHQ3_data_compact[, codeswit
 # Print updated data frame
 # View(LHQ3_data_compact)
 
-# import the automatically processed data from LHQ3 in order to extract relevant
-# info on Proficiency scores and language entropy.
-# Removing the first row that reads "LHQ3" and creating new header
-# renaming the Participant ID column to match Participant_ID that is found in the
-# LHQ3_data_compact
+# Import a set of variables that were computed in the LHQ3 platform, including proficiency 
+# scores and language Multilingual Language Diversity.
+# Removing the first row that reads "LHQ3" and creating new header.
+# Renaming the Participant ID column to match Participant_ID that is found in the
+# LHQ3_data_compact.
 
 LHQ3_processed <- read_excel("Raw data/Language history/LHQ3 Aggregate Scores.xlsx", 
                              sheet = "Sheet1", col_names = FALSE)
@@ -677,7 +676,7 @@ LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
 
-View(LHQ3_processed)
+# View(LHQ3_processed)
 # Rename columns using indices
 names(LHQ3_processed)[c(1, 6, 7, 14)] <- c("Participant_ID", "L1_Proficiency_Score", 
                                            "L2_Proficiency_Score", 
@@ -687,7 +686,7 @@ names(LHQ3_processed)[c(1, 6, 7, 14)] <- c("Participant_ID", "L1_Proficiency_Sco
 
 # Ensure 'Participant_ID' is present in both data frames for merging
 LHQ3_processed <- merge(LHQ3_data_compact, LHQ3_processed, by = "Participant_ID")
-View(LHQ3_processed)
+# View(LHQ3_processed)
 
 # Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
 # combining the two data frames based on Participant_ID
@@ -702,5 +701,5 @@ LHQ3_processed_selected <-
 LHQ3_final <- merge(LHQ3_data_compact_selected, LHQ3_processed_selected, 
                     by = "Participant_ID", all.x = TRUE)
 
-View(LHQ3_final)
+# View(LHQ3_final)
 

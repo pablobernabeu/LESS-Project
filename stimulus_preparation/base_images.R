@@ -87,4 +87,3 @@ for(i in 1:length(base_images)) {
     image_write(paste0(image_dir, base_images[i]))
 }
 
-

@@ -30,8 +30,8 @@ DGS_2_extra_2 <- read_csv(file.path(path_to_DGS, "xqls8_DGS_STROOP.csv"))
 DGS_1 <- bind_rows(DGS_1, DGS_1_extra)
 DGS_2 <- bind_rows(DGS_2, DGS_2_extra_1, DGS_2_extra_2)
 
-View(DGS_1)
-View(DGS_2)
+# View(DGS_1)
+# View(DGS_2)
 
 # Clear column names
 colnames(DGS_1) <- make.names(colnames(DGS_1))
@@ -118,7 +118,7 @@ analysis_table_DGS <- analysis_table_DGS %>%
   left_join(highest_total_correct_per_participant, by = "Participant.Public.ID") %>%
   left_join(average_correct, by = "Participant.Public.ID")
 
-View(analysis_table_DGS)
+# View(analysis_table_DGS)
 write_csv(analysis_table_DGS, "analysis_table_DGS.csv")
 # A greater number of correctly remembered digits indicates a greater 
 # working memory capacity.```

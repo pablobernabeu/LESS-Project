@@ -19,7 +19,7 @@ library(dplyr)
 # Minimum and Maximum: Range of correct responses.
 
 DGS <- read.csv("Raw data/Executive functions/analysis_table_DGS.csv")
-View(DGS)
+# View(DGS)
 
 DGS_summary_statistics <-DGS %>%
   summarize(
@@ -30,7 +30,7 @@ DGS_summary_statistics <-DGS %>%
     max_correct = max(total_correct.x, na.rm = TRUE),
   )
 
-View(DGS_summary_statistics)
+# View(DGS_summary_statistics)
 
 # DGS summary statistics per participant
 
@@ -48,7 +48,7 @@ DGS_summary_statistics_per_participant <- DGS %>%
     repetitions = sum(repetitions, na.rm = TRUE) 
   )
 
-View(DGS_summary_statistics_per_participant)
+# View(DGS_summary_statistics_per_participant)
 
 # Examine how participants perform based on different task conditions, such as
 # list length. This helps to understand if task difficulty (list length) affects 
@@ -63,7 +63,7 @@ DGS_performance_by_list_length <- DGS %>%
     max_correct = max(total_correct.y, na.rm = TRUE)
   )
 
-View(DGS_performance_by_list_length)
+# View(DGS_performance_by_list_length)
 
 
 DGS_summary_statistics_per_participant_by_list_length <- DGS %>%
@@ -80,7 +80,7 @@ DGS_summary_statistics_per_participant_by_list_length <- DGS %>%
     repetitions = sum(repetitions, na.rm = TRUE) 
   )
 
-View(DGS_summary_statistics_per_participant_by_list_length)
+# View(DGS_summary_statistics_per_participant_by_list_length)
 
 
 
@@ -88,7 +88,7 @@ View(DGS_summary_statistics_per_participant_by_list_length)
 
 Stroop <- read.csv("Raw data/Executive functions/difference_reaction_time_stroop.csv")
 
-View(Stroop)
+# View(Stroop)
 # Separate the data into congruent and incongruent conditions
 congruent_data <- Stroop %>% filter(Congruency == "congruent")
 incongruent_data <- Stroop %>% filter(Congruency == "incongruent")
@@ -121,7 +121,7 @@ Stroop_summary_statistics <- Stroop %>%
     max_stroop_effect = max(stroop_effect, na.rm = TRUE)
   )
 # Display the summary statistics
-View(Stroop_summary_statistics)
+# View(Stroop_summary_statistics)
 
 
 # Group by Participant and calculate summary statistics per participant
@@ -140,7 +140,7 @@ Stroop_summary_statistics_per_participant <- Stroop %>%
 
 
 
-View(Stroop_summary_statistics_per_participant)
+# View(Stroop_summary_statistics_per_participant)
 
 
 

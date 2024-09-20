@@ -66,7 +66,7 @@ difference_reaction_time <- mean_reaction_time_stroop %>%
   mutate(difference_reaction_time = congruent - incongruent)
 
 # Ver el resultado
-View(difference_reaction_time)
+# View(difference_reaction_time)
 
 # Guardar el resultado en un archivo CSV
 write_csv(difference_reaction_time, "difference_reaction_time_stroop.csv")

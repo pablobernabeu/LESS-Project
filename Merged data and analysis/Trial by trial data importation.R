@@ -18,10 +18,10 @@ Session2pathtbt <- "EEG/data/Session 2/Export/"
 # 102: the trial presented a violation of interest
 # 103: the trial presented an ancillary violation
 # Session 2 investigates Gender agreement, indicated by the marker S1
-Session2_tbt_gram_files <- list.files(pattern = "*^[0-9]+_trialbytrial_S1.S101.txt", 
+Session2_tbt_grammatical_files <- list.files(pattern = "*^[0-9]+_trialbytrial_S1.S101.txt", 
                                       path = Session2pathtbt, full.names = TRUE)
 
-list(Session2_tbt_gram_files)
+list(Session2_tbt_grammatical_files)
 
 Session2_tbt_violation_interest <- list.files(pattern = "*^[0-9]+_trialbytrial_S1_S102.txt", 
                                               path = Session2pathtbt, full.names = TRUE)
@@ -32,9 +32,9 @@ Session2_tbt_ancillary_violation <- list.files(pattern = "*^[0-9]+_trialbytrial_
 
 
 # Constructing lists of data, one for each condition
-Session2_tbt_gram_list = lapply(1:length(Session2_tbt_gram_files),function(x) {
-  read.table(Session2_tbt_gram_files[x], header=FALSE) } )
-View(Session2_tbt_gram_list)
+Session2_tbt_grammatical_list = lapply(1:length(Session2_tbt_grammatical_files),function(x) {
+  read.table(Session2_tbt_grammatical_files[x], header=FALSE) } )
+# View(Session2_tbt_grammatical_list)
 
 Session2_tbt_violation_interest_list = lapply(1:length(Session2_tbt_violation_interest),
                                               function(x) {
@@ -46,21 +46,21 @@ Session2_tbt_ancillary_violation_list = lapply(1:length(Session2_tbt_ancillary_v
                                                  read.table(Session2_tbt_ancillary_violation [x], header=FALSE) } )
 
 # converting the lists into data frames
-Session2_tbt_gram_data = ldply(Session2_tbt_gram_list, data.frame)
+Session2_tbt_grammatical_data = ldply(Session2_tbt_grammatical_list, data.frame)
 Session2_tbt_violation_interest_data = ldply(Session2_tbt_violation_interest_list, 
                                              data.frame)
-Session2_tbt_ancillary_violation_data = ldply (Session2_tbt_ancillary_violation_list, 
+Session2_tbt_ancillary_violation_data = ldply(Session2_tbt_ancillary_violation_list, 
                                                data.frame)
 
 # the Electrode column is formulated as a vector of electrode names that 
 # correspond to the time interval sequence
-names(Session2_tbt_gram_data) = c('Electrode', seq)
+names(Session2_tbt_grammatical_data) = c('Electrode', seq)
 names(Session2_tbt_violation_interest_data) = c('Electrode', seq)
-names(Session2_tbt_ancillary_violation_data) = c ('Electrode', seq)
+names(Session2_tbt_ancillary_violation_data) =c('Electrode', seq)
 
 # participants' name column
 # removing the path from the participants' file names
-file_names_tbt_gram <- basename(Session2_tbt_gram_files)
+file_names_tbt_gram <- basename(Session2_tbt_grammatical_files)
 files_names_tbt_violation_interest <- basename(Session2_tbt_violation_interest)
 files_names_tbt_ancillary_violation <- basename(Session2_tbt_ancillary_violation)
 
@@ -70,25 +70,25 @@ participants_tbt_violint = sub("_.*", "", files_names_tbt_violation_interest)
 participants_tbt_ancvil = sub("_.*", "", files_names_tbt_ancillary_violation)
 
 # adding a "Participant_number" column to the data frames
-Session2_tbt_gram_data$Participant_number <- rep(participants_tbt_gr, each = 
-                                               nrow(Session2_tbt_gram_data) / length(participants_tbt_gr))
+Session2_tbt_grammatical_data$Participant_number <- rep(participants_tbt_gr, each = 
+                                               nrow(Session2_tbt_grammatical_data) / length(participants_tbt_gr))
 Session2_tbt_violation_interest_data$Participant_number <- rep(participants_tbt_violint, 
                                                            each = nrow(Session2_tbt_violation_interest_data) / length(participants_tbt_violint))
 Session2_tbt_ancillary_violation_data$Participant_number <- rep(participants_tbt_ancvil, 
                                                             each = nrow(Session2_tbt_ancillary_violation_data) / length(participants_tbt_ancvil))
 
 # adding a Grammaticality column to the data frames
-Session2_tbt_gram_data$Grammaticality <- 'Grammatical'
+Session2_tbt_grammatical_data$Grammaticality <- 'Grammatical'
 Session2_tbt_violation_interest_data$Grammaticality <- 'Violation of Interest'
 Session2_tbt_ancillary_violation_data$Grammaticality <- 'Ancillary Violation'
 
 # Combine all data frames into one
-Session2_tbt_combined_data <- rbind(Session2_tbt_gram_data, 
+Session2_tbt_combined_data <- rbind(Session2_tbt_grammatical_data, 
                                 Session2_tbt_violation_interest_data, Session2_tbt_ancillary_violation_data)
 
 seq = seq(-100, 1098, 2)
 
-View(Session2_tbt_combined_data)
+# View(Session2_tbt_combined_data)
 # dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
 electrode_to_region <- c(
@@ -131,21 +131,21 @@ Session2_tbt_combined_data$Region <- ifelse(
   NA_character_
 )
 
-View(Session2_tbt_combined_data)
+# View(Session2_tbt_combined_data)
 
 # Melting the combined data frame to convert it from wide to long format
-Session2_tbt_melted_data_dirty <- melt(Session2_tbt_combined_data, id.vars = 
+Session2_tbt_melted_data_temporary <- melt(Session2_tbt_combined_data, id.vars = 
                                      c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
                                    variable.name = 'Time', value.name = 'Activation')
 
 # Converting the 'Time' column to numeric
-Session2_tbt_melted_data_dirty$Time <- as.numeric (as.character
-                                               (Session2_tbt_melted_data_dirty$Time))
+Session2_tbt_melted_data_temporary$Time <- as.numeric(as.character
+                                               (Session2_tbt_melted_data_temporary$Time))
 
 # Adding a Session column
-Session2_tbt_melted_data_dirty$Session <- 'Session 2'
+Session2_tbt_melted_data_temporary$Session <- 'Session 2'
 
 # Removing rows where any column has NA or NaN values
-Session2_tbt_melted_data <- Session2_tbt_melted_data_dirty %>%
+Session2_tbt_melted_data <- Session2_tbt_melted_data_temporary %>%
   filter(complete.cases(.))
-View(Session2_tbt_melted_data)
+# View(Session2_tbt_melted_data)
