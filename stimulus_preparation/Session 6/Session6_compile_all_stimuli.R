@@ -25,7 +25,7 @@ experiment_path = 'session_materials/Session 6/stimuli/experiment/'
 
 #################################
 
-####      Norway site       ####
+####    Norway site       ####
 
 #################################
 
@@ -96,7 +96,7 @@ source('stimulus_preparation/Session 6/gender assignment task in natural languag
 
 #################################
 
-####       Spain site       ####
+####     Spain site       ####
 
 #################################
 

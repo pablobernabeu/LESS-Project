@@ -6,7 +6,7 @@
 
 The study consists of six sessions. 
 
-- **Session 1. Measurement of individual differences in executive functions and language background.**
+- **Session 1. Measurement of individual differences in executive functions and language history.**
   This session is performed by participants online and on their own. The session for the Norwegian
   site is available [here](https://app.gorilla.sc/openmaterials/782880). The session for the Spanish 
   site is available [here](https://app.gorilla.sc/openmaterials/782877). In both sites, the session 

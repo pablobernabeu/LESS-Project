@@ -2,7 +2,7 @@
 
 # Images were obtained from three sources: 
 # (I) MultiPic (Duñabeitia et al., 2018,
-#     https://doi.org/10.1080/17470218.2017.1310261);
+#   https://doi.org/10.1080/17470218.2017.1310261);
 # (II) https://www.flaticon.com;
 # (III) https://www.freepik.com
 

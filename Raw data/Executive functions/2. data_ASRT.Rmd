@@ -20,7 +20,7 @@ library(readr)
 
 
 # Define the path
-#path_to_ASRT <- "Background/Gorilla/Session1"
+# path_to_ASRT <- "Raw data/Executive functions/Session1"
 path_to_ASRT <- "Session1"
 
 
@@ -71,12 +71,12 @@ merged_ASRT <- merged_ASRT %>%
   ))
 
 # Calculate the median reaction time (RT) for each combination of participant,
-#group, trial, and triplet type
+# group, trial, and triplet type
 TL_RT_wide <- merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
-  ungroup() # Asegurarse de desagrupar para evitar problemas posteriores
+  ungroup()
 
 
 # Rename columns prefixed with 'e' to indicate epoch and triplet type
@@ -85,12 +85,12 @@ names(TL_RT_wide)[-c(1, 2)] <- paste0("e", names(TL_RT_wide)[-c(1, 2)])
 
 
 # Calculate the median reaction time (RT) for each combination of participant, 
-#group, trial, and triplet type
+# group, trial, and triplet type
 TL_RT_wide <- merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
-  ungroup() # Asegurarse de desagrupar para evitar problemas posteriores
+  ungroup()
 
 # Rename columns prefixed with 'e' to indicate epoch and triplet type
 names(TL_RT_wide)[-c(1, 2)] <- paste0("e", names(TL_RT_wide)[-c(1, 2)])
@@ -115,11 +115,11 @@ TL_RT_wide_1 <- TL_RT_wide_1 %>%
 
 # Save the result to a CSV file
 write_csv(TL_RT_wide_1, "TL_RT_wide_1.csv")
-###If reaction times consistently decrease as epochs progress, this could 
-#indicate that they are getting better at recognizing and processing the patterns 
-#presented. On the other hand, if reaction times remain consistent or even 
-#increase, this could suggest that they are experiencing difficulties learning 
-#or internalizing the patterns.
+# # # If reaction times consistently decrease as epochs progress, this could 
+# indicate that they are getting better at recognizing and processing the patterns 
+# presented. On the other hand, if reaction times remain consistent or even 
+# increase, this could suggest that they are experiencing difficulties learning 
+# or internalizing the patterns.
 
 ````
 
@@ -136,7 +136,7 @@ library(stringr)
 library(readr)
 
 # Define the path
-path_to_ASRT <- "Background/Gorilla/Session1"
+path_to_ASRT <- "Raw data/Executive functions/Session1"
 
 # Read the files
 ASRT_1 <- read_csv(file.path(path_to_ASRT, "ASRT_DGS.csv"))

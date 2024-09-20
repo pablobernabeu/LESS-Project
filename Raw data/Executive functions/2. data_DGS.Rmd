@@ -6,7 +6,7 @@ date: "2024-09-10"
 output: html_document
 ---
 
-#```{r setup, include=FALSE}
+# ```{r setup, include=FALSE}
 library(dplyr)
 library(readr)
 library(tidyverse)
@@ -14,7 +14,7 @@ library(janitor)
 library(readxl)
 
 # Define the path
-path_to_DGS <- "Background/Gorilla/Session1"
+path_to_DGS <- "Raw data/Executive functions/Session1"
 
 # Read the files
 DGS_1 <- read_csv(file.path(path_to_DGS, "DGS_DGS.csv"))
@@ -57,7 +57,7 @@ merged_DGS <- merged_DGS %>%
   mutate(display = as.factor(display))
 
 # Group data by Participant.Private.ID
-#grouped_DGS <- merged_DGS %>%
+# grouped_DGS <- merged_DGS %>%
  # group_by(Participant.Public.ID)
 
 # To calculate the average Correct per participant:
@@ -109,10 +109,10 @@ highest_total_correct_per_participant <- analysis_table_DGS %>%
 print(highest_total_correct_per_participant)
 
 # Merge both highest_total_correct and average_correct with analysis_table_DGS
-#analysis_table_DGS <- analysis_table_DGS %>%
+# analysis_table_DGS <- analysis_table_DGS %>%
  # left_join(highest_total_correct_per_participant, by = "Participant.Public.ID") %>%
-  #left_join(average_correct, by = "Participant.Public.ID") %>%
-  #left_join(display, by = "Participant.Public.ID")
+  # left_join(average_correct, by = "Participant.Public.ID") %>%
+  # left_join(display, by = "Participant.Public.ID")
 
 analysis_table_DGS <- analysis_table_DGS %>%
   left_join(highest_total_correct_per_participant, by = "Participant.Public.ID") %>%
@@ -120,10 +120,10 @@ analysis_table_DGS <- analysis_table_DGS %>%
 
 View(analysis_table_DGS)
 write_csv(analysis_table_DGS, "analysis_table_DGS.csv")
-#A greater number of correctly remembered digits indicates a greater 
-#working memory capacity.```
-#total.correct.x refers to the total number of correct responses per participant
-#across lists
-#total.correct.y refers to the total number of correct responses per participant
-#for each specific list
+# A greater number of correctly remembered digits indicates a greater 
+# working memory capacity.```
+# total.correct.x refers to the total number of correct responses per participant
+# across lists
+# total.correct.y refers to the total number of correct responses per participant
+# for each specific list
 

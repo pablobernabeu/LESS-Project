@@ -76,7 +76,7 @@ TL_RT_wide <- merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
-  ungroup() # Asegurarse de desagrupar para evitar problemas posteriores
+  ungroup()
 
 
 # Renombrar las columnas con el prefijo 'e' para indicar la epoch y el tipo de triplet
@@ -89,7 +89,7 @@ TL_RT_wide <- merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
-  ungroup() # Asegurarse de desagrupar para evitar problemas posteriores
+  ungroup()
 
 # Renombrar las columnas con el prefijo 'e' para indicar la epoch y el tipo de triplet
 names(TL_RT_wide)[-c(1, 2)] <- paste0("e", names(TL_RT_wide)[-c(1, 2)])
@@ -114,7 +114,7 @@ TL_RT_wide_1 <- TL_RT_wide_1 %>%
 
 # Guardar el resultado en un archivo CSV
 write_csv(TL_RT_wide_1, "TL_RT_wide_1.csv")
-###si los tiempos de reacción disminuyen de manera consistente a medida que avanzan las epochs, esto podría indicar que están mejorando en el reconocimiento y procesamiento de los patrones presentados. Por otro lado, si los tiempos de reacción permanecen consistentes o incluso aumentan, esto podría sugerir que están experimentando dificultades para aprender o internalizar los patrones.
+# # # si los tiempos de reacción disminuyen de manera consistente a medida que avanzan las epochs, esto podría indicar que están mejorando en el reconocimiento y procesamiento de los patrones presentados. Por otro lado, si los tiempos de reacción permanecen consistentes o incluso aumentan, esto podría sugerir que están experimentando dificultades para aprender o internalizar los patrones.
 
 
 ````

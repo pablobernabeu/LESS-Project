@@ -2,23 +2,23 @@
 
 library(dplyr)
 
-#loading DGS
+# loading DGS
 
-#we don;t  have a number for how many times a 3- or 
-#4-number item was presented but we have a number of corretc responses received.
+# we don;t  have a number for how many times a 3- or 
+# 4-number item was presented but we have a number of corretc responses received.
 
 
-#total.correct.x refers to the total number of correct responses per participant
-#across lists
-#total.correct.y refers to the total number of correct responses per participant
-#for each specific list
+# total.correct.x refers to the total number of correct responses per participant
+# across lists
+# total.correct.y refers to the total number of correct responses per participant
+# for each specific list
 
-#Mean: Average number of correct responses.
-#Median: Middle value of correct responses.
-#Standard Deviation: Variability in correct responses.
-#Minimum and Maximum: Range of correct responses.
+# Mean: Average number of correct responses.
+# Median: Middle value of correct responses.
+# Standard Deviation: Variability in correct responses.
+# Minimum and Maximum: Range of correct responses.
 
-DGS <- read.csv("Background/Gorilla/analysis_table_DGS.csv")
+DGS <- read.csv("Raw data/Executive functions/analysis_table_DGS.csv")
 View(DGS)
 
 DGS_summary_statistics <-DGS %>%
@@ -32,7 +32,7 @@ DGS_summary_statistics <-DGS %>%
 
 View(DGS_summary_statistics)
 
-#DGS summary statistics per participant
+# DGS summary statistics per participant
 
 DGS_summary_statistics_per_participant <- DGS %>%
   filter(!is.na(Participant.Public.ID)) %>%  
@@ -50,9 +50,9 @@ DGS_summary_statistics_per_participant <- DGS %>%
 
 View(DGS_summary_statistics_per_participant)
 
-#Examine how participants perform based on different task conditions, such as
-#list length. This helps to understand if task difficulty (list length) affects 
-#performance.
+# Examine how participants perform based on different task conditions, such as
+# list length. This helps to understand if task difficulty (list length) affects 
+# performance.
 DGS_performance_by_list_length <- DGS %>%
   group_by(listLength) %>%
   summarize(
@@ -84,9 +84,9 @@ View(DGS_summary_statistics_per_participant_by_list_length)
 
 
 
-#loading the Stroop task
+# loading the Stroop task
 
-Stroop <- read.csv("Background/Gorilla/difference_reaction_time_stroop.csv")
+Stroop <- read.csv("Raw data/Executive functions/difference_reaction_time_stroop.csv")
 
 View(Stroop)
 # Separate the data into congruent and incongruent conditions
@@ -144,9 +144,9 @@ View(Stroop_summary_statistics_per_participant)
 
 
 
-#correlation with stroop, DGS, 3rd
+# correlation with stroop, DGS, 3rd
 correlation_test <- cor.test(DGS$total_correct.x, Stroop$difference_reaction_time, use = "complete.obs")
-#print(correlation_test)
+# print(correlation_test)
 
 
 

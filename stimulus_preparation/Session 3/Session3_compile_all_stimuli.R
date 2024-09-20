@@ -29,7 +29,7 @@ experiment_path = 'session_materials/Session 3/stimuli/experiment/'
 
 #################################
 
-####      Norway site       ####
+####    Norway site       ####
 
 #################################
 
@@ -105,7 +105,7 @@ combine_Session3_experiments(study_site, language, experiment_path)
 
 #################################
 
-####       Spain site       ####
+####     Spain site       ####
 
 #################################
 

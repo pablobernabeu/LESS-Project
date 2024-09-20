@@ -1,23 +1,23 @@
-###Trial by trial Session data importation
+# # # Trial by trial Session data importation
 
 library(tidyverse)  
 library(reshape2)   
 library(janitor)   
 library(plyr)       
 
-#Session2
+# Session2
 
-#session2, remove participants 2 and 7 from anovas
+# session2, remove participants 2 and 7 from anovas
 
 Session2pathtbt <- "EEG/data/Session 2/Export/"
 
-#creating patterns to import the files and recognise them as distinct conditions
+# creating patterns to import the files and recognise them as distinct conditions
 # the final number in the file name indicates the Grammaticality of the trial
-#files that end in:
+# files that end in:
 # 101: the trial was grammatical 
 # 102: the trial presented a violation of interest
 # 103: the trial presented an ancillary violation
-#Session 2 investigates Gender agreement, indicated by the marker S1
+# Session 2 investigates Gender agreement, indicated by the marker S1
 Session2_tbt_gram_files <- list.files(pattern = "*^[0-9]+_trialbytrial_S1.S101.txt", 
                                       path = Session2pathtbt, full.names = TRUE)
 
@@ -39,7 +39,7 @@ View(Session2_tbt_gram_list)
 Session2_tbt_violation_interest_list = lapply(1:length(Session2_tbt_violation_interest),
                                               function(x) {
                                                 read.table(Session2_tbt_violation_interest[x], header=FALSE) } )
-#View(Session2_tbt_violation_interest_list)
+# View(Session2_tbt_violation_interest_list)
 
 Session2_tbt_ancillary_violation_list = lapply(1:length(Session2_tbt_ancillary_violation),
                                                function(x) {
@@ -53,18 +53,18 @@ Session2_tbt_ancillary_violation_data = ldply (Session2_tbt_ancillary_violation_
                                                data.frame)
 
 # the Electrode column is formulated as a vector of electrode names that 
-#correspond to the time interval sequence
+# correspond to the time interval sequence
 names(Session2_tbt_gram_data) = c('Electrode', seq)
 names(Session2_tbt_violation_interest_data) = c('Electrode', seq)
 names(Session2_tbt_ancillary_violation_data) = c ('Electrode', seq)
 
-#participants' name column
-#removing the path from the participants' file names
+# participants' name column
+# removing the path from the participants' file names
 file_names_tbt_gram <- basename(Session2_tbt_gram_files)
 files_names_tbt_violation_interest <- basename(Session2_tbt_violation_interest)
 files_names_tbt_ancillary_violation <- basename(Session2_tbt_ancillary_violation)
 
-#Extracting the participant numbers from the file name
+# Extracting the participant numbers from the file name
 participants_tbt_gr <- sub("_.*", "", file_names_tbt_gram)
 participants_tbt_violint = sub("_.*", "", files_names_tbt_violation_interest)
 participants_tbt_ancvil = sub("_.*", "", files_names_tbt_ancillary_violation)
@@ -89,7 +89,7 @@ Session2_tbt_combined_data <- rbind(Session2_tbt_gram_data,
 seq = seq(-100, 1098, 2)
 
 View(Session2_tbt_combined_data)
-#dividing the electrodes into brain regions
+# dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
 electrode_to_region <- c(
   "T7" = "left medial",
