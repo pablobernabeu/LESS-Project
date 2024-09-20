@@ -21,7 +21,7 @@ source('stimulus_preparation/R_functions/Session2_Experiment_gender_agreement.R'
 
 #################################
 
-####      Norway site       ####
+####    Norway site       ####
 
 #################################
 
@@ -81,7 +81,7 @@ Session2_Experiment_gender_agreement(
 
 #################################
 
-####       Spain site       ####
+####     Spain site       ####
 
 #################################
 

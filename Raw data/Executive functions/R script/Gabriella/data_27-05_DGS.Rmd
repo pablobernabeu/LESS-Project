@@ -77,6 +77,6 @@ analysis_table_DGS <- left_join(total_correct, scores_by_length, by = "Participa
 print(analysis_table_DGS)
 
 write_csv(analysis_table_DGS, "analysis_table_DGS.csv")
-#Un mayor número de dígitos recordados correctamente indica una mayor capacidad de memoria de trabajo.
+# Un mayor número de dígitos recordados correctamente indica una mayor capacidad de memoria de trabajo.
 ```
 

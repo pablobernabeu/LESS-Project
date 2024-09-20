@@ -1,24 +1,29 @@
+
+
+# Preprocessing of Language History Questionnaire LHQ3
+
+# The results file of the LHQ3 requires thorough preprocessing because it contains 
+# a header row split between two rows, with the first row containing merged cells. 
+# The preprocessing encapsulates each question in one column.
+
+
 library(plyr)      
 library(tidyverse) 
 library(readxl)     
 library(janitor)  
 library(rmarkdown)
 
-file_path <- ("Background/LHQ3/LHQ3 results raw.xlsx")
 
-# Read the Excel file and treat the first row as regular text as it is just 
-#stating the type of questionnaire used when automatically downloaded form the 
-#LHQ3 website
-LHQ3_results_raw <- read_excel(file_path, sheet = "Sheet1", col_names = FALSE)
+# Read the Excel file and treat the first row as regular text, as it is just 
+# stating the type of questionnaire used when automatically downloaded from 
+# the LHQ3 website
+LHQ3_results_raw <- read_excel("Raw data/Language history/LHQ3 results raw.xlsx", 
+                               sheet = "Sheet1", col_names = FALSE)
 
 # Remove the first row that reads "LHQ3"
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 
-#The LHQ3 export is not sufficient for analysis, since multiple columns have 
-#duplicate names, with no indication of the question or the language they are 
-#referring to
-
-#Questions that correspond to a single-column answer are directly indexed
+# Questions that correspond to a single-column answer are directly indexed
 LHQ3_results_raw[2, 1] <- "Participant_ID"
 LHQ3_results_raw[2, 2] <- "Participant_number"
 LHQ3_results_raw[2, 3] <- "Age"
@@ -32,46 +37,35 @@ LHQ3_results_raw[2, 306] <- "Comments1"
 LHQ3_results_raw[2, 307] <- "Comments2"
 LHQ3_results_raw[2, 308] <- "Dialects"
 
-#A more automated version was preferred for questions that span multiple columns
-#I will be transforming them by first making sure that the question parameters 
-#are visible in every column for analysis
-#I will be updating the value that corresponds to row 1 and column x (where the 
-#question is) and shortening it for clarity and ease
-#then, changing the values in the columns of row 2 that are nested under the 
-#question
-#finally, the shorthand of the question will be added in row 2 before the 
-#previously marked value as follows:
 
-
-#Starting with Question 5.Parents’Education 
+# Starting with Question 5. Parents’Education 
 # Update the value in column 6, row 1 to "parents' education"
 LHQ3_results_raw[1, 6] <- "Parents'_education"
 # Get the value from column 9, row 1
 Q_parents_education <- LHQ3_results_raw[1, 6]
 # Changing the values in row 2, columns 6 to 7 to include Q_parents_education by 
-#converting it into a character
+# converting it into a character
 Q_parents_education <- as.character(Q_parents_education)
 LHQ3_results_raw[2, 6:7] <- lapply(LHQ3_results_raw[2, 6:7], function(x) {
   # Convert x to character if it is not already
   x <- as.character(x)
   # Create the new value by concatenating Q_parents_education, a comma, and the 
-  #current value
+  # current value
   paste(Q_parents_education, x, sep = "_")
 })
 
 
-#7.Indicate your native language(s) and any other languages you have studied or
-#learned, the age at which you started using each language in terms of listening, 
-#speaking, reading, and writing, and the total number of years you have spent 
-#using each language.
-
+# 7.Indicate your native language(s) and any other languages you have studied or
+# learned, the age at which you started using each language in terms of listening, 
+# speaking, reading, and writing, and the total number of years you have spent 
+# using each language.
 
 # Update the value in column 9, row 1 to "L1 Acquisition"
 LHQ3_results_raw[1, 9] <- "L1_Acquisition"
 # Get the value from column 9, row 1
 Q_L1_acq <- LHQ3_results_raw[1, 9]
 # Changing the values in row 2, columns 9 to 14 to include Q_L1_acq by converting 
-#it into a character
+# it into a character
 Q_L1_acq <- as.character(Q_L1_acq)
 LHQ3_results_raw[2, 9:14] <- lapply(LHQ3_results_raw[2, 9:14], function(x) {
   # Convert x to character if it is not already
@@ -81,8 +75,8 @@ LHQ3_results_raw[2, 9:14] <- lapply(LHQ3_results_raw[2, 9:14], function(x) {
 })
 
 
-#View(LHQ3_results_raw)
-#continuing as outlined for L2, L3, L4, and other questions
+# View(LHQ3_results_raw)
+# continuing as outlined for L2, L3, L4, and other questions
 
 LHQ3_results_raw[1, 15] <- "L2_Acquisition"
 Q_L2_acq <- LHQ3_results_raw[1, 15]
@@ -109,10 +103,10 @@ LHQ3_results_raw[2, 27:32] <- lapply(LHQ3_results_raw[2, 27:32], function(x) {
 })
 
 
-#10.If you have lived or traveled in countries other than your country of residence 
-#for three months or more, then indicate the name of the country, #your length of 
-#stay (in Months), the language you used, and the frequency of your use of the 
-#language for each country. #separated by country
+# 10.If you have lived or traveled in countries other than your country of residence 
+# for three months or more, then indicate the name of the country, your length of 
+# stay (in Months), the language you used, and the frequency of your use of the 
+# language for each country. 
 
 LHQ3_results_raw[1, 35] <- "Immersion_country 1"
 Q_immersion1 <- LHQ3_results_raw[1, 35]
@@ -147,8 +141,8 @@ LHQ3_results_raw[2, 47:50] <- lapply(LHQ3_results_raw[2, 47:50], function(x) {
 })
 
 
-#11.Indicate the way you learned or acquired your non-native language(s). Check 
-#one or more boxes that apply. #separated by language
+# 11.Indicate the way you learned or acquired your non-native language(s). Check 
+# one or more boxes that apply. 
 
 LHQ3_results_raw[1, 51] <- "Nonnative_L1_acquisition_by"
 Q_acq_L1 <- LHQ3_results_raw[1, 51]
@@ -182,9 +176,9 @@ LHQ3_results_raw[2, 63:66] <- lapply(LHQ3_results_raw[2, 63:66], function(x) {
   paste(Q_acq_L4, x, sep = "_")
 })
 
-#12.Indicate the age at which you started using each of the languages you have 
-#studied or learned in the following environments(Including native language).
-#separated by language
+
+# 12.Indicate the age at which you started using each of the languages you have 
+# studied or learned in the following environments (Including native language).
 
 LHQ3_results_raw[1, 67] <- "L1_context_of_use"
 Q_context1 <- LHQ3_results_raw[1, 67]
@@ -218,18 +212,18 @@ LHQ3_results_raw[2, 88:94] <- lapply(LHQ3_results_raw[2, 88:94], function(x) {
   paste(Q_context4, x, sep = "_")
 })
 
-#13.Indicate the language used by your teachers for instruction at each educational 
-#level. If the instructional language switched during any educational level, then 
-#also indicate the "Switched to" language.If you had a bilingual education at any 
-#educational level, then simply check the box under "Both Languages".
-#separated by schooling level 
+
+# 13.Indicate the language used by your teachers for instruction at each educational 
+# level. If the instructional language switched during any educational level, then 
+# also indicate the "Switched to" language.If you had a bilingual education at any 
+# educational level, then simply check the box under "Both Languages".
 
 LHQ3_results_raw[1, 95] <- "Elementary_school_L"
 Q_elementary <- LHQ3_results_raw[1, 95]
 Q_elementary <- as.character(Q_elementary)
 LHQ3_results_raw[2, 95:97] <- lapply(LHQ3_results_raw[2, 95:97], function(x) {
- x <- as.character(x)
-paste(Q_elementary, x, sep = "_")
+  x <- as.character(x)
+  paste(Q_elementary, x, sep = "_")
 })
 
 LHQ3_results_raw[1, 98] <- "Middle_school_L"
@@ -273,8 +267,9 @@ LHQ3_results_raw[2, 110:112] <- lapply(LHQ3_results_raw[2, 110:112], function(x)
   paste(Q_PhD, x, sep = ", ")
 })
 
-#15.Rate your current ability in terms of listening,speaking, reading, and writing 
-#in each of the languages you have studied or learned (including the native language).
+
+# 15.Rate your current ability in terms of listening,speaking, reading, and writing 
+# in each of the languages you have studied or learned (including the native language).
 
 LHQ3_results_raw[1, 114] <- "Proficiency_L1"
 Q_Proficiency1 <- LHQ3_results_raw[1, 114]
@@ -308,8 +303,9 @@ LHQ3_results_raw[2, 129:133] <- lapply(LHQ3_results_raw[2, 129:133], function(x)
   paste(Q_Proficiency4, x, sep = "_")
 })
 
-#16.Rate the strength of your foreign accent for each of the languages you have 
-#studied or learned. #seperated by language
+
+# 16.Rate the strength of your foreign accent for each of the languages you have 
+# studied or learned 
 
 LHQ3_results_raw[1, 134] <- "L1_accent_score"
 Q_accent1 <- LHQ3_results_raw[1, 134]
@@ -343,10 +339,11 @@ LHQ3_results_raw[2, 140:141] <- lapply(LHQ3_results_raw[2, 140:141], function(x)
   paste(Q_accent4, x, sep = "_")
 })
 
-#17.If you have taken any standardized language proficiency tests #(e.g., TOEFL, 
-#IELTS, TOEIC, etc.), then indicate the name of the test, the language assessed, 
-#and the score you received for each. If you do not remember the exact score, 
-#then indicate an "Approximate score" instead.
+
+# 17.If you have taken any standardized language proficiency tests # (e.g., TOEFL, 
+# IELTS, TOEIC, etc.), then indicate the name of the test, the language assessed, 
+# and the score you received for each. If you do not remember the exact score, 
+# then indicate an "Approximate score" instead.
 
 LHQ3_results_raw[1, 142] <- "Standardized_testing_L1"
 Q_testing1 <- LHQ3_results_raw[1, 142]
@@ -381,9 +378,9 @@ LHQ3_results_raw[2, 157:161] <- lapply(LHQ3_results_raw[2, 157:161], function(x)
 })
 
 
-#18.Estimate how many hours per day you spend engaged in the following activities 
-#in each of the languages you have studied or learned (including the native 
-#language). #separated by language
+# 18.Estimate how many hours per day you spend engaged in the following activities 
+# in each of the languages you have studied or learned (including the native 
+# language). 
 
 LHQ3_results_raw[1, 162] <- "Daily_engagement_L1"
 Q_daily1 <- LHQ3_results_raw[1, 162]
@@ -418,9 +415,10 @@ LHQ3_results_raw[2, 183:189] <- lapply(LHQ3_results_raw[2, 183:189], function(x)
   paste(Q_daily4, x, sep = "_")
 })
 
-#19.Estimate how many hours per day you spend speaking with the following groups 
-#of people in each of the languages you have studied or learned 
-#(including the native language).
+
+# 19.Estimate how many hours per day you spend speaking with the following groups 
+# of people in each of the languages you have studied or learned 
+# (including the native language).
 
 LHQ3_results_raw[1, 190] <- "L1_h/day"
 Q_dailyuse1 <- LHQ3_results_raw[1, 190]
@@ -454,9 +452,10 @@ LHQ3_results_raw[2, 205:209] <- lapply(LHQ3_results_raw[2, 205:209], function(x)
   paste(Q_dailyuse4, x, sep = "_")
 })
 
-#20.If you use mixed language in daily life, please indicate the languages that 
-#you mix and estimate the frequency of mixing in normal conversation with the 
-#following groups of people.
+
+# 20.If you use mixed language in daily life, please indicate the languages that 
+# you mix and estimate the frequency of mixing in normal conversation with the 
+# following groups of people.
 
 LHQ3_results_raw[1, 210] <- "Codeswitching"
 Q_Daily_codeswitching <- LHQ3_results_raw[1, 210]
@@ -466,9 +465,10 @@ LHQ3_results_raw[2, 210:221] <- lapply(LHQ3_results_raw[2, 210:221], function(x)
   paste(Q_Daily_codeswitching, x, sep = "_")
 })
 
-#21.In which language do you communicate best or feel most comfortable in terms 
-#of listening, speaking, reading, and writing in each of the following environments? 
-#You may be selecting the same language for all or some of the fields below.
+
+# 21.In which language do you communicate best or feel most comfortable in terms 
+# of listening, speaking, reading, and writing in each of the following environments? 
+# You may be selecting the same language for all or some of the fields below.
 
 LHQ3_results_raw[1, 222] <- "Dominance/comfort"
 Q_Selfrated_language_dominance <- LHQ3_results_raw[1, 222]
@@ -479,8 +479,8 @@ LHQ3_results_raw[2, 222:237] <- lapply(LHQ3_results_raw[2, 222:237], function(x)
 })
 
 
-#22.How often do you use each of the languages you have studied or learned for 
-#the following activities? (including the native language) #organising by language
+# 22.How often do you use each of the languages you have studied or learned for 
+# the following activities? (including the native language)
 
 LHQ3_results_raw[1, 238] <- "L1_internal_use_for"
 Q_L1_for <- LHQ3_results_raw[1, 238]
@@ -514,8 +514,9 @@ LHQ3_results_raw[2, 262:269] <- lapply(LHQ3_results_raw[2, 262:269], function(x)
   paste(Q_L4_for, x, sep = "_")
 })
 
-#23.What percentage of your friends speaks each of the languages you have studied 
-#or learned? (including the native language) #organising by language
+
+# 23.What percentage of your friends speaks each of the languages you have studied 
+# or learned? (including the native language)
 
 LHQ3_results_raw[1, 270] <- "%Friends_who_speak_L1"
 Q_L1_competence_friends <- LHQ3_results_raw[1, 270]
@@ -549,9 +550,10 @@ LHQ3_results_raw[2, 276:277] <- lapply(LHQ3_results_raw[2, 276:277], function(x)
   paste(Q_L2_competence_friends, x, sep = "_")
 })
 
-#24.Which cultures/languages do you identify with more strongly? Rate the strength 
-#of your connection in the following categories for each culture/language.
-#organising by language
+
+# 24.Which cultures/languages do you identify with more strongly? Rate the strength 
+# of your connection in the following categories for each culture/language.
+# organising by language
 
 LHQ3_results_raw[1, 278] <- "Identification_with_L1"
 Q_L1_cultural_identification <- LHQ3_results_raw[1, 278]
@@ -586,10 +588,10 @@ LHQ3_results_raw[2, 299:305] <- lapply(LHQ3_results_raw[2, 299:305], function(x)
 })
 
 
-#Organising the data frame so it can be easily analysed, first by making the 
-#question/condition the header
-#Removing the first row which includes the shorthanded questions and Na values
-#making the more informative second row a header
+# Organising the data frame so it can be easily analysed, first by making the 
+# question/condition the header.
+# Removing the first row which includes the shorthanded questions and Na values
+# making the more informative second row a header.
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
 new_header <- LHQ3_results_raw[1, ]
 LHQ3_results_raw <- LHQ3_results_raw[-1, ]
@@ -597,47 +599,47 @@ new_header <- as.character(new_header)
 names(LHQ3_results_raw) <- new_header
 
 
-#View(LHQ3_results_raw)
+# View(LHQ3_results_raw)
 
-#matching the participants' ID with the participants' number by using the Norway
-#session logbook as guide
+# matching the participants' ID with the participants' number by using the Norway
+# session logbook as guide
 
-logbook_path <- ("Background/LHQ3/Norway site, session_logbook.xlsx")
-Norway_session_logbook <- read_excel(logbook_path, col_names = TRUE)
-#View(Norway_session_logbook)
+Norway_session_logbook <- read_excel("Participant IDs and session progress.csv", 
+                                     col_names = TRUE)
+# View(Norway_session_logbook)
 # Rename columns to match LHQ3_results_raw to ease merging
 
 names(Norway_session_logbook)[names(Norway_session_logbook) 
-                                   == "participant_home_ID"] <- "Participant_ID"
+                              == "participant_home_ID"] <- "Participant_ID"
 names(Norway_session_logbook)[names(Norway_session_logbook) 
-                                   == "participant_lab_ID"] <- "Participant_number"
+                              == "participant_lab_ID"] <- "Participant_number"
 names(Norway_session_logbook)[names(Norway_session_logbook) 
-                                   == "language"] <- "Pseudolanguage_version"
+                              == "language"] <- "mini_language"
 
 # Select only the renamed columns
-Norway_session_logbook <- Norway_session_logbook[, c("Participant_ID", 
-                      "Participant_number", "Pseudolanguage_version")]
+Norway_session_logbook <- 
+  Norway_session_logbook[, c("Participant_ID", "Participant_number", "mini_language")]
 
-#View(Norway_session_logbook)
+# View(Norway_session_logbook)
 
-#merging the two data frames and removing the extra Participant_number column
+# merging the two data frames and removing the extra Participant_number column
 
 # Perform the left join using merge()
 LHQ3_data_compact <- merge(LHQ3_results_raw, Norway_session_logbook, by = 
                              "Participant_ID", all.x = TRUE)
 
 # Rename 'Participant_number.y' to 'Participant_number'
-names(LHQ3_data_compact)[names(LHQ3_data_compact) == "Participant_number.y"]  <- "Participant_number"
+names(LHQ3_data_compact)[names(LHQ3_data_compact) == "Participant_number.y"] <- "Participant_number"
 
 # Drop the 'Participant_number.x' column from the result
 LHQ3_data_compact <- LHQ3_data_compact[, !names(LHQ3_data_compact) %in% "Participant_number.x"]
 
 
-#View(LHQ3_data_compact)
+# View(LHQ3_data_compact)
 
 
-#calculating the average score for code-switching between languages for each 
-#participant #NA values are ignored
+# calculating the average score for code-switching between languages for each 
+# participant # NA values are ignored
 
 codeswitching_score <- c("Codeswitching_Frequency of mixing with family\nmembers", 
                          "Codeswitching_Frequency of mixing with\nfriends", 
@@ -646,10 +648,11 @@ codeswitching_score <- c("Codeswitching_Frequency of mixing with family\nmembers
 
 
 # Step 2: Convert the specified columns to numeric
-LHQ3_data_compact[, codeswitching_score] <- lapply(LHQ3_data_compact[, codeswitching_score], function(x) {
-  num_x <- as.numeric(as.character(x))
-  return(num_x)
-})
+LHQ3_data_compact[, codeswitching_score] <- 
+  lapply(LHQ3_data_compact[, codeswitching_score], function(x) {
+    num_x <- as.numeric(as.character(x))
+    return(num_x)
+  })
 
 # Step 3: Replace NA values with 0 in the converted columns
 LHQ3_data_compact[, codeswitching_score][is.na(LHQ3_data_compact[, codeswitching_score])] <- 0
@@ -659,16 +662,17 @@ LHQ3_data_compact$Codeswitching_average <- rowMeans(LHQ3_data_compact[, codeswit
 
 
 # Print updated data frame
-#View(LHQ3_data_compact)
+# View(LHQ3_data_compact)
 
-#import the automatically processed data from LHQ3 in order to extract relevant
-#info on Proficiency scores and language entropy
+# import the automatically processed data from LHQ3 in order to extract relevant
+# info on Proficiency scores and language entropy.
 # Removing the first row that reads "LHQ3" and creating new header
-#renaming the Participant ID column to match Participant_ID that is found in the
-#LHQ3_data_compact
+# renaming the Participant ID column to match Participant_ID that is found in the
+# LHQ3_data_compact
 
-file_path2 <- ("Background/LHQ3/LHQ3 Aggregate Scores.xlsx")
-LHQ3_processed <- read_excel(file_path2, sheet = "Sheet1", col_names = FALSE)
+LHQ3_processed <- read_excel("Raw data/Language history/LHQ3 Aggregate Scores.xlsx", 
+                             sheet = "Sheet1", col_names = FALSE)
+
 LHQ3_processed <- LHQ3_processed [-1, ]
 LHQ3_processed <- LHQ3_processed %>%
   row_to_names(row_number = 1)
@@ -676,7 +680,8 @@ LHQ3_processed <- LHQ3_processed %>%
 View(LHQ3_processed)
 # Rename columns using indices
 names(LHQ3_processed)[c(1, 6, 7, 14)] <- c("Participant_ID", "L1_Proficiency_Score", 
-                 "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")
+                                           "L2_Proficiency_Score", 
+                                           "Multilingual_Language_Diversity_Score")
 
 
 
@@ -686,44 +691,16 @@ View(LHQ3_processed)
 
 # Selecting the necessary columns from LHQ3_data_compact and LHQ3_processed
 # combining the two data frames based on Participant_ID
-LHQ3_data_compact_selected <- LHQ3_data_compact[, c("Participant_ID", "Participant_number", "Pseudolanguage_version", "Codeswitching_average")]
-LHQ3_processed_selected <- LHQ3_processed[, c("Participant_ID", "L1_Proficiency_Score", "L2_Proficiency_Score", "Multilingual_Language_Diversity_Score")]
-LHQ3_final <- merge(LHQ3_data_compact_selected, LHQ3_processed_selected, by = "Participant_ID", all.x = TRUE)
+LHQ3_data_compact_selected <- 
+  LHQ3_data_compact[, c("Participant_ID", "Participant_number", "mini_language", 
+                        "Codeswitching_average")]
+
+LHQ3_processed_selected <- 
+  LHQ3_processed[, c("Participant_ID", "L1_Proficiency_Score", "L2_Proficiency_Score", 
+                     "Multilingual_Language_Diversity_Score")]
+
+LHQ3_final <- merge(LHQ3_data_compact_selected, LHQ3_processed_selected, 
+                    by = "Participant_ID", all.x = TRUE)
 
 View(LHQ3_final)
-
-
-
-#######################
-#######################
-
-
-#loading the behavioural data from Session1 
-Stroop <- read.csv("Background/Gorilla/difference_reaction_time_stroop.csv")
-TL <- read.csv("Background/Gorilla/TL_RT_wide_1.csv")
-DGS <- read.csv("Background/Gorilla/analysis_table_DGS.csv")
-
-View(DGS)
-View(Stroop)
-View(TL)
-
-# Combine the data frames based on Participant Public ID using full_join
-Session1_data <- DGS %>%
-  full_join(Stroop, by = "Participant.Public.ID", relationship = "many-to-many") %>%
-  full_join(TL, by = "Participant.Public.ID", relationship = "many-to-many")
-
-# View the combined data
-View(Session1_data)
-
-# Rename the column 'Participant.Public.ID' to 'Participant_ID'
-names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] <- "Participant_ID"
-
-# Merge the two data frames by 'Participant_ID'
-Background_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
-
-# View the merged data
-View(Background_data)
-
-# Save to a specific directory
-write.csv(Background_data, "Background/Background_data.csv", row.names = FALSE)
 

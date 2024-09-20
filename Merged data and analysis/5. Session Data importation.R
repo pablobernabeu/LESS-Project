@@ -6,16 +6,16 @@ library(reshape2)
 library(janitor)   
 library(plyr)       
 
-#session2, remove participants 2 and 7 from anovas
+# session2, remove participants 2 and 7 from anovas
 Session2path <- "EEG/data/Session 2/Export/"
 
-#creating patterns to import the files and recognise them as distinct conditions
+# creating patterns to import the files and recognise them as distinct conditions
 # the final number in the file name indicates the Grammaticality of the trial
-#files that end in:
+# files that end in:
 # 101: the trial was grammatical 
 # 102: the trial presented a violation of interest
 # 103: the trial presented an ancillary violation
-#Session 2 investigates Gender agreement, indicated by the marker S1
+# Session 2 investigates Gender agreement, indicated by the marker S1
 Session2_gram_files <- list.files(pattern = "*^[0-9]+_S1.S101.txt", 
                                  path = Session2path, full.names = TRUE)
 
@@ -44,25 +44,25 @@ Session2_violation_interest_data = ldply(Session2_violation_interest_list,
 Session2_ancillary_violation_data = ldply (Session2_ancillary_violation_list, 
                                            data.frame)
 
-#Sorting out column names and organising them
+# Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
-#and recorded with 2 ms intervals
+# and recorded with 2 ms intervals
 seq = seq(-100, 1098, 2)
 
 # the Electrode column is formulated as a vector of electrode names that 
-#correspond to the time interval sequence
+# correspond to the time interval sequence
 names(Session2_gram_data) = c('Electrode', seq)
 names(Session2_violation_interest_data) = c('Electrode', seq)
 names(Session2_ancillary_violation_data) = c ('Electrode', seq)
 
-#participants' name column
-#removing the path from the participants' file names
+# participants' name column
+# removing the path from the participants' file names
 file_names_gram <- basename(Session2_gram_files)
 files_names_violation_interest <- basename(Session2_violation_interest)
 files_names_ancillary_violation <- basename(Session2_ancillary_violation)
 
-#Extracting the participant numbers from the file name
+# Extracting the participant numbers from the file name
 participants_gr <- sub("_.*", "", file_names_gram)
 participants_violint = sub("_.*", "", files_names_violation_interest)
 participants_ancvil = sub("_.*", "", files_names_ancillary_violation)
@@ -84,7 +84,7 @@ Session2_ancillary_violation_data$Grammaticality <- 'Ancillary Violation'
 Session2_combined_data <- rbind(Session2_gram_data, 
         Session2_violation_interest_data, Session2_ancillary_violation_data)
 
-#dividing the electrodes into brain regions
+# dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
 electrode_to_region <- c(
   "T7" = "left medial",
@@ -156,8 +156,8 @@ Session2_Background <- full_join(Background_data, Session2_melted_data,
                                  relationship = "many-to-many")
 
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs later
+# setting the columns Time, Region, Grammaticality and Participant_number as factors 
+# in order to run ANOVAs later
 Session2_Background$Region <- as.factor(Session2_Background$Region)
 Session2_Background$Grammaticality <- as.factor(Session2_Background$Grammaticality)
 Session2_Background$Participant_number <- as.factor(Session2_Background$Participant_number)
@@ -168,7 +168,7 @@ View(Session2_Background)
 write.csv(Session2_Background, "EEG/data/Session 2/Session2_data_frame.csv",
           row.names = FALSE)
 
-#Analysing per time window and saving those data frames to be used in the analysis
+# Analysing per time window and saving those data frames to be used in the analysis
 
 # Session 2, N200 time window (200-500 ms)
 S2_N200 <- Session2_Background [Session2_Background$Time %in% seq(200, 500, 2),]
@@ -176,13 +176,13 @@ S2_N200 <- Session2_Background [Session2_Background$Time %in% seq(200, 500, 2),]
 View(S2_N200)
 write.csv(S2_N200, "EEG/data/Session 2/Session2_N200_data_frame.csv", row.names = FALSE)
 
-#Session 2, P300 (300 - 600 ms)
+# Session 2, P300 (300 - 600 ms)
 S2_P300 <- Session2_Background[Session2_Background$Time %in% seq(300, 600, 2),]
 
 head(S2_P300)
 write.csv(S2_P300, "EEG/data/Session 2/Session2_P300_data_frame.csv", row.names = FALSE)
 
-#Session 2, P600 (400 - 900 ms)
+# Session 2, P600 (400 - 900 ms)
 S2_P600 <- Session2_Background[Session2_Background$Time %in% seq(400, 900, 2),]
 
 head(S2_P600)
@@ -190,9 +190,9 @@ write.csv(S2_P600, "EEG/data/Session 2/Session2_P600_data_frame.csv", row.names 
 
 
 
-#####################################################################
-######################################################################
-#######################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 Session3path <- "EEG/data/Session 3/Export/"
 
@@ -203,8 +203,8 @@ Session3path <- "EEG/data/Session 3/Export/"
 # 101: the trial presented a grammatical utterance
 # 102: the trial presented a violation of interest
 # 103: the trial presented an ancillary violation
-#Session 3 investigates Gender marking, here GEN, as well as differential 
-#object marking, here DOM
+# Session 3 investigates Gender marking, here GEN, as well as differential 
+# object marking, here DOM
 
 Session3_GEN_gram_files <- list.files(pattern = "*^[0-9]+_S1.S101.txt", 
                                   path = Session3path, full.names = TRUE)
@@ -227,7 +227,7 @@ Session3_DOM_ancillary_violation <- list.files(pattern = "*^[0-9]+_S2_S103.txt",
 
 # Constructing lists of data, one for each property and condition
 
-#Gender
+# Gender
 Session3_GEN_gram_list = lapply(1:length(Session3_GEN_gram_files),function(x) {
   read.table(Session3_GEN_gram_files[x], header=FALSE) } )
 
@@ -238,7 +238,7 @@ Session3_GEN_ancillary_violation_list = lapply(1:length(Session3_GEN_ancillary_v
 function(x) { read.table(Session3_GEN_ancillary_violation [x], header=FALSE) } )
 
 
-#Differential object marking
+# Differential object marking
 Session3_DOM_gram_list = lapply(1:length(Session3_DOM_gram_files),function(x) {
   read.table(Session3_DOM_gram_files[x], header=FALSE) } )
 
@@ -251,7 +251,7 @@ Session3_DOM_ancillary_violation_list = lapply(1:length(Session3_DOM_ancillary_v
 
 # converting the lists into data frames
 
-#Gender
+# Gender
 Session3_GEN_gram_data = ldply(Session3_GEN_gram_list, data.frame)
 Session3_GEN_violation_interest_data = ldply(Session3_GEN_violation_interest_list, 
                                          data.frame)
@@ -259,7 +259,7 @@ Session3_GEN_ancillary_violation_data = ldply (Session3_GEN_ancillary_violation_
                                            data.frame)
 
 
-#Differential object marking
+# Differential object marking
 
 Session3_DOM_gram_data = ldply(Session3_DOM_gram_list, data.frame)
 Session3_DOM_violation_interest_data = ldply(Session3_DOM_violation_interest_list, 
@@ -267,20 +267,20 @@ Session3_DOM_violation_interest_data = ldply(Session3_DOM_violation_interest_lis
 Session3_DOM_ancillary_violation_data = ldply (Session3_DOM_ancillary_violation_list, 
                                                data.frame)
 
-#Sorting out column names and organising them
+# Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
-#and recorded with 2 ms intervals
+# and recorded with 2 ms intervals
 seq = seq(-100, 1098, 2)
 
 # the electrode column is formulated as a vector of electrode names that 
-#correspond to the time interval sequence
-#For Gender
+# correspond to the time interval sequence
+# For Gender
 names(Session3_GEN_gram_data) = c('Electrode', seq)
 names(Session3_GEN_violation_interest_data) = c('Electrode', seq)
 names(Session3_GEN_ancillary_violation_data) = c ('Electrode', seq)
 
-#For Differnetial object marking
+# For Differnetial object marking
 names(Session3_DOM_gram_data) = c('Electrode', seq)
 names(Session3_DOM_violation_interest_data) = c('Electrode', seq)
 names(Session3_DOM_ancillary_violation_data) = c ('Electrode', seq)
@@ -298,7 +298,7 @@ file_names_S3_DOM_grammatical <- basename(Session3_DOM_gram_files)
 files_names_S3_DOM_violation_interest <- basename(Session3_DOM_violation_interest)
 files_names_S3_DOM_ancillary_violation <- basename(Session3_DOM_ancillary_violation)
 
-#Extracting the participant numbers from the file name
+# Extracting the participant numbers from the file name
 # For Gender
 participants_S3_GEN_grammatical <- sub("_.*", "", file_names_S3_GEN_grammatical)
 participants_S3_GEN_violation_interest = sub("_.*", "", files_names_S3_GEN_violation_interest)
@@ -411,8 +411,8 @@ Background_data$Participant_number <- as.character(Background_data$Participant_n
 Session3_Background <- full_join(Background_data, Session3_melted_data, by = "Participant_number", 
                                  relationship = "many-to-many")
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs later
+# setting the columns Time, Region, Grammaticality and Participant_number as factors 
+# in order to run ANOVAs later
 Session3_Background$Region <- as.factor(Session3_Background$Region)
 Session3_Background$Grammaticality <- as.factor(Session3_Background$Grammaticality)
 Session3_Background$Participant_number <- as.factor(Session3_Background$Participant_number)
@@ -429,13 +429,13 @@ S3_N200 <- Session3_Background [Session3_Background$Time %in% seq(200, 500, 2),]
 head(S3_N200)
 write.csv(S3_N200, "EEG/data/Session 3/Session3_N200_data_frame.csv", row.names = FALSE)
 
-#Session 3, P300 (300 - 600 ms)
+# Session 3, P300 (300 - 600 ms)
 S3_P300 <- Session3_Background[Session3_Background$Time %in% seq(300, 600, 2),]
 
 head(S3_P300)
 write.csv(S3_P300, "EEG/data/Session 3/Session3_P300_data_frame.csv", row.names = FALSE)
 
-#Session 3, P600 (400 - 900 ms)
+# Session 3, P600 (400 - 900 ms)
 S3_P600 <- Session3_Background[Session3_Background$Time %in% seq(400, 900, 2),]
 
 head(S3_P600)
@@ -444,11 +444,11 @@ write.csv(S3_P600, "EEG/data/Session 3/Session3_P600_data_frame.csv", row.names 
 
 
 
-########################
-####################
-########################
-#######################
-#Session 4
+# # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # 
+# Session 4
 
 Session4path <- "EEG/data/Session 4/Export/"
 
@@ -490,7 +490,7 @@ Session4_VOA_violation_interest <- list.files(pattern = "*^[0-9]+_S3_S102.txt",
 Session4_VOA_ancillary_violation <- list.files(pattern = "*^[0-9]+_S3_S103.txt", 
                                                path = Session4path, full.names = TRUE)
 
-#constructing lists of data from the files, once for each condition
+# constructing lists of data from the files, once for each condition
 
 Session4_GEN_gram_list = lapply(1:length(Session4_GEN_gram_files),function(x) {
   read.table(Session4_GEN_gram_files[x], header=FALSE) } )
@@ -541,7 +541,7 @@ Session4_VOA_ancillary_violation_data = ldply (Session4_VOA_ancillary_violation_
 # Sorting out column names and organising them
 
 # Time during the recording is organised in milliseconds, from -100 to 1098, 
-#and recorded with 2 ms intervals
+# and recorded with 2 ms intervals
 seq = seq(-100, 1098, 2)
 
 
@@ -710,7 +710,7 @@ head(Session4_melted_data)
 # Adding the Background data to the Session4_melted_data
 # Participant_number in Background_data to character, in order to match 
 # the Session4 data. Character has been chosen because Participant_number 
-#is categorical (IDs)
+# is categorical (IDs)
 # Performing the full join function,due to the discrepancy between the number of 
 # rows between the two data frames, so that no data is deleted
 
@@ -718,8 +718,8 @@ Background_data$Participant_number <- as.character(Background_data$Participant_n
 Session4_Background <- full_join(Background_data, Session4_melted_data, by = "Participant_number")
 
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs later
+# setting the columns Time, Region, Grammaticality and Participant_number as factors 
+# in order to run ANOVAs later
 Session4_Background$Region <- as.factor(Session4_Background$Region)
 Session4_Background$Grammaticality <- as.factor(Session4_Background$Grammaticality)
 Session4_Background$Participant_number <- as.factor(Session4_Background$Participant_number)
@@ -736,23 +736,23 @@ S4_N200 <- Session4_Background [Session4_Background$Time %in% seq(200, 500, 2),]
 head(S4_N200)
 write.csv(S4_N200, "EEG/data/Session 4/Session4_N200_data_frame.csv", row.names = FALSE)
 
-#Session 4, P300 (300 - 600 ms)
+# Session 4, P300 (300 - 600 ms)
 S4_P300 <- Session4_Background[Session4_Background$Time %in% seq(300, 600, 2),]
 
 head(S4_P300)
 write.csv(S4_P300, "EEG/data/Session 4/Session4_P300_data_frame.csv", row.names = FALSE)
 
-#Session 4, P600 (400 - 900 ms)
+# Session 4, P600 (400 - 900 ms)
 S4_P600 <- Session4_Background[Session4_Background$Time %in% seq(400, 900, 2),]
 
 head(S4_P600)
 write.csv(S4_P600, "EEG/data/Session 4/Session4_P600_data_frame.csv", row.names = FALSE)
 
-#########################
-###########################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 
-#Session 6 importation
+# Session 6 importation
 
 
 
@@ -795,7 +795,7 @@ Session6_VOA_violation_interest <- list.files(pattern = "*^[0-9]+_S3_S102.txt",
 Session6_VOA_ancillary_violation <- list.files(pattern = "*^[0-9]+_S3_S103.txt", 
                                                path = Session6path, full.names = TRUE)
 
-#constructing lists of data from the files, once for each condition
+# constructing lists of data from the files, once for each condition
 
 Session6_GEN_gram_list = lapply(1:length(Session6_GEN_gram_files),function(x) {
   read.table(Session6_GEN_gram_files[x], header=FALSE) } )
@@ -842,15 +842,15 @@ Session6_VOA_violation_interest_data = ldply(Session6_VOA_violation_interest_lis
                                              data.frame)
 Session6_VOA_ancillary_violation_data = ldply (Session6_VOA_ancillary_violation_list, 
                                                data.frame)
-#Sorting out column names and organising them
+# Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
-#and recorded with 2 ms intervals
+# and recorded with 2 ms intervals
 seq = seq(-100, 1098, 2)
 
 
 # the electrode column is formulated as a vector of electrode names that 
-#correspond to the time interval sequence
+# correspond to the time interval sequence
 names(Session6_GEN_gram_data) = c('Electrode', seq)
 names(Session6_GEN_violation_interest_data) = c('Electrode', seq)
 names(Session6_GEN_ancillary_violation_data) = c ('Electrode', seq)
@@ -915,7 +915,7 @@ Session6_VOA_ancillary_violation_data$Participant_number <- rep(participants_S6_
    each = nrow(Session6_VOA_ancillary_violation_data) / length(participants_S6_VOA_ancvil))
 
 
-#Adding a Property column to the data frames
+# Adding a Property column to the data frames
 Session6_GEN_gram_data$Property <- 'Gender_Agreement'
 Session6_GEN_violation_interest_data$Property <- 'Gender_Agreement'
 Session6_GEN_ancillary_violation_data$Property <- 'Gender_Agreement'
@@ -1014,16 +1014,16 @@ head(Session6_melted_data)
 # Converting Participant_number in Background_data to character, in order to match 
 # the Session6 data. Character has been chosen because Participant_number 
 # is categorical (IDs)
-#Performing the full join function,due to the discrepancy between the number of 
-#rows between the two data frames, so that no data is deleted
+# Performing the full join function,due to the discrepancy between the number of 
+# rows between the two data frames, so that no data is deleted
 
 Background_data$Participant_number <- as.character(Background_data$Participant_number)
 Session6_Background <- full_join(Background_data, Session6_melted_data, 
                                  by = "Participant_number", 
                                  relationship = "many-to-many")
 
-#setting the columns Time, Region, Grammaticality and Participant_number as factors 
-#in order to run ANOVAs later
+# setting the columns Time, Region, Grammaticality and Participant_number as factors 
+# in order to run ANOVAs later
 Session6_Background$Region <- as.factor(Session6_Background$Region)
 Session6_Background$Grammaticality <- as.factor(Session6_Background$Grammaticality)
 Session6_Background$Participant_number <- as.factor(Session6_Background$Participant_number)
@@ -1039,13 +1039,13 @@ S6_N200 <- Session6_Background [Session6_Background$Time %in% seq(200, 500, 2),]
 head(S6_N200)
 write.csv(S6_N200, "EEG/data/Session 6/Session6_N200_data_frame.csv", row.names = FALSE)
 
-#Session 6, P300 (300 - 600 ms)
+# Session 6, P300 (300 - 600 ms)
 S6_P300 <- Session6_Background[Session6_Background$Time %in% seq(300, 600, 2),]
 
 head(S6_P300)
 write.csv(S6_P300, "EEG/data/Session 6/Session6_P300_data_frame.csv", row.names = FALSE)
 
-#Session 6, P600 (400 - 900 ms)
+# Session 6, P600 (400 - 900 ms)
 S6_P600 <- Session6_Background[Session6_Background$Time %in% seq(400, 900, 2),]
 
 head(S6_P600)
@@ -1054,6 +1054,6 @@ write.csv(S6_P600, "EEG/data/Session 6/Session6_P600_data_frame.csv", row.names 
 
 
 
-#in session3, exclude participant 3
-#in session 4, exclude participants 11 and 7
+# in session3, exclude participant 3
+# in session 4, exclude participants 11 and 7
 

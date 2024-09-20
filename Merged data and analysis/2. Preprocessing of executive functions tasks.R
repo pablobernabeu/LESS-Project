@@ -1,0 +1,41 @@
+
+
+# Preprocessing of executive functions tasks
+
+
+library(plyr)      
+library(tidyverse) 
+library(readxl)     
+library(janitor)  
+library(rmarkdown)
+
+
+# loading the behavioural data from Session1 
+Stroop <- read.csv("Raw data/Executive functions/difference_reaction_time_stroop.csv")
+TL <- read.csv("Raw data/Executive functions/TL_RT_wide_1.csv")
+DGS <- read.csv("Raw data/Executive functions/analysis_table_DGS.csv")
+
+View(DGS)
+View(Stroop)
+View(TL)
+
+# Combine the data frames based on Participant Public ID using full_join
+Session1_data <- DGS %>%
+  full_join(Stroop, by = "Participant.Public.ID", relationship = "many-to-many") %>%
+  full_join(TL, by = "Participant.Public.ID", relationship = "many-to-many")
+
+# View the combined data
+View(Session1_data)
+
+# Rename the column 'Participant.Public.ID' to 'Participant_ID'
+names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] <- "Participant_ID"
+
+# Merge the two data frames by 'Participant_ID'
+Background_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
+
+# View the merged data
+View(Background_data)
+
+# Save to a specific directory
+write.csv(Background_data, "Background/Background_data.csv", row.names = FALSE)
+
