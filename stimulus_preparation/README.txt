@@ -103,3 +103,13 @@ The materials are version-controlled, and the release notes follow below.
     To this end, a logger item was added after the inline script 'session_end_time'.
 
 
+* v1.2.3
+
+  - Revise stimuli for the gender assignment task in Norwegian. This task is the last one 
+    administered in Session 6, in which participants verify the gender of Norwegian nouns. 
+    A few of the stimuli used previously had wrong genders due to the existence of 
+    duplicates in the Norwegian Web as Corpus (NoWaC). To resolve this issue, in the 
+    present revision, the words with more than one gender were removed, and the word 
+    frequency range was broadened slightly to keep the same number of items in the task. 
+
+

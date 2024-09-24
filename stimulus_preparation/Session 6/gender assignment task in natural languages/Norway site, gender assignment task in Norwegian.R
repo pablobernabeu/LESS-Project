@@ -96,19 +96,36 @@ corpus = corpus %>%
   # Order columns
   select(word, gender, frequency, letters)
 
+
 # Many nouns are repeated in the corpus because they are tagged with more than one gender
 # (for background, see Rodina & Westergaard, 2015 https://doi.org/10.1017/S1470542714000245, 
-# 2021 https://doi.org/10.1017/S1470542719000217). Generally, in these ambiguous cases in
-# the present corpus, either entry has a much higher frequency. To resolve these 
-# ambiguities, only the entry with the highest frequency will be kept.
+# 2021 https://doi.org/10.1017/S1470542719000217). To prevent errors, select only the words 
+# that have one consistent gender in the corpus, OR that were used in the study (i.e., 
+# `study_nouns`). 
+
+words_with_one_gender = 
+  corpus %>% 
+  count(word, gender) %>% 
+  count(word) %>% 
+  arrange(desc(n)) %>% 
+  filter(n == 1) %>%
+  pull(word)
+
+corpus = corpus %>%
+  filter(word %in% words_with_one_gender | word %in% study_nouns)
+
+
+# To finish resolving duplicated entries, keep only the entry with the highest frequency 
+# out of any duplicates.
 
 corpus = corpus %>%
   arrange(word, desc(frequency)) %>% 
   filter(!duplicated(word))
 
+
 # Are all nouns from the study present in the corpus?
 n_distinct(study_nouns) == length(which(study_nouns %in% corpus$word))
-# Yes, they are.
+# TRUE: Yes, they are.
 
 # Get frequencies for each word in the stimuli. Save them into dataframe 
 # that will contain all stimuli for the gender assignment task.
@@ -122,8 +139,8 @@ study_nouns_with_frequency_info =
 # Half of these nouns will be neuter, a fourth will be feminine and another 
 # fourth will be masculine. All these extra nouns will have similar word 
 # frequency and number of letters to the 24 original nouns. Specifically, 
-# the range of the word frequency is calculated as the mean minus or plus a 
-# tenth of the standard deviation. The range of the number of letters is 
+# the range of the word frequency is calculated as the mean minus or plus 
+# half the standard deviation. The range of the number of letters is 
 # calculated as the mean minus or plus twice the standard deviation.
 
 # Calculate mean and standard deviation of the word frequency of the nouns 
@@ -138,9 +155,9 @@ study_nouns_frequency_SD =
   corpus %>% filter(word %in% study_nouns) %>% 
   pull(frequency) %>% as.numeric() %>% sd()
 
-min_frequency = study_nouns_frequency - study_nouns_frequency_SD / 10
+min_frequency = study_nouns_frequency - study_nouns_frequency_SD / 2
 
-max_frequency = study_nouns_frequency + study_nouns_frequency_SD / 10
+max_frequency = study_nouns_frequency + study_nouns_frequency_SD / 2
 
 # Calculate mean and standard deviation of the number of letters of the 
 # nouns in the study. Then, calculate minimum and maximum number of 
