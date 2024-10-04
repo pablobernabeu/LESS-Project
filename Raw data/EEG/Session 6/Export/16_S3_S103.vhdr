@@ -16,7 +16,7 @@ SamplingInterval=2000
 SegmentationType=MARKERBASED
 SegmentDataPoints=600
 Averaged=YES
-AveragedSegments=9
+AveragedSegments=10
 
 [User Infos]
 ; Each entry: Prop<Number>=<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
@@ -77,37 +77,37 @@ Ch31=FCz,mastoids,,µV
 ; Array types have more than one value, number of values determines size of array.
 ; Fields are delimited by commas, commas in strings are written \1
 ; Properties are assigned to channels using their channel number.
-Prop1=Ch1,int,BrainVision.ChannelAveragedSegments,9
-Prop2=Ch2,int,BrainVision.ChannelAveragedSegments,9
-Prop3=Ch3,int,BrainVision.ChannelAveragedSegments,9
-Prop4=Ch4,int,BrainVision.ChannelAveragedSegments,9
-Prop5=Ch5,int,BrainVision.ChannelAveragedSegments,9
-Prop6=Ch6,int,BrainVision.ChannelAveragedSegments,9
-Prop7=Ch7,int,BrainVision.ChannelAveragedSegments,9
-Prop8=Ch8,int,BrainVision.ChannelAveragedSegments,9
-Prop9=Ch9,int,BrainVision.ChannelAveragedSegments,9
-Prop10=Ch10,int,BrainVision.ChannelAveragedSegments,9
-Prop11=Ch11,int,BrainVision.ChannelAveragedSegments,9
-Prop12=Ch12,int,BrainVision.ChannelAveragedSegments,9
-Prop13=Ch13,int,BrainVision.ChannelAveragedSegments,9
-Prop14=Ch14,int,BrainVision.ChannelAveragedSegments,9
-Prop15=Ch15,int,BrainVision.ChannelAveragedSegments,9
-Prop16=Ch16,int,BrainVision.ChannelAveragedSegments,9
-Prop17=Ch17,int,BrainVision.ChannelAveragedSegments,9
-Prop18=Ch18,int,BrainVision.ChannelAveragedSegments,9
-Prop19=Ch19,int,BrainVision.ChannelAveragedSegments,9
-Prop20=Ch20,int,BrainVision.ChannelAveragedSegments,9
-Prop21=Ch21,int,BrainVision.ChannelAveragedSegments,9
-Prop22=Ch22,int,BrainVision.ChannelAveragedSegments,9
-Prop23=Ch23,int,BrainVision.ChannelAveragedSegments,9
-Prop24=Ch24,int,BrainVision.ChannelAveragedSegments,9
-Prop25=Ch25,int,BrainVision.ChannelAveragedSegments,9
-Prop26=Ch26,int,BrainVision.ChannelAveragedSegments,9
-Prop27=Ch27,int,BrainVision.ChannelAveragedSegments,9
-Prop28=Ch28,int,BrainVision.ChannelAveragedSegments,9
-Prop29=Ch29,int,BrainVision.ChannelAveragedSegments,9
-Prop30=Ch30,int,BrainVision.ChannelAveragedSegments,9
-Prop31=Ch31,int,BrainVision.ChannelAveragedSegments,9
+Prop1=Ch1,int,BrainVision.ChannelAveragedSegments,10
+Prop2=Ch2,int,BrainVision.ChannelAveragedSegments,10
+Prop3=Ch3,int,BrainVision.ChannelAveragedSegments,10
+Prop4=Ch4,int,BrainVision.ChannelAveragedSegments,10
+Prop5=Ch5,int,BrainVision.ChannelAveragedSegments,10
+Prop6=Ch6,int,BrainVision.ChannelAveragedSegments,10
+Prop7=Ch7,int,BrainVision.ChannelAveragedSegments,10
+Prop8=Ch8,int,BrainVision.ChannelAveragedSegments,10
+Prop9=Ch9,int,BrainVision.ChannelAveragedSegments,10
+Prop10=Ch10,int,BrainVision.ChannelAveragedSegments,10
+Prop11=Ch11,int,BrainVision.ChannelAveragedSegments,10
+Prop12=Ch12,int,BrainVision.ChannelAveragedSegments,10
+Prop13=Ch13,int,BrainVision.ChannelAveragedSegments,10
+Prop14=Ch14,int,BrainVision.ChannelAveragedSegments,10
+Prop15=Ch15,int,BrainVision.ChannelAveragedSegments,10
+Prop16=Ch16,int,BrainVision.ChannelAveragedSegments,10
+Prop17=Ch17,int,BrainVision.ChannelAveragedSegments,10
+Prop18=Ch18,int,BrainVision.ChannelAveragedSegments,10
+Prop19=Ch19,int,BrainVision.ChannelAveragedSegments,10
+Prop20=Ch20,int,BrainVision.ChannelAveragedSegments,10
+Prop21=Ch21,int,BrainVision.ChannelAveragedSegments,10
+Prop22=Ch22,int,BrainVision.ChannelAveragedSegments,10
+Prop23=Ch23,int,BrainVision.ChannelAveragedSegments,10
+Prop24=Ch24,int,BrainVision.ChannelAveragedSegments,10
+Prop25=Ch25,int,BrainVision.ChannelAveragedSegments,10
+Prop26=Ch26,int,BrainVision.ChannelAveragedSegments,10
+Prop27=Ch27,int,BrainVision.ChannelAveragedSegments,10
+Prop28=Ch28,int,BrainVision.ChannelAveragedSegments,10
+Prop29=Ch29,int,BrainVision.ChannelAveragedSegments,10
+Prop30=Ch30,int,BrainVision.ChannelAveragedSegments,10
+Prop31=Ch31,int,BrainVision.ChannelAveragedSegments,10
 
 [Coordinates]
 ; Each entry: Ch<Channel number>=<Radius>,<Theta>,<Phi>
