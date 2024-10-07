@@ -1,5 +1,5 @@
 BrainVision Data Exchange Header File Version 2.0
-; Data created from history path: 28/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S102 tbt
+; Data created from history path: 5/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S102 tbt
 
 [Common Infos]
 Codepage=UTF-8
@@ -9,7 +9,7 @@ DataFormat=ASCII
 DataOrientation=VECTORIZED
 DataType=TIMEDOMAIN
 NumberOfChannels=31
-DataPoints=19800
+DataPoints=12600
 ; Sampling interval in microseconds if time domain (convert to Hertz:
 ; 1000000 / SamplingInterval) or in Hertz if frequency domain:
 SamplingInterval=2000
@@ -36,36 +36,36 @@ SkipColumns=1
 ; <Resolution in "Unit">,<Unit>, Future extensions...
 ; Fields are delimited by commas, some fields might be omitted (empty).
 ; Commas in channel names are coded as "\1".
-Ch1=Fp1,mastoids,,µV
-Ch2=Fz,mastoids,,µV
-Ch3=F3,mastoids,,µV
-Ch4=F7,mastoids,,µV
-Ch5=FT9,mastoids,,µV
-Ch6=FC5,mastoids,,µV
-Ch7=FC1,mastoids,,µV
-Ch8=C3,mastoids,,µV
-Ch9=T7,mastoids,,µV
-Ch10=CP5,mastoids,,µV
-Ch11=CP1,mastoids,,µV
-Ch12=Pz,mastoids,,µV
-Ch13=P3,mastoids,,µV
-Ch14=P7,mastoids,,µV
-Ch15=O1,mastoids,,µV
-Ch16=Oz,mastoids,,µV
-Ch17=O2,mastoids,,µV
-Ch18=P4,mastoids,,µV
-Ch19=P8,mastoids,,µV
-Ch20=CP6,mastoids,,µV
-Ch21=CP2,mastoids,,µV
-Ch22=Cz,mastoids,,µV
-Ch23=C4,mastoids,,µV
-Ch24=T8,mastoids,,µV
-Ch25=FT10,mastoids,,µV
-Ch26=FC6,mastoids,,µV
-Ch27=FC2,mastoids,,µV
-Ch28=F4,mastoids,,µV
-Ch29=F8,mastoids,,µV
-Ch30=Fp2,mastoids,,µV
+Ch1=Fp1,mastoids,,?V
+Ch2=Fz,mastoids,,?V
+Ch3=F3,mastoids,,?V
+Ch4=F7,mastoids,,?V
+Ch5=FT9,mastoids,,?V
+Ch6=FC5,mastoids,,?V
+Ch7=FC1,mastoids,,?V
+Ch8=C3,mastoids,,?V
+Ch9=T7,mastoids,,?V
+Ch10=CP5,mastoids,,?V
+Ch11=CP1,mastoids,,?V
+Ch12=Pz,mastoids,,?V
+Ch13=P3,mastoids,,?V
+Ch14=P7,mastoids,,?V
+Ch15=O1,mastoids,,?V
+Ch16=Oz,mastoids,,?V
+Ch17=O2,mastoids,,?V
+Ch18=P4,mastoids,,?V
+Ch19=P8,mastoids,,?V
+Ch20=CP6,mastoids,,?V
+Ch21=CP2,mastoids,,?V
+Ch22=Cz,mastoids,,?V
+Ch23=C4,mastoids,,?V
+Ch24=T8,mastoids,,?V
+Ch25=FT10,mastoids,,?V
+Ch26=FC6,mastoids,,?V
+Ch27=FC2,mastoids,,?V
+Ch28=F4,mastoids,,?V
+Ch29=F8,mastoids,,?V
+Ch30=Fp2,mastoids,,?V
 Ch31=FCz,mastoids,,µV
 
 [Channel User Infos]
@@ -83,7 +83,7 @@ Ch2=1,45,90
 Ch3=1,-60,-51
 Ch4=1,-90,-36
 Ch5=1,-113,-18
-Ch6=1,-69,-22
+Ch6=1,-69,-21
 Ch7=1,-31,-46
 Ch8=1,-45,0
 Ch9=1,-90,0
