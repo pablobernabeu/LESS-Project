@@ -1,0 +1,81 @@
+﻿sentence,condition,task_part,materials_version
+Verónica visita al médico todos los meses.,DOM_grammatical,main,1.2.4
+El niño llamó al perro antes de cenar.,DOM_grammatical,main,1.2.4
+María vio al profesor en el parque.,DOM_grammatical,main,1.2.4
+Juan busca a la actriz en la escuela.,DOM_grammatical,main,1.2.4
+Marta saludó al jefe en la fiesta.,DOM_grammatical,main,1.2.4
+El policía siguió al sospechoso hasta la esquina.  ,DOM_grammatical,main,1.2.4
+Ana encontró al fotógrafo en la exposición.,DOM_grammatical,main,1.2.4
+Los niños ayudaron a la anciana con las bolsas.,DOM_grammatical,main,1.2.4
+Sofía felicitó al director por su logro.,DOM_grammatical,main,1.2.4
+Pedro invitó al testigo a la conferencia.,DOM_grammatical,main,1.2.4
+Verónica visita el médico todos los meses.,DOM_ungrammatical,main,1.2.4
+ El niño llamó el perro antes de cenar.,DOM_ungrammatical,main,1.2.4
+ María vio el profesor en el parque.,DOM_ungrammatical,main,1.2.4
+ Juan busca la actriz en la escuela.,DOM_ungrammatical,main,1.2.4
+ Marta saludó el jefe en la fiesta.,DOM_ungrammatical,main,1.2.4
+ El policía siguió el sospechoso hasta la esquina. ,DOM_ungrammatical,main,1.2.4
+ Ana encontró el fotógrafo en la exposición.,DOM_ungrammatical,main,1.2.4
+ Los niños ayudaron la anciana con las bolsas.,DOM_ungrammatical,main,1.2.4
+ Sofía felicitó el director por su logro.,DOM_ungrammatical,main,1.2.4
+ Pedro invitó el testigo a la conferencia.,DOM_ungrammatical,main,1.2.4
+La empresa le dio un aumento al director este año.,DATIVE_grammatical,main,1.2.4
+ El profesor les dio una tarea a los estudiantes.,DATIVE_grammatical,main,1.2.4
+ El jefe le concedió un ascenso a María.,DATIVE_grammatical,main,1.2.4
+ La madre le preparó el desayuno a la amiga.,DATIVE_grammatical,main,1.2.4
+ La abuela le contó una historia a la niña.,DATIVE_grammatical,main,1.2.4
+ El mecánico le arregló el coche al vecino.,DATIVE_grammatical,main,1.2.4
+ La maestra les explicó el ejercicio a las alumnas.,DATIVE_grammatical,main,1.2.4
+ El doctor le recetó medicina al paciente.,DATIVE_grammatical,main,1.2.4
+ El gerente le ofreció un descuento a la clienta.,DATIVE_grammatical,main,1.2.4
+ El alcalde le entregó un reconocimiento a la ciudadana.,DATIVE_grammatical,main,1.2.4
+La empresa le dio un aumento el director este año.,DATIVE_ungrammatical,main,1.2.4
+ El profesor les dio una tarea los estudiantes.,DATIVE_ungrammatical,main,1.2.4
+ El jefe le concedió un ascenso María.,DATIVE_ungrammatical,main,1.2.4
+ La madre le preparó el desayuno la amiga.,DATIVE_ungrammatical,main,1.2.4
+ La abuela le contó una historia la niña.,DATIVE_ungrammatical,main,1.2.4
+ El mecánico le arregló el coche el vecino.,DATIVE_ungrammatical,main,1.2.4
+ La maestra les explicó el ejercicio las alumnas.,DATIVE_ungrammatical,main,1.2.4
+ El doctor le recetó medicina el paciente.,DATIVE_ungrammatical,main,1.2.4
+ El gerente le ofreció un descuento la clienta.,DATIVE_ungrammatical,main,1.2.4
+ El alcalde le entregó un reconocimiento la ciudadana.,DATIVE_ungrammatical,main,1.2.4
+El gato saltó sobre la mesa.,FILLER_grammatical,main,1.2.4
+ Los niños corrieron por el parque.,FILLER_grammatical,main,1.2.4
+ Ana escribió una carta para su amigo.,FILLER_grammatical,main,1.2.4
+ El perro ladraba a los pájaros.,FILLER_grammatical,main,1.2.4
+ El profesor explicó la lección claramente.,FILLER_grammatical,main,1.2.4
+ El coche estaba aparcado en el garaje.,FILLER_grammatical,main,1.2.4
+ Las mujeres están trabajando en el jardín.,FILLER_grammatical,main,1.2.4
+ El niño comió su desayuno.,FILLER_grammatical,main,1.2.4
+ La casa tiene muchas ventanas.,FILLER_grammatical,main,1.2.4
+ Las niñas corren en el parque.,FILLER_grammatical,main,1.2.4
+ Los libros están en la mesa.,FILLER_grammatical,main,1.2.4
+ Marta salió temprano de la reunión.,FILLER_grammatical,main,1.2.4
+ El gato duerme bajo el árbol.,FILLER_grammatical,main,1.2.4
+ Ellos compraron flores para la boda.,FILLER_grammatical,main,1.2.4
+ La profesora explicó la tarea a los alumnos.,FILLER_grammatical,main,1.2.4
+ El tren llegó a la estación a tiempo.,FILLER_grammatical,main,1.2.4
+ El viento soplaba fuerte en la playa.,FILLER_grammatical,main,1.2.4
+ María recibió una carta ayer.,FILLER_grammatical,main,1.2.4
+ Los niños juegan en el patio durante el recreo.,FILLER_grammatical,main,1.2.4
+ El camarero sirvió el postre al final de la comida.,FILLER_grammatical,main,1.2.4
+ Pedro escribió una historia para sus amigos.,FILLER_grammatical,main,1.2.4
+ Ana y Juan paseó por el parque esta mañana.,FILLER_ungrammatical,main,1.2.4
+ El coche estaban estacionados frente a la tienda.,FILLER_ungrammatical,main,1.2.4
+ Las lluvias comenzó a caer de repente.,FILLER_ungrammatical,main,1.2.4
+ Mi hermano trajeron el pastel para la fiesta.,FILLER_ungrammatical,main,1.2.4
+ El música suena fuerte en la discoteca.,FILLER_ungrammatical,main,1.2.4
+ La pájaro construyó un nido en el árbol.,FILLER_ungrammatical,main,1.2.4
+ Laura cocinaron una cena deliciosa para su familia.,FILLER_ungrammatical,main,1.2.4
+ La película terminó a las diez de la noche.,FILLER_ungrammatical,main,1.2.4
+ El perra corrió rápido por el campo.,FILLER_ungrammatical,main,1.2.4
+ Las libros están en la mesa.,FILLER_ungrammatical,main,1.2.4
+ Marta salió temprano del reunión.,FILLER_ungrammatical,main,1.2.4
+ El gato duerme debajo de la árbol.,FILLER_ungrammatical,main,1.2.4
+ Ellas compra flores para la boda.,FILLER_ungrammatical,main,1.2.4
+ El tren llegó al estación a tiempo.,FILLER_ungrammatical,main,1.2.4
+ El viento soplaba fuerte en el playa.,FILLER_ungrammatical,main,1.2.4
+ Los niño juegan en el patio durante el recreo.,FILLER_ungrammatical,main,1.2.4
+ María recibieron una carta ayer.,FILLER_ungrammatical,main,1.2.4
+ El camarero sirvió la postre al final de la comida.,FILLER_ungrammatical,main,1.2.4
+Pedro escribió uno historia para sus amigos.,FILLER_ungrammatical,main,1.2.4

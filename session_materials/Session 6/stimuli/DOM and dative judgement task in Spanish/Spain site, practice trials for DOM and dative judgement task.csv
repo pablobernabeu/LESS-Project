@@ -1,0 +1,9 @@
+﻿sentence,condition,task_part,materials_version
+El perro siguió a la dueña hasta la tienda.  ,DOM_grammatical,practice,1.2.4
+Julia vio al vecino en la tienda.,DOM_grammatical,practice,1.2.4
+El perro siguió la dueña hasta la tienda.  ,DOM_ungrammatical,practice,1.2.4
+Julia vio el vecino en la tienda.,DOM_ungrammatical,practice,1.2.4
+La tía le regaló una muñeca a la sobrina.  ,DATIVE_grammatical,practice,1.2.4
+El director le dio instrucciones al equipo antes de la reunión.,DATIVE_grammatical,practice,1.2.4
+La tía le regaló una muñeca la sobrina.  ,DATIVE_ungrammatical,practice,1.2.4
+El director le dio instrucciones el equipo antes de la reunión.,DATIVE_ungrammatical,practice,1.2.4

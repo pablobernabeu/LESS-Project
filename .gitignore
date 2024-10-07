@@ -5,3 +5,4 @@ stimulus_preparation/external_corpora/nowac-1.1.lemma.frek.sort_alf_frek.txt
 *.Rdata
 *.Rhistory
 .Rproj.user
+.Rproj.user/*

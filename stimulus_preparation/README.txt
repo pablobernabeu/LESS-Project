@@ -1,6 +1,6 @@
 
 
-The preparation of the stimuli draws on a modular framework formed of interoperable components. First, the minimal components of each language are contained in a base file in the ‘stimulus_preparation’ folder. Second, the linguistic and visual stimuli finally presented are created by assembling minimal components. Several controls are exerted on the stimuli to prevent spurious effects. For instance, gender and number are counterbalanced across experimental conditions. Similarly, words and experimental conditions within the same set appear equally often. All the stimuli are compiled in the script 'compile_all_stimuli.R', and the resulting stimuli are saved to the 'session_materials' folder. In conclusion, the present framework facilitates the reproducibility and the inspection of the stimuli, and allows a scalable extension to accommodate different features and languages.
+The preparation of the stimuli draws on a modular framework formed of interoperable components. First, the minimal components of each language are contained in a base file in the ‘stimulus_preparation’ folder. Second, the linguistic and visual stimuli finally presented are created by assembling minimal components. Several controls are exerted on the stimuli to prevent spurious effects. For instance, gender and number are counterbalanced across experimental conditions. Similarly, words and experimental conditions within the same set appear equally often. The stimuli are compiled in the script 'compile_all_stimuli.R', and the resulting stimuli are saved to the 'session_materials' folder. As an exception, one task in the Spanish site (specifically, the task on differential object marking and dative in Session 6) was manually created outside of the R workflow. In conclusion, the present framework facilitates the reproducibility and the inspection of the stimuli, and allows a scalable extension to accommodate different features and languages.
 
 Parallel lists of stimuli are used to enable some of the controls. The lists are numbered in the names of the files and they are described in the 'list' column in each file. 
 
@@ -111,5 +111,14 @@ The materials are version-controlled, and the release notes follow below.
     duplicates in the Norwegian Web as Corpus (NoWaC). To resolve this issue, in the 
     present revision, the words with more than one gender were removed, and the word 
     frequency range was broadened slightly to keep the same number of items in the task. 
+
+
+* v1.2.4
+
+  - Added final task to Session 6 in the Spanish site only. This is an acceptability judgement 
+    task that asseses the use of the Spanish preposition "a" in the context of differential 
+    object marking--namely, introducing a direct object--and in the context of the dative--
+    namely, introducing an indirect object.
+
 
 
