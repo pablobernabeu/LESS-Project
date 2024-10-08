@@ -26,7 +26,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "C:\\Users\\pbe044\\OneDrive - UiT Office 365\\Pablo_LESS\\session_materials\\Session 6"
+set experiment_path "C:/Users/pbe044/OneDrive - UiT Office 365/Desktop/less osf/session_materials/Session 6"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -228,31 +228,31 @@ define feedback GAT_practice_failed
 	set reset_variables yes
 	set duration keypress
 	set description "Provides feedback to the participant"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Øvelsen er avsluttet, og [accuracy] % av svarene var korrekte.<br><br>Deretter skal øvelsen gjentas. Som før, trykk <b>F</b> hvis ordet er<br><br>intetkjønn, eller trykk <b>J</b> hvis det ikke er intetkjønn.<br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Øvelsen er avsluttet, og [accuracy] % av svarene var korrekte. Deretter skal øvelsen gjentas. Som før, trykk <b>F</b> hvis ordet er intetkjønn (f.eks. <i><b>et</b> opplegg</i>), eller trykk <b>J</b> hvis det ikke er intetkjønn (f.eks. <i><b>en</b> signatur, <b>en/ei</b> tromme</i>). Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
 
 define feedback GAT_practice_failed_en
 	set reset_variables yes
 	set duration keypress
 	set description "Provides feedback to the participant"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="The practice has ended, and [accuracy]% of the responses were correct.<br><br>Next, the practice will be repeated. As before, press <b>F</b><br><br>if the word is neuter, or press <b>J</b> if it is not neuter.<br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>The practice has ended, and [accuracy]% of the responses were correct. Next, the practice will be repeated. As before, press <b>F</b> if the word is neuter (e.g., <i><b>et</b> opplegg</i>), or press <b>J</b> if it is not neuter (e.g., <i><b>en</b> signatur, <b>en/ei</b> tromme</i>). When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
 
 define sketchpad GAT_practice_instructions
 	set start_response_interval no
 	set reset_variables no
 	set duration keypress
 	set description "Displays stimuli"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Trykk <b>F</b> hvis ordet er intetkjønn, eller <b>J</b> hvis det ikke er intetkjønn.<br><br>Deretter kan du øve med noen få forsøk.<br><br>En grønn sirkel vises hvis svaret ditt er riktig,<br><br>eller en rød sirkel hvis det er feil.<br><br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
-	draw circle color="#ff0000" fill=1 penwidth=1 r=32 show_if=always x=-288 y=32 z_index=0
-	draw circle color="#00aa00" fill=1 penwidth=1 r=32 show_if=always x=-320 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Trykk <b>F</b> hvis ordet er intetkjønn (f.eks. <i><b>et</b> opplegg</i>), <br> <br> eller <b>J</b> hvis det <b>ikke</b> er intetkjønn (f.eks. <i><b>en</b> signatur, <b>en/ei</b> tromme</i>).<br><br>Deretter kan du øve med noen få forsøk.<br><br>En grønn sirkel vises hvis svaret ditt er riktig,<br><br>eller en rød sirkel hvis det er feil.<br><br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten." x=0 y=0 z_index=0
+	draw circle color="#ff0000" fill=1 penwidth=1 r=32 show_if=always x=-288 y=64 z_index=0
+	draw circle color="#00aa00" fill=1 penwidth=1 r=32 show_if=always x=-320 y=32 z_index=0
 
 define sketchpad GAT_practice_instructions_en
 	set start_response_interval no
 	set reset_variables no
 	set duration keypress
 	set description "Displays stimuli"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Press <b>F</b> if the word is neuter, or <b>J</b> if it is not neuter.<br><br>Next, you can practise with a few trials.<br><br>A green circle will appear if the response is correct,<br><br>or a red circle if it is incorrect.<br><br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
-	draw circle color="#ff0000" fill=1 penwidth=1 r=32 show_if=always x=-288 y=32 z_index=0
-	draw circle color="#00aa00" fill=1 penwidth=1 r=32 show_if=always x=-320 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Press <b>F</b> if the word is neuter (e.g., <i><b>et</b> opplegg</i>), <br><br> or <b>J</b> if it is not neuter (e.g., <i><b>en</b> signatur, <b>en/ei</b> tromme</i>). <br><br>Next, you can practise with a few trials.<br><br>A green circle will appear if the response is correct,<br><br>or a red circle if it is incorrect.<br><br><br>When you wish to begin the task, press any letter or the space bar." x=0 y=0 z_index=0
+	draw circle color="#ff0000" fill=1 penwidth=1 r=32 show_if=always x=-288 y=64 z_index=0
+	draw circle color="#00aa00" fill=1 penwidth=1 r=32 show_if=always x=-320 y=32 z_index=0
 
 define loop GAT_practice_loop
 	set source_file "../[session]/stimuli/gender assignment task in natural languages/[study_site] site, practice trials for gender assignment task.csv"
@@ -271,13 +271,13 @@ define feedback GAT_practice_over
 	set reset_variables yes
 	set duration keypress
 	set description "Provides feedback to the participant"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="Øvelsen er avsluttet, og [accuracy] % av svarene var korrekte. I de neste forsøkene<br><br>skal ingen tilbakemelding vises etter hvert svar. Som før, trykk <b>F</b><br><br>hvis ordet er intetkjønn, eller trykk <b>J</b> hvis det ikke er intetkjønn.<br><br>Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>Øvelsen er avsluttet, og [accuracy] % av svarene var korrekte. I de neste forsøkene skal ingen tilbakemelding vises etter hvert svar. Som før, trykk <b>F</b> hvis ordet er intetkjønn (f.eks. <i><b>et</b> opplegg</i>), eller trykk <b>J</b> hvis det ikke er intetkjønn (f.eks. <i><b>en</b> signatur, <b>en/ei</b> tromme</i>). Når du ønsker å starte oppgaven, trykk på en bokstav eller mellomromstasten.</div>" x=0 y=0 z_index=0
 
 define feedback GAT_practice_over_en
 	set reset_variables yes
 	set duration keypress
 	set description "Provides feedback to the participant"
-	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="The practice has ended, and [accuracy]% of the responses were correct.<br><br>In the next trials, no feedback will be shown after each response.<br><br>As before, press <b>F</b> if the word is neuter, or press <b>J</b> if it is not neuter.<br><br>When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=20 html=yes show_if=always text="<div style='line-height:200%; margin-right:150px; margin-left:150px; text-align:left;'>The practice has ended, and [accuracy]% of the responses were correct. In the next trials, no feedback will be shown after each response. As before, press <b>F</b> if the word is neuter (e.g., <i><b>et</b> opplegg</i>), or press <b>J</b> if it is not neuter (e.g., <i><b>en</b> signatur, <b>en/ei</b> tromme</i>). When you wish to begin the task, press any letter or the space bar.</div>" x=0 y=0 z_index=0
 
 define keyboard_response GAT_practice_response
 	set timeout infinite

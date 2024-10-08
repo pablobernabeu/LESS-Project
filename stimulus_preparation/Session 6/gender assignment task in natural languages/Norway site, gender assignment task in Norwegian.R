@@ -123,6 +123,17 @@ corpus = corpus %>%
   filter(!duplicated(word))
 
 
+# Remove potential English words. This is done by removing words that are outside of the core study 
+# nouns and coincide with any of the 10,000 words present in the MIT 10,000 Word List 
+# (https://www.mit.edu/~ecprice/wordlist.10000).
+
+English_words = 
+  read.csv('stimulus_preparation/Session 6/gender assignment task in natural languages/MIT 10000 Word List.csv')
+
+corpus = corpus %>%
+  filter(!(!word %in% study_nouns & word %in% English_words$word))
+
+
 # Are all nouns from the study present in the corpus?
 n_distinct(study_nouns) == length(which(study_nouns %in% corpus$word))
 # TRUE: Yes, they are.
