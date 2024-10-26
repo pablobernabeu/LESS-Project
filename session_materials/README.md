@@ -137,6 +137,11 @@ Due to the pre-assignment of the parameters, there is a fixed set of participant
 used in OpenSesame. These identification numbers range between 1 and 96. If an ID outside of this 
 range is used, the OpenSesame session does not run.
 
+### Versions
+
+The behavioural results files (logfiles) contain a column named `materials_version`. For details on 
+these versions, see README file in the `stimulus_preparation` folder.
+
 
 ### General procedure
 
@@ -260,7 +265,7 @@ potentials. The system for sending triggers is set up in OpenSesame in the inlin
 The complete key to the triggers is provided below.
 
   - **0:** reset trigger port. This zero trigger is integrated in the trigger-sending function, 
-     and is sent before each of the triggers specified below.
+     and is sent after each of the triggers specified below.
 
 #### Resting-state EEG part
 
