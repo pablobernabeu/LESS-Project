@@ -94,7 +94,7 @@ local({
   
   header <- function(label,
                      ...,
-                     prefix = "# ",
+                     prefix = "#",
                      suffix = "-",
                      n = min(getOption("width"), 78))
   {
@@ -305,7 +305,7 @@ local({
   renv_bootstrap_download_cran_latest <- function(version) {
   
     spec <- renv_bootstrap_download_cran_latest_find(version)
-    type <- spec$type
+    type  <- spec$type
     repos <- spec$repos
   
     baseurl <- utils::contrib.url(repos = repos, type = type)
@@ -472,7 +472,7 @@ local({
   
   }
   
-  # Add Sha to DESCRIPTION. This is stop gap until # 890, after which we
+  # Add Sha to DESCRIPTION. This is stop gap until #890, after which we
   # can use renv::install() to fully capture metadata.
   renv_bootstrap_download_augment <- function(destfile) {
     sha <- renv_bootstrap_git_extract_sha1_tar(destfile)

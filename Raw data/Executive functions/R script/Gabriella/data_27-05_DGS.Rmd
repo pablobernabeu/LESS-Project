@@ -14,7 +14,7 @@ library(readxl)
 # Leer los datos
 path_to_DGS <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
 DGS_1 <- read_excel(file.path(path_to_DGS, "DGS_DGS.xlsx"))
-DGS_2 <- read_excel(file.path(path_to_DGS, "DGS_STROOP.xlsx"))
+DGS_2 <- read_excel(file.path(path_to_DGS, "DGS_Stroop.xlsx"))
 DGS_3 <- read_excel(file.path(path_to_DGS, "DGS_ASRT.xlsx"))
 
 # Limpiar nombres de columnas

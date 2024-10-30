@@ -20,18 +20,18 @@ library(readr)
 
 
 # Definir el path
-path_to_ASRT <- "C:/Users/stpis0397/OneDrive - UiT Office 365/LESS-Project-with-RAs-2/Gorilla/data_exp_143587-v32"
+path_to_ASRT <- "raw data/executive functions/Session 1"
 
 
 # Leer los datos
 ASRT_1 <- read_csv(file.path(path_to_ASRT, "ASRT_DGS.csv"))
-ASRT_2 <- read_csv(file.path(path_to_ASRT, "ASRT_STROOP.csv"))
+ASRT_2 <- read_csv(file.path(path_to_ASRT, "ASRT_Stroop.csv"))
 ASRT_3 <- read_csv(file.path(path_to_ASRT, "ASRT_ASRT.csv"))
 
 # Load the additional CSV files
 ASRT_1_extra <- read_csv(file.path(path_to_ASRT, "qdvg4_ASRT_DGS.csv"))
-ASRT_2_extra <- read_csv(file.path(path_to_ASRT, "wbij5_ASRT_STROOP.csv"))
-ASRT_3_extra <- read_csv(file.path(path_to_ASRT, "xqls8_ASRT_STROOP.csv"))
+ASRT_2_extra <- read_csv(file.path(path_to_ASRT, "wbij5_ASRT_Stroop.csv"))
+ASRT_3_extra <- read_csv(file.path(path_to_ASRT, "xqls8_ASRT_Stroop.csv"))
 
 # Merge the data frames
 ASRT_1 <- bind_rows(ASRT_1, ASRT_1_extra)
