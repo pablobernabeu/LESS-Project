@@ -1,0 +1,13 @@
+---
+title: "stroop2"
+author: "Gabriella Silva"
+editor: "Stella Lucia Pischinger"
+date: "2024-05-30"
+output: html_document
+---
+
+# ```{r setup, include=FALSE}
+
+
+````
+
