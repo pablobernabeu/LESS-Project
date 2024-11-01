@@ -31,6 +31,7 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(readr)
+library(ggplot2)
 
 
 # Path to files
@@ -46,13 +47,15 @@ ASRT = rbind(
   read_csv(file.path(path_to_ASRT, "xqls8 serial reaction time.csv")) 
 )
 
-# Convert string values to numeric where appropriate
+# Rename participant ID column
 ASRT <- ASRT %>%
+  rename(participant_home_ID = `Participant Public ID`) %>%
+  
+  # Convert string values to numeric where appropriate
   mutate(across(c(cumulative_RT, trial_number), as.numeric)) %>%
-  replace_na(list(cumulative_RT = 0))
-
-# Create a new 'epoch' column based on block ranges
-ASRT <- ASRT %>%
+  replace_na(list(cumulative_RT = 0)) %>%
+  
+  # Create a new 'epoch' column based on block ranges
   mutate(epoch = case_when(
     block <= 5 ~ 1,
     block >= 6 & block <= 10 ~ 2,
@@ -60,12 +63,11 @@ ASRT <- ASRT %>%
     block >= 16 & block <= 20 ~ 4,
     block >= 21 & block <= 25 ~ 5,
     TRUE ~ NA_real_
-  ))
-
-# Calculate median reaction time (RT) for each combination of participant, 
-# group, trial, and triplet type.
-ASRT <- ASRT %>%
-  group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
+  )) %>%
+  
+  # Calculate median reaction time (RT) for each combination of participant, 
+  # group, trial, and triplet type.
+  group_by(participant_home_ID, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT, na.rm = TRUE)) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
   ungroup()
@@ -74,7 +76,7 @@ ASRT <- ASRT %>%
 names(ASRT)[-c(1, 2)] <- paste0("e", names(ASRT)[-c(1, 2)])
 
 # Handle missing values and create new calculated columns
-ASRT_1 <- ASRT %>%
+ASRT = ASRT %>%
   drop_na(p_or_r) %>%  # Ensure 'p_or_r' column doesn't have missing values
   mutate(across(everything(), ~replace_na(., 0))) %>%  # Replace NA with 0
   mutate(
@@ -85,4 +87,28 @@ ASRT_1 <- ASRT %>%
     e5_TL = e5_L - e5_H,
     ASRT_learning_effect = e5_TL - e1_TL
   )
+
+
+# Get descriptives and plot distributions
+
+ASRT %>% 
+  summarise(M_ASRT_learning_effect = median(ASRT_learning_effect), 
+            .by = p_or_r)
+
+ASRT %>%
+  ggplot(aes(x = factor(1), y = ASRT_learning_effect)) +
+  geom_boxplot(width = 0.4, fill = "white") +
+  geom_jitter(aes(color = p_or_r, shape = p_or_r), 
+              width = 0.1, size = 1) +
+  scale_color_manual(values = c("#00AFBB", "#E7B800")) + 
+  labs(x = NULL)
+
+
+# Random trials actually displayed the same item as pattern trials. 
+# namely, a Dalmatian dog. Therefore, both kinds of trials are 
+# averaged out below.
+
+ASRT = ASRT %>% 
+  summarise(M_ASRT_learning_effect = median(ASRT_learning_effect), 
+            .by = participant_home_ID)
 
