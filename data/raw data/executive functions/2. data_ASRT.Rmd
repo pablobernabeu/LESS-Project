@@ -12,7 +12,6 @@ output: html_document
 
 
 
-# load the necessary libraries
 library(dplyr)
 library(tidyr)
 library(stringr)
@@ -20,19 +19,19 @@ library(readr)
 
 
 # Define the path
-# path_to_ASRT <- "Raw data/Executive functions/Session 1"
-path_to_ASRT <- "Session 1"
+# path <- "Raw data/Executive functions/Session 1"
+path <- "Session 1"
 
 
 # Read the files
-ASRT_1 <- read_csv(file.path(path_to_ASRT, "ASRT_DGS.csv"))
-ASRT_2 <- read_csv(file.path(path_to_ASRT, "ASRT_Stroop.csv"))
-ASRT_3 <- read_csv(file.path(path_to_ASRT, "ASRT_ASRT.csv"))
+ASRT_1 <- read_csv(file.path(path, "ASRT_DGS.csv"))
+ASRT_2 <- read_csv(file.path(path, "ASRT_Stroop.csv"))
+ASRT_3 <- read_csv(file.path(path, "ASRT_ASRT.csv"))
 
 # Load the necessary CSV files
-ASRT_1_extra <- read_csv(file.path(path_to_ASRT, "qdvg4_ASRT_DGS.csv"))
-ASRT_2_extra_1 <- read_csv(file.path(path_to_ASRT, "wbij5_ASRT_Stroop.csv"))
-ASRT_2_extra_2 <- read_csv(file.path(path_to_ASRT, "xqls8_ASRT_Stroop.csv"))
+ASRT_1_extra <- read_csv(file.path(path, "qdvg4_ASRT_DGS.csv"))
+ASRT_2_extra_1 <- read_csv(file.path(path, "wbij5_ASRT_Stroop.csv"))
+ASRT_2_extra_2 <- read_csv(file.path(path, "xqls8_ASRT_Stroop.csv"))
 
 # Select the relevant columns
 columns_to_select <- c('Participant Public ID', 'time_elapsed', 'rt', 'correct', 'triplet_type', 

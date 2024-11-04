@@ -26,7 +26,6 @@
 # whereas Participant B did not present any learning effect.
 
 
-# Load the necessary libraries
 library(dplyr)
 library(tidyr)
 library(stringr)
@@ -35,16 +34,16 @@ library(ggplot2)
 
 
 # Path to files
-path_to_ASRT <- "data/raw data/Executive functions/Session 1"
+path <- "data/raw data/Executive functions/Session 1"
 
 # Read in and combine the files
 ASRT = rbind( 
-  read_csv(file.path(path_to_ASRT, "serial reaction time 1.csv")),
-  read_csv(file.path(path_to_ASRT, "serial reaction time 2.csv")),
-  read_csv(file.path(path_to_ASRT, "serial reaction time 3.csv")),
-  read_csv(file.path(path_to_ASRT, "qdvg4 serial reaction time.csv")),
-  read_csv(file.path(path_to_ASRT, "wbij5 serial reaction time.csv")),
-  read_csv(file.path(path_to_ASRT, "xqls8 serial reaction time.csv")) 
+  read_csv(file.path(path, "serial reaction time 1.csv")),
+  read_csv(file.path(path, "serial reaction time 2.csv")),
+  read_csv(file.path(path, "serial reaction time 3.csv")),
+  read_csv(file.path(path, "qdvg4 serial reaction time.csv")),
+  read_csv(file.path(path, "wbij5 serial reaction time.csv")),
+  read_csv(file.path(path, "xqls8 serial reaction time.csv")) 
 )
 
 # Rename participant ID column
@@ -89,7 +88,8 @@ ASRT = ASRT %>%
   )
 
 
-# Get descriptives and plot distributions
+# Get descriptives and plot distribution of ASRT_learning_effect 
+# split by pattern and random condition.
 
 ASRT %>% 
   summarise(M_ASRT_learning_effect = median(ASRT_learning_effect), 
@@ -103,12 +103,14 @@ ASRT %>%
   scale_color_manual(values = c("#00AFBB", "#E7B800")) + 
   labs(x = NULL)
 
+# While pattern trials are sensitive to sequence learning, random trials 
+# are more related to general motor and attention processes. Thus, it is 
+# important to subtract the general motor and attention effects from 
+# the sequence learning component.
 
-# Random trials actually displayed the same item as pattern trials. 
-# namely, a Dalmatian dog. Therefore, both kinds of trials are 
-# averaged out below.
-
-ASRT = ASRT %>% 
-  summarise(M_ASRT_learning_effect = median(ASRT_learning_effect), 
-            .by = participant_home_ID)
+ASRT = ASRT %>%
+  group_by(participant_home_ID) %>%
+  pivot_wider(names_from = p_or_r, values_from = ASRT) %>%
+  mutate(learning_effect = P - R) %>%
+  select(participant_home_ID, learning_effect)
 

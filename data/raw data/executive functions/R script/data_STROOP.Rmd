@@ -13,17 +13,17 @@ library(janitor)
 library(readxl)
 
 # Definir el path
-path_to_Stroop <- "Raw data/Executive functions/Session 1"
+path <- "Raw data/Executive functions/Session 1"
 
 # Leer los datos
-Stroop_1 <- read_csv(file.path(path_to_Stroop, "Stroop_DGS.csv"))
-Stroop_2 <- read_csv(file.path(path_to_Stroop, "Stroop_Stroop.csv"))
-Stroop_3 <- read_csv(file.path(path_to_Stroop, "Stroop_ASRT.csv"))
+Stroop_1 <- read_csv(file.path(path, "Stroop_DGS.csv"))
+Stroop_2 <- read_csv(file.path(path, "Stroop_Stroop.csv"))
+Stroop_3 <- read_csv(file.path(path, "Stroop_ASRT.csv"))
 
 # Cargar los archivos CSV adicionales
-Stroop_1_extra <- read_csv(file.path(path_to_Stroop, "qdvg4_Stroop_DGS.csv"))
-Stroop_2_extra_1 <- read_csv(file.path(path_to_Stroop, "wbij5_Stroop_Stroop.csv"))
-Stroop_2_extra_2 <- read_csv(file.path(path_to_Stroop, "xqls8_Stroop_Stroop.csv"))
+Stroop_1_extra <- read_csv(file.path(path, "qdvg4_Stroop_DGS.csv"))
+Stroop_2_extra_1 <- read_csv(file.path(path, "wbij5_Stroop_Stroop.csv"))
+Stroop_2_extra_2 <- read_csv(file.path(path, "xqls8_Stroop_Stroop.csv"))
 
 # Convierte la columna "Reaction Time" en ambos data frames a tipo numérico (double)
 Stroop_1$`Reaction Time` <- as.numeric(Stroop_1$`Reaction Time`)

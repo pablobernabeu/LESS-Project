@@ -12,10 +12,10 @@ library(tidyverse)
 library(janitor)
 library(readxl)
 # Leer los datos
-path_to_DGS <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
-DGS_1 <- read_excel(file.path(path_to_DGS, "DGS_DGS.xlsx"))
-DGS_2 <- read_excel(file.path(path_to_DGS, "DGS_Stroop.xlsx"))
-DGS_3 <- read_excel(file.path(path_to_DGS, "DGS_ASRT.xlsx"))
+path <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+DGS_1 <- read_excel(file.path(path, "DGS_DGS.xlsx"))
+DGS_2 <- read_excel(file.path(path, "DGS_Stroop.xlsx"))
+DGS_3 <- read_excel(file.path(path, "DGS_ASRT.xlsx"))
 
 # Limpiar nombres de columnas
 colnames(DGS_1) <- make.names(colnames(DGS_1))

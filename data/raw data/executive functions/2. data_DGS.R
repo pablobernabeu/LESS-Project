@@ -14,17 +14,17 @@ library(janitor)
 library(readxl)
 
 # Define the path
-path_to_DGS <- "Raw data/Executive functions/Session 1"
+path <- "Raw data/Executive functions/Session 1"
 
 # Read the files
-DGS_1 <- read_csv(file.path(path_to_DGS, "DGS_DGS.csv"))
-DGS_2 <- read_csv(file.path(path_to_DGS, "DGS_Stroop.csv"))
-DGS_3 <- read_csv(file.path(path_to_DGS, "DGS_ASRT.csv"))
+DGS_1 <- read_csv(file.path(path, "DGS_DGS.csv"))
+DGS_2 <- read_csv(file.path(path, "DGS_Stroop.csv"))
+DGS_3 <- read_csv(file.path(path, "DGS_ASRT.csv"))
 
 # Upload the additional CSV files
-DGS_1_extra <- read_csv(file.path(path_to_DGS, "qdvg4_DGS_DGS.csv"))
-DGS_2_extra_1 <- read_csv(file.path(path_to_DGS, "wbij5_DGS_Stroop.csv"))
-DGS_2_extra_2 <- read_csv(file.path(path_to_DGS, "xqls8_DGS_Stroop.csv"))
+DGS_1_extra <- read_csv(file.path(path, "qdvg4_DGS_DGS.csv"))
+DGS_2_extra_1 <- read_csv(file.path(path, "wbij5_DGS_Stroop.csv"))
+DGS_2_extra_2 <- read_csv(file.path(path, "xqls8_DGS_Stroop.csv"))
 
 # Combine the data frames
 DGS_1 <- bind_rows(DGS_1, DGS_1_extra)

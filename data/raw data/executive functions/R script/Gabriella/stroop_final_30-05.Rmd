@@ -13,10 +13,10 @@ library(janitor)
 library(readxl)
 
 # Leer los datos
-path_to_Stroop <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
-Stroop_1 <- read_excel(file.path(path_to_Stroop, "Stroop_DGS.xlsx"))
-Stroop_2 <- read_excel(file.path(path_to_Stroop, "Stroop_Stroop.xlsx"))
-Stroop_3 <- read_excel(file.path(path_to_Stroop, "Stroop_ASRT.xlsx"))
+path <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+Stroop_1 <- read_excel(file.path(path, "Stroop_DGS.xlsx"))
+Stroop_2 <- read_excel(file.path(path, "Stroop_Stroop.xlsx"))
+Stroop_3 <- read_excel(file.path(path, "Stroop_ASRT.xlsx"))
 
 # Limpiar nombres de columnas
 colnames(Stroop_1) <- make.names(colnames(Stroop_1))
