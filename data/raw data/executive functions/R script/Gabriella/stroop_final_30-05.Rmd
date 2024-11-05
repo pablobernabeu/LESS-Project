@@ -13,46 +13,46 @@ library(janitor)
 library(readxl)
 
 # Leer los datos
-path <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
-Stroop_1 <- read_excel(file.path(path, "Stroop_DGS.xlsx"))
-Stroop_2 <- read_excel(file.path(path, "Stroop_Stroop.xlsx"))
-Stroop_3 <- read_excel(file.path(path, "Stroop_ASRT.xlsx"))
+path = "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+Stroop_1 = read_excel(file.path(path, "Stroop_DGS.xlsx"))
+Stroop_2 = read_excel(file.path(path, "Stroop_Stroop.xlsx"))
+Stroop_3 = read_excel(file.path(path, "Stroop_ASRT.xlsx"))
 
 # Limpiar nombres de columnas
-colnames(Stroop_1) <- make.names(colnames(Stroop_1))
-colnames(Stroop_2) <- make.names(colnames(Stroop_2))
-colnames(Stroop_3) <- make.names(colnames(Stroop_3))
+colnames(Stroop_1) = make.names(colnames(Stroop_1))
+colnames(Stroop_2) = make.names(colnames(Stroop_2))
+colnames(Stroop_3) = make.names(colnames(Stroop_3))
 
 print(colnames(Stroop_1))
 
 # Seleccionar columnas relevantes
-Stroop_1 <- Stroop_1 %>%
+Stroop_1 = Stroop_1 %>%
   select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency, Zone.Type)
 
-Stroop_2 <- Stroop_2 %>%
+Stroop_2 = Stroop_2 %>%
   select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency,Zone.Type)
 
-Stroop_3 <- Stroop_3 %>%
+Stroop_3 = Stroop_3 %>%
   select(Reaction.Time, Participant.Public.ID, Correct, Incorrect, Congruency, Zone.Type)
 
 # Combinar los dataframes
-merged_Stroop_2 <- bind_rows(Stroop_1, Stroop_2, Stroop_3)
+merged_Stroop_2 = bind_rows(Stroop_1, Stroop_2, Stroop_3)
 
 
 
 # Filtro para eliminar filas donde Zone.Type no es "response"
-merged_Stroop_2 <- merged_Stroop_2 %>%
+merged_Stroop_2 = merged_Stroop_2 %>%
   filter(Zone.Type == "response_keyboard")
 
 
  # Filtrar y limpiar los datos eliminando NA y asegurándose de que Congruency sea un factor
-cleaned_data_Stroop <- merged_Stroop %>%
+cleaned_data_Stroop = merged_Stroop %>%
   drop_na(Reaction.Time, Congruency) %>%
   mutate(Congruency = factor(Congruency, levels = c(0, 1), labels = c("incongruent", "congruent")))
 
 
 # Calcular la media del tiempo de reacción según la congruencia por cada participante
-mean_reaction_time_stroop <- cleaned_data_Stroop %>%
+mean_reaction_time_stroop = cleaned_data_Stroop %>%
   group_by(Participant.Public.ID, Congruency) %>%
   summarize(mean_reaction_time = mean(Reaction.Time, na.rm = TRUE))
 
@@ -60,7 +60,7 @@ mean_reaction_time_stroop <- cleaned_data_Stroop %>%
 print(mean_reaction_time)
 
 # Calcular la diferencia entre los tiempos de reacción de cada congruencia por cada participante
-difference_reaction_time <- mean_reaction_time_stroop %>%
+difference_reaction_time = mean_reaction_time_stroop %>%
   group_by(Participant.Public.ID) %>%
   pivot_wider(names_from = Congruency, values_from = mean_reaction_time) %>%
   mutate(difference_reaction_time = congruent - incongruent)

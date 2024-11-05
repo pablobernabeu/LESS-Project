@@ -27,7 +27,7 @@
 
 
 # anovas on the entire dataset to see the progress of activation
-# anova_result <- aov(Activation ~ Region, data = Session2_N200_data_frame)
+# anova_result = aov(Activation ~ Region, data = Session2_N200_data_frame)
 # but maybe do on the entire data frame?
 
 # Load necessary library
@@ -43,16 +43,16 @@ library(forcats)
 
 # For Session 2, time window N200
 
-Session2_N200_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
+Session2_N200_data_frame = read.csv("Raw data/EEG/data/Session 2/Session2_N200_data_frame.csv", header = TRUE)
 # View(Session2_N200_data_frame)
 
 # removing participant rqed8 due to incomplete file
-Session2_N200_data_frame_filtered <- Session2_N200_data_frame %>%
+Session2_N200_data_frame_filtered = Session2_N200_data_frame %>%
   filter(Participant_ID != "rqed8")
 
 # aggregating the data to run Anovas
 # testing to see if there's an overall effect of region on activation
-S2_N200_RegionxActivation <- aov(Activation ~ Region, data = Session2_N200_data_frame_filtered)
+S2_N200_RegionxActivation = aov(Activation ~ Region, data = Session2_N200_data_frame_filtered)
 head(S2_N200_RegionxActivation)
 
 # seeing where the differences lie between regions
@@ -62,15 +62,15 @@ TukeyHSD(S2_N200_RegionxActivation)
 # The mean is already calculated, using the original data frame to calculate the SD
 # Re-run the code using dplyr's functions
 # Calculate the mean Activation per Region
-mean_activation_S2_N200 <- aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, FUN = mean)
+mean_activation_S2_N200 = aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, FUN = mean)
 
 # Calculate the standard error (SE) per Region using tapply
-se_activation_S2_N200 <- aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, 
+se_activation_S2_N200 = aggregate(Activation ~ Region, data = Session2_N200_data_frame_filtered, 
                           FUN = function(x) sd(x) / sqrt(length(x)))
 
 
 # Combine the mean and SE into one data frame
-S2_N200_Activation_per_Region_plot <- data.frame(
+S2_N200_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_N200$Region,
   Mean = mean_activation_S2_N200$Activation,
   SE = se_activation_S2_N200$Activation
@@ -80,7 +80,7 @@ S2_N200_Activation_per_Region_plot <- data.frame(
 head(S2_N200_Activation_per_Region_plot)
 
 # Reorder regions based on mean activation
-S2_N200_Activation_per_Region_plot <- S2_N200_Activation_per_Region_plot %>%
+S2_N200_Activation_per_Region_plot = S2_N200_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -95,16 +95,16 @@ ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
 # Calculating the Activation per Region, per Grammaticality
 
 # Calculate mean activation by Region and Grammaticality
-mean_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality, 
+mean_activation_S2_N200 = aggregate(Activation ~ Region + Grammaticality, 
                                      data = Session2_N200_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region and Grammaticality
-se_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality, 
+se_activation_S2_N200 = aggregate(Activation ~ Region + Grammaticality, 
                                    data = Session2_N200_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_N200_Activation_per_Region_plot <- data.frame(
+S2_N200_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_N200$Region,
   Grammaticality = mean_activation_S2_N200$Grammaticality,
   Mean = mean_activation_S2_N200$Activation,
@@ -112,7 +112,7 @@ S2_N200_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_N200_Activation_per_Region_plot <- S2_N200_Activation_per_Region_plot %>%
+S2_N200_Activation_per_Region_plot = S2_N200_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -130,16 +130,16 @@ ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 # visualising the interaction between Activation, Grammaticality, and mini_language
 
 # Calculate mean activation by Region, Grammaticality, and mini_language
-mean_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+mean_activation_S2_N200 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                      data = Session2_N200_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region, Grammaticality, and mini_language
-se_activation_S2_N200 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+se_activation_S2_N200 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                    data = Session2_N200_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_N200_Activation_per_Region_plot <- data.frame(
+S2_N200_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_N200$Region,
   Grammaticality = mean_activation_S2_N200$Grammaticality,
   mini_language = mean_activation_S2_N200$mini_language,
@@ -148,7 +148,7 @@ S2_N200_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_N200_Activation_per_Region_plot <- S2_N200_Activation_per_Region_plot %>%
+S2_N200_Activation_per_Region_plot = S2_N200_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars, showing the interaction between Activation,
@@ -171,7 +171,7 @@ ggplot(S2_N200_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 
 
 # Calculating the mean activation per region for each participant separately
-mean_activation_per_participant <- aggregate(Activation ~ Region + Participant_ID, 
+mean_activation_per_participant = aggregate(Activation ~ Region + Participant_ID, 
                                              data = Session2_N200_data_frame_filtered, 
                                              FUN = mean)
 
@@ -205,20 +205,20 @@ ggplot(mean_activation_per_participant, aes(x = Participant_ID, y = Activation, 
 
 # For Session 2, time window P300
 
-Session2_P300_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
+Session2_P300_data_frame = read.csv("Raw data/EEG/data/Session 2/Session2_P300_data_frame.csv", header = TRUE)
 # View(Session2_P300_data_frame)
 
 # removing participant rqed8 due to incomplete file
-Session2_P300_data_frame_filtered <- Session2_P300_data_frame %>%
+Session2_P300_data_frame_filtered = Session2_P300_data_frame %>%
   filter(Participant_ID != "rqed8")
 
-# S2_P300_aggregated_data <- aggregate(Activation ~ Participant_ID + Region, 
+# S2_P300_aggregated_data = aggregate(Activation ~ Participant_ID + Region, 
 #                                     data = Session2_P300_data_frame, FUN = mean)
 # head(S2_P300_aggregated_data)
 
 # aggregating the data to run Anovas
 # testing to see if there's an overall effect of region on activation
-S2_P300_RegionxActivation <- aov(Activation ~ Region, data = Session2_P300_data_frame_filtered)
+S2_P300_RegionxActivation = aov(Activation ~ Region, data = Session2_P300_data_frame_filtered)
 head(S2_P300_RegionxActivation)
 
 # seeing where the differences lie between regions
@@ -228,14 +228,14 @@ TukeyHSD(S2_P300_RegionxActivation)
 # The mean is already calculated, using the original data frame to calculate the SD
 # Re-run the code using dplyr's functions
 # Calculate the mean Activation per Region
-mean_activation <- aggregate(Activation ~ Region, data = Session2_P300_data_frame_filtered, FUN = mean)
+mean_activation = aggregate(Activation ~ Region, data = Session2_P300_data_frame_filtered, FUN = mean)
 
 # Calculate the standard error (SE) per Region using tapply
-se_activation <- aggregate(Activation ~ Region, data = Session2_P300_data_frame_filtered, 
+se_activation = aggregate(Activation ~ Region, data = Session2_P300_data_frame_filtered, 
                            FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P300_Activation_per_Region_plot <- data.frame(
+S2_P300_Activation_per_Region_plot = data.frame(
   Region = mean_activation$Region,
   Mean = mean_activation$Activation,
   SE = se_activation$Activation
@@ -245,7 +245,7 @@ S2_P300_Activation_per_Region_plot <- data.frame(
 head(S2_P300_Activation_per_Region_plot)
 
 # Reorder regions based on mean activation
-S2_P300_Activation_per_Region_plot <- S2_P300_Activation_per_Region_plot %>%
+S2_P300_Activation_per_Region_plot = S2_P300_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -261,16 +261,16 @@ ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
 # Calculating the Activation per Region, per Grammaticality
 
 # Calculate mean activation by Region and Grammaticality
-mean_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality, 
+mean_activation_S2_P300 = aggregate(Activation ~ Region + Grammaticality, 
                                      data = Session2_P300_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region and Grammaticality
-se_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality, 
+se_activation_S2_P300 = aggregate(Activation ~ Region + Grammaticality, 
                                    data = Session2_P300_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P300_Activation_per_Region_plot <- data.frame(
+S2_P300_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_P300$Region,
   Grammaticality = mean_activation_S2_P300$Grammaticality,
   Mean = mean_activation_S2_P300$Activation,
@@ -278,7 +278,7 @@ S2_P300_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_P300_Activation_per_Region_plot <- S2_P300_Activation_per_Region_plot %>%
+S2_P300_Activation_per_Region_plot = S2_P300_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -297,16 +297,16 @@ ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 # visualising the interaction between Activation, Grammaticality, and mini_language
 
 # Calculate mean activation by Region, Grammaticality, and mini_language
-mean_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+mean_activation_S2_P300 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                      data = Session2_P300_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region, Grammaticality, and mini_language
-se_activation_S2_P300 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+se_activation_S2_P300 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                    data = Session2_P300_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P300_Activation_per_Region_plot <- data.frame(
+S2_P300_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_P300$Region,
   Grammaticality = mean_activation_S2_P300$Grammaticality,
   mini_language = mean_activation_S2_P300$mini_language,
@@ -315,7 +315,7 @@ S2_P300_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_P300_Activation_per_Region_plot <- S2_P300_Activation_per_Region_plot %>%
+S2_P300_Activation_per_Region_plot = S2_P300_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars, showing the interaction between Activation, 
@@ -337,16 +337,16 @@ ggplot(S2_P300_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 
 # For Session 2, time window P600
 
-Session2_P600_data_frame <- read.csv("Raw data/EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
+Session2_P600_data_frame = read.csv("Raw data/EEG/data/Session 2/Session2_P600_data_frame.csv", header = TRUE)
 # View(Session2_P600_data_frame)
 
 # removing participant rqed8 due to incomplete file
-Session2_P600_data_frame_filtered <- Session2_P600_data_frame %>%
+Session2_P600_data_frame_filtered = Session2_P600_data_frame %>%
   filter(Participant_ID != "rqed8")
 
 # aggregating the data to run Anovas
 # testing to see if there's an overall effect of region on activation
-S2_P600_RegionxActivation <- aov(Activation ~ Region, data = Session2_P600_data_frame_filtered)
+S2_P600_RegionxActivation = aov(Activation ~ Region, data = Session2_P600_data_frame_filtered)
 head(S2_P600_RegionxActivation)
 
 # seeing where the differences lie between regions
@@ -356,14 +356,14 @@ TukeyHSD(S2_P600_RegionxActivation)
 # The mean is already calculated, using the original data frame to calculate the SD
 # Re-run the code using dplyr's functions
 # Calculate the mean Activation per Region
-mean_activation <- aggregate(Activation ~ Region, data = Session2_P600_data_frame_filtered, FUN = mean)
+mean_activation = aggregate(Activation ~ Region, data = Session2_P600_data_frame_filtered, FUN = mean)
 
 # Calculate the standard error (SE) per Region using tapply
-se_activation <- aggregate(Activation ~ Region, data = Session2_P600_data_frame_filtered, 
+se_activation = aggregate(Activation ~ Region, data = Session2_P600_data_frame_filtered, 
                            FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P600_Activation_per_Region_plot <- data.frame(
+S2_P600_Activation_per_Region_plot = data.frame(
   Region = mean_activation$Region,
   Mean = mean_activation$Activation,
   SE = se_activation$Activation
@@ -373,7 +373,7 @@ S2_P600_Activation_per_Region_plot <- data.frame(
 head(S2_P600_Activation_per_Region_plot)
 
 # Reorder regions based on mean activation
-S2_P600_Activation_per_Region_plot <- S2_P600_Activation_per_Region_plot %>%
+S2_P600_Activation_per_Region_plot = S2_P600_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -389,16 +389,16 @@ ggplot(S2_P600_Activation_per_Region_plot, aes(x = Region, y = Mean)) +
 # Calculating the Activation per Region, per Grammaticality
 
 # Calculate mean activation by Region and Grammaticality
-mean_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality, 
+mean_activation_S2_P600 = aggregate(Activation ~ Region + Grammaticality, 
                                      data = Session2_P600_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region and Grammaticality
-se_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality, 
+se_activation_S2_P600 = aggregate(Activation ~ Region + Grammaticality, 
                                    data = Session2_P600_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P600_Activation_per_Region_plot <- data.frame(
+S2_P600_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_P600$Region,
   Grammaticality = mean_activation_S2_P600$Grammaticality,
   Mean = mean_activation_S2_P600$Activation,
@@ -406,7 +406,7 @@ S2_P600_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_P600_Activation_per_Region_plot <- S2_P600_Activation_per_Region_plot %>%
+S2_P600_Activation_per_Region_plot = S2_P600_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars using ggplot2
@@ -424,16 +424,16 @@ ggplot(S2_P600_Activation_per_Region_plot, aes(x = Region, y = Mean, fill = Gram
 # Visualising the activation between Region, Grammaticality, and mini_language
 
 # Calculate mean activation by Region, Grammaticality, and mini_language
-mean_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+mean_activation_S2_P600 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                      data = Session2_P600_data_frame_filtered, FUN = mean)
 
 # Calculate standard error (SE) by Region, Grammaticality, and mini_language
-se_activation_S2_P600 <- aggregate(Activation ~ Region + Grammaticality + mini_language, 
+se_activation_S2_P600 = aggregate(Activation ~ Region + Grammaticality + mini_language, 
                                    data = Session2_P600_data_frame_filtered, 
                                    FUN = function(x) sd(x) / sqrt(length(x)))
 
 # Combine the mean and SE into one data frame
-S2_P600_Activation_per_Region_plot <- data.frame(
+S2_P600_Activation_per_Region_plot = data.frame(
   Region = mean_activation_S2_P600$Region,
   Grammaticality = mean_activation_S2_P600$Grammaticality,
   mini_language = mean_activation_S2_P600$mini_language,
@@ -442,7 +442,7 @@ S2_P600_Activation_per_Region_plot <- data.frame(
 )
 
 # Reorder regions based on mean activation
-S2_P600_Activation_per_Region_plot <- S2_P600_Activation_per_Region_plot %>%
+S2_P600_Activation_per_Region_plot = S2_P600_Activation_per_Region_plot %>%
   mutate(Region = fct_reorder(Region, Mean))
 
 # Create a bar plot with error bars, showing the interaction between Activation,

@@ -11,7 +11,7 @@ library(janitor)
 
 
 # Path to files
-path <- "data/raw data/Executive functions/Session 1"
+path = "data/raw data/executive functions/Session 1"
 
 # Read in and combine the files
 stroop = rbind( 
@@ -21,10 +21,9 @@ stroop = rbind(
   read_csv(file.path(path, "qdvg4 Stroop.csv")),
   read_csv(file.path(path, "wbij5 Stroop.csv")),
   read_csv(file.path(path, "xqls8 Stroop.csv")) 
-)
-
-# Rename columns
-stroop <- stroop %>%
+) %>%
+  
+  # Rename columns
   rename(participant_home_ID = `Participant Public ID`,
          rt = `Reaction Time`, 
          trial_number = `Trial Number`) %>%
@@ -34,12 +33,12 @@ stroop <- stroop %>%
   replace_na(list(cumulative_RT = 0))
 
 # Clean column names
-colnames(stroop) <- make.names(colnames(stroop))
+colnames(stroop) = make.names(colnames(stroop))
 
 print(colnames(stroop))
 
 # Select relevant columns
-stroop <- stroop %>%
+stroop = stroop %>%
   select(rt, participant_home_ID, Correct, Incorrect, Congruency, Zone.Type) %>%
   
   # Filter to remove rows where Zone.Type is not "response"
@@ -50,17 +49,17 @@ stroop <- stroop %>%
   mutate(Congruency = factor(Congruency, levels = c(0, 1), 
                              labels = c("incongruent", "congruent")))
 
-
 # Calculate the median reaction time according to congruence for each participant
-stroop <- stroop %>%
+stroop = stroop %>%
   group_by(participant_home_ID, Congruency) %>%
   summarize(median_reaction_time_stroop = median(rt, na.rm = TRUE))
 
 # Calculate the difference between the reaction times of each congruence 
 # condition per participant.
+
 stroop = stroop %>%
   group_by(participant_home_ID) %>%
   pivot_wider(names_from = Congruency, values_from = stroop) %>%
-  mutate(difference_reaction_time = incongruent - congruent) %>%
-  select(participant_home_ID, difference_reaction_time)
+  mutate(stroop = incongruent - congruent) %>%
+  select(participant_home_ID, stroop)
 

@@ -20,48 +20,48 @@ library(readr)
 
 
 # Definir el path
-path <- "raw data/executive functions/Session 1"
+path = "raw data/executive functions/Session 1"
 
 
 # Leer los datos
-ASRT_1 <- read_csv(file.path(path, "ASRT_DGS.csv"))
-ASRT_2 <- read_csv(file.path(path, "ASRT_Stroop.csv"))
-ASRT_3 <- read_csv(file.path(path, "ASRT_ASRT.csv"))
+ASRT_1 = read_csv(file.path(path, "ASRT_DGS.csv"))
+ASRT_2 = read_csv(file.path(path, "ASRT_Stroop.csv"))
+ASRT_3 = read_csv(file.path(path, "ASRT_ASRT.csv"))
 
 # Load the additional CSV files
-ASRT_1_extra <- read_csv(file.path(path, "qdvg4_ASRT_DGS.csv"))
-ASRT_2_extra <- read_csv(file.path(path, "wbij5_ASRT_Stroop.csv"))
-ASRT_3_extra <- read_csv(file.path(path, "xqls8_ASRT_Stroop.csv"))
+ASRT_1_extra = read_csv(file.path(path, "qdvg4_ASRT_DGS.csv"))
+ASRT_2_extra = read_csv(file.path(path, "wbij5_ASRT_Stroop.csv"))
+ASRT_3_extra = read_csv(file.path(path, "xqls8_ASRT_Stroop.csv"))
 
 # Merge the data frames
-ASRT_1 <- bind_rows(ASRT_1, ASRT_1_extra)
-ASRT_2 <- bind_rows(ASRT_2, ASRT_2_extra)
-ASRT_3 <- bind_rows(ASRT_3, ASRT_3_extra)
+ASRT_1 = bind_rows(ASRT_1, ASRT_1_extra)
+ASRT_2 = bind_rows(ASRT_2, ASRT_2_extra)
+ASRT_3 = bind_rows(ASRT_3, ASRT_3_extra)
 
 
 # Seleccionar columnas relevantes
-columns_to_select <- c('Participant Public ID', 'time_elapsed', 'rt', 'correct', 'triplet_type', 
+columns_to_select = c('Participant Public ID', 'time_elapsed', 'rt', 'correct', 'triplet_type', 
                        'p_or_r', 'block', 'sequence', 'is_practice', 'first_response', 
                        'trial_number', 'correct_pos', 'correct_resp_button', 'resp_button', 
                        'cumulative_RT', 'actual_triplet')
 
-ASRT_1 <- ASRT_1 %>% select(all_of(columns_to_select))
-ASRT_2 <- ASRT_2 %>% select(all_of(columns_to_select))
-ASRT_3 <- ASRT_3 %>% select(all_of(columns_to_select))
+ASRT_1 = ASRT_1 %>% select(all_of(columns_to_select))
+ASRT_2 = ASRT_2 %>% select(all_of(columns_to_select))
+ASRT_3 = ASRT_3 %>% select(all_of(columns_to_select))
 
 # Combinar los dataframes
-merged_ASRT <- bind_rows(ASRT_1, ASRT_2, ASRT_3)
+merged_ASRT = bind_rows(ASRT_1, ASRT_2, ASRT_3)
 
 # Convertir valores de cadenas a numéricos
-merged_ASRT <- merged_ASRT %>%
+merged_ASRT = merged_ASRT %>%
   mutate(across(c(cumulative_RT, trial_number), as.numeric))
 
-merged_ASRT <- merged_ASRT %>%
+merged_ASRT = merged_ASRT %>%
   replace_na(list(cumulative_RT = 0))
  
 
 # Definir epochs en una nueva columna 'epoch'
-merged_ASRT <- merged_ASRT %>%
+merged_ASRT = merged_ASRT %>%
   mutate(epoch = case_when(
     block <= 5 ~ 1,
     block >= 6 & block <= 10 ~ 2,
@@ -72,7 +72,7 @@ merged_ASRT <- merged_ASRT %>%
   ))
 
 # Calcular la mediana del tiempo de reacción (RT) para cada combinación de participante, grupo, epoch y tipo de triplet
-TL_RT_wide <- merged_ASRT %>%
+TL_RT_wide = merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
@@ -80,30 +80,30 @@ TL_RT_wide <- merged_ASRT %>%
 
 
 # Renombrar las columnas con el prefijo 'e' para indicar la epoch y el tipo de triplet
-names(TL_RT_wide)[-c(1, 2)] <- paste0("e", names(TL_RT_wide)[-c(1, 2)])
+names(TL_RT_wide)[-c(1, 2)] = paste0("e", names(TL_RT_wide)[-c(1, 2)])
 
 
 
 # Calcular la mediana del tiempo de reacción (RT) para cada combinación de participante, grupo, epoch y tipo de triplet
-TL_RT_wide <- merged_ASRT %>%
+TL_RT_wide = merged_ASRT %>%
   group_by(`Participant Public ID`, p_or_r, epoch, triplet_type) %>%
   summarize(median_RT = median(cumulative_RT), na.rm = TRUE) %>%
   pivot_wider(names_from = c(epoch, triplet_type), values_from = median_RT) %>%
   ungroup()
 
 # Renombrar las columnas con el prefijo 'e' para indicar la epoch y el tipo de triplet
-names(TL_RT_wide)[-c(1, 2)] <- paste0("e", names(TL_RT_wide)[-c(1, 2)])
+names(TL_RT_wide)[-c(1, 2)] = paste0("e", names(TL_RT_wide)[-c(1, 2)])
 
 
-TL_RT_wide_1 <- TL_RT_wide %>% 
+TL_RT_wide_1 = TL_RT_wide %>% 
   head(-1) %>% 
   drop_na(p_or_r) %>% 
   mutate(across(everything(), ~replace_na(., 0))) 
 
 
-TL_RT_wide_1[is.na(TL_RT_wide_1)] <- 0
+TL_RT_wide_1[is.na(TL_RT_wide_1)] = 0
 
-TL_RT_wide_1 <- TL_RT_wide_1 %>%
+TL_RT_wide_1 = TL_RT_wide_1 %>%
  mutate(
     e1_TL = e1_L - e1_H,
     e2_TL = e2_L - e2_H,

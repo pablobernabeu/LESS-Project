@@ -12,57 +12,57 @@ library(tidyverse)
 library(janitor)
 library(readxl)
 # Leer los datos
-path <- "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
-DGS_1 <- read_excel(file.path(path, "DGS_DGS.xlsx"))
-DGS_2 <- read_excel(file.path(path, "DGS_Stroop.xlsx"))
-DGS_3 <- read_excel(file.path(path, "DGS_ASRT.xlsx"))
+path = "C:\\Users\\gsilva\\Desktop\\DATA_GORILLA\\DATA_24.05"
+DGS_1 = read_excel(file.path(path, "DGS_DGS.xlsx"))
+DGS_2 = read_excel(file.path(path, "DGS_Stroop.xlsx"))
+DGS_3 = read_excel(file.path(path, "DGS_ASRT.xlsx"))
 
 # Limpiar nombres de columnas
-colnames(DGS_1) <- make.names(colnames(DGS_1))
-colnames(DGS_2) <- make.names(colnames(DGS_2))
-colnames(DGS_3) <- make.names(colnames(DGS_3))
+colnames(DGS_1) = make.names(colnames(DGS_1))
+colnames(DGS_2) = make.names(colnames(DGS_2))
+colnames(DGS_3) = make.names(colnames(DGS_3))
 
 
 # Seleccionar columnas para combinar
-DGS_1 <- DGS_1 %>%
+DGS_1 = DGS_1 %>%
   select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
 
-DGS_2 <- DGS_2 %>%
+DGS_2 = DGS_2 %>%
   select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
 
-DGS_3 <- DGS_3 %>%
+DGS_3 = DGS_3 %>%
   select(Attempt, Correct, display, listLength, Reaction.Time, Participant.Public.ID)
 
 # Combinar los dataframes
-merged_DGS <- bind_rows(DGS_1, DGS_2, DGS_3)
+merged_DGS = bind_rows(DGS_1, DGS_2, DGS_3)
 
 
 # Agrupar los datos por Participant.Private.ID
-grouped_DGS <- merged_DGS %>%
+grouped_DGS = merged_DGS %>%
   group_by(Participant.Public.ID)
 
 # Para calcular el promedio de Correct por participante:
-avg_correct <- grouped_DGS %>%
+avg_correct = grouped_DGS %>%
   summarize(avg_correct = mean(Correct))
 
 print(avg_correct)
 
 # Calcular el número total de dígitos correctos por participante
-total_correct <- merged_DGS %>%
+total_correct = merged_DGS %>%
   group_by(Participant.Public.ID) %>%
   summarize(total_correct = sum(Correct))
 
 print(total_correct)
 
 # Calcular el número de dígitos correctos para cada longitud de lista por participante
-scores_by_length <- merged_DGS %>%
+scores_by_length = merged_DGS %>%
   group_by(Participant.Public.ID, listLength) %>%
   summarize(total_correct = sum(Correct))
 
 print(scores_by_length)
 
 # Calcular la cantidad de errores por tipo y por participante
-errors <- merged_DGS %>%
+errors = merged_DGS %>%
   group_by(Participant.Public.ID) %>%
   summarize(omissions = sum(ifelse(Correct == 0 & is.na(display), 1, 0)),
             intrusions = sum(ifelse(Correct == 0 & !is.na(display), 1, 0)),
@@ -71,7 +71,7 @@ errors <- merged_DGS %>%
 print(errors)
 
 # Combinar los resultados en una tabla única
-analysis_table_DGS <- left_join(total_correct, scores_by_length, by = "Participant.Public.ID") %>%
+analysis_table_DGS = left_join(total_correct, scores_by_length, by = "Participant.Public.ID") %>%
   left_join(errors, by = "Participant.Public.ID")
 
 print(analysis_table_DGS)

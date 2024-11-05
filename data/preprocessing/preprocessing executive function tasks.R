@@ -11,16 +11,16 @@ library(rmarkdown)
 
 
 # Loading the behavioural data from Session 1 
-Stroop <- read.csv("Raw data/Executive functions/difference_reaction_time_stroop.csv")
-TL <- read.csv("Raw data/Executive functions/TL_RT_wide_1.csv")
-DGS <- read.csv("Raw data/Executive functions/analysis_table_DGS.csv")
+Stroop = read.csv("Raw data/executive functions/difference_reaction_time_stroop.csv")
+TL = read.csv("Raw data/executive functions/TL_RT_wide_1.csv")
+DGS = read.csv("Raw data/executive functions/analysis_table_DGS.csv")
 
 # View(DGS)
 # View(Stroop)
 # View(TL)
 
 # Combine the data frames based on Participant Public ID
-Session1_data <- DGS %>%
+Session1_data = DGS %>%
   full_join(Stroop, by = "Participant.Public.ID", relationship = "many-to-many") %>%
   full_join(TL, by = "Participant.Public.ID", relationship = "many-to-many")
 
@@ -28,10 +28,10 @@ Session1_data <- DGS %>%
 # View(Session1_data)
 
 # Rename the column 'Participant.Public.ID' to 'Participant_ID'
-names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] <- "Participant_ID"
+names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] = "Participant_ID"
 
 # Merge the two data frames by 'Participant_ID'
-Background_data <- merge(LHQ3_final, Session1_data, by = "Participant_ID")
+Background_data = merge(LHQ3_final, Session1_data, by = "Participant_ID")
 
 # View the merged data
 # View(Background_data)
