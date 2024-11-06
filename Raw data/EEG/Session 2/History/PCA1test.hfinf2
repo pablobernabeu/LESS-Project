@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>PCA1test/Raw Data</string>
+  </Nodes>
+  <TIDs>
+    <guid>28f1f9d8-0dc5-439c-ae5e-bcd3c0e01969</guid>
+  </TIDs>
+  <ReaderID>00000000-0000-0000-0000-000000000000</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-PF2HW38K</Computer>
+</HistoryInfoFile>
