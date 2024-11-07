@@ -94,7 +94,8 @@ errors = merged_DGS %>%
 print(errors)
 
 # Combine the results into a single table
-analysis_table_DGS = left_join(total_correct, scores_by_length, by = "Participant.Public.ID") %>%
+analysis_table_DGS = left_join(total_correct, scores_by_length, 
+                               by = "Participant.Public.ID") %>%
   left_join(errors, by = "Participant.Public.ID")
 
 # Find the highest score per participant

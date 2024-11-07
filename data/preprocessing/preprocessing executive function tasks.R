@@ -10,28 +10,24 @@ library(janitor)
 library(rmarkdown)
 
 
-# Loading the behavioural data from Session 1 
-Stroop = read.csv("Raw data/executive functions/difference_reaction_time_stroop.csv")
-TL = read.csv("Raw data/executive functions/TL_RT_wide_1.csv")
-DGS = read.csv("Raw data/executive functions/analysis_table_DGS.csv")
-
-# View(DGS)
-# View(Stroop)
-# View(TL)
+source('data/preprocessing/preprocessing digit span task.R')
+gc() # free up memory
+source('data/preprocessing/preprocessing Stroop task.R')
+gc() # free up memory
+source('data/preprocessing/preprocessing alternating serial reaction time task.R')
+gc() # free up memory
 
 # Combine the data frames based on Participant Public ID
-Session1_data = DGS %>%
-  full_join(Stroop, by = "Participant.Public.ID", relationship = "many-to-many") %>%
-  full_join(TL, by = "Participant.Public.ID", relationship = "many-to-many")
+Session1_executive = 
+  digit_span %>%
+  full_join(stroop, by = "participant_home_ID", relationship = "many-to-many") %>%
+  full_join(ASRT, by = "participant_home_ID", relationship = "many-to-many")
 
 # View the combined data
 # View(Session1_data)
 
-# Rename the column 'Participant.Public.ID' to 'Participant_ID'
-names(Session1_data)[names(Session1_data) == "Participant.Public.ID"] = "Participant_ID"
-
 # Merge the two data frames by 'Participant_ID'
-Background_data = merge(LHQ3_final, Session1_data, by = "Participant_ID")
+Background_data = merge(LHQ3_final, Session1_data, by = "participant_home_ID")
 
 # View the merged data
 # View(Background_data)

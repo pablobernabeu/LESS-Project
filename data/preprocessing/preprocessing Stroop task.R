@@ -30,11 +30,9 @@ stroop = rbind(
   
   # Convert string values to numeric where appropriate
   mutate(across(c(rt, trial_number), as.numeric)) %>%
-  replace_na(list(cumulative_RT = 0))
 
 # Clean column names
 colnames(stroop) = make.names(colnames(stroop))
-
 print(colnames(stroop))
 
 # Select relevant columns
@@ -59,7 +57,7 @@ stroop = stroop %>%
 
 stroop = stroop %>%
   group_by(participant_home_ID) %>%
-  pivot_wider(names_from = Congruency, values_from = stroop) %>%
+  pivot_wider(names_from = Congruency, values_from = median_reaction_time_stroop) %>%
   mutate(stroop = incongruent - congruent) %>%
   select(participant_home_ID, stroop)
 

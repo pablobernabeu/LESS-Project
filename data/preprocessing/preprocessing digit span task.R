@@ -2,8 +2,6 @@
 
 # Preprocessing digit span forward and backward
 
-# 
-
 
 library(dplyr)
 library(tidyr)
@@ -26,11 +24,13 @@ digit_span = rbind(
 ) %>%
   
   # Rename columns
-  rename(participant_home_ID = `Participant Public ID`) %>%
-  
-  # Convert string values to numeric where appropriate
-  mutate(across(c(cumulative_RT, trial_number), as.numeric)) %>%
-  replace_na(list(cumulative_RT = 0))
+  rename(participant_home_ID = `Participant Public ID`)
 
+# Clear column names
+colnames(digit_span) = make.names(colnames(digit_span))
 
+digit_span = digit_span %>%
+  mutate(display = as.factor(display)) %>%
+  group_by(participant_home_ID) %>%
+  summarize(DGS_total = sum(Correct))
 
