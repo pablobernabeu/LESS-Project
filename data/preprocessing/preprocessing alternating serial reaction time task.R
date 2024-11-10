@@ -1,6 +1,6 @@
 
 
-# Preprocessing Alternating Serial Reaction Time (ASRT) task
+# Preprocessing alternating serial reaction time (ASRT) task from Session 1
 
 # The following hypothetical examples illustrate how the ASRT 
 # learning effect is operationalised.
@@ -32,7 +32,6 @@ library(stringr)
 library(readr)
 library(ggplot2)
 
-
 # Path to files
 path = "data/raw data/executive functions/Session 1"
 
@@ -52,25 +51,32 @@ ASRT = rbind(
   
   # Rename conditions
   mutate(pattern_or_random = case_match(pattern_or_random, 
-                                        'P' ~ 'pattern_stroop', 
-                                        'R' ~ 'random_stroop')) %>%
+                                        'P' ~ 'pattern_Stroop', 
+                                        'R' ~ 'random_Stroop')) %>%
   
   # Convert string values to numeric where appropriate
   mutate(across(c(cumulative_RT, trial_number), as.numeric)) %>%
   
+  # Leave only high and low probability trials
+  filter(triplet_type %in% c('H', 'L')) %>%
+  
   # Remove NAs 
-  replace_na(list(cumulative_RT = 0)) %>%
   drop_na(participant_home_ID, pattern_or_random, block, 
           triplet_type, cumulative_RT)
 
-# Trim RTs. First, remove any RTs lower than 50 ms or higher than 5,000 ms. 
-# Next, remove any RTs that lie more than 3 standard deviations (SD) away 
-# from the mean. The latter calculation is performed within participants, 
-# within pattern/random condition, within blocks, and within triplet types. 
-# Three SDs is a typical cut-off (e.g., https://doi.org/10.3758/s13428-012-0304-z).
-# At the end, the percentage of data trimmed out is presented. 
+# Inspect number of data points per patter/random type and per triplet type
+ASRT %>% group_by(pattern_or_random, triplet_type) %>% summarise(n())
 
-# Create empty dataframe using column names from the original data set.
+# Trim RTs. First, remove any reaction times (RTs) smaller than 50 ms or larger 
+# than 5,000 ms. Next, remove any RTs that lie more than 3 standard deviations 
+# (SD) away from the mean. The latter calculation is performed within 
+# participants, within pattern/random condition, within blocks, and within 
+# triplet types. Three SDs is a typical cut-off (e.g., 
+# https://doi.org/10.3758/s13428-012-0304-z). At the end, the percentage of 
+# data trimmed out is presented. 
+
+# Create empty dataframe using column 
+# names from the original data set.
 trimmed_ASRT = ASRT[0,]
 
 trimmed_ASRT = ASRT %>%
@@ -98,7 +104,7 @@ ASRT = trimmed_ASRT
 
 # Create a new 'epoch' column based on block ranges
 ASRT = ASRT %>%
-  mutate( 
+  mutate(
     epoch = case_when(
       block <= 5 ~ 1,
       block >= 6 & block <= 10 ~ 2,
@@ -143,19 +149,11 @@ ASRT = ASRT %>%
 
 gc() # free up memory
 
-# Pivot categorical values of some variables into independent columns, 
-# and remove NAs.
-
-ASRT = ASRT %>%
-  pivot_wider(names_from = pattern_or_random, 
-              values_from = ASRT_learning_effect) %>%
-  drop_na(starts_with('pattern|random'))
-
 # Get descriptives and plot distribution of ASRT_learning_effect split 
 # by pattern/random condition.
 
 ASRT %>% group_by(pattern_or_random) %>%
-  summarise(pattern_stroop = mean(ASRT_learning_effect))
+  summarise(pattern_Stroop = mean(ASRT_learning_effect))
 
 ASRT %>%
   ggplot(aes(x = factor(1), y = ASRT_learning_effect)) +
@@ -165,8 +163,24 @@ ASRT %>%
   scale_color_manual(values = c("#00AFBB", "#E7B800")) + 
   labs(x = NULL)
 
+# Check how many participants have data for pattern trials and 
+# for random trials.
+ASRT %>% group_by(pattern_or_random) %>% summarise(participants = n())
+
+# Split apart pattern and random trials
+ASRT = ASRT %>%
+  pivot_wider(names_from = pattern_or_random, 
+              values_from = ASRT_learning_effect)
+
+# Aggregate data by participant
+ASRT = ASRT %>%
+  group_by(participant_home_ID) %>%
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE))) %>%
+  ungroup()
+
 # Select the relevant columns
-ASRT = ASRT %>% select(participant_home_ID, ASRT_learning_effect)
+Session1_ASRT = ASRT %>% 
+  select(participant_home_ID, pattern_Stroop, random_Stroop)
 
 # Whereas pattern trials are sensitive to implicit learning, random trials are 
 # more related to motor and attentional processes. To obtain an accurate 

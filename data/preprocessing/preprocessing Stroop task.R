@@ -1,23 +1,20 @@
 
 
-# Preprocessing stroop task
-
+# Preprocessing Stroop task from Session 1
 
 library(dplyr)
 library(tidyr)
 library(readr)
 library(janitor)
-# library(readxl)
-
 
 # Path to files
 path = "data/raw data/executive functions/Session 1"
 
 # Read in and combine the files
-stroop = rbind( 
-  read_csv(file.path(path, "stroop 1.csv")),
-  read_csv(file.path(path, "stroop 2.csv")),
-  read_csv(file.path(path, "stroop 3.csv")),
+Stroop = rbind( 
+  read_csv(file.path(path, "Stroop 1.csv")),
+  read_csv(file.path(path, "Stroop 2.csv")),
+  read_csv(file.path(path, "Stroop 3.csv")),
   read_csv(file.path(path, "qdvg4 Stroop.csv")),
   read_csv(file.path(path, "wbij5 Stroop.csv")),
   read_csv(file.path(path, "xqls8 Stroop.csv")) 
@@ -29,14 +26,14 @@ stroop = rbind(
          trial_number = `Trial Number`) %>%
   
   # Convert string values to numeric where appropriate
-  mutate(across(c(rt, trial_number), as.numeric)) %>%
+  mutate(across(c(rt, trial_number), as.numeric))
 
 # Clean column names
-colnames(stroop) = make.names(colnames(stroop))
-print(colnames(stroop))
+colnames(Stroop) = make.names(colnames(Stroop))
+print(colnames(Stroop))
 
 # Select relevant columns
-stroop = stroop %>%
+Stroop = Stroop %>%
   select(rt, participant_home_ID, Correct, Incorrect, Congruency, Zone.Type) %>%
   
   # Filter to remove rows where Zone.Type is not "response"
@@ -48,16 +45,18 @@ stroop = stroop %>%
                              labels = c("incongruent", "congruent")))
 
 # Calculate the median reaction time according to congruence for each participant
-stroop = stroop %>%
+Stroop = Stroop %>%
   group_by(participant_home_ID, Congruency) %>%
-  summarize(median_reaction_time_stroop = median(rt, na.rm = TRUE))
+  summarize(median_reaction_time_Stroop = median(rt, na.rm = TRUE)) %>%
+  ungroup()
 
 # Calculate the difference between the reaction times of each congruence 
 # condition per participant.
 
-stroop = stroop %>%
+Session1_Stroop = Stroop %>%
   group_by(participant_home_ID) %>%
-  pivot_wider(names_from = Congruency, values_from = median_reaction_time_stroop) %>%
-  mutate(stroop = incongruent - congruent) %>%
-  select(participant_home_ID, stroop)
+  pivot_wider(names_from = Congruency, values_from = median_reaction_time_Stroop) %>%
+  mutate(Stroop = incongruent - congruent) %>%
+  select(participant_home_ID, Stroop) %>%
+  ungroup()
 

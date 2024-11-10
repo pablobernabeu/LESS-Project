@@ -1,14 +1,12 @@
 
 
-# Preprocessing digit span forward and backward
-
+# Preprocessing digit span forward and backward from Session 1
 
 library(dplyr)
 library(tidyr)
 library(stringr)
 library(readr)
 library(ggplot2)
-
 
 # Path to files
 path = "data/raw data/executive functions/Session 1"
@@ -29,8 +27,9 @@ digit_span = rbind(
 # Clear column names
 colnames(digit_span) = make.names(colnames(digit_span))
 
-digit_span = digit_span %>%
+Session1_digit_span = digit_span %>%
   mutate(display = as.factor(display)) %>%
   group_by(participant_home_ID) %>%
-  summarize(DGS_total = sum(Correct))
+  summarize(DGS_total = sum(Correct)) %>%
+  ungroup()
 
