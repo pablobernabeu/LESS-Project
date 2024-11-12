@@ -2,29 +2,6 @@
 
 # Preprocessing alternating serial reaction time (ASRT) task from Session 1
 
-# The following hypothetical examples illustrate how the ASRT 
-# learning effect is operationalised.
-# 
-# Epoch 1 for Participant A and Participant B, with identical results
-# Low probability = 1,000 ms
-# High probability = 800 ms
-# Low-high effect = 1000 - 800 = 200 ms
-# 
-# Epoch 5 for Participant A
-# Low probability = 900 ms
-# High probability = 600 ms
-# Low-high effect = 900 - 600 = 300 ms
-# Learning effect (Epoch 5 - Epoch 1) = 300 - 200 = 100 ms
-# 
-# Epoch 5 for Participant B
-# Low probability = 900 ms
-# High probability = 700 ms
-# Low-high effect = 900 - 700 = 200 ms
-# Learning effect (Epoch 5 - Epoch 1) = 200 - 200 = 0 ms
-# 
-# Participant A gained 100 ms across epochs, revealing a learning effect, 
-# whereas Participant B did not present any learning effect.
-
 
 library(dplyr)
 library(tidyr)
@@ -33,16 +10,16 @@ library(readr)
 library(ggplot2)
 
 # Path to files
-path = "data/raw data/executive functions/Session 1"
+path = 'data/raw data/executive functions/Session 1'
 
 # Read in and combine the files
 ASRT = rbind( 
-  read_csv(file.path(path, "serial reaction time 1.csv")),
-  read_csv(file.path(path, "serial reaction time 2.csv")),
-  read_csv(file.path(path, "serial reaction time 3.csv")),
-  read_csv(file.path(path, "qdvg4 serial reaction time.csv")),
-  read_csv(file.path(path, "wbij5 serial reaction time.csv")),
-  read_csv(file.path(path, "xqls8 serial reaction time.csv")) 
+  read_csv(file.path(path, 'serial reaction time 1.csv')),
+  read_csv(file.path(path, 'serial reaction time 2.csv')),
+  read_csv(file.path(path, 'serial reaction time 3.csv')),
+  read_csv(file.path(path, 'qdvg4 serial reaction time.csv')),
+  read_csv(file.path(path, 'wbij5 serial reaction time.csv')),
+  read_csv(file.path(path, 'xqls8 serial reaction time.csv')) 
 ) %>%
   
   # Rename columns
@@ -64,13 +41,35 @@ ASRT = rbind(
   drop_na(participant_home_ID, pattern_or_random, block, 
           triplet_type, cumulative_RT)
 
-# Inspect number of data points per patter/random type and per triplet type
-ASRT %>% group_by(pattern_or_random, triplet_type) %>% summarise(n())
+
+# Inspect number of data points per participant, per pattern/random type 
+# and per triplet type.
+
+ASRT %>% 
+  filter(pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+ASRT %>% 
+  filter(pattern_or_random == 'random_Stroop') %>%   # random only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+# Count participants with and without low-probability pattern trials
+ASRT %>%
+  filter(pattern_or_random == 'pattern_Stroop') %>%
+  group_by(participant_home_ID) %>%
+  summarize(has_Low = any(triplet_type == 'L')) %>%  
+  group_by(has_Low) %>%
+  summarize(count = n())
+
 
 # Trim RTs. First, remove any reaction times (RTs) smaller than 50 ms or larger 
 # than 5,000 ms. Next, remove any RTs that lie more than 3 standard deviations 
 # (SD) away from the mean. The latter calculation is performed within 
-# participants, within pattern/random condition, within blocks, and within 
+# participants, within pattern/random condition, within blocks and within 
 # triplet types. Three SDs is a typical cut-off (e.g., 
 # https://doi.org/10.3758/s13428-012-0304-z). At the end, the percentage of 
 # data trimmed out is presented. 
@@ -102,6 +101,7 @@ trimmed_ASRT = ASRT %>%
 # Apply change
 ASRT = trimmed_ASRT
 
+
 # Create a new 'epoch' column based on block ranges
 ASRT = ASRT %>%
   mutate(
@@ -118,34 +118,78 @@ ASRT = ASRT %>%
 
 gc() # free up memory
 
+
+# Inspect number of data points in epoch 1 per participant, 
+# per pattern/random type and per triplet type.
+
+ASRT %>% 
+  filter(epoch == 'epoch1', pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+ASRT %>% 
+  filter(epoch == 'epoch1', pattern_or_random == 'random_Stroop') %>%  # random only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+# Inspect number of data points in epoch 5 per participant, 
+# per pattern/random type and per triplet type.
+
+ASRT %>% 
+  filter(epoch == 'epoch5', pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+ASRT %>% 
+  filter(epoch == 'epoch5', pattern_or_random == 'random_Stroop') %>%  # random only
+  group_by(participant_home_ID, triplet_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(participant_home_ID, count)
+
+# Count participants with and without low-probability pattern trials
+ASRT %>%
+  filter(pattern_or_random == 'pattern_Stroop') %>%
+  group_by(participant_home_ID) %>%
+  summarize(has_Low = any(triplet_type == 'L')) %>%  
+  group_by(has_Low) %>%
+  summarize(count = n())
+
+
+# **********************
+# 
+# Conclusion: Most participants are missing data for low-probability trials, 
+# making the comparison between epoch 1 and epoch 5 impossible. Therefore, 
+# the results are reanalysed below without the epoch distinction. 
+# 
+# **********************
+
+
 # Calculate mean reaction time (RT) for each combination of participant, 
-# group, trial and triplet type.
+# pattern/random type and triplet type.
 
 ASRT = ASRT %>% 
-  group_by(participant_home_ID, pattern_or_random, epoch, triplet_type) %>%
+  group_by(participant_home_ID, pattern_or_random, triplet_type) %>%
   summarize(mean_RT = mean(cumulative_RT, na.rm = TRUE)) %>%
   ungroup()
 
-# Pivot categorical values of some variables into independent columns
+# Pivot categorical values of triplet_type into independent columns
 ASRT = ASRT %>%
-  pivot_wider(names_from = c(epoch, triplet_type), 
+  pivot_wider(names_from = triplet_type, 
               values_from = mean_RT)
 
 gc() # free up memory
 
-# Subtract RTs for low probability trials from RTs for high-probability trials,
-# and remove NAs.
+# Subtract high-probability pattern trials from 
+# high-probability random trials, and drop NAs.
 
-ASRT = ASRT %>% 
-  mutate(
-    epoch1_diff = epoch1_L - epoch1_H,
-    epoch2_diff = epoch2_L - epoch2_H,
-    epoch3_diff = epoch3_L - epoch3_H,
-    epoch4_diff = epoch4_L - epoch4_H,
-    epoch5_diff = epoch5_L - epoch5_H,
-    ASRT_learning_effect = epoch5_diff - epoch1_diff
-  ) %>%
-  drop_na(ASRT_learning_effect)
+##################
+
+# TBC 13 Nov 2024
+
+##################
 
 gc() # free up memory
 
@@ -157,10 +201,10 @@ ASRT %>% group_by(pattern_or_random) %>%
 
 ASRT %>%
   ggplot(aes(x = factor(1), y = ASRT_learning_effect)) +
-  geom_boxplot(width = 0.4, fill = "white") +
+  geom_boxplot(width = 0.4, fill = 'white') +
   geom_jitter(aes(color = pattern_or_random, shape = pattern_or_random), 
               width = 0.1, size = 1) +
-  scale_color_manual(values = c("#00AFBB", "#E7B800")) + 
+  scale_color_manual(values = c('#00AFBB', '#E7B800')) + 
   labs(x = NULL)
 
 # Check how many participants have data for pattern trials and 
