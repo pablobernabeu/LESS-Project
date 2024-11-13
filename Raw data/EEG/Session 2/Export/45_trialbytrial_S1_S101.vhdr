@@ -1,5 +1,5 @@
 BrainVision Data Exchange Header File Version 2.0
-; Data created from history path: 45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S101 tbt
+; Data created from history path: 45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt
 
 [Common Infos]
 Codepage=UTF-8
@@ -9,7 +9,7 @@ DataFormat=ASCII
 DataOrientation=VECTORIZED
 DataType=TIMEDOMAIN
 NumberOfChannels=31
-DataPoints=18000
+DataPoints=28800
 ; Sampling interval in microseconds if time domain (convert to Hertz:
 ; 1000000 / SamplingInterval) or in Hertz if frequency domain:
 SamplingInterval=2000

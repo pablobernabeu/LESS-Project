@@ -15,15 +15,18 @@
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101</string>
-    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101/Average</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101/S1_S101_Average</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S102</string>
-    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S102/Average</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S102/S1_S102_Average</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S103</string>
-    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S103/Average</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S103/S1_S103_Average</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt/S1_S101_Average tbt</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt/S1_S102_Average tbt</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt</string>
+    <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt/S1_S103_Average tbt</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
     <string>23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
@@ -55,8 +58,11 @@
     <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
+    <guid>e0da9824-ea9e-40a4-93aa-ee222b03caf9</guid>
     <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
+    <guid>ee1b8567-0ea8-4c4a-b672-db61657fc7fc</guid>
     <guid>2a780ae6-0a85-4eed-afe1-0fbe150c389f</guid>
+    <guid>f5da3751-6589-4c11-b889-348cbde50a40</guid>
     <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
     <guid>589a27c6-6c00-4436-939b-6ce56811f735</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>

@@ -4,12 +4,14 @@
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
   <Nodes>
-    <string>PCA1test/Raw Data</string>
+    <string>Grand average of S1_tbt_S101/Raw Data</string>
+    <string>Grand average of S1_tbt_S101/Raw Data/Pooling</string>
   </Nodes>
   <TIDs>
-    <guid>28f1f9d8-0dc5-439c-ae5e-bcd3c0e01969</guid>
+    <guid>1b3aa068-4320-4860-8faa-3714832f4c69</guid>
+    <guid>d1d7c3e7-853d-433e-87bb-247e670b950d</guid>
   </TIDs>
-  <ReaderID>00000000-0000-0000-0000-000000000000</ReaderID>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
   <User>chath1626</User>
   <Computer>UIT-PF2HW38K</Computer>

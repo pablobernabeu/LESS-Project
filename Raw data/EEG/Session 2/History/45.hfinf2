@@ -11,19 +11,24 @@
     <string>45/Raw Data/Raw Data Inspection/New Reference</string>
     <string>45/Raw Data/Raw Data Inspection/New Reference/Filters</string>
     <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101/Average</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102/Average</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103/Average</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S101 tbt</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S102 tbt</string>
-    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S103 tbt</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection/S1_S102_Average</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Artifact Rejection tbt</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Artifact Rejection tbt/S1_S102_tbt_Average</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection/S1_S101_Average</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt/S1_S101_tbt_Average</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection/S1_S103_Average</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt</string>
+    <string>45/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt/S1_S103_tbt_Average</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -31,19 +36,24 @@
     <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
     <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
     <guid>5cc268a1-8627-47bb-9e2e-45174ae3103c</guid>
-    <guid>4eb00976-ca3a-4a62-a379-eb48287d02ae</guid>
-    <guid>1e6b349c-e6a1-4ea5-8f51-7c62fcb051b5</guid>
+    <guid>c2a5c458-86c0-40e7-bac7-76931e8a83cb</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>908787bb-8aa6-4035-ab1f-62be31104847</guid>
+    <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
-    <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
-    <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
-    <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
-    <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
-    <guid>ac9d924d-8f27-4f41-8764-61701d77fa48</guid>
-    <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
+    <guid>24825ebc-d466-4913-9857-12e3308f0cbc</guid>
+    <guid>9c1da3d8-5605-46cb-a124-d03cd7361336</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>532bf4a3-6704-4f55-9efc-a66c679e35ee</guid>
+    <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
-    <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
-    <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
-    <guid>2a780ae6-0a85-4eed-afe1-0fbe150c389f</guid>
+    <guid>b92f192a-a6ba-408d-a7b5-2a11fd9bd085</guid>
+    <guid>f62f1915-52f4-4c42-a9fb-a8776124b376</guid>
+    <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>014346cc-0632-48ba-a9d6-318cdf65a44c</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>

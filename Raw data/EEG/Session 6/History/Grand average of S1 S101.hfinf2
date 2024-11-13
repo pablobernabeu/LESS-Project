@@ -4,10 +4,12 @@
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
   <Nodes>
-    <string>PCA1test/Raw Data</string>
+    <string>Grand average of S1 S101/Raw Data</string>
+    <string>Grand average of S1 S101/Raw Data/Grammatical</string>
   </Nodes>
   <TIDs>
-    <guid>da6151d0-8d9e-49ad-82a6-3d5446400050</guid>
+    <guid>a02a7a19-aa47-4209-b3d5-b5f1780ea6ee</guid>
+    <guid>17b00fd5-a9ca-481c-97f9-1dc3dea5cc5b</guid>
   </TIDs>
   <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>

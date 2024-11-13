@@ -4,10 +4,12 @@
   <Sequence>1</Sequence>
   <Sequences>1</Sequences>
   <Nodes>
-    <string>test with all/Raw Data</string>
+    <string>Grand average of S1_tbt_S103/Raw Data</string>
+    <string>Grand average of S1_tbt_S103/Raw Data/Pooling</string>
   </Nodes>
   <TIDs>
-    <guid>5a671ce6-b158-432c-aafe-118c613a5cef</guid>
+    <guid>0e3ce9dd-92e8-4145-b42e-5c4ea078d68a</guid>
+    <guid>ef100bd7-a441-493a-b5df-0241a1105a0e</guid>
   </TIDs>
   <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>

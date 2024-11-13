@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Raw data\EEG\Session 3\Raw\42.vhdr</HeaderFilename>
+  <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Raw data\EEG\Session 3\Raw\42.eeg</RawFilename>
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>42/Raw Data</string>
+    <string>42/Raw Data/Raw Data Inspection</string>
+    <string>42/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>42/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+  </Nodes>
+  <TIDs>
+    <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>bb984c88-1bba-445a-87bf-e889c2993095</guid>
+    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
+    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
+  </TIDs>
+  <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-PF2HW38K</Computer>
+</HistoryInfoFile>
