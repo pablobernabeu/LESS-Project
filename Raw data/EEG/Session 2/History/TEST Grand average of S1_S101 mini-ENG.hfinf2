@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>TEST Grand average of S1_S101 mini-ENG/Raw Data</string>
+    <string>TEST Grand average of S1_S101 mini-ENG/Raw Data/Pooling</string>
+    <string>TEST Grand average of S1_S101 mini-ENG/Raw Data/Diff. Waves</string>
+  </Nodes>
+  <TIDs>
+    <guid>7afe5003-a554-46bc-9caa-4fcd5da0735a</guid>
+    <guid>e64e3271-3a22-45f8-9929-630dc1eb0d63</guid>
+    <guid>91587088-a2ff-4037-81ca-434f004fa750</guid>
+  </TIDs>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-PF2HW38K</Computer>
+</HistoryInfoFile>

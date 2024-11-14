@@ -24,9 +24,7 @@
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt/S1_S101_Average tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt</string>
-    <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt/S1_S102_Average tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt</string>
-    <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt/S1_S103_Average tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
@@ -60,9 +58,7 @@
     <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
     <guid>a1015e68-cac6-4870-92a9-43c554108505</guid>
     <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
-    <guid>4bd9cade-d987-474f-b899-5d128c9c6ca5</guid>
     <guid>2a780ae6-0a85-4eed-afe1-0fbe150c389f</guid>
-    <guid>ccd315b6-ed6f-4293-ae57-65e041384d5f</guid>
     <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
     <guid>d03e7877-744f-47d6-8390-484887543bc2</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
