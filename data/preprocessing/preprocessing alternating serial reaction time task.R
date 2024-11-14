@@ -28,8 +28,8 @@ ASRT = rbind(
   
   # Rename conditions
   mutate(pattern_or_random = case_match(pattern_or_random, 
-                                        'P' ~ 'pattern_Stroop', 
-                                        'R' ~ 'random_Stroop')) %>%
+                                        'P' ~ 'pattern_ASRT', 
+                                        'R' ~ 'random_ASRT')) %>%
   
   # Convert string values to numeric where appropriate
   mutate(across(c(cumulative_RT, trial_number), as.numeric)) %>%
@@ -46,20 +46,20 @@ ASRT = rbind(
 # and per triplet type.
 
 ASRT %>% 
-  filter(pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  filter(pattern_or_random == 'pattern_ASRT') %>%  # pattern only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
 
 ASRT %>% 
-  filter(pattern_or_random == 'random_Stroop') %>%   # random only
+  filter(pattern_or_random == 'random_ASRT') %>%   # random only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
 
 # Count participants with and without low-probability pattern trials
 ASRT %>%
-  filter(pattern_or_random == 'pattern_Stroop') %>%
+  filter(pattern_or_random == 'pattern_ASRT') %>%
   group_by(participant_home_ID) %>%
   summarize(has_Low = any(triplet_type == 'L')) %>%  
   group_by(has_Low) %>%
@@ -68,9 +68,8 @@ ASRT %>%
 
 # Trim RTs. First, remove any reaction times (RTs) smaller than 50 ms or larger 
 # than 5,000 ms. Next, remove any RTs that lie more than 3 standard deviations 
-# (SD) away from the mean. The latter calculation is performed within 
-# participants, within pattern/random condition, within blocks and within 
-# triplet types. Three SDs is a typical cut-off (e.g., 
+# (SD) away from the mean within participants, within pattern/random condition, 
+# within blocks and within triplet types. Three SDs is a typical cut-off (e.g., 
 # https://doi.org/10.3758/s13428-012-0304-z). At the end, the percentage of 
 # data trimmed out is presented. 
 
@@ -123,13 +122,13 @@ gc() # free up memory
 # per pattern/random type and per triplet type.
 
 ASRT %>% 
-  filter(epoch == 'epoch1', pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  filter(epoch == 'epoch1', pattern_or_random == 'pattern_ASRT') %>%  # pattern only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
 
 ASRT %>% 
-  filter(epoch == 'epoch1', pattern_or_random == 'random_Stroop') %>%  # random only
+  filter(epoch == 'epoch1', pattern_or_random == 'random_ASRT') %>%  # random only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
@@ -138,20 +137,20 @@ ASRT %>%
 # per pattern/random type and per triplet type.
 
 ASRT %>% 
-  filter(epoch == 'epoch5', pattern_or_random == 'pattern_Stroop') %>%  # pattern only
+  filter(epoch == 'epoch5', pattern_or_random == 'pattern_ASRT') %>%  # pattern only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
 
 ASRT %>% 
-  filter(epoch == 'epoch5', pattern_or_random == 'random_Stroop') %>%  # random only
+  filter(epoch == 'epoch5', pattern_or_random == 'random_ASRT') %>%  # random only
   group_by(participant_home_ID, triplet_type) %>% 
   summarise(count = n()) %>% 
   arrange(participant_home_ID, count)
 
 # Count participants with and without low-probability pattern trials
 ASRT %>%
-  filter(pattern_or_random == 'pattern_Stroop') %>%
+  filter(pattern_or_random == 'pattern_ASRT') %>%
   group_by(participant_home_ID) %>%
   summarize(has_Low = any(triplet_type == 'L')) %>%  
   group_by(has_Low) %>%
@@ -167,37 +166,73 @@ ASRT %>%
 # **********************
 
 
+# Get descriptives and plot distribution of pattern_ASRT_H and random_ASRT_H
+
+ASRT %>% group_by(pattern_or_random, triplet_type) %>%
+  summarise(M = mean(cumulative_RT), SD = sd(cumulative_RT))
+
+ASRT_stats <- ASRT %>%
+  group_by(pattern_or_random, triplet_type) %>%
+  summarise(mean_RT = mean(cumulative_RT, na.rm = TRUE), 
+            count = n(),
+            n_participants = n_distinct(participant_home_ID)) %>%
+  ungroup()
+
+ASRT %>%
+  ggplot(aes(x = factor(1), y = cumulative_RT, color = triplet_type, 
+             fill = triplet_type, group = triplet_type)) +
+  facet_wrap(~ pattern_or_random) + 
+  geom_violin(width = 0.4) + 
+  geom_jitter(width = 0.1, size = 0.0005, alpha = .08) +
+  geom_label(
+    data = ASRT_stats, 
+    aes(x = factor(1), y = mean_RT, label = paste('M =', round(mean_RT, 2)), 
+        group = triplet_type),
+    position = position_dodge(width = 0.4), size = 4, color = 'white'
+  ) +
+  geom_text(
+    data = ASRT_stats, 
+    aes(x = factor(1), y = -70, label = paste(count, 'obs.'), group = triplet_type),
+    position = position_dodge(width = 0.4), size = 4, 
+  ) +
+  geom_text(
+    data = ASRT_stats, 
+    aes(x = factor(1), y = -270, label = paste(n_participants, 'partcps.'), 
+        group = triplet_type),
+    position = position_dodge(width = 0.4), size = 4, 
+  ) +
+  scale_x_discrete(expand = c(0, 0)) + 
+  scale_y_continuous(limits = c(-300, 5000), expand = c(0.01, 0)) +
+  theme_minimal() +
+  theme(axis.title.y = element_text(size = 12, margin = margin(r = 10, unit = 'pt')),
+        strip.text = element_text(size = 12), axis.title.x = element_blank(), 
+        axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        legend.title = element_text(size = 12), legend.text = element_text(size = 11))
+
+
+######################
+
+# TBC 13 Nov 2024
+
+######################
+
+
 # Calculate mean reaction time (RT) for each combination of participant, 
 # pattern/random type and triplet type.
+# Pivot categorical values of triplet_type into independent columns.
 
 ASRT = ASRT %>% 
   group_by(participant_home_ID, pattern_or_random, triplet_type) %>%
   summarize(mean_RT = mean(cumulative_RT, na.rm = TRUE)) %>%
-  ungroup()
-
-# Pivot categorical values of triplet_type into independent columns
-ASRT = ASRT %>%
-  pivot_wider(names_from = triplet_type, 
-              values_from = mean_RT)
-
-gc() # free up memory
-
-# Subtract high-probability pattern trials from 
-# high-probability random trials, and drop NAs.
-
-##################
-
-# TBC 13 Nov 2024
-
-##################
+  ungroup() %>%
+  pivot_wider(names_from = c(pattern_or_random, triplet_type), 
+              values_from = mean_RT) %>%
+  
+  # Subtract high-probability pattern trials from 
+  # high-probability random trials.
+  mutate(ASRT = random_ASRT_H - pattern_ASRT_H)
 
 gc() # free up memory
-
-# Get descriptives and plot distribution of ASRT_learning_effect split 
-# by pattern/random condition.
-
-ASRT %>% group_by(pattern_or_random) %>%
-  summarise(pattern_Stroop = mean(ASRT_learning_effect))
 
 ASRT %>%
   ggplot(aes(x = factor(1), y = ASRT_learning_effect)) +
@@ -224,7 +259,7 @@ ASRT = ASRT %>%
 
 # Select the relevant columns
 Session1_ASRT = ASRT %>% 
-  select(participant_home_ID, pattern_Stroop, random_Stroop)
+  select(participant_home_ID, pattern_ASRT, random_ASRT)
 
 # Whereas pattern trials are sensitive to implicit learning, random trials are 
 # more related to motor and attentional processes. To obtain an accurate 
