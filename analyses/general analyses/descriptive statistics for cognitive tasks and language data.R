@@ -21,7 +21,7 @@ library(dplyr)
 DGS = read.csv("Raw data/executive functions/analysis_table_DGS.csv")
 # View(DGS)
 
-DGS_summary_statistics <-DGS %>%
+DGS_summary_statistics = DGS %>%
   summarize(
     mean_correct = mean(total_correct.x, na.rm = TRUE),
     median_correct = median(total_correct.x, na.rm = TRUE),

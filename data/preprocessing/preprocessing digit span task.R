@@ -12,7 +12,7 @@ library(ggplot2)
 path = "data/raw data/executive functions/Session 1"
 
 # Read in and combine the files
-digit_span = rbind( 
+session1_digit_span = rbind( 
   read_csv(file.path(path, "digit span 1.csv")),
   read_csv(file.path(path, "digit span 2.csv")),
   read_csv(file.path(path, "digit span 3.csv")),
@@ -25,11 +25,11 @@ digit_span = rbind(
   rename(participant_home_ID = `Participant Public ID`)
 
 # Clear column names
-colnames(digit_span) = make.names(colnames(digit_span))
+colnames(session1_digit_span) = make.names(colnames(session1_digit_span))
 
-Session1_digit_span = digit_span %>%
+session1_digit_span = session1_digit_span %>%
   mutate(display = as.factor(display)) %>%
   group_by(participant_home_ID) %>%
-  summarize(DGS_total = sum(Correct)) %>%
+  summarize(session1_digit_span = sum(Correct)) %>%
   ungroup()
 

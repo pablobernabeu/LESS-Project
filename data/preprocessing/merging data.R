@@ -16,7 +16,7 @@ LHQ3_aggregate_scores = read_xlsx('data/raw data/language history/LHQ3 Aggregate
 # Combine the data frames based on participants' home ID
 
 merged_data =
-  full_join(Session1_digit_span, Session1_Stroop, Session1_ASRT, 
+  full_join(session1_digit_span, session1_Stroop, session1_ASRT, 
             by = "participant_home_ID", relationship = "many-to-many") %>%
   
   # Delete rows without participant IDs
