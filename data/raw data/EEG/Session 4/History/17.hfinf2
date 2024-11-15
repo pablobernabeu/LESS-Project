@@ -14,16 +14,19 @@
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S101/Average</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102/Average</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103/Average</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101/S1_S101_Average</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S102</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S102/S1_S102_Average</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S103</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S103/S1_S103_Average</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S101 tbt</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S102 tbt</string>
-    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S103 tbt</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt/S1_S101_tbt_Average</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt/S1_S102_tbt_Average</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt</string>
+    <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt/S1_S103_tbt_Average</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
     <string>17/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
@@ -68,8 +71,11 @@
     <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
+    <guid>5699d125-f384-4d97-a3fa-ccfa21666b87</guid>
     <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
+    <guid>b398058b-4879-4ef5-b6f3-8eeb5df4eea2</guid>
     <guid>72b2038c-1be3-4f5d-99f4-0865ca1d02ca</guid>
+    <guid>fe35de51-1441-4b90-a50b-c7db5498f52f</guid>
     <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
     <guid>c6397dbe-5677-4b1c-8d32-07921f29193c</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>

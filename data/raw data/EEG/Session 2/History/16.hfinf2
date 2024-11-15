@@ -14,18 +14,21 @@
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection</string>
-    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection/Average</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Baseline Correction/Artifact Rejection/S1_S102_Average</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Artifact Rejection tbt</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S102/Artifact Rejection tbt/S1_S102_tbt_Average</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection</string>
-    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection/Average</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Baseline Correction/Artifact Rejection/S1_S101_Average</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt/S1_S101_tbt_Average</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection</string>
-    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection/Average</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection/S1_S103_Average</string>
     <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt</string>
+    <string>16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt/S1_S103_tbt_Average</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -38,16 +41,19 @@
     <guid>908787bb-8aa6-4035-ab1f-62be31104847</guid>
     <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>693add9a-5795-4286-8d61-9e8625590aa2</guid>
     <guid>e577f8c2-64ee-41be-9137-275992d39c06</guid>
     <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
     <guid>908787bb-8aa6-4035-ab1f-62be31104847</guid>
     <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>8d47c34e-f23d-49ff-ae1d-a374c089ed50</guid>
     <guid>f62f1915-52f4-4c42-a9fb-a8776124b376</guid>
     <guid>4a50a52c-d139-44ab-8815-0123cc94f48e</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>1f6dbaf7-e2e9-45ec-97f2-1913345b7d55</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>

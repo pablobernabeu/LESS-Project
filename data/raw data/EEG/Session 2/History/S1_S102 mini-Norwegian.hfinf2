@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>S1_S102 mini-Norwegian/Raw Data</string>
+    <string>S1_S102 mini-Norwegian/Raw Data/Ungrammatical mini-Norwegian</string>
+  </Nodes>
+  <TIDs>
+    <guid>27f0dbf5-600d-43d1-9f43-9b9e9668dcb8</guid>
+    <guid>93f7776b-9d3c-444c-ab99-1372444d3965</guid>
+  </TIDs>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-PF2HW38K</Computer>
+</HistoryInfoFile>

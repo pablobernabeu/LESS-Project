@@ -8,10 +8,40 @@
   <Nodes>
     <string>11/Raw Data</string>
     <string>11/Raw Data/Raw Data Inspection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Artifact Rejection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Baseline Correction</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Baseline Correction/Artifact Rejection</string>
+    <string>11/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Artifact Rejection</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>ad03c25a-f866-4305-8983-3d751416f481</guid>
+    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
+    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
+    <guid>225b6ac0-5ba3-43cf-927a-722c123ce809</guid>
+    <guid>4eb00976-ca3a-4a62-a379-eb48287d02ae</guid>
+    <guid>3e1e7891-ec49-4d4d-966a-41498b8d4be2</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
+    <guid>dab0da47-f971-4a5a-be2a-72241bd833c2</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>dc183240-cc60-41fb-b259-0c69b4713666</guid>
+    <guid>a4150597-02b0-4b05-9db4-d4dd559593aa</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>

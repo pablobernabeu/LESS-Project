@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>S1_S103 mini-ENG/Raw Data</string>
+  </Nodes>
+  <TIDs>
+    <guid>cfdd85c1-6d54-4b29-ae93-2728529eb5ea</guid>
+  </TIDs>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>chath1626</User>
+  <Computer>UIT-PF2HW38K</Computer>
+</HistoryInfoFile>
