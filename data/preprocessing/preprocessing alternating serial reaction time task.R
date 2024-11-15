@@ -89,8 +89,8 @@ trimmed_ASRT = session1_ASRT %>%
   filter(n() >= 100) %>%
   ungroup() %>%
   
-  # Apply 3 SD cut-off within the nests
-  group_by(participant_home_ID, pattern_or_random, block, triplet_type, correct) %>%
+  # Apply 3 SD cut-off within the grouping factors
+  group_by(participant_home_ID, pattern_or_random, block, triplet_type) %>%
   group_modify(~ {
     mean_rt = mean(.x$cumulative_RT, na.rm = TRUE)
     sd_rt = sd(.x$cumulative_RT, na.rm = TRUE)
@@ -172,6 +172,8 @@ session1_ASRT %>%
 # 
 # **********************
 
+gc() # free up memory
+
 
 # Get descriptives and plot distributions
 
@@ -241,7 +243,7 @@ session1_ASRT %>% filter(complete.cases(session1_ASRT)) %>%
 
 # Select the relevant columns
 session1_ASRT = session1_ASRT %>% 
-  select(participant_home_ID, pattern_ASRT, random_ASRT)
+  select(participant_home_ID, session1_ASRT)
 
 # Whereas pattern trials are sensitive to implicit learning, random trials are 
 # more related to motor and attentional processes. To obtain an accurate 

@@ -1,13 +1,15 @@
-# Load the Background data CSV file
-Background_data = read.csv("Background/Background_data.csv", header = TRUE)
 
-library(tidyverse)  
-library(reshape2)   
-library(janitor)   
-library(plyr)       
+
+# Load the Background data CSV file
+merged_data = read.csv("data/final data/merged_data.csv", header = TRUE)
+
+library(dplyr)
+library(tidyr)
+library(reshape2)
+library(janitor)
 
 # session2, remove participants 2 and 7 from anovas
-Session2path = "EEG/data/Session 2/Export/"
+path = "Raw data/EEG/Session 2/Export/"
 
 # creating patterns to import the files and recognise them as distinct conditions
 # the final number in the file name indicates the Grammaticality of the trial
@@ -17,13 +19,13 @@ Session2path = "EEG/data/Session 2/Export/"
 # 103: the trial presented an ancillary violation
 # Session 2 investigates Gender agreement, indicated by the marker S1
 Session2_grammatical_files = list.files(pattern = "*S1.S101.txt", 
-                                         path = Session2path, full.names = TRUE)
+                                        path = path, full.names = TRUE)
 
 Session2_violation_interest = list.files(pattern = "*S1_S102.txt", 
-                                          path = Session2path, full.names = TRUE)
+                                         path = path, full.names = TRUE)
 
 Session2_ancillary_violation = list.files(pattern = "*S1_S103.txt", 
-                                           path = Session2path, full.names = TRUE)
+                                          path = path, full.names = TRUE)
 
 # Constructing lists of data, one for each condition
 Session2_grammatical_list = lapply(1:length(Session2_grammatical_files),function(x) {
@@ -45,7 +47,7 @@ Session2_grammatical_data = ldply(Session2_grammatical_list, data.frame)
 Session2_violation_interest_data = ldply(Session2_violation_interest_list, 
                                          data.frame)
 Session2_ancillary_violation_data = ldply(Session2_ancillary_violation_list, 
-                                           data.frame)
+                                          data.frame)
 
 # Sorting out column names and organising them
 
@@ -74,11 +76,11 @@ participants_ancvil = sub("_.*", "", files_names_ancillary_violation)
 
 # adding a "Participant_number" column to the data frames
 Session2_grammatical_data$Participant_number = rep(participants_gr, each = 
-                                                      nrow(Session2_grammatical_data) / length(participants_gr))
+                                                     nrow(Session2_grammatical_data) / length(participants_gr))
 Session2_violation_interest_data$Participant_number = rep(participants_violint, 
-                                                           each = nrow(Session2_violation_interest_data) / length(participants_violint))
+                                                          each = nrow(Session2_violation_interest_data) / length(participants_violint))
 Session2_ancillary_violation_data$Participant_number = rep(participants_ancvil, 
-                                                            each = nrow(Session2_ancillary_violation_data) / length(participants_ancvil))
+                                                           each = nrow(Session2_ancillary_violation_data) / length(participants_ancvil))
 
 # adding a Grammaticality column to the data frames
 Session2_grammatical_data$Grammaticality = 'Grammatical'
@@ -87,7 +89,7 @@ Session2_ancillary_violation_data$Grammaticality = 'Ancillary Violation'
 
 # Combine all data frames into one
 Session2_combined_data = rbind(Session2_grammatical_data, 
-                                Session2_violation_interest_data, Session2_ancillary_violation_data)
+                               Session2_violation_interest_data, Session2_ancillary_violation_data)
 
 # dividing the electrodes into brain regions
 # Define the mapping of electrodes to regions
@@ -133,12 +135,12 @@ Session2_combined_data$Region = ifelse(
 
 # Melt the combined data frame to convert it from wide to long format
 Session2_melted_data_temporary = melt(Session2_combined_data, id.vars = 
-                                         c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
-                                       variable.name = 'Time', value.name = 'Activation')
+                                        c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
+                                      variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session2_melted_data_temporary$Time = as.numeric(as.character
-                                                   (Session2_melted_data_temporary$Time))
+                                                 (Session2_melted_data_temporary$Time))
 
 # Add a Session column
 Session2_melted_data_temporary$Session = 'Session 2'
@@ -152,7 +154,7 @@ Session2_melted_data = Session2_melted_data_temporary %>%
 
 # View the cleaned data
 # View(Session2_melted_data)
-# View(Background_data)
+# View(merged_data)
 
 
 # adding the Background data to the Session2_melted_data
@@ -162,9 +164,9 @@ Session2_melted_data = Session2_melted_data_temporary %>%
 # Performing the inner join function,due to the discrepancy between the number of 
 # rows between the two data frames, so that no data is deleted
 
-Background_data$Participant_number = as.character(Background_data$Participant_number)
+merged_data$Participant_number = as.character(merged_data$Participant_number)
 
-Session2_Background = full_join(Background_data, Session2_melted_data, by = "Participant_number")
+Session2_Background = full_join(merged_data, Session2_melted_data, by = "Participant_number")
 
 
 # setting the columns Time, Region, Grammaticality and Participant_number as factors 
@@ -216,22 +218,22 @@ Session3path = "EEG/data/Session 3/Export/"
 # object marking, here DOM
 
 Session3_GenderAgreement_grammatical_files = list.files(pattern = "*S1.S101.txt", 
-                                                         path = Session3path, full.names = TRUE)
+                                                        path = Session3path, full.names = TRUE)
 
 Session3_GenderAgreement_violation_interest = list.files(pattern = "*S1_S102.txt", 
-                                                          path = Session3path, full.names = TRUE)
+                                                         path = Session3path, full.names = TRUE)
 
 Session3_GenderAgreement_ancillary_violation = list.files(pattern = "*S1_S103.txt", 
-                                                           path = Session3path, full.names = TRUE)
+                                                          path = Session3path, full.names = TRUE)
 
 Session3_DOM_grammatical_files = list.files(pattern = "*S2.S101.txt", 
-                                             path = Session3path, full.names = TRUE)
+                                            path = Session3path, full.names = TRUE)
 
 Session3_DOM_violation_interest = list.files(pattern = "*S2_S102.txt", 
-                                              path = Session3path, full.names = TRUE)
+                                             path = Session3path, full.names = TRUE)
 
 Session3_DOM_ancillary_violation = list.files(pattern = "*S2_S103.txt", 
-                                               path = Session3path, full.names = TRUE)
+                                              path = Session3path, full.names = TRUE)
 
 
 # Constructing lists of data, one for each property and condition
@@ -270,7 +272,7 @@ Session3_GenderAgreement_grammatical_data = ldply(Session3_GenderAgreement_gramm
 Session3_GenderAgreement_violation_interest_data = ldply(Session3_GenderAgreement_violation_interest_list, 
                                                          data.frame)
 Session3_GenderAgreement_ancillary_violation_data = ldply(Session3_GenderAgreement_ancillary_violation_list, 
-                                                           data.frame)
+                                                          data.frame)
 
 
 # Differential object marking
@@ -279,7 +281,7 @@ Session3_DOM_grammatical_data = ldply(Session3_DOM_grammatical_list, data.frame)
 Session3_DOM_violation_interest_data = ldply(Session3_DOM_violation_interest_list, 
                                              data.frame)
 Session3_DOM_ancillary_violation_data = ldply(Session3_DOM_ancillary_violation_list, 
-                                               data.frame)
+                                              data.frame)
 
 # Sorting out column names and organising them
 
@@ -329,19 +331,19 @@ participants_S3_DOM_ancillary_violation = sub("_.*", "", files_names_S3_DOM_anci
 # adding a "Participant_number" column to the data frames
 # for Gender
 Session3_GenderAgreement_grammatical_data$Participant_number = rep(participants_S3_GenderAgreement_grammatical, each = 
-                                                                      nrow(Session3_GenderAgreement_grammatical_data) / length(participants_S3_GenderAgreement_grammatical))
+                                                                     nrow(Session3_GenderAgreement_grammatical_data) / length(participants_S3_GenderAgreement_grammatical))
 Session3_GenderAgreement_violation_interest_data$Participant_number = rep(participants_S3_GenderAgreement_violation_interest, 
-                                                                           each = nrow(Session3_GenderAgreement_violation_interest_data) / length(participants_S3_GenderAgreement_violation_interest))
+                                                                          each = nrow(Session3_GenderAgreement_violation_interest_data) / length(participants_S3_GenderAgreement_violation_interest))
 Session3_GenderAgreement_ancillary_violation_data$Participant_number = rep(participants_S3_GenderAgreement_ancillary_violation, 
-                                                                            each = nrow(Session3_GenderAgreement_ancillary_violation_data) / length(participants_S3_GenderAgreement_ancillary_violation))
+                                                                           each = nrow(Session3_GenderAgreement_ancillary_violation_data) / length(participants_S3_GenderAgreement_ancillary_violation))
 
 # for Differential object marking
 Session3_DOM_grammatical_data$Participant_number = rep(participants_S3_DOM_grammatical, each = 
-                                                          nrow(Session3_DOM_grammatical_data) / length(participants_S3_DOM_grammatical))
+                                                         nrow(Session3_DOM_grammatical_data) / length(participants_S3_DOM_grammatical))
 Session3_DOM_violation_interest_data$Participant_number = rep(participants_S3_DOM_violation_interest, 
-                                                               each = nrow(Session3_DOM_violation_interest_data) / length(participants_S3_DOM_violation_interest))
+                                                              each = nrow(Session3_DOM_violation_interest_data) / length(participants_S3_DOM_violation_interest))
 Session3_DOM_ancillary_violation_data$Participant_number = rep(participants_S3_DOM_ancillary_violation, 
-                                                                each = nrow(Session3_DOM_ancillary_violation_data) / length(participants_S3_DOM_ancillary_violation))
+                                                               each = nrow(Session3_DOM_ancillary_violation_data) / length(participants_S3_DOM_ancillary_violation))
 
 # adding a Grammaticality column to the data frames
 Session3_GenderAgreement_grammatical_data$Grammaticality = 'Grammatical'
@@ -355,8 +357,8 @@ Session3_DOM_ancillary_violation_data$Grammaticality = 'Ancillary Violation'
 
 # Combine all data frames into one
 Session3_combined_data = rbind(Session3_GenderAgreement_grammatical_data, Session3_GenderAgreement_violation_interest_data,
-                                Session3_GenderAgreement_ancillary_violation_data,Session3_DOM_grammatical_data,
-                                Session3_DOM_violation_interest_data, Session3_DOM_ancillary_violation_data)
+                               Session3_GenderAgreement_ancillary_violation_data,Session3_DOM_grammatical_data,
+                               Session3_DOM_violation_interest_data, Session3_DOM_ancillary_violation_data)
 
 # View(Session2_combined_data)
 
@@ -409,12 +411,12 @@ Session3_combined_data = Session3_combined_data %>%
 
 # Melt the combined data frame to convert it from wide to long format
 Session3_melted_data_temporary = melt(Session3_combined_data, id.vars = 
-                                         c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
-                                       variable.name = 'Time', value.name = 'Activation')
+                                        c('Participant_number', 'Electrode', 'Grammaticality', 'Region'), 
+                                      variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session3_melted_data_temporary$Time = as.numeric(as.character
-                                                   (Session3_melted_data_temporary$Time))
+                                                 (Session3_melted_data_temporary$Time))
 
 # Add a Session column
 Session3_melted_data_temporary$Session = 'Session 3'
@@ -489,32 +491,32 @@ Session4path = "EEG/data/Session 4/Export/"
 # object marking, here DOM, as well as Verb-Object bumber Agreement, here VOA
 
 Session4_GenderAgreement_grammatical_files = list.files(pattern = "*S1_S101.txt", 
-                                                         path = Session4path, full.names = TRUE)
+                                                        path = Session4path, full.names = TRUE)
 
 Session4_GenderAgreement_violation_interest = list.files(pattern = "*S1_S102.txt", 
-                                                          path = Session4path, full.names = TRUE)
+                                                         path = Session4path, full.names = TRUE)
 
 Session4_GenderAgreement_ancillary_violation = list.files(pattern = "*S1_S103.txt", 
-                                                           path = Session4path, full.names = TRUE)
+                                                          path = Session4path, full.names = TRUE)
 
 Session4_DOM_grammatical_files = list.files(pattern = "*S2_S101.txt", 
-                                             path = Session4path, full.names = TRUE)
+                                            path = Session4path, full.names = TRUE)
 
 Session4_DOM_violation_interest = list.files(pattern = "*S2_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+                                             path = Session4path, full.names = TRUE)
 
 Session4_DOM_ancillary_violation = list.files(pattern = "*S2_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+                                              path = Session4path, full.names = TRUE)
 
 
 Session4_VOA_grammatical_files = list.files(pattern = "*S3_S101.txt", 
-                                             path = Session4path, full.names = TRUE)
+                                            path = Session4path, full.names = TRUE)
 
 Session4_VOA_violation_interest = list.files(pattern = "*S3_S102.txt", 
-                                              path = Session4path, full.names = TRUE)
+                                             path = Session4path, full.names = TRUE)
 
 Session4_VOA_ancillary_violation = list.files(pattern = "*S3_S103.txt", 
-                                               path = Session4path, full.names = TRUE)
+                                              path = Session4path, full.names = TRUE)
 
 # constructing lists of data from the files, once for each condition
 
@@ -562,20 +564,20 @@ Session4_GenderAgreement_grammatical_data = ldply(Session4_GenderAgreement_gramm
 Session4_GenderAgreement_violation_interest_data = ldply(Session4_GenderAgreement_violation_interest_list, 
                                                          data.frame)
 Session4_GenderAgreement_ancillary_violation_data = ldply(Session4_GenderAgreement_ancillary_violation_list, 
-                                                           data.frame)
+                                                          data.frame)
 
 Session4_DOM_grammatical_data = ldply(Session4_DOM_grammatical_list, data.frame)
 Session4_DOM_violation_interest_data = ldply(Session4_DOM_violation_interest_list, 
                                              data.frame)
 Session4_DOM_ancillary_violation_data = ldply(Session4_DOM_ancillary_violation_list, 
-                                               data.frame)
+                                              data.frame)
 
 
 Session4_VOA_grammatical_data = ldply(Session4_VOA_grammatical_list, data.frame)
 Session4_VOA_violation_interest_data = ldply(Session4_VOA_violation_interest_list, 
                                              data.frame)
 Session4_VOA_ancillary_violation_data = ldply(Session4_VOA_ancillary_violation_list, 
-                                               data.frame)
+                                              data.frame)
 # Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
@@ -636,26 +638,26 @@ participants_S4_VOA_ancvil = sub("_.*", "", files_names_S4_VOA_ancillary_violati
 
 # adding a "Participant_number" column to the data frames
 Session4_GenderAgreement_grammatical_data$Participant_number = rep(participants_S4_GenderAgreement_grammatical, 
-                                                                    each = nrow(Session4_GenderAgreement_grammatical_data) / length(participants_S4_GenderAgreement_grammatical))
+                                                                   each = nrow(Session4_GenderAgreement_grammatical_data) / length(participants_S4_GenderAgreement_grammatical))
 Session4_GenderAgreement_violation_interest_data$Participant_number = rep(participants_S4_GenderAgreement_violint, 
-                                                                           each = nrow(Session4_GenderAgreement_violation_interest_data) / length(participants_S4_GenderAgreement_violint))
+                                                                          each = nrow(Session4_GenderAgreement_violation_interest_data) / length(participants_S4_GenderAgreement_violint))
 Session4_GenderAgreement_ancillary_violation_data$Participant_number = rep(participants_S4_GenderAgreement_ancvil, 
-                                                                            each = nrow(Session4_GenderAgreement_ancillary_violation_data) / length(participants_S4_GenderAgreement_ancvil))
+                                                                           each = nrow(Session4_GenderAgreement_ancillary_violation_data) / length(participants_S4_GenderAgreement_ancvil))
 
 
 Session4_DOM_grammatical_data$Participant_number = rep(participants_S4_DOM_grammatical, 
-                                                        each = nrow(Session4_DOM_grammatical_data) / length(participants_S4_DOM_grammatical))
+                                                       each = nrow(Session4_DOM_grammatical_data) / length(participants_S4_DOM_grammatical))
 Session4_DOM_violation_interest_data$Participant_number = rep(participants_S4_DOM_violint, 
-                                                               each = nrow(Session4_DOM_violation_interest_data) / length(participants_S4_DOM_violint))
+                                                              each = nrow(Session4_DOM_violation_interest_data) / length(participants_S4_DOM_violint))
 Session4_DOM_ancillary_violation_data$Participant_number = rep(participants_S4_DOM_ancvil, 
-                                                                each = nrow(Session4_DOM_ancillary_violation_data) / length(participants_S4_DOM_ancvil))
+                                                               each = nrow(Session4_DOM_ancillary_violation_data) / length(participants_S4_DOM_ancvil))
 
 Session4_VOA_grammatical_data$Participant_number = rep(participants_S4_VOA_grammatical, 
-                                                        each = nrow(Session4_VOA_grammatical_data) / length(participants_S4_VOA_grammatical))
+                                                       each = nrow(Session4_VOA_grammatical_data) / length(participants_S4_VOA_grammatical))
 Session4_VOA_violation_interest_data$Participant_number = rep(participants_S4_VOA_violint, 
-                                                               each = nrow(Session4_VOA_violation_interest_data) / length(participants_S4_VOA_violint))
+                                                              each = nrow(Session4_VOA_violation_interest_data) / length(participants_S4_VOA_violint))
 Session4_VOA_ancillary_violation_data$Participant_number = rep(participants_S4_VOA_ancvil, 
-                                                                each = nrow(Session4_VOA_ancillary_violation_data) / length(participants_S4_VOA_ancvil))
+                                                               each = nrow(Session4_VOA_ancillary_violation_data) / length(participants_S4_VOA_ancvil))
 
 # Adding a Property column to the data frames
 Session4_GenderAgreement_grammatical_data$Property = 'Gender_Agreement'
@@ -686,14 +688,14 @@ Session4_VOA_ancillary_violation_data$Grammaticality = 'Ancillary_Violation'
 
 # Combine all data frames into one
 Session4_combined_data = rbind(Session4_GenderAgreement_grammatical_data,
-                                Session4_GenderAgreement_violation_interest_data, 
-                                Session4_GenderAgreement_ancillary_violation_data,
-                                Session4_DOM_grammatical_data, 
-                                Session4_DOM_violation_interest_data,  
-                                Session4_DOM_ancillary_violation_data,
-                                Session4_VOA_grammatical_data, 
-                                Session4_VOA_violation_interest_data,  
-                                Session4_VOA_ancillary_violation_data)
+                               Session4_GenderAgreement_violation_interest_data, 
+                               Session4_GenderAgreement_ancillary_violation_data,
+                               Session4_DOM_grammatical_data, 
+                               Session4_DOM_violation_interest_data,  
+                               Session4_DOM_ancillary_violation_data,
+                               Session4_VOA_grammatical_data, 
+                               Session4_VOA_violation_interest_data,  
+                               Session4_VOA_ancillary_violation_data)
 
 # View(Session4_combined_data)
 
@@ -739,12 +741,12 @@ Session4_combined_data = Session4_combined_data %>%
 
 # Melt the combined data frame to convert it from wide to long format
 Session4_melted_data_temporary = melt(Session4_combined_data, id.vars = 
-                                         c('Participant_number', 'Electrode', 'Grammaticality', 'Region', 'Property'), 
-                                       variable.name = 'Time', value.name = 'Activation')
+                                        c('Participant_number', 'Electrode', 'Grammaticality', 'Region', 'Property'), 
+                                      variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session4_melted_data_temporary$Time = as.numeric(as.character
-                                                   (Session4_melted_data_temporary$Time))
+                                                 (Session4_melted_data_temporary$Time))
 
 # Add a Session column
 Session4_melted_data_temporary$Session = 'Session 4'
@@ -813,32 +815,32 @@ Session6path = "EEG/data/Session 6/Export/"
 # object marking, here DOM, as well as Verb-Object number Agreement, here VOA
 
 Session6_GenderAgreement_grammatical_files = list.files(pattern = "*S1_S101.txt", 
-                                                         path = Session6path, full.names = TRUE)
+                                                        path = Session6path, full.names = TRUE)
 
 Session6_GenderAgreement_violation_interest = list.files(pattern = "*S1_S102.txt", 
-                                                          path = Session6path, full.names = TRUE)
+                                                         path = Session6path, full.names = TRUE)
 
 Session6_GenderAgreement_ancillary_violation = list.files(pattern = "*S1_S103.txt", 
-                                                           path = Session6path, full.names = TRUE)
+                                                          path = Session6path, full.names = TRUE)
 
 Session6_DOM_grammatical_files = list.files(pattern = "*S2_S101.txt", 
-                                             path = Session6path, full.names = TRUE)
+                                            path = Session6path, full.names = TRUE)
 
 Session6_DOM_violation_interest = list.files(pattern = "*S2_S102.txt", 
-                                              path = Session6path, full.names = TRUE)
+                                             path = Session6path, full.names = TRUE)
 
 Session6_DOM_ancillary_violation = list.files(pattern = "*S2_S103.txt", 
-                                               path = Session6path, full.names = TRUE)
+                                              path = Session6path, full.names = TRUE)
 
 
 Session6_VOA_grammatical_files = list.files(pattern = "*S3_S101.txt", 
-                                             path = Session6path, full.names = TRUE)
+                                            path = Session6path, full.names = TRUE)
 
 Session6_VOA_violation_interest = list.files(pattern = "*S3_S102.txt", 
-                                              path = Session6path, full.names = TRUE)
+                                             path = Session6path, full.names = TRUE)
 
 Session6_VOA_ancillary_violation = list.files(pattern = "*S3_S103.txt", 
-                                               path = Session6path, full.names = TRUE)
+                                              path = Session6path, full.names = TRUE)
 
 # constructing lists of data from the files, once for each condition
 
@@ -885,20 +887,20 @@ Session6_GenderAgreement_grammatical_data = ldply(Session6_GenderAgreement_gramm
 Session6_GenderAgreement_violation_interest_data = ldply(Session6_GenderAgreement_violation_interest_list, 
                                                          data.frame)
 Session6_GenderAgreement_ancillary_violation_data = ldply(Session6_GenderAgreement_ancillary_violation_list, 
-                                                           data.frame)
+                                                          data.frame)
 
 Session6_DOM_grammatical_data = ldply(Session6_DOM_grammatical_list, data.frame)
 Session6_DOM_violation_interest_data = ldply(Session6_DOM_violation_interest_list, 
                                              data.frame)
 Session6_DOM_ancillary_violation_data = ldply(Session6_DOM_ancillary_violation_list, 
-                                               data.frame)
+                                              data.frame)
 
 
 Session6_VOA_grammatical_data = ldply(Session6_VOA_grammatical_list, data.frame)
 Session6_VOA_violation_interest_data = ldply(Session6_VOA_violation_interest_list, 
                                              data.frame)
 Session6_VOA_ancillary_violation_data = ldply(Session6_VOA_ancillary_violation_list, 
-                                               data.frame)
+                                              data.frame)
 # Sorting out column names and organising them
 
 # time during the recording is organised in milliseconds, from -100 to 1098, 
@@ -960,26 +962,26 @@ participants_S6_VOA_ancvil = sub("_.*", "", files_names_S6_VOA_ancillary_violati
 
 # adding a "Participant_number" column to the data frames
 Session6_GenderAgreement_grammatical_data$Participant_number = rep(participants_S6_GenderAgreement_grammatical, 
-                                                                    each = nrow(Session6_GenderAgreement_grammatical_data) / length(participants_S6_GenderAgreement_grammatical))
+                                                                   each = nrow(Session6_GenderAgreement_grammatical_data) / length(participants_S6_GenderAgreement_grammatical))
 Session6_GenderAgreement_violation_interest_data$Participant_number = rep(participants_S6_GenderAgreement_violint, 
-                                                                           each = nrow(Session6_GenderAgreement_violation_interest_data) / length(participants_S6_GenderAgreement_violint))
+                                                                          each = nrow(Session6_GenderAgreement_violation_interest_data) / length(participants_S6_GenderAgreement_violint))
 Session6_GenderAgreement_ancillary_violation_data$Participant_number = rep(participants_S6_GenderAgreement_ancvil, 
-                                                                            each = nrow(Session6_GenderAgreement_ancillary_violation_data) / length(participants_S6_GenderAgreement_ancvil))
+                                                                           each = nrow(Session6_GenderAgreement_ancillary_violation_data) / length(participants_S6_GenderAgreement_ancvil))
 
 
 Session6_DOM_grammatical_data$Participant_number = rep(participants_S6_DOM_grammatical, 
-                                                        each = nrow(Session6_DOM_grammatical_data) / length(participants_S6_DOM_grammatical))
+                                                       each = nrow(Session6_DOM_grammatical_data) / length(participants_S6_DOM_grammatical))
 Session6_DOM_violation_interest_data$Participant_number = rep(participants_S6_DOM_violint, 
-                                                               each = nrow(Session6_DOM_violation_interest_data) / length(participants_S6_DOM_violint))
+                                                              each = nrow(Session6_DOM_violation_interest_data) / length(participants_S6_DOM_violint))
 Session6_DOM_ancillary_violation_data$Participant_number = rep(participants_S6_DOM_ancvil, 
-                                                                each = nrow(Session6_DOM_ancillary_violation_data) / length(participants_S6_DOM_ancvil))
+                                                               each = nrow(Session6_DOM_ancillary_violation_data) / length(participants_S6_DOM_ancvil))
 
 Session6_VOA_grammatical_data$Participant_number = rep(participants_S6_VOA_grammatical, 
-                                                        each = nrow(Session6_VOA_grammatical_data) / length(participants_S6_VOA_grammatical))
+                                                       each = nrow(Session6_VOA_grammatical_data) / length(participants_S6_VOA_grammatical))
 Session6_VOA_violation_interest_data$Participant_number = rep(participants_S6_VOA_violint, 
-                                                               each = nrow(Session6_VOA_violation_interest_data) / length(participants_S6_VOA_violint))
+                                                              each = nrow(Session6_VOA_violation_interest_data) / length(participants_S6_VOA_violint))
 Session6_VOA_ancillary_violation_data$Participant_number = rep(participants_S6_VOA_ancvil, 
-                                                                each = nrow(Session6_VOA_ancillary_violation_data) / length(participants_S6_VOA_ancvil))
+                                                               each = nrow(Session6_VOA_ancillary_violation_data) / length(participants_S6_VOA_ancvil))
 
 
 # Adding a Property column to the data frames
@@ -1011,14 +1013,14 @@ Session6_VOA_ancillary_violation_data$Grammaticality = 'Ancillary_Violation'
 
 
 Session6_combined_data = rbind(Session6_GenderAgreement_grammatical_data,
-                                Session6_GenderAgreement_violation_interest_data, 
-                                Session6_GenderAgreement_ancillary_violation_data,
-                                Session6_DOM_grammatical_data, 
-                                Session6_DOM_violation_interest_data,  
-                                Session6_DOM_ancillary_violation_data,
-                                Session6_VOA_grammatical_data, 
-                                Session6_VOA_violation_interest_data,  
-                                Session6_VOA_ancillary_violation_data)
+                               Session6_GenderAgreement_violation_interest_data, 
+                               Session6_GenderAgreement_ancillary_violation_data,
+                               Session6_DOM_grammatical_data, 
+                               Session6_DOM_violation_interest_data,  
+                               Session6_DOM_ancillary_violation_data,
+                               Session6_VOA_grammatical_data, 
+                               Session6_VOA_violation_interest_data,  
+                               Session6_VOA_ancillary_violation_data)
 
 # View(Session6_combined_data)
 
@@ -1070,12 +1072,12 @@ Session6_combined_data = Session6_combined_data %>%
 
 # Melt the combined data frame to convert it from wide to long format
 Session6_melted_data_temporary = melt(Session6_combined_data, id.vars = 
-                                         c('Participant_number', 'Electrode', 'Grammaticality', 'Region', 'Property'), 
-                                       variable.name = 'Time', value.name = 'Activation')
+                                        c('Participant_number', 'Electrode', 'Grammaticality', 'Region', 'Property'), 
+                                      variable.name = 'Time', value.name = 'Activation')
 
 # Convert the 'Time' column to numeric
 Session6_melted_data_temporary$Time = as.numeric(as.character
-                                                   (Session6_melted_data_temporary$Time))
+                                                 (Session6_melted_data_temporary$Time))
 
 # Add a Session column
 Session6_melted_data_temporary$Session = 'Session 6'
@@ -1122,26 +1124,4 @@ S6_P600 = Session6_Background[Session6_Background$Time %in% seq(400, 900, 2),]
 
 # View(S6_P600)
 write.csv(S6_P600, "EEG/data/Session 6/Session6_P600_data_frame.csv", row.names = FALSE)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# in session3, exclude participant 3
-# in session 4, exclude participants 11 and 7
 
