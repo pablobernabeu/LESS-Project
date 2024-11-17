@@ -5,29 +5,41 @@
 library(dplyr)
 library(readxl)
 
-# Preprocess executive functions data from Session 1
+
+session_IDs_progress = read.csv('Participant IDs and session progress.csv')
+
+LHQ3_aggregate_scores = 
+  read_xlsx('data/raw data/language history/LHQ3 Aggregate Scores.xlsx') %>%
+  rename()
+
 source('data/preprocessing/preprocessing digit span task.R')
 source('data/preprocessing/preprocessing Stroop task.R')
 source('data/preprocessing/preprocessing alternating serial reaction time task.R')
 
-# Read in language history data
-LHQ3_aggregate_scores = read_xlsx('data/raw data/language history/LHQ3 Aggregate Scores.xlsx')
+source('data/preprocessing/averaged EEG data importation.R')
 
-# Combine the data frames based on participants' home ID
+
+# Combine the data frames based on participants' IDs
 
 merged_data =
-  full_join(session1_digit_span, session1_Stroop, 
-            by = "participant_home_ID", relationship = "many-to-many") %>%
   
-  full_join(session1_ASRT, 
-            by = "participant_home_ID", relationship = "many-to-many") %>%
+  session_IDs_progress %>%
   
-  # Delete rows without participant IDs
-  drop_na(participant_home_ID)
+  # full_join(LHQ3_aggregate_scores, by = "participant_home_ID", relationship = "many-to-many") %>%
+  
+  full_join(session1_digit_span, by = "participant_home_ID", relationship = "many-to-many") %>%
+  
+  full_join(session1_Stroop, by = "participant_home_ID", relationship = "many-to-many") %>%
+  
+  full_join(session1_ASRT, by = "participant_home_ID", relationship = "many-to-many") %>%
+  
+  full_join(ERP_data, by = "participant_lab_ID", relationship = "many-to-many")
 
 # View(merged_data)
 
 # Export to file
 
 write.csv(merged_data, 'data/final data/merged_data.csv')
+
+merged_data = read.csv('data/final data/merged_data.csv')
 

@@ -1,4 +1,5 @@
 stimulus_preparation/external_corpora/nowac-1.1.lemma.frek.sort_alf_frek.txt
+data/final data/merged_data.csv
 *.mp4
 *.eeg
 *.wksp2
