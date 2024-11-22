@@ -28,6 +28,7 @@
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S102/S1_S102_Average mini-English</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/Segmentation S103/S1_S103_Average mini-English</string>
+    <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Write Markers</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S2</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection</string>
@@ -54,6 +55,7 @@
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Artifact Rejection/Segmentation S101 tbt</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Artifact Rejection/Segmentation S102 tbt</string>
     <string>18/Raw Data/Raw Data Inspection/Edit Markers/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Artifact Rejection/Segmentation S103 tbt</string>
+    <string>18/Raw Data/Raw Data Inspection/Write Markers</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -78,6 +80,7 @@
     <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
     <guid>623fd2e6-928d-4811-bca4-9c3f33c9ba3a</guid>
     <guid>d27dca34-1c12-40e6-a2a0-bc67edda496b</guid>
+    <guid>f8d4482a-6f26-4d88-a2fd-fbe26705bf86</guid>
     <guid>810c11fd-b5dd-4d4f-b54a-5c3d105b04aa</guid>
     <guid>dab0da47-f971-4a5a-be2a-72241bd833c2</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
@@ -104,6 +107,7 @@
     <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
     <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
     <guid>72b2038c-1be3-4f5d-99f4-0865ca1d02ca</guid>
+    <guid>39cc74ed-6486-4aa7-8996-89880c17b46b</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
