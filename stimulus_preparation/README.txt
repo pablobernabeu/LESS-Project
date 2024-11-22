@@ -115,7 +115,7 @@ The materials are version-controlled, and the release notes follow below.
 
 * v1.2.4
 
-  - Add final task to Session 6 in the Spanish site only. This is an acceptability judgement 
+  - Added final task to Session 6 in the Spanish site only. This is an acceptability judgement 
     task that asseses the use of the Spanish preposition "a" in the context of differential 
     object marking--namely, introducing a direct object--and in the context of the dative--
     namely, introducing an indirect object.
@@ -130,4 +130,15 @@ The materials are version-controlled, and the release notes follow below.
   - Examples of neuter and non-neuter words were added to the instructions of the gender 
     assignment task in Norwegian, as some participants had inquired about the meaning of 
     'neuter'. 
+
+
+* v1.2.6
+
+  - A few words were replaced in the gender assignment task in Norwegian. First, twoo words 
+    were replaced because they were not nouns--namely, 'selvom' (meaning 'although') and 
+    'vist' (meaning 'shown'). Second, the word 'selvmord' (meaning 'suicide') was replaced 
+    due to its unpleasant meaning. To make these substitutions, the whole set of words used 
+    in this task was recreated using the corpus. This process required the automatic 
+    substitution of a few other words, to ensure a balance in the proportion of items per 
+    gender (namely, 50% neuter, 25% feminine and 25% masculine). 
 

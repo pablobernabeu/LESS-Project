@@ -1,2 +1,2 @@
 
-materials_version = '1.2.5'
+materials_version = '1.2.6'
