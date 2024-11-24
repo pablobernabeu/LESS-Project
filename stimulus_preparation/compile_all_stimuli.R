@@ -2,10 +2,13 @@
 
 # Compose all stimuli for Sessions 2, 3, 4 and 6
 
-# Register version of the materials in the 'session_materials' folder
+# Read in version of the materials. Version numbers are recorded in the 
+# behavioural results files (e.g., `subject-10.csv`) in the column 
+# `materials_version` (but note that this column is absent from the 
+# files of the first few sessions, e.g., subject-1.csv). The versions 
+# are set in each stimulus file in the column `materials_version`.
+
 source('stimulus_preparation/materials_version.R')
-writeLines(paste0('materials_version = ', materials_version), 
-           'session_materials/materials_version.txt')
 
 # Frame base images
 source('stimulus_preparation/base_images.R')
