@@ -2,14 +2,14 @@
 
 # Importing averaged EEG data
 
-
 library(dplyr)
 library(tidyr)
 library(stringr)
 library(data.table)
 
+
 # List all .txt files in the directory
-files = list.files(pattern = '\\d_S1.S10..txt', full.names = TRUE, recursive = T)
+files = list.files(pattern = '\\d_S..S10..txt', full.names = TRUE, recursive = T)
 
 # Step 1: Extract metadata from file names
 metadata <- tibble(
@@ -99,4 +99,7 @@ ERP_data <- bind_rows(
 
 cat('Summary of the processed ERP data:\n')
 print(summary(ERP_data))
+
+# Free up memory
+gc()
 

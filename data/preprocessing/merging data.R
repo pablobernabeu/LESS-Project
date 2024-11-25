@@ -38,8 +38,11 @@ merged_data =
 # View(merged_data)
 
 # Export to file
-
 write.csv(merged_data, 'data/final data/merged_data.csv')
 
-merged_data = read.csv('data/final data/merged_data.csv')
+# Read in data if necessary
+# merged_data = read.csv('data/final data/merged_data.csv')
+
+# Free up memory
+gc()
 
