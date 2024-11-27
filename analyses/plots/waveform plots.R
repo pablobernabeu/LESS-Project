@@ -1,25 +1,27 @@
 
 
+# Waveform plots
+
 library(dplyr)
+library(tidyr)
+library(stringr)
 library(ggplot2)
+library(ggtext)
 
 merged_data = read.csv('data/final data/merged_data.csv')
 
-
 # Rename factor levels and remove control violation condition 
-
 merged_data = merged_data %>%
   filter(!grammaticality == 'Control violation')
 
-
 # Define standard error function
-std <- function(x) sd(x) / sqrt(length(x))
+std = function(x) sd(x) / sqrt(length(x))
 
 # Initialize an empty list to store all data
-all_data <- list()
+all_data = list()
 
 # Ensure 'Mini-Norwegian' appears in the upper facet by reordering levels
-merged_data$language <- 
+merged_data$language = 
   factor(merged_data$language, 
          levels = c('Mini-Norwegian', 
                     setdiff(unique(na.omit(merged_data$language)), 
@@ -34,7 +36,12 @@ for (session in unique(na.omit(merged_data$session))) {
       
       if( merged_data[merged_data$session == session &
                       merged_data$grammatical_property == grammatical_property &
-                      merged_data$region == region,] %>% nrow == 0) next
+                      merged_data$region == region,] %>% nrow == 0 ) next
+      
+      # Calculate the sample size for each language group
+      sample_sizes = merged_data %>%
+        group_by(language) %>%
+        summarise(n = n_distinct(participant_home_ID))
       
       # Filter data for the current combination of factors
       df2 = aggregate(
@@ -43,6 +50,11 @@ for (session in unique(na.omit(merged_data$session))) {
                       merged_data$grammatical_property == grammatical_property &
                       merged_data$region == region,], 
         mean)
+      
+      # Merge the sample sizes into df2
+      df2 = df2 %>%
+        left_join(sample_sizes, by = 'language') %>%
+        mutate(language_with_N = paste0(language, ' (*n* = ', n, ')'))
       
       df3 = merged_data[merged_data$session == session &
                           merged_data$grammatical_property == grammatical_property &
@@ -69,14 +81,17 @@ for (session in unique(na.omit(merged_data$session))) {
       # Create a valid R object name by sanitizing the factors.
       # Replace non-alphanumeric characters with '_'.
       
-      plot_name = paste(grammatical_property, 'Session', session, 
-                        str_to_sentence(region), sep = '_')
+      plot_name = paste0(grammatical_property, '_Session', session, 
+                         '_', str_to_sentence(region), ' region')
       
       plot_name = gsub('[^[:alnum:]_]', '_', plot_name)
       
       plot_title = paste0(str_to_sentence(grammatical_property), '; ', 
                           'Session ', session, '; ', 
-                          str_to_sentence(region))
+                          str_to_sentence(region), ' region')
+      
+      group_colours = c('Grammatical' = 'forestgreen', 
+                        'Ungrammatical' = 'firebrick1')
       
       # Create and export plot
       ( ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
@@ -91,12 +106,12 @@ for (session in unique(na.omit(merged_data$session))) {
           scale_y_continuous(trans = 'reverse', expand = c(0, 0), 
                              breaks = pretty(df2$amplitude, n = 5)) +  
           
-          # Colours
-          scale_color_manual(values = c('Grammatical' = 'forestgreen', 
-                                        'Ungrammatical' = 'firebrick1')) +
+          scale_color_manual(values = group_colours) +
+          scale_fill_manual(values = group_colours) +
           
-          scale_fill_manual(values = c('Grammatical' = 'forestgreen', 
-                                       'Ungrammatical' = 'firebrick1')) +
+          guides(color = guide_legend(
+            override.aes = list(size = 5, shape = 15, alpha = .7)
+          )) +
           
           ggtitle(plot_title) +
           
@@ -106,31 +121,30 @@ for (session in unique(na.omit(merged_data$session))) {
                        xend = max(df2$time), yend = 0, 
                        linewidth = 0.5, color = 'grey60') +
           
-          guides(color = guide_legend(
-            override.aes = list(size = 5, shape = 15)
-          )) +
-          
           labs(x = 'Time (ms)', y = 'Amplitude (μV)') +
           
           theme_bw() +
           theme(axis.title = element_text(size = 14),
                 axis.text = element_text(size = 12),
-                legend.position = c(0.99, 0.98),
-                legend.justification = c(1, 1),
-                legend.background = element_rect(colour = 'black', 
-                                                 fill = 'transparent', 
-                                                 size = 0.5),
+                legend.position = 'top', legend.justification = 'center',
                 legend.title = element_blank(), 
-                legend.text = element_text(size = 12, face = 'bold'),
-                plot.title = element_text(size = 16, hjust = 0.5),
+                legend.text = 
+                  element_text(size = 14, margin = margin(r = 10, l = 3, unit = 'pt')),
+                legend.key.width = unit(1.2, 'cm'),
+                legend.key.height = unit(0.5, 'cm'),
+                plot.title = element_text(size = 16, hjust = 0.5, 
+                                          margin = margin(t = 4, b = 6, unit = 'pt')),
                 panel.border = element_blank(),
-                strip.text = element_text(size = 14, face = 'bold')) + 
+                strip.background = element_rect(fill = 'grey92', colour = 'grey70'),
+                strip.text = element_markdown(size = 14, face = 'bold'), 
+                panel.spacing = unit(0.5, 'cm')) + 
           
           # Facet by language
-          facet_wrap(~ language, ncol = 1)
+          facet_wrap(~ language_with_N, ncol = 1)
       ) %>%
         
-        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/')
+        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/', 
+               width = 10, height = 8, dpi = 300, units = 'in')
     }
   }
 }
