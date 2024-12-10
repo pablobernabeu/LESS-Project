@@ -16,9 +16,10 @@ library(janitor)
 # session logbook as guide.
 
 Norway_session_logbook = 
-  read.csv("Participant IDs and session progress.csv", header = T) %>%
+  read.csv("data/Participant IDs and session progress.csv", header = T) %>%
   rename(mini_language = language) %>%
-  select(participant_home_ID, mini_language)
+  select(participant_LHQ3_ID, mini_language)
+
 
 # Read the Excel file and treat the first row as regular text, as it is just 
 # stating the type of questionnaire used.
@@ -27,8 +28,8 @@ LHQ3 = read_excel("data/raw data/language history/LHQ3 results raw.xlsx",
                   sheet = "Sheet1", col_names = FALSE, skip = 1)
 
 # Questions that correspond to a single-column answer are directly indexed
-LHQ3[2, 1] = "participant_home_ID"
-LHQ3[2, 2] = "faulty_participant_home_ID"
+LHQ3[2, 1] = "participant_LHQ3_ID"
+LHQ3[2, 2] = "faulty_LHQ3_ID"
 LHQ3[2, 3] = "age"
 LHQ3[2, 4] = "gender"
 LHQ3[2, 5] = "Education"
@@ -48,8 +49,8 @@ LHQ3[1, 6] = "parents_education"
 # Get the value from column 9, row 1
 Q_parents_education = LHQ3[1, 6]
 
-# Changing the values in row 2, columns 6 to 7 to include Q_parents_education by 
-# converting it into a character
+# Change the values in row 2, columns 6 to 7 to include 
+# Q_parents_education by converting it into a character.
 
 Q_parents_education = as.character(Q_parents_education)
 
@@ -75,8 +76,8 @@ LHQ3[1, 9] = "L1_Acquisition"
 # Get the value from column 9, row 1
 Q_L1_acq = LHQ3[1, 9]
 
-# Changing the values in row 2, columns 9 to 14 to include Q_L1_acq by converting 
-# it into a character
+# Change the values in row 2, columns 9 to 14 to include Q_L1_acq by converting 
+# it into a character.
 
 Q_L1_acq = as.character(Q_L1_acq)
 
@@ -156,8 +157,8 @@ LHQ3[2, 47:50] = lapply(LHQ3[2, 47:50], function(x) {
 })
 
 
-# 11.Indicate the way you learned or acquired your non-native language(s). Check 
-# one or more boxes that apply. 
+# 11.Indicate the way you learned or acquired your non-native language(s). 
+# Check one or more boxes that apply. 
 
 LHQ3[1, 51] = "Nonnative_L1_acquisition_by"
 Q_acq_L1 = LHQ3[1, 51]
@@ -283,8 +284,8 @@ LHQ3[2, 110:112] = lapply(LHQ3[2, 110:112], function(x) {
 })
 
 
-# 15.Rate your current ability in terms of listening,speaking, reading, and writing 
-# in each of the languages you have studied or learned (including the native language).
+# 15.Rate your current ability in terms of listening,speaking, reading, and writing in
+# each of the languages you have studied or learned (including the native language).
 
 LHQ3[1, 114] = "Proficiency_L1"
 Q_Proficiency1 = LHQ3[1, 114]
@@ -605,8 +606,8 @@ LHQ3[2, 299:305] = lapply(LHQ3[2, 299:305], function(x) {
 
 # Organising the data frame so it can be easily analysed, first by making the 
 # question/condition the header.
-# Removing the first row which includes the shorthanded questions and Na values
-# making the more informative second row a header.
+# Removing the first row which includes the shorthanded questions and NA 
+# values, making the more informative second row a header.
 
 LHQ3 = LHQ3[-1, ]
 new_header = LHQ3[1, ]
@@ -615,9 +616,9 @@ new_header = as.character(new_header)
 names(LHQ3) = new_header
 
 # Perform the left join using merge()
-LHQ3 = merge(LHQ3, Norway_session_logbook, by = "participant_home_ID", all.x = TRUE)
+LHQ3 = merge(LHQ3, Norway_session_logbook, by = "participant_LHQ3_ID", all.x = TRUE)
 
-# calculating the average score for code-switching between languages for each 
+# Xalculate the average score for code-switching between languages for each 
 # participant. NA values are ignored
 
 codeswitching = c("codeswitching_Frequency of mixing with family\nmembers", 
@@ -644,8 +645,8 @@ LHQ3$codeswitching_average =
 
 # Import a set of variables that were computed in the LHQ3 platform, including 
 # proficiency scores and language Multilingual Language Diversity.
-# Removing the first row that reads "LHQ3" and creating new header.
-# Renaming the Participant ID column.
+# Remove the first row that reads "LHQ3" and creating new header.
+# Rename the Participant ID column.
 
 LHQ3_aggregate_scores = 
   read_excel("data/raw data/language history/LHQ3 Aggregate Scores.xlsx", 
@@ -656,30 +657,28 @@ LHQ3_aggregate_scores =
 
 # Rename columns using indices
 names(LHQ3_aggregate_scores)[c(1, 6, 7, 14)] = 
-  c("participant_home_ID", "L1_Proficiency", 
-    "L2_Proficiency", "multilingual_language_diversity")
+  c("participant_LHQ3_ID", "L1_Proficiency", "L2_Proficiency", 
+    "multilingual_language_diversity")
 
 
-
-# Ensure 'participant_home_ID' is present in both data frames for merging
-LHQ3_aggregate_scores = merge(LHQ3, LHQ3_aggregate_scores, 
-                              by = "participant_home_ID")
+# Ensure 'participant_LHQ3_ID' is present in both data frames for merging
+LHQ3_aggregate_scores = merge(LHQ3, LHQ3_aggregate_scores, by = "participant_LHQ3_ID")
 # View(LHQ3_aggregate_scores)
 
-# Selecting the necessary columns from LHQ3 and LHQ3_aggregate_scores
-# combining the two data frames based on participant_home_ID
+# Select the necessary columns from LHQ3 and LHQ3_aggregate_scores.
+# Combine the two data frames based on participant_LHQ3_ID.
 
 LHQ3 = LHQ3 %>%
-  select(participant_home_ID, mini_language, 
+  select(participant_LHQ3_ID, mini_language, 
          codeswitching_average)
 
 LHQ3_aggregate_scores = LHQ3_aggregate_scores %>%
-  select(participant_home_ID, L1_Proficiency, L2_Proficiency, 
+  select(participant_LHQ3_ID, L1_Proficiency, L2_Proficiency, 
          multilingual_language_diversity)
 
-LHQ3 = merge(LHQ3, LHQ3_aggregate_scores_selected, 
-             by = "participant_home_ID", all.x = TRUE) %>% 
-  select(participant_home_ID, L1_Proficiency, L2_Proficiency, 
+LHQ3 = merge(LHQ3, LHQ3_aggregate_scores, 
+             by = "participant_LHQ3_ID", all.x = TRUE) %>% 
+  select(participant_LHQ3_ID, L1_Proficiency, L2_Proficiency, 
          multilingual_language_diversity)
 
 # View(LHQ3_final)

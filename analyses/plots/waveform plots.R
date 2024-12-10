@@ -8,7 +8,8 @@ library(stringr)
 library(ggplot2)
 library(ggtext)
 
-merged_data = read.csv('data/final data/merged_data.csv')
+# Read in data
+source('data/preprocessing/merging data.R')
 
 # Rename factor levels and remove control violation condition 
 merged_data = merged_data %>%
@@ -20,12 +21,8 @@ std = function(x) sd(x) / sqrt(length(x))
 # Initialize an empty list to store all data
 all_data = list()
 
-# Ensure 'Mini-Norwegian' appears in the upper facet by reordering levels
-merged_data$language = 
-  factor(merged_data$language, 
-         levels = c('Mini-Norwegian', 
-                    setdiff(unique(na.omit(merged_data$language)), 
-                            'Mini-Norwegian')))
+# Create plots by iterating over factors. They'll be saved to disk one by one, 
+# taking several minutes.
 
 for (session in unique(na.omit(merged_data$session))) {
   for (grammatical_property in unique(na.omit(merged_data$grammatical_property))) {
@@ -90,8 +87,15 @@ for (session in unique(na.omit(merged_data$session))) {
                           'Session ', session, '; ', 
                           str_to_sentence(region), ' region')
       
-      group_colours = c('Grammatical' = 'forestgreen', 
-                        'Ungrammatical' = 'firebrick1')
+      # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
+      # the default alphabetical order of language_with_N.
+      df2$language_with_N = factor( 
+        df2$language_with_N,
+        levels = rev(levels(factor(df2$language_with_N))) 
+      )
+      
+      # Map colours to grammaticality conditions
+      group_colours = c('Grammatical' = 'forestgreen', 'Ungrammatical' = 'firebrick1')
       
       # Create and export plot
       ( ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
@@ -140,7 +144,7 @@ for (session in unique(na.omit(merged_data$session))) {
                 panel.spacing = unit(0.5, 'cm')) + 
           
           # Facet by language
-          facet_wrap(~ language_with_N, ncol = 1)
+          facet_wrap(~ language_with_N, ncol = 1, )
       ) %>%
         
         ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/', 

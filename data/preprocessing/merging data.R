@@ -6,15 +6,13 @@ library(dplyr)
 library(readxl)
 
 
-session_IDs_progress = read.csv('Participant IDs and session progress.csv')
-
-LHQ3_aggregate_scores = 
-  read_xlsx('data/raw data/language history/LHQ3 Aggregate Scores.xlsx') %>%
-  rename()
+session_IDs_progress = read.csv('data/Participant IDs and session progress.csv')
 
 source('data/preprocessing/preprocessing digit span task.R')
 source('data/preprocessing/preprocessing Stroop task.R')
 source('data/preprocessing/preprocessing alternating serial reaction time task.R')
+
+source('data/preprocessing/preprocessing Language History Questionnaire.R')
 
 source('data/preprocessing/averaged EEG data importation.R')
 
@@ -25,7 +23,7 @@ merged_data =
   
   session_IDs_progress %>%
   
-  # full_join(LHQ3_aggregate_scores, by = "participant_home_ID", relationship = "many-to-many") %>%
+  full_join(LHQ3_aggregate_scores, by = "participant_LHQ3_ID", relationship = "many-to-many") %>%
   
   full_join(session1_digit_span, by = "participant_home_ID", relationship = "many-to-many") %>%
   
@@ -37,8 +35,8 @@ merged_data =
 
 # View(merged_data)
 
-# Export to file
-write.csv(merged_data, 'data/final data/merged_data.csv')
+# Export to file (! TAKES A LOT OF TIME AND MEMORY !)
+# write.csv(merged_data, 'data/final data/merged_data.csv')
 
 # Read in data if necessary
 # merged_data = read.csv('data/final data/merged_data.csv')
