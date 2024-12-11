@@ -24,38 +24,35 @@ all_data = list()
 # Create plots by iterating over factors. They'll be saved to disk one by one, 
 # taking several minutes.
 
-for (session in unique(na.omit(merged_data$session))) {
-  for (grammatical_property in unique(na.omit(merged_data$grammatical_property))) {
-    for (region in unique(na.omit(merged_data$region))) {
+for(i_session in unique(na.omit(merged_data$session))) {
+  for(i_grammatical_property in unique(na.omit(merged_data$grammatical_property))) {
+    for(i_region in unique(na.omit(merged_data$region))) {
+      
+      # Create iteration data
+      iteration_data = merged_data %>%
+        filter(session == i_session,
+               grammatical_property == i_grammatical_property,
+               region == i_region)
       
       # Skip iteration if combination of factors does not exist in data set.
-      # For instance, Session 2 only contains the property of gender agreement. 
+      # For instance, Session 2 only contains the property of gender agreement.
+      if( nrow(iteration_data) == 0 ) next
       
-      if( merged_data[merged_data$session == session &
-                      merged_data$grammatical_property == grammatical_property &
-                      merged_data$region == region,] %>% nrow == 0 ) next
-      
-      # Calculate the sample size for each language group
-      sample_sizes = merged_data %>%
+      # Calculate sample size for each language group
+      sample_sizes = iteration_data %>% 
         group_by(language) %>%
-        summarise(n = n_distinct(participant_home_ID))
+        summarise(n = n_distinct(participant_home_ID), .groups = 'drop')
       
       # Filter data for the current combination of factors
       df2 = aggregate(
         amplitude ~ grammaticality * time * region * language,
-        merged_data[merged_data$session == session &
-                      merged_data$grammatical_property == grammatical_property &
-                      merged_data$region == region,], 
+        iteration_data, 
         mean)
       
       # Merge the sample sizes into df2
       df2 = df2 %>%
         left_join(sample_sizes, by = 'language') %>%
         mutate(language_with_N = paste0(language, ' (*n* = ', n, ')'))
-      
-      df3 = merged_data[merged_data$session == session &
-                          merged_data$grammatical_property == grammatical_property &
-                          merged_data$region == region,]
       
       # Compute SD, SE, Confidence Intervals
       SD = rep(NA, length(df2$time))       # vector SD per time
@@ -64,7 +61,7 @@ for (session in unique(na.omit(merged_data$session))) {
       CIlower = rep(NA, length(df2$time))  # vector lower 95% conf int
       
       for (i in 1:length(df2$time)) {
-        something = subset(df3, time == df2$time[i] & 
+        something = subset(iteration_data, time == df2$time[i] & 
                              language == df2$language[i], 
                            select = amplitude)
         SE[i] = std(something$amplitude)
@@ -75,21 +72,18 @@ for (session in unique(na.omit(merged_data$session))) {
       df2$CIL = CIlower
       df2$CIU = CIupper
       
-      # Create a valid R object name by sanitizing the factors.
-      # Replace non-alphanumeric characters with '_'.
+      # Create sanitized plot name
+      plot_name = paste0(i_grammatical_property, "_Session", i_session, 
+                         "_", str_to_sentence(i_region), " region") %>%
+        gsub("[^[:alnum:]_]", "_", .)
       
-      plot_name = paste0(grammatical_property, '_Session', session, 
-                         '_', str_to_sentence(region), ' region')
-      
-      plot_name = gsub('[^[:alnum:]_]', '_', plot_name)
-      
-      plot_title = paste0(str_to_sentence(grammatical_property), '; ', 
-                          'Session ', session, '; ', 
-                          str_to_sentence(region), ' region')
+      plot_title = paste0(str_to_sentence(i_grammatical_property), "; ", 
+                          "Session ", i_session, "; ", 
+                          str_to_sentence(i_region), " region")
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.
-      df2$language_with_N = factor( 
+      df2$language_with_N = factor(
         df2$language_with_N,
         levels = rev(levels(factor(df2$language_with_N))) 
       )
@@ -98,7 +92,8 @@ for (session in unique(na.omit(merged_data$session))) {
       group_colours = c('Grammatical' = 'forestgreen', 'Ungrammatical' = 'firebrick1')
       
       # Create and export plot
-      ( ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
+      (
+        ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
           
           geom_ribbon(aes(ymin = CIL, ymax = CIU, fill = grammaticality), 
                       alpha = 0.15, colour = NA) +
