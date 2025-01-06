@@ -24,11 +24,11 @@
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S101/Artifact Rejection tbt/S1_S101_tbt_Average</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt</string>
+    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt/S1_S103_tbt_Average</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Baseline Correction/Artifact Rejection/S1_S103_Average</string>
-    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt</string>
-    <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S103/Artifact Rejection tbt/S1_S103_tbt_Average</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -49,11 +49,11 @@
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>53b6092c-8c88-4979-9de8-4036cea1eb5b</guid>
     <guid>f62f1915-52f4-4c42-a9fb-a8776124b376</guid>
+    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
+    <guid>bd142479-6c75-4d5d-aa0a-c4369e5ecc57</guid>
     <guid>8fdb8083-0ad8-4905-b61d-8ff51c3b78f3</guid>
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>b18f2287-5c00-4ce5-9de7-58bffe978aa6</guid>
-    <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
-    <guid>bd142479-6c75-4d5d-aa0a-c4369e5ecc57</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
