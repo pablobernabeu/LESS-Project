@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <HeaderFilename>C:\Users\stpis0397\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\Session 4\Raw\12.vhdr</HeaderFilename>
+  <HeaderFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\data\raw data\EEG\Session 4\Raw\12.vhdr</HeaderFilename>
   <RawFilename>C:\Users\chath1626\OneDrive - UiT Office 365\LESS-Project-with-RAs-2\data\raw data\EEG\Session 4\Raw\12.eeg</RawFilename>
   <AppendedFiles />
   <Sequence>1</Sequence>
@@ -23,6 +23,7 @@
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt/S1_S101_tbt_Average</string>
+    <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S101 tbt/test on Segmentation</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S102 tbt/S1_S102_tbt_Average</string>
     <string>12/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/S1_Segmentation S103 tbt</string>
@@ -72,6 +73,7 @@
     <guid>002f47af-0a85-4258-a548-ff69e39ef27c</guid>
     <guid>3b140b35-8e2e-4977-81f9-a4fc01aea98c</guid>
     <guid>0105cdfc-e09f-4567-9579-33559d35d807</guid>
+    <guid>72c480ca-e671-48f0-8aac-486c23b1a6fa</guid>
     <guid>2618e8d9-0881-4a5c-8833-a0eecee0158c</guid>
     <guid>b8140b34-3969-48bd-8b5f-294898a6db54</guid>
     <guid>72b2038c-1be3-4f5d-99f4-0865ca1d02ca</guid>
