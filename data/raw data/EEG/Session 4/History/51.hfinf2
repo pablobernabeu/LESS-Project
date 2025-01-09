@@ -7,9 +7,15 @@
   <Sequences>1</Sequences>
   <Nodes>
     <string>51/Raw Data</string>
+    <string>51/Raw Data/Raw Data Inspection</string>
+    <string>51/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>51/Raw Data/Raw Data Inspection/New Reference/Filters</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
+    <guid>58b7cbbe-0a2e-446d-8bcb-d440040185ab</guid>
+    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
+    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
