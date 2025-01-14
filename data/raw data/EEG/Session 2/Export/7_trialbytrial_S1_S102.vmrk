@@ -1,0 +1,122 @@
+BrainVision Data Exchange Marker File Version 2.0
+; Data created from history path: 7/Raw Data/Edit Markers - do not change/Segmentation - do not change/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact rejection tbt/Segmentation S102 tbt
+; The channel numbers are related to the channels in the exported file.
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=7_trialbytrial_S1_S102.txt
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>,
+; <Date (YYYYMMDDhhmmssuuuuuu)>, Visible
+; Fields are delimited by commas, some fields may be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20240311113047873370
+Mk2=Stimulus,S 44,50,1,0
+Mk3=Stimulus,S164,55,1,0
+Mk4=Stimulus,S  1,61,1,0
+Mk5=Stimulus,S102,66,1,0
+Mk6=Time 0,,66,1,0
+Mk7=New Segment,,601,1,0,20240311113130429370
+Mk8=Stimulus,S 47,650,1,0
+Mk9=Stimulus,S197,655,1,0
+Mk10=Stimulus,S  1,661,1,0
+Mk11=Stimulus,S102,666,1,0
+Mk12=Time 0,,666,1,0
+Mk13=New Segment,,1201,1,0,20240311113141497370
+Mk14=Stimulus,S 47,1250,1,0
+Mk15=Stimulus,S196,1255,1,0
+Mk16=Stimulus,S  1,1261,1,0
+Mk17=Time 0,,1266,1,0
+Mk18=Stimulus,S102,1266,1,0
+Mk19=New Segment,,1801,1,0,20240311114342249370
+Mk20=Stimulus,S 41,1850,1,0
+Mk21=Stimulus,S128,1855,1,0
+Mk22=Stimulus,S  1,1861,1,0
+Mk23=Stimulus,S102,1866,1,0
+Mk24=Time 0,,1866,1,0
+Mk25=New Segment,,2401,1,0,20240311114405431370
+Mk26=UserDefined,Blink,2401,181,1
+Mk27=Stimulus,S 50,2450,1,0
+Mk28=Stimulus,S234,2455,1,0
+Mk29=Stimulus,S  1,2461,1,0
+Mk30=Time 0,,2466,1,0
+Mk31=Stimulus,S102,2466,1,0
+Mk32=UserDefined,Blink,2657,127,1
+Mk33=UserDefined,Blink,2879,122,1
+Mk34=New Segment,,3001,1,0,20240311114439751370
+Mk35=Stimulus,S 47,3051,1,0
+Mk36=Stimulus,S205,3056,1,0
+Mk37=Stimulus,S  1,3061,1,0
+Mk38=Time 0,,3066,1,0
+Mk39=Stimulus,S102,3066,1,0
+Mk40=UserDefined,Blink,3546,55,1
+Mk41=New Segment,,3601,1,0,20240311114646235370
+Mk42=Stimulus,S 44,3650,1,0
+Mk43=Stimulus,S160,3655,1,0
+Mk44=Stimulus,S  1,3661,1,0
+Mk45=Stimulus,S102,3666,1,0
+Mk46=Time 0,,3666,1,0
+Mk47=New Segment,,4201,1,0,20240311114954839370
+Mk48=Stimulus,S 50,4250,1,0
+Mk49=Stimulus,S236,4255,1,0
+Mk50=Stimulus,S  1,4261,1,0
+Mk51=Time 0,,4266,1,0
+Mk52=Stimulus,S102,4266,1,0
+Mk53=New Segment,,4801,1,0,20240311115029243370
+Mk54=Stimulus,S 47,4851,1,0
+Mk55=Stimulus,S201,4856,1,0
+Mk56=Stimulus,S  1,4861,1,0
+Mk57=Stimulus,S102,4866,1,0
+Mk58=Time 0,,4866,1,0
+Mk59=New Segment,,5401,1,0,20240311115202759370
+Mk60=Stimulus,S 41,5450,1,0
+Mk61=Stimulus,S132,5455,1,0
+Mk62=Stimulus,S  1,5461,1,0
+Mk63=Time 0,,5466,1,0
+Mk64=Stimulus,S102,5466,1,0
+Mk65=New Segment,,6001,1,0,20240311115236673370
+Mk66=Stimulus,S 47,6049,1,0
+Mk67=Stimulus,S198,6055,1,0
+Mk68=Stimulus,S  1,6061,1,0
+Mk69=Stimulus,S102,6066,1,0
+Mk70=Time 0,,6066,1,0
+Mk71=New Segment,,6601,1,0,20240311115436187370
+Mk72=Stimulus,S 44,6649,1,0
+Mk73=Stimulus,S168,6655,1,0
+Mk74=Stimulus,S  1,6661,1,0
+Mk75=Stimulus,S102,6666,1,0
+Mk76=Time 0,,6666,1,0
+Mk77=New Segment,,7201,1,0,20240311115558035370
+Mk78=Stimulus,S 44,7250,1,0
+Mk79=Stimulus,S161,7255,1,0
+Mk80=Stimulus,S  1,7261,1,0
+Mk81=Time 0,,7266,1,0
+Mk82=Stimulus,S102,7266,1,0
+Mk83=New Segment,,7801,1,0,20240311120107117370
+Mk84=Stimulus,S 41,7850,1,0
+Mk85=Stimulus,S130,7855,1,0
+Mk86=Stimulus,S  1,7861,1,0
+Mk87=Time 0,,7866,1,0
+Mk88=Stimulus,S102,7866,1,0
+Mk89=New Segment,,8401,1,0,20240311120321469370
+Mk90=Stimulus,S 50,8451,1,0
+Mk91=Stimulus,S240,8456,1,0
+Mk92=Stimulus,S  1,8461,1,0
+Mk93=Stimulus,S102,8466,1,0
+Mk94=Time 0,,8466,1,0
+Mk95=New Segment,,9001,1,0,20240311120605953370
+Mk96=Stimulus,S 41,9050,1,0
+Mk97=Stimulus,S126,9055,1,0
+Mk98=Stimulus,S  1,9061,1,0
+Mk99=Stimulus,S102,9066,1,0
+Mk100=Time 0,,9066,1,0
+
+[Marker User Infos]
+; Each entry: Prop<Number>=Mk<Marker number>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to markers using their marker number.
