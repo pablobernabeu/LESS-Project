@@ -8,10 +8,11 @@ library(stringr)
 library(data.table)
 
 
-# List all .txt files in the directory
-files = list.files(pattern = '\\d_S..S10..txt', full.names = TRUE, recursive = T)
+# List all relevant .txt files in the directory
+txt_files = list.files(pattern = "^\\d+_(S[123])_S10[123]\\.txt$", full.names = TRUE, 
+                       recursive = TRUE, path = 'data/raw data/EEG')
 
-# Step 1: Extract metadata from file names
+# Step 1: Extract metadata from file paths and names
 metadata <- tibble(
   file = files,
   participant_lab_ID = str_extract(basename(files), '^[0-9]+'),
@@ -22,7 +23,8 @@ metadata <- tibble(
 
 # Step 2: Define a function to process a single file
 process_file <- function(file, metadata_row) {
-  # Read raw data
+  
+  # Read raw EEG data
   raw_data <- fread(file, sep = ' ', header = FALSE)
   
   # Extract electrode names (first column of the file)
@@ -51,6 +53,7 @@ process_file <- function(file, metadata_row) {
   long_data <- as.data.frame(raw_data) %>%
     mutate(electrode = electrodes) %>%
     pivot_longer(cols = -electrode, names_to = 'time', values_to = 'amplitude') %>%
+    
     mutate(
       participant_lab_ID = as.integer(metadata_row$participant_lab_ID),
       session = metadata_row$session,
@@ -77,10 +80,12 @@ process_file <- function(file, metadata_row) {
       ),
       
       # Translate triggers to linguistic labels (see https://osf.io/974k8)
+      
       grammatical_property = 
         case_when(grammatical_property == 'S1' ~ 'Gender agreement', 
                   grammatical_property == 'S2' ~ 'Differential object marking', 
                   grammatical_property == 'S3' ~ 'Verb-object agreement'),
+      
       grammaticality = 
         case_when(grammaticality == 'S101' ~ 'Grammatical', 
                   grammaticality == 'S102' ~ 'Ungrammatical', 

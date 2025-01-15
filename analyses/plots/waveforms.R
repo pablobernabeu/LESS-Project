@@ -47,7 +47,8 @@ for(i_session in unique(na.omit(merged_data$session))) {
       df2 = aggregate(
         amplitude ~ grammaticality * time * region * language,
         iteration_data, 
-        mean)
+        mean
+      )
       
       # Merge the sample sizes into df2
       df2 = df2 %>%
@@ -73,13 +74,14 @@ for(i_session in unique(na.omit(merged_data$session))) {
       df2$CIU = CIupper
       
       # Create sanitized plot name
-      plot_name = paste0(i_grammatical_property, "_Session", i_session, 
-                         "_", str_to_sentence(i_region), " region") %>%
-        gsub("[^[:alnum:]_]", "_", .)
+      plot_name = 
+        paste0(i_grammatical_property, '_Session', i_session, 
+               '_', str_to_sentence(i_region), ' region') %>%
+        gsub('[^[:alnum:]_]', '_', .)
       
-      plot_title = paste0(str_to_sentence(i_grammatical_property), "; ", 
-                          "Session ", i_session, "; ", 
-                          str_to_sentence(i_region), " region")
+      plot_title = paste0(str_to_sentence(i_grammatical_property), '; ', 
+                          'Session ', i_session, '; ', 
+                          str_to_sentence(i_region), ' region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.
@@ -89,7 +91,8 @@ for(i_session in unique(na.omit(merged_data$session))) {
       )
       
       # Map colours to grammaticality conditions
-      group_colours = c('Grammatical' = 'forestgreen', 'Ungrammatical' = 'firebrick1')
+      group_colours = c('Grammatical' = 'forestgreen', 
+                        'Ungrammatical' = 'firebrick1')
       
       # Create and export plot
       (
@@ -139,7 +142,7 @@ for(i_session in unique(na.omit(merged_data$session))) {
                 panel.spacing = unit(0.5, 'cm')) + 
           
           # Facet by language
-          facet_wrap(~ language_with_N, ncol = 1, )
+          facet_wrap(~language_with_N, ncol = 1, )
       ) %>%
         
         ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/', 
