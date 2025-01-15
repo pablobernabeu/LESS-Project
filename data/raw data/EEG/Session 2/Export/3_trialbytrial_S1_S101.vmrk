@@ -1,0 +1,184 @@
+BrainVision Data Exchange Marker File Version 2.0
+; Data created from history path: 3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact rejection tbt/Segmentation S101 tbt
+; The channel numbers are related to the channels in the exported file.
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=3_trialbytrial_S1_S101.txt
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>,
+; <Date (YYYYMMDDhhmmssuuuuuu)>, Visible
+; Fields are delimited by commas, some fields may be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20240302134333476618
+Mk2=Stimulus,S 48,51,1,0
+Mk3=Stimulus,S214,56,1,0
+Mk4=Stimulus,S  1,61,1,0
+Mk5=Stimulus,S101,66,1,0
+Mk6=Time 0,,66,1,0
+Mk7=New Segment,,601,1,0,20240302134359524618
+Mk8=Stimulus,S 48,651,1,0
+Mk9=Stimulus,S206,656,1,0
+Mk10=Stimulus,S  1,661,1,0
+Mk11=Stimulus,S101,666,1,0
+Mk12=Time 0,,666,1,0
+Mk13=New Segment,,1201,1,0,20240302134455770618
+Mk14=Stimulus,S 48,1250,1,0
+Mk15=Stimulus,S213,1255,1,0
+Mk16=Stimulus,S  1,1261,1,0
+Mk17=Stimulus,S101,1266,1,0
+Mk18=Time 0,,1266,1,0
+Mk19=New Segment,,1801,1,0,20240302134610590618
+Mk20=Stimulus,S 45,1851,1,0
+Mk21=Stimulus,S174,1855,1,0
+Mk22=Stimulus,S  1,1861,1,0
+Mk23=Stimulus,S101,1866,1,0
+Mk24=Time 0,,1866,1,0
+Mk25=New Segment,,2401,1,0,20240302134835044618
+Mk26=Stimulus,S 45,2450,1,0
+Mk27=Stimulus,S172,2455,1,0
+Mk28=Stimulus,S  1,2461,1,0
+Mk29=Stimulus,S101,2466,1,0
+Mk30=Time 0,,2466,1,0
+Mk31=New Segment,,3001,1,0,20240302134923402618
+Mk32=Stimulus,S 51,3051,1,0
+Mk33=Stimulus,S251,3056,1,0
+Mk34=Stimulus,S  1,3061,1,0
+Mk35=Stimulus,S101,3066,1,0
+Mk36=Time 0,,3066,1,0
+Mk37=New Segment,,3601,1,0,20240302135006184618
+Mk38=Stimulus,S 42,3650,1,0
+Mk39=Stimulus,S134,3655,1,0
+Mk40=Stimulus,S  1,3661,1,0
+Mk41=Time 0,,3666,1,0
+Mk42=Stimulus,S101,3666,1,0
+Mk43=New Segment,,4201,1,0,20240302135030952618
+Mk44=Stimulus,S 48,4250,1,0
+Mk45=Stimulus,S216,4255,1,0
+Mk46=Stimulus,S  1,4261,1,0
+Mk47=Stimulus,S101,4266,1,0
+Mk48=Time 0,,4266,1,0
+Mk49=New Segment,,4801,1,0,20240302135118706618
+Mk50=Stimulus,S 45,4851,1,0
+Mk51=Stimulus,S170,4856,1,0
+Mk52=Stimulus,S  1,4861,1,0
+Mk53=Time 0,,4866,1,0
+Mk54=Stimulus,S101,4866,1,0
+Mk55=New Segment,,5401,1,0,20240302135635274618
+Mk56=Stimulus,S 42,5450,1,0
+Mk57=Stimulus,S135,5455,1,0
+Mk58=Stimulus,S  1,5461,1,0
+Mk59=Time 0,,5466,1,0
+Mk60=Stimulus,S101,5466,1,0
+Mk61=New Segment,,6001,1,0,20240302135711624618
+Mk62=Stimulus,S 45,6050,1,0
+Mk63=Stimulus,S181,6056,1,0
+Mk64=Stimulus,S  1,6061,1,0
+Mk65=Stimulus,S101,6066,1,0
+Mk66=Time 0,,6066,1,0
+Mk67=New Segment,,6601,1,0,20240302135859804618
+Mk68=Stimulus,S 48,6650,1,0
+Mk69=Stimulus,S211,6655,1,0
+Mk70=Stimulus,S  1,6661,1,0
+Mk71=Stimulus,S101,6666,1,0
+Mk72=Time 0,,6666,1,0
+Mk73=New Segment,,7201,1,0,20240302140821368618
+Mk74=Stimulus,S 42,7250,1,0
+Mk75=Stimulus,S142,7255,1,0
+Mk76=Stimulus,S  1,7261,1,0
+Mk77=Stimulus,S101,7266,1,0
+Mk78=Time 0,,7266,1,0
+Mk79=New Segment,,7801,1,0,20240302140844476618
+Mk80=Stimulus,S 42,7850,1,0
+Mk81=Stimulus,S143,7856,1,0
+Mk82=Stimulus,S  1,7861,1,0
+Mk83=Stimulus,S101,7866,1,0
+Mk84=Time 0,,7866,1,0
+Mk85=New Segment,,8401,1,0,20240302140954602618
+Mk86=Stimulus,S 42,8450,1,0
+Mk87=Stimulus,S139,8455,1,0
+Mk88=Stimulus,S  1,8461,1,0
+Mk89=Stimulus,S101,8466,1,0
+Mk90=Time 0,,8466,1,0
+Mk91=New Segment,,9001,1,0,20240302141118530618
+Mk92=Stimulus,S 42,9051,1,0
+Mk93=Stimulus,S145,9056,1,0
+Mk94=Stimulus,S  1,9061,1,0
+Mk95=Stimulus,S101,9066,1,0
+Mk96=Time 0,,9066,1,0
+Mk97=New Segment,,9601,1,0,20240302141353418618
+Mk98=Stimulus,S 45,9650,1,0
+Mk99=Stimulus,S175,9655,1,0
+Mk100=Stimulus,S  1,9661,1,0
+Mk101=Stimulus,S101,9666,1,0
+Mk102=Time 0,,9666,1,0
+Mk103=New Segment,,10201,1,0,20240302141719132618
+Mk104=Stimulus,S 51,10250,1,0
+Mk105=Stimulus,S249,10256,1,0
+Mk106=Stimulus,S  1,10261,1,0
+Mk107=Time 0,,10266,1,0
+Mk108=Stimulus,S101,10266,1,0
+Mk109=New Segment,,10801,1,0,20240302141901608618
+Mk110=Stimulus,S 45,10851,1,0
+Mk111=Stimulus,S176,10856,1,0
+Mk112=Stimulus,S  1,10861,1,0
+Mk113=Time 0,,10866,1,0
+Mk114=Stimulus,S101,10866,1,0
+Mk115=New Segment,,11401,1,0,20240302141911848618
+Mk116=Stimulus,S 51,11450,1,0
+Mk117=Stimulus,S247,11455,1,0
+Mk118=Stimulus,S  1,11461,1,0
+Mk119=Time 0,,11466,1,0
+Mk120=Stimulus,S101,11466,1,0
+Mk121=New Segment,,12001,1,0,20240302142152176618
+Mk122=Stimulus,S 42,12050,1,0
+Mk123=Stimulus,S138,12055,1,0
+Mk124=Stimulus,S  1,12061,1,0
+Mk125=Time 0,,12066,1,0
+Mk126=Stimulus,S101,12066,1,0
+Mk127=New Segment,,12601,1,0,20240302142212420618
+Mk128=Stimulus,S 48,12650,1,0
+Mk129=Stimulus,S209,12655,1,0
+Mk130=Stimulus,S  1,12661,1,0
+Mk131=Time 0,,12666,1,0
+Mk132=Stimulus,S101,12666,1,0
+Mk133=New Segment,,13201,1,0,20240302142301428618
+Mk134=Stimulus,S 51,13250,1,0
+Mk135=Stimulus,S242,13255,1,0
+Mk136=Stimulus,S  1,13261,1,0
+Mk137=Time 0,,13266,1,0
+Mk138=Stimulus,S101,13266,1,0
+Mk139=New Segment,,13801,1,0,20240302142410292618
+Mk140=Stimulus,S 51,13850,1,0
+Mk141=Stimulus,S245,13856,1,0
+Mk142=Stimulus,S  1,13861,1,0
+Mk143=Stimulus,S101,13866,1,0
+Mk144=Time 0,,13866,1,0
+Mk145=New Segment,,14401,1,0,20240302142436084618
+Mk146=Stimulus,S 48,14450,1,0
+Mk147=Stimulus,S207,14455,1,0
+Mk148=Stimulus,S  1,14461,1,0
+Mk149=Stimulus,S101,14466,1,0
+Mk150=Time 0,,14466,1,0
+Mk151=New Segment,,15001,1,0,20240302142509224618
+Mk152=Stimulus,S 48,15051,1,0
+Mk153=Stimulus,S212,15056,1,0
+Mk154=Stimulus,S  1,15061,1,0
+Mk155=Stimulus,S101,15066,1,0
+Mk156=Time 0,,15066,1,0
+Mk157=New Segment,,15601,1,0,20240302142700638618
+Mk158=Stimulus,S 48,15650,1,0
+Mk159=Stimulus,S215,15655,1,0
+Mk160=Stimulus,S  1,15661,1,0
+Mk161=Stimulus,S101,15666,1,0
+Mk162=Time 0,,15666,1,0
+
+[Marker User Infos]
+; Each entry: Prop<Number>=Mk<Marker number>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to markers using their marker number.
