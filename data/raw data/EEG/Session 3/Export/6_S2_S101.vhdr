@@ -4,6 +4,7 @@ BrainVision Data Exchange Header File Version 2.0
 [Common Infos]
 Codepage=UTF-8
 DataFile=6_S2_S101.txt
+MarkerFile=6_S2_S101.vmrk
 DataFormat=ASCII
 ; Data orientation: VECTORIZED=ch1,pt1, ch1,pt2..., MULTIPLEXED=ch1,pt1, ch2,pt1 ...
 DataOrientation=VECTORIZED
