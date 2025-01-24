@@ -1,5 +1,4 @@
 
-
 # Load required libraries
 library(dplyr)
 library(tidyr)
@@ -28,14 +27,30 @@ vmrk_files <- list.files(
 # Pair files by matching names (excluding extensions)
 paired_files <- tibble(
   txt_file = txt_files,
-  base_name = tools::file_path_sans_ext(basename(txt_files))
+  base_path = sub("\\.txt$", "", txt_files) # path without file ext
 ) %>%
   inner_join(
     tibble(
       vmrk_file = vmrk_files,
-      base_name = tools::file_path_sans_ext(basename(vmrk_files))
+      base_path = sub("\\.vmrk$", "", vmrk_files) # path without file ext
     ),
-    by = "base_name"
+    by = "base_path", 
+  ) %>%
+  mutate(
+    grammatical_property = sub(".*_(S[1-3])_.*", "\\1", base_path),
+    grammaticality = sub(".*_(S10[1-3])$", "\\1", base_path),
+    
+    # Translate markers to their meaning
+    grammatical_property = case_when(
+      grammatical_property == 'S1' ~ 'Gender agreement', 
+      grammatical_property == 'S2' ~ 'Differential object marking', 
+      grammatical_property == 'S3' ~ 'Verb-object number agreement',
+      .default = grammatical_property),
+    grammaticality = case_when(
+      grammaticality == 'S101' ~ 'Grammatical', 
+      grammaticality == 'S102' ~ 'Ungrammatical', 
+      grammaticality == 'S103' ~ 'Ancillary violation',
+      .default = grammaticality)
   )
 
 # Initialize output object to store results
@@ -43,8 +58,11 @@ output_data <- list()
 
 # Process each pair
 for (i in seq_len(nrow(paired_files))) {
+  
   txt_file <- paired_files$txt_file[i]
   vmrk_file <- paired_files$vmrk_file[i]
+  grammatical_property <- paired_files$grammatical_property[i]
+  grammaticality <- paired_files$grammaticality[i]
   
   # Extract markers from the .vmrk file
   markers <- readLines(vmrk_file)
@@ -55,7 +73,7 @@ for (i in seq_len(nrow(paired_files))) {
   }
   
   marker_infos <- markers[marker_start:length(markers)]
-  sentence_markers <- marker_infos[grep("S1(10|[1-9][1-9]|2[0-5][0-3])", marker_infos)]
+  sentence_markers <- marker_infos[grep("S1[1-9][0-9]|S2[0-4][0-9]|S25[0-3]", marker_infos)]
   
   if (length(sentence_markers) == 0) {
     stop("No valid sentence markers (S110–S253) found in the .vmrk file.")
@@ -73,7 +91,7 @@ for (i in seq_len(nrow(paired_files))) {
   # Extract electrode names and data
   parsed_lines <- lapply(raw_file_content, function(line) strsplit(line, "\\s+")[[1]])
   electrode_names <- sapply(parsed_lines, `[[`, 1)  # First word of each line
-  data_values <- do.call(rbind, lapply(parsed_lines, function(parts) as.numeric(parts[-1])))  # Remaining numbers
+  data_values <- do.call(rbind, lapply(parsed_lines, function(x) x[-1]))  # Remaining numbers
   
   # Check for parsing issues
   if (any(is.na(data_values))) {
@@ -96,12 +114,16 @@ for (i in seq_len(nrow(paired_files))) {
     mutate(electrode = electrode_names) %>%
     pivot_longer(
       cols = -electrode,
-      names_to = "time_index",
+      names_to = "placeholder_time_index",
       values_to = "amplitude"
     ) %>%
+    # Drop unnecessary column
+    select(-placeholder_time_index) %>%
     mutate(
       time_point = rep(time_points, times = length(trial_names) * length(electrode_names)),
-      trial = rep(rep(trial_names, each = 600), times = length(electrode_names))
+      trial = rep(rep(trial_names, each = 600), times = length(electrode_names)),
+      grammatical_property = grammatical_property,
+      grammaticality = grammaticality
     )
   
   # Append to output data
@@ -110,8 +132,11 @@ for (i in seq_len(nrow(paired_files))) {
 }
 
 # Combine all processed data into a single data frame
-final_data <- bind_rows(output_data)
+trialbytrial_EEG_data <- bind_rows(output_data)
 
-# Return the final data
-gc()  # Trigger garbage collection to free up memory
-final_data
+cat('Summary of the processed EEG data:\n')
+print(summary(trialbytrial_EEG_data))
+
+# Free unused memory
+gc()
+

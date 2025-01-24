@@ -1,5 +1,6 @@
 
-# Waveform plots
+# Waveform plots using trial-by-trial data. This script only serves to 
+# verify that the trial-by-trial data was imported correctly into R. 
 
 library(dplyr)
 library(tidyr)
@@ -8,27 +9,38 @@ library(ggplot2)
 library(ggtext)
 
 # Read in data
-source('data/preprocessing/import averaged EEG data.R')
+source('data/preprocessing/import trial-by-trial EEG data.R')
+
+# Aggregate data across trials
+aggregated_EEG_data <- trialbytrial_EEG_data %>%
+  select(-trial) %>%  # Drop the trial column
+  # Group by all columns except amplitude
+  group_by(across(everything(), ~.x, -amplitude)) %>% 
+  # Aggregate amplitude by mean
+  summarise(mean_amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop") 
+
+# View the aggregated data
+head(aggregated_data)
 
 # Rename factor levels and remove ancillary violation condition 
-averaged_EEG_data <- averaged_EEG_data %>%
+merged_data = merged_data %>%
   filter(!grammaticality == 'Ancillary violation')
 
 # Define standard error function
-std <- function(x) sd(x) / sqrt(length(x))
+std = function(x) sd(x) / sqrt(length(x))
 
 # Initialize an empty list to store all data
-all_data <- list()
+all_data = list()
 
 # Create plots by iterating over factors. They'll be saved to disk one by one, 
 # taking several minutes.
 
-for(i_session in unique(na.omit(averaged_EEG_data$session))) {
-  for(i_grammatical_property in unique(na.omit(averaged_EEG_data$grammatical_property))) {
-    for(i_region in unique(na.omit(averaged_EEG_data$region))) {
+for(i_session in unique(na.omit(merged_data$session))) {
+  for(i_grammatical_property in unique(na.omit(merged_data$grammatical_property))) {
+    for(i_region in unique(na.omit(merged_data$region))) {
       
       # Create iteration data
-      iteration_data <- averaged_EEG_data %>%
+      iteration_data = merged_data %>%
         filter(session == i_session,
                grammatical_property == i_grammatical_property,
                region == i_region)
@@ -38,60 +50,60 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       if( nrow(iteration_data) == 0 ) next
       
       # Calculate sample size for each language group
-      sample_sizes <- iteration_data %>% 
+      sample_sizes = iteration_data %>% 
         group_by(language) %>%
         summarise(n = n_distinct(participant_home_ID), .groups = 'drop')
       
       # Filter data for the current combination of factors
-      df2 <- aggregate(
+      df2 = aggregate(
         amplitude ~ grammaticality * time * region * language,
         iteration_data, 
         mean
       )
       
       # Merge the sample sizes into df2
-      df2 <- df2 %>%
+      df2 = df2 %>%
         left_join(sample_sizes, by = 'language') %>%
         mutate(language_with_N = paste0(language, ' (*n* = ', n, ')'))
       
       # Compute SD, SE, Confidence Intervals
-      SD <- rep(NA, length(df2$time))       # vector SD per time
-      SE <- rep(NA, length(df2$time))       # vector SE per time
-      CIupper <- rep(NA, length(df2$time))  # vector upper 95% conf int
-      CIlower <- rep(NA, length(df2$time))  # vector lower 95% conf int
+      SD = rep(NA, length(df2$time))       # vector SD per time
+      SE = rep(NA, length(df2$time))       # vector SE per time
+      CIupper = rep(NA, length(df2$time))  # vector upper 95% conf int
+      CIlower = rep(NA, length(df2$time))  # vector lower 95% conf int
       
       for (i in 1:length(df2$time)) {
-        something <- subset(iteration_data, time == df2$time[i] & 
-                              language == df2$language[i], 
-                            select = amplitude)
-        SE[i] <- std(something$amplitude)
-        CIlower[i] <- df2$amplitude[i] - (SE[i] * 1.96)
-        CIupper[i] <- df2$amplitude[i] + (SE[i] * 1.96)
+        something = subset(iteration_data, time == df2$time[i] & 
+                             language == df2$language[i], 
+                           select = amplitude)
+        SE[i] = std(something$amplitude)
+        CIlower[i] = df2$amplitude[i] - (SE[i] * 1.96)
+        CIupper[i] = df2$amplitude[i] + (SE[i] * 1.96)
       }
       
-      df2$CIL <- CIlower
-      df2$CIU <- CIupper
+      df2$CIL = CIlower
+      df2$CIU = CIupper
       
       # Create sanitized plot name
-      plot_name <- 
+      plot_name = 
         paste0(i_grammatical_property, '_Session', i_session, 
                '_', str_to_sentence(i_region), ' region') %>%
         gsub('[^[:alnum:]_]', '_', .)
       
-      plot_title <- paste0(str_to_sentence(i_grammatical_property), '; ', 
-                           'Session ', i_session, '; ', 
-                           str_to_sentence(i_region), ' region')
+      plot_title = paste0(str_to_sentence(i_grammatical_property), '; ', 
+                          'Session ', i_session, '; ', 
+                          str_to_sentence(i_region), ' region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.
-      df2$language_with_N <- factor(
+      df2$language_with_N = factor(
         df2$language_with_N,
         levels = rev(levels(factor(df2$language_with_N))) 
       )
       
       # Map colours to grammaticality conditions
-      group_colours <- c('Grammatical' = 'forestgreen', 
-                         'Ungrammatical' = 'firebrick1')
+      group_colours = c('Grammatical' = 'forestgreen', 
+                        'Ungrammatical' = 'firebrick1')
       
       # Create and export plot
       (
@@ -152,3 +164,4 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
 
 # Free unused memory
 gc()
+

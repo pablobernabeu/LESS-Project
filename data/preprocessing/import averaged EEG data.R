@@ -1,5 +1,4 @@
 
-
 # Importing averaged EEG data
 
 library(dplyr)
@@ -7,10 +6,9 @@ library(tidyr)
 library(stringr)
 library(data.table)
 
-
 # List all relevant .txt files in the directory
-txt_files = list.files(pattern = "^\\d+_(S[123])_S10[123]\\.txt$", full.names = TRUE, 
-                       recursive = TRUE, path = 'data/raw data/EEG')
+txt_files <- list.files(pattern = "^\\d+_(S[123])_S10[123]\\.txt$", full.names = TRUE, 
+                        recursive = TRUE, path = 'data/raw data/EEG')
 
 # Step 1: Extract metadata from file paths and names
 metadata <- tibble(
@@ -89,22 +87,21 @@ process_file <- function(file, metadata_row) {
       grammaticality = 
         case_when(grammaticality == 'S101' ~ 'Grammatical', 
                   grammaticality == 'S102' ~ 'Ungrammatical', 
-                  grammaticality == 'S103' ~ 'Control violation')
+                  grammaticality == 'S103' ~ 'Ancillary violation')
     )
   
   return(long_data)
 }
 
 # Step 3: Process all files and combine into a single data frame
-ERP_data <- bind_rows(
+averaged_EEG_data <- bind_rows(
   lapply(seq_len(nrow(metadata)), function(i) {
     process_file(metadata$file[i], metadata[i, ])
   })
 )
 
-cat('Summary of the processed ERP data:\n')
-print(summary(ERP_data))
+cat('Summary of the processed EEG data:\n')
+print(summary(averaged_EEG_data))
 
-# Free up memory
+# Free unused memory
 gc()
-

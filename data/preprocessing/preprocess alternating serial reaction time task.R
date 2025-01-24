@@ -1,7 +1,5 @@
 
-
-# Preprocessing alternating serial reaction time (session1_ASRT) task from Session 1
-
+# Preprocess alternating serial reaction time (session1_ASRT) task from Session 1
 
 library(dplyr)
 library(tidyr)
@@ -10,10 +8,10 @@ library(readr)
 library(ggplot2)
 
 # Path to files
-path = 'data/raw data/executive functions/Session 1'
+path <- 'data/raw data/executive functions/Session 1'
 
 # Read in and combine the files
-session1_ASRT = rbind( 
+session1_ASRT <- rbind( 
   read_csv(file.path(path, 'serial reaction time 1.csv')),
   read_csv(file.path(path, 'serial reaction time 2.csv')),
   read_csv(file.path(path, 'serial reaction time 3.csv')),
@@ -77,9 +75,9 @@ session1_ASRT %>%
 
 # Create empty dataframe using column 
 # names from the original data set.
-trimmed_ASRT = session1_ASRT[0,]
+trimmed_ASRT <- session1_ASRT[0,]
 
-trimmed_ASRT = session1_ASRT %>%
+trimmed_ASRT <- session1_ASRT %>%
   
   # Apply minimum and maximum cut-offs to RTs
   filter(!cumulative_RT < 50, !cumulative_RT > 5000) %>%
@@ -92,8 +90,8 @@ trimmed_ASRT = session1_ASRT %>%
   # Apply 3 SD cut-off within the grouping factors
   group_by(participant_home_ID, pattern_or_random, block, triplet_type) %>%
   group_modify(~ {
-    mean_rt = mean(.x$cumulative_RT, na.rm = TRUE)
-    sd_rt = sd(.x$cumulative_RT, na.rm = TRUE)
+    mean_rt <- mean(.x$cumulative_RT, na.rm = TRUE)
+    sd_rt <- sd(.x$cumulative_RT, na.rm = TRUE)
     
     # Filter rows within 3 SDs from the mean
     .x %>% filter(cumulative_RT > (mean_rt - 3 * sd_rt) & 
@@ -105,11 +103,11 @@ trimmed_ASRT = session1_ASRT %>%
 ((nrow(session1_ASRT) - nrow(trimmed_ASRT)) / nrow(session1_ASRT)) * 100
 
 # Apply change
-session1_ASRT = trimmed_ASRT
+session1_ASRT <- trimmed_ASRT
 
 
 # Create a new 'epoch' column based on block ranges
-session1_ASRT = session1_ASRT %>%
+session1_ASRT <- session1_ASRT %>%
   mutate(
     epoch = case_when(
       block <= 5 ~ 1,
@@ -122,7 +120,7 @@ session1_ASRT = session1_ASRT %>%
     epoch = paste0('epoch', epoch)
   )
 
-gc() # free up memory
+gc() # Free unused memory
 
 
 # Inspect number of data points in epoch 1 per participant, 
@@ -172,7 +170,7 @@ session1_ASRT %>%
 # 
 # **********************
 
-gc() # free up memory
+gc() # Free unused memory
 
 
 # Get descriptives and plot distributions
@@ -180,7 +178,7 @@ gc() # free up memory
 session1_ASRT %>% group_by(pattern_or_random, triplet_type) %>%
   summarise(M = mean(cumulative_RT), SD = sd(cumulative_RT))
 
-session1_ASRT_stats = session1_ASRT %>%
+session1_ASRT_stats <- session1_ASRT %>%
   group_by(pattern_or_random, triplet_type) %>%
   summarise(mean_RT = mean(cumulative_RT, na.rm = TRUE), 
             count = n(),
@@ -222,7 +220,7 @@ session1_ASRT %>%
 
 # Calculate mean reaction time (RT) for each combination of participant, 
 # pattern/random type and triplet type.
-session1_ASRT = session1_ASRT %>% 
+session1_ASRT <- session1_ASRT %>% 
   group_by(participant_home_ID, pattern_or_random, triplet_type) %>%
   summarize(mean_RT = mean(cumulative_RT, na.rm = TRUE)) %>%
   ungroup() %>%
@@ -235,18 +233,17 @@ session1_ASRT = session1_ASRT %>%
   # high-probability pattern trials from low-probability pattern trials.
   mutate(session1_ASRT = pattern_ASRT_L - pattern_ASRT_H)
 
-gc() # free up memory
+gc() # Free unused memory
 
 # Finally, check how many participants have data for the session1_ASRT effect
 session1_ASRT %>% filter(complete.cases(session1_ASRT)) %>% 
   summarise(n_distinct(participant_home_ID)) %>% pull
 
 # Select the relevant columns
-session1_ASRT = session1_ASRT %>% 
+session1_ASRT <- session1_ASRT %>% 
   select(participant_home_ID, session1_ASRT)
 
 # Whereas pattern trials are sensitive to implicit learning, random trials are 
 # more related to motor and attentional processes. To obtain an accurate 
 # measure of implicit learning, the motor and attentional processes should be 
 # controlled for in the statistical analysis. 
-

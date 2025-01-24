@@ -1,6 +1,5 @@
 
-
-# Preprocessing digit span forward and backward from Session 1
+# Preprocess digit span forward and backward from Session 1
 
 library(dplyr)
 library(tidyr)
@@ -9,10 +8,10 @@ library(readr)
 library(ggplot2)
 
 # Path to files
-path = "data/raw data/executive functions/Session 1"
+path <- "data/raw data/executive functions/Session 1"
 
 # Read in and combine the files
-session1_digit_span = rbind( 
+session1_digit_span <- rbind( 
   read_csv(file.path(path, "digit span 1.csv")),
   read_csv(file.path(path, "digit span 2.csv")),
   read_csv(file.path(path, "digit span 3.csv")),
@@ -25,11 +24,10 @@ session1_digit_span = rbind(
   rename(participant_home_ID = `Participant Public ID`)
 
 # Clear column names
-colnames(session1_digit_span) = make.names(colnames(session1_digit_span))
+colnames(session1_digit_span) <- make.names(colnames(session1_digit_span))
 
-session1_digit_span = session1_digit_span %>%
+session1_digit_span <- session1_digit_span %>%
   mutate(display = as.factor(display)) %>%
   group_by(participant_home_ID) %>%
   summarize(session1_digit_span = sum(Correct)) %>%
   ungroup()
-

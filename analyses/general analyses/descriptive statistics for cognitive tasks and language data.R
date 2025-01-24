@@ -1,12 +1,10 @@
+
 # Background data analysis
 
 library(dplyr)
 
-# loading DGS
-
-# we don;t  have a number for how many times a 3- or 
-# 4-number item was presented but we have a number of corretc responses received.
-
+# We don't have a number for how many times a 3- or 4-number item was presented but 
+# we have a number of correct responses received.
 
 # total.correct.x refers to the total number of correct responses per participant
 # across lists
@@ -18,10 +16,10 @@ library(dplyr)
 # Standard Deviation: Variability in correct responses.
 # Minimum and Maximum: Range of correct responses.
 
-DGS = read.csv("Raw data/executive functions/analysis_table_DGS.csv")
+DGS <- read.csv("data/raw data/executive functions/Session 1/analysis_table_DGS.csv")
 # View(DGS)
 
-DGS_summary_statistics = DGS %>%
+DGS_summary_statistics <- DGS %>%
   summarize(
     mean_correct = mean(total_correct.x, na.rm = TRUE),
     median_correct = median(total_correct.x, na.rm = TRUE),
@@ -34,7 +32,7 @@ DGS_summary_statistics = DGS %>%
 
 # DGS summary statistics per participant
 
-DGS_summary_statistics_per_participant = DGS %>%
+DGS_summary_statistics_per_participant <- DGS %>%
   filter(!is.na(Participant.Public.ID)) %>%  
   group_by(Participant.Public.ID) %>% 
   summarize(
@@ -53,7 +51,7 @@ DGS_summary_statistics_per_participant = DGS %>%
 # Examine how participants perform based on different task conditions, such as
 # list length. This helps to understand if task difficulty (list length) affects 
 # performance.
-DGS_performance_by_list_length = DGS %>%
+DGS_performance_by_list_length <- DGS %>%
   group_by(listLength) %>%
   summarize(
     mean_correct = mean(total_correct.y, na.rm = TRUE),
@@ -66,7 +64,7 @@ DGS_performance_by_list_length = DGS %>%
 # View(DGS_performance_by_list_length)
 
 
-DGS_summary_statistics_per_participant_by_list_length = DGS %>%
+DGS_summary_statistics_per_participant_by_list_length <- DGS %>%
   filter(!is.na(Participant.Public.ID)) %>%  
   group_by(Participant.Public.ID) %>% 
   summarize(
@@ -83,27 +81,26 @@ DGS_summary_statistics_per_participant_by_list_length = DGS %>%
 # View(DGS_summary_statistics_per_participant_by_list_length)
 
 
-
 # loading the Stroop task
 
-Stroop = read.csv("Raw data/executive functions/difference_reaction_time_stroop.csv")
+Stroop <- read.csv("Raw data/executive functions/difference_reaction_time_stroop.csv")
 
 # View(Stroop)
 # Separate the data into congruent and incongruent conditions
-congruent_data = Stroop %>% filter(Congruency == "congruent")
-incongruent_data = Stroop %>% filter(Congruency == "incongruent")
+congruent_data <- Stroop %>% filter(Congruency == "congruent")
+incongruent_data <- Stroop %>% filter(Congruency == "incongruent")
 
 # Merge congruent and incongruent data based on Participant ID
-Stroop = Stroop %>%
+Stroop <- Stroop %>%
   inner_join(incongruent_data, by = "Participant.Public.ID", suffix = c("_congruent", "_incongruent"))
 
 # Calculate the Stroop effect (difference in reaction times)
-Stroop = Stroop %>%
+Stroop <- Stroop %>%
   mutate(stroop_effect = mean_reaction_time_stroop_incongruent - mean_reaction_time_stroop_congruent)
 
 
 # Summary statistics for congruent, incongruent, and Stroop effect
-Stroop_summary_statistics = Stroop %>%
+Stroop_summary_statistics <- Stroop %>%
   summarize(
     mean_congruent = mean(mean_reaction_time_stroop_congruent, na.rm = TRUE),
     sd_congruent = sd(mean_reaction_time_stroop_congruent, na.rm = TRUE),
@@ -125,7 +122,7 @@ Stroop_summary_statistics = Stroop %>%
 
 
 # Group by Participant and calculate summary statistics per participant
-Stroop_summary_statistics_per_participant = Stroop %>%
+Stroop_summary_statistics_per_participant <- Stroop %>%
   group_by(Participant.Public.ID) %>%
   summarize(
     mean_congruent = mean(mean_reaction_time_stroop_congruent, na.rm = TRUE),
@@ -138,16 +135,8 @@ Stroop_summary_statistics_per_participant = Stroop %>%
     sd_stroop_effect = sd(stroop_effect, na.rm = TRUE)
   )
 
-
-
 # View(Stroop_summary_statistics_per_participant)
 
-
-
 # correlation with stroop, DGS, 3rd
-correlation_test = cor.test(DGS$total_correct.x, Stroop$difference_reaction_time, use = "complete.obs")
+correlation_test <- cor.test(DGS$total_correct.x, Stroop$difference_reaction_time, use = "complete.obs")
 # print(correlation_test)
-
-
-
-

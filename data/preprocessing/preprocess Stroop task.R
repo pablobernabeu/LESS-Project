@@ -1,6 +1,5 @@
 
-
-# Preprocessing Stroop task from Session 1
+# Preprocess Stroop task from Session 1
 
 library(dplyr)
 library(tidyr)
@@ -8,10 +7,10 @@ library(readr)
 library(janitor)
 
 # Path to files
-path = 'data/raw data/executive functions/Session 1'
+path <- 'data/raw data/executive functions/Session 1'
 
 # Read in and combine the files
-session1_Stroop = rbind( 
+session1_Stroop <- rbind( 
   read_csv(file.path(path, 'Stroop 1.csv')),
   read_csv(file.path(path, 'Stroop 2.csv')),
   read_csv(file.path(path, 'Stroop 3.csv')),
@@ -32,7 +31,7 @@ session1_Stroop = rbind(
   filter(`Zone Type` == 'response_keyboard')
 
 # Clean column names
-colnames(session1_Stroop) = make.names(colnames(session1_Stroop))
+colnames(session1_Stroop) <- make.names(colnames(session1_Stroop))
 print(colnames(session1_Stroop))
 
 
@@ -47,9 +46,9 @@ print(colnames(session1_Stroop))
 
 # Create empty dataframe using column 
 # names from the original data set.
-trimmed_session1_Stroop = session1_Stroop[0,]
+trimmed_session1_Stroop <- session1_Stroop[0,]
 
-trimmed_session1_Stroop = session1_Stroop %>%
+trimmed_session1_Stroop <- session1_Stroop %>%
   
   # Apply minimum and maximum cut-offs to RTs
   filter(!rt < 50, !rt > 5000) %>%
@@ -62,8 +61,8 @@ trimmed_session1_Stroop = session1_Stroop %>%
   # Apply 3 SD cut-off within the grouping factors
   group_by(participant_home_ID, Correct) %>%
   group_modify(~ {
-    mean_rt = mean(.x$rt, na.rm = TRUE)
-    sd_rt = sd(.x$rt, na.rm = TRUE)
+    mean_rt <- mean(.x$rt, na.rm = TRUE)
+    sd_rt <- sd(.x$rt, na.rm = TRUE)
     
     # Filter rows within 3 SDs from the mean
     .x %>% filter(rt > (mean_rt - 3 * sd_rt) & 
@@ -75,11 +74,11 @@ trimmed_session1_Stroop = session1_Stroop %>%
 ((nrow(session1_Stroop) - nrow(trimmed_session1_Stroop)) / nrow(session1_Stroop)) * 100
 
 # Apply change
-session1_Stroop = trimmed_session1_Stroop
+session1_Stroop <- trimmed_session1_Stroop
 
 
 # Select relevant columns
-session1_Stroop = session1_Stroop %>%
+session1_Stroop <- session1_Stroop %>%
   select(rt, participant_home_ID, Correct, Incorrect, Congruency, Zone.Type) %>%
   
   # Filter to remove rows where Zone.Type is not 'response'
@@ -103,4 +102,3 @@ session1_Stroop = session1_Stroop %>%
   mutate(session1_Stroop = incongruent - congruent) %>%
   select(participant_home_ID, session1_Stroop) %>%
   ungroup()
-

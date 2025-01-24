@@ -1,6 +1,6 @@
 
 
-# Preprocessing of Language History Questionnaire LHQ3
+# Preprocess of Language History Questionnaire LHQ3
 
 # The results file of the LHQ3 requires thorough preprocessing because it contains 
 # a header row split between two rows, with the first row containing merged cells. 
