@@ -1,9 +1,10 @@
 BrainVision Data Exchange Header File Version 2.0
-; Data created from history path: 44/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101/Average
+; Data created from history path: 44/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Baseline Correction/Artifact Rejection/S1_Segmentation S101/S1_S101_Average
 
 [Common Infos]
 Codepage=UTF-8
 DataFile=44_S1_S101.txt
+MarkerFile=44_S1_S101.vmrk
 DataFormat=ASCII
 ; Data orientation: VECTORIZED=ch1,pt1, ch1,pt2..., MULTIPLEXED=ch1,pt1, ch2,pt1 ...
 DataOrientation=VECTORIZED

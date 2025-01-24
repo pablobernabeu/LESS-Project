@@ -1,0 +1,172 @@
+BrainVision Data Exchange Marker File Version 2.0
+; Data created from history path: 23/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S3/Artifact Rejection/Segmentation S102 tbt
+; The channel numbers are related to the channels in the exported file.
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=23_trialbytrial_S3_S102.txt
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>,
+; <Date (YYYYMMDDhhmmssuuuuuu)>, Visible
+; Fields are delimited by commas, some fields may be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20241028123701996181
+Mk2=Stimulus,S 40,50,1,0
+Mk3=Stimulus,S121,55,1,0
+Mk4=Stimulus,S  3,61,1,0
+Mk5=Stimulus,S102,66,1,0
+Mk6=Time 0,,66,1,0
+Mk7=New Segment,,601,1,0,20241028124349852181
+Mk8=Stimulus,S 49,650,1,0
+Mk9=Stimulus,S220,655,1,0
+Mk10=Stimulus,S  3,661,1,0
+Mk11=Stimulus,S102,666,1,0
+Mk12=Time 0,,666,1,0
+Mk13=New Segment,,1201,1,0,20241028125619612181
+Mk14=Stimulus,S 49,1250,1,0
+Mk15=Stimulus,S226,1255,1,0
+Mk16=Stimulus,S  3,1261,1,0
+Mk17=Stimulus,S102,1266,1,0
+Mk18=Time 0,,1266,1,0
+Mk19=New Segment,,1801,1,0,20241028130346406181
+Mk20=Stimulus,S 49,1849,1,0
+Mk21=Stimulus,S222,1855,1,0
+Mk22=Stimulus,S  3,1861,1,0
+Mk23=Stimulus,S102,1866,1,0
+Mk24=Time 0,,1866,1,0
+Mk25=New Segment,,2401,1,0,20241028130946838181
+Mk26=Stimulus,S 43,2449,1,0
+Mk27=Stimulus,S155,2455,1,0
+Mk28=Stimulus,S  3,2461,1,0
+Mk29=Stimulus,S102,2466,1,0
+Mk30=Time 0,,2466,1,0
+Mk31=New Segment,,3001,1,0,20241028131540816181
+Mk32=Stimulus,S 46,3050,1,0
+Mk33=Stimulus,S185,3055,1,0
+Mk34=Stimulus,S  3,3061,1,0
+Mk35=Stimulus,S102,3066,1,0
+Mk36=Time 0,,3066,1,0
+Mk37=New Segment,,3601,1,0,20241028131559960181
+Mk38=Stimulus,S 40,3651,1,0
+Mk39=Stimulus,S113,3656,1,0
+Mk40=Stimulus,S  3,3661,1,0
+Mk41=Time 0,,3666,1,0
+Mk42=Stimulus,S102,3666,1,0
+Mk43=New Segment,,4201,1,0,20241028131948350181
+Mk44=Stimulus,S 40,4250,1,0
+Mk45=Stimulus,S110,4256,1,0
+Mk46=Stimulus,S  3,4261,1,0
+Mk47=Stimulus,S102,4266,1,0
+Mk48=Time 0,,4266,1,0
+Mk49=New Segment,,4801,1,0,20241028132028854181
+Mk50=Stimulus,S 43,4850,1,0
+Mk51=Stimulus,S148,4855,1,0
+Mk52=Stimulus,S  3,4861,1,0
+Mk53=Stimulus,S102,4866,1,0
+Mk54=Time 0,,4866,1,0
+Mk55=New Segment,,5401,1,0,20241028132128774181
+Mk56=Stimulus,S 43,5450,1,0
+Mk57=Stimulus,S154,5455,1,0
+Mk58=Stimulus,S  3,5461,1,0
+Mk59=Stimulus,S102,5466,1,0
+Mk60=Time 0,,5466,1,0
+Mk61=New Segment,,6001,1,0,20241028132236430181
+Mk62=Stimulus,S 46,6051,1,0
+Mk63=Stimulus,S184,6056,1,0
+Mk64=Stimulus,S  3,6061,1,0
+Mk65=Stimulus,S102,6066,1,0
+Mk66=Time 0,,6066,1,0
+Mk67=New Segment,,6601,1,0,20241028132308928181
+Mk68=Stimulus,S 49,6650,1,0
+Mk69=Stimulus,S219,6656,1,0
+Mk70=Stimulus,S  3,6661,1,0
+Mk71=Time 0,,6666,1,0
+Mk72=Stimulus,S102,6666,1,0
+Mk73=New Segment,,7201,1,0,20241028132321680181
+Mk74=Stimulus,S 40,7250,1,0
+Mk75=Stimulus,S115,7255,1,0
+Mk76=Stimulus,S  3,7261,1,0
+Mk77=Stimulus,S102,7266,1,0
+Mk78=Time 0,,7266,1,0
+Mk79=New Segment,,7801,1,0,20241028132624976181
+Mk80=Stimulus,S 40,7850,1,0
+Mk81=Stimulus,S120,7855,1,0
+Mk82=Stimulus,S  3,7861,1,0
+Mk83=Time 0,,7866,1,0
+Mk84=Stimulus,S102,7866,1,0
+Mk85=New Segment,,8401,1,0,20241028132650952181
+Mk86=Stimulus,S 46,8451,1,0
+Mk87=Stimulus,S189,8456,1,0
+Mk88=Stimulus,S  3,8461,1,0
+Mk89=Stimulus,S102,8466,1,0
+Mk90=Time 0,,8466,1,0
+Mk91=New Segment,,9001,1,0,20241028133404822181
+Mk92=Stimulus,S 49,9050,1,0
+Mk93=Stimulus,S228,9055,1,0
+Mk94=Stimulus,S  3,9061,1,0
+Mk95=Stimulus,S102,9066,1,0
+Mk96=Time 0,,9066,1,0
+Mk97=New Segment,,9601,1,0,20241028133614268181
+Mk98=Stimulus,S 49,9650,1,0
+Mk99=Stimulus,S229,9655,1,0
+Mk100=Stimulus,S  3,9661,1,0
+Mk101=Time 0,,9666,1,0
+Mk102=Stimulus,S102,9666,1,0
+Mk103=New Segment,,10201,1,0,20241028133802396181
+Mk104=Stimulus,S 40,10250,1,0
+Mk105=Stimulus,S111,10255,1,0
+Mk106=Stimulus,S  3,10261,1,0
+Mk107=Stimulus,S102,10266,1,0
+Mk108=Time 0,,10266,1,0
+Mk109=New Segment,,10801,1,0,20241028134155414181
+Mk110=Stimulus,S 43,10851,1,0
+Mk111=Stimulus,S157,10856,1,0
+Mk112=Stimulus,S  3,10861,1,0
+Mk113=Time 0,,10866,1,0
+Mk114=Stimulus,S102,10866,1,0
+Mk115=New Segment,,11401,1,0,20241028134255204181
+Mk116=Stimulus,S 43,11451,1,0
+Mk117=Stimulus,S149,11456,1,0
+Mk118=Stimulus,S  3,11461,1,0
+Mk119=Time 0,,11466,1,0
+Mk120=Stimulus,S102,11466,1,0
+Mk121=New Segment,,12001,1,0,20241028134328840181
+Mk122=Stimulus,S 40,12051,1,0
+Mk123=Stimulus,S118,12056,1,0
+Mk124=Stimulus,S  3,12061,1,0
+Mk125=Stimulus,S102,12066,1,0
+Mk126=Time 0,,12066,1,0
+Mk127=New Segment,,12601,1,0,20241028134340676181
+Mk128=Stimulus,S 46,12650,1,0
+Mk129=Stimulus,S192,12655,1,0
+Mk130=Stimulus,S  3,12661,1,0
+Mk131=Stimulus,S102,12666,1,0
+Mk132=Time 0,,12666,1,0
+Mk133=New Segment,,13201,1,0,20241028134413632181
+Mk134=Stimulus,S 43,13249,1,0
+Mk135=Stimulus,S147,13255,1,0
+Mk136=Stimulus,S  3,13261,1,0
+Mk137=Stimulus,S102,13266,1,0
+Mk138=Time 0,,13266,1,0
+Mk139=New Segment,,13801,1,0,20241028134522792181
+Mk140=Stimulus,S 49,13850,1,0
+Mk141=Stimulus,S227,13855,1,0
+Mk142=Stimulus,S  3,13861,1,0
+Mk143=Stimulus,S102,13866,1,0
+Mk144=Time 0,,13866,1,0
+Mk145=New Segment,,14401,1,0,20241028134654124181
+Mk146=Stimulus,S 43,14451,1,0
+Mk147=Stimulus,S151,14456,1,0
+Mk148=Stimulus,S  3,14461,1,0
+Mk149=Stimulus,S102,14466,1,0
+Mk150=Time 0,,14466,1,0
+
+[Marker User Infos]
+; Each entry: Prop<Number>=Mk<Marker number>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to markers using their marker number.
