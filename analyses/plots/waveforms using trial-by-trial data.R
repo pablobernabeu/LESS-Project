@@ -13,17 +13,18 @@ source('data/preprocessing/import trial-by-trial EEG data.R')
 
 # Aggregate data across trials
 aggregated_EEG_data <- trialbytrial_EEG_data %>%
-  select(-trial) %>%  # Drop the trial column
+  # Drop the trial column
+  select(-sentence_marker) %>%
   # Group by all columns except amplitude
-  group_by(across(everything(), ~.x, -amplitude)) %>% 
+  group_by(across(-amplitude)) %>%
   # Aggregate amplitude by mean
-  summarise(mean_amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop") 
+  summarise(amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop")
 
 # View the aggregated data
-head(aggregated_data)
+head(aggregated_EEG_data)
 
 # Rename factor levels and remove ancillary violation condition 
-merged_data = merged_data %>%
+aggregated_EEG_data = aggregated_EEG_data %>%
   filter(!grammaticality == 'Ancillary violation')
 
 # Define standard error function
@@ -35,12 +36,12 @@ all_data = list()
 # Create plots by iterating over factors. They'll be saved to disk one by one, 
 # taking several minutes.
 
-for(i_session in unique(na.omit(merged_data$session))) {
-  for(i_grammatical_property in unique(na.omit(merged_data$grammatical_property))) {
-    for(i_region in unique(na.omit(merged_data$region))) {
+for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
+  for(i_grammatical_property in unique(na.omit(aggregated_EEG_data$grammatical_property))) {
+    for(i_region in unique(na.omit(aggregated_EEG_data$region))) {
       
       # Create iteration data
-      iteration_data = merged_data %>%
+      iteration_data = aggregated_EEG_data %>%
         filter(session == i_session,
                grammatical_property == i_grammatical_property,
                region == i_region)
@@ -156,8 +157,8 @@ for(i_session in unique(na.omit(merged_data$session))) {
           facet_wrap(~language_with_N, ncol = 1, )
       ) %>%
         
-        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/', 
-               width = 10, height = 8, dpi = 300, units = 'in')
+        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/trial-by-trial/', 
+               create.dir = TRUE, width = 10, height = 8, dpi = 300, units = 'in')
     }
   }
 }

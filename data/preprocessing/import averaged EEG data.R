@@ -36,7 +36,7 @@ process_file <- function(file, metadata_row) {
   
   # Generate the sequence of time points (integers only, no decimal points)
   time <- seq(-100, 1098, by = 2)
-  time <- as.integer(time)  # Ensure the sequence is integer-based from the start
+  time <- as.integer(time)
   
   # If the sequence length doesn't match the number of columns, adjust it
   if (length(time) != num_columns) {
@@ -57,7 +57,7 @@ process_file <- function(file, metadata_row) {
       session = metadata_row$session,
       grammatical_property = metadata_row$grammatical_property,
       grammaticality = metadata_row$grammaticality,
-      time = as.integer(time),  # Ensure time is integer
+      time = as.integer(time),
       time_window = case_when(
         time >= 200 & time <= 498 ~ '200_500',
         time >= 300 & time <= 598 ~ '300_600',
@@ -77,12 +77,12 @@ process_file <- function(file, metadata_row) {
         TRUE ~ NA_character_
       ),
       
-      # Translate triggers to linguistic labels (see https://osf.io/974k8)
+      # Translate markers to linguistic labels (see https://osf.io/974k8)
       
       grammatical_property = 
         case_when(grammatical_property == 'S1' ~ 'Gender agreement', 
                   grammatical_property == 'S2' ~ 'Differential object marking', 
-                  grammatical_property == 'S3' ~ 'Verb-object agreement'),
+                  grammatical_property == 'S3' ~ 'Verb-object number agreement'),
       
       grammaticality = 
         case_when(grammaticality == 'S101' ~ 'Grammatical', 
