@@ -1,0 +1,64 @@
+BrainVision Data Exchange Marker File Version 2.0
+; Data created from history path: 16/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact Rejection/Segmentation S102 tbt
+; The channel numbers are related to the channels in the exported file.
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=16_trialbytrial_S1_S102.txt
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>,
+; <Date (YYYYMMDDhhmmssuuuuuu)>, Visible
+; Fields are delimited by commas, some fields may be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20240926162847569378
+Mk2=Stimulus,S 43,50,1,0
+Mk3=Stimulus,S156,55,1,0
+Mk4=Stimulus,S  1,61,1,0
+Mk5=Stimulus,S102,66,1,0
+Mk6=Time 0,,66,1,0
+Mk7=New Segment,,601,1,0,20240926162936141378
+Mk8=Stimulus,S 43,649,1,0
+Mk9=Stimulus,S151,655,1,0
+Mk10=Stimulus,S  1,661,1,0
+Mk11=Stimulus,S102,666,1,0
+Mk12=Time 0,,666,1,0
+Mk13=New Segment,,1201,1,0,20240926163717677378
+Mk14=Stimulus,S 46,1250,1,0
+Mk15=Stimulus,S189,1255,1,0
+Mk16=Stimulus,S  1,1261,1,0
+Mk17=Stimulus,S102,1266,1,0
+Mk18=Time 0,,1266,1,0
+Mk19=New Segment,,1801,1,0,20240926164518341378
+Mk20=Stimulus,S 49,1849,1,0
+Mk21=Stimulus,S225,1855,1,0
+Mk22=Stimulus,S  1,1861,1,0
+Mk23=Time 0,,1866,1,0
+Mk24=Stimulus,S102,1866,1,0
+Mk25=New Segment,,2401,1,0,20240926171246715378
+Mk26=Stimulus,S 46,2450,1,0
+Mk27=Stimulus,S185,2455,1,0
+Mk28=Stimulus,S  1,2461,1,0
+Mk29=Stimulus,S102,2466,1,0
+Mk30=Time 0,,2466,1,0
+Mk31=New Segment,,3001,1,0,20240926171440025378
+Mk32=Stimulus,S 46,3048,1,0
+Mk33=Stimulus,S186,3054,1,0
+Mk34=Stimulus,S  1,3061,1,0
+Mk35=Stimulus,S102,3066,1,0
+Mk36=Time 0,,3066,1,0
+Mk37=New Segment,,3601,1,0,20240926172010847378
+Mk38=Stimulus,S 40,3649,1,0
+Mk39=Stimulus,S110,3655,1,0
+Mk40=Stimulus,S  1,3661,1,0
+Mk41=Stimulus,S102,3666,1,0
+Mk42=Time 0,,3666,1,0
+
+[Marker User Infos]
+; Each entry: Prop<Number>=Mk<Marker number>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to markers using their marker number.
