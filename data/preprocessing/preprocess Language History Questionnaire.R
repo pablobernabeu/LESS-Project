@@ -17,6 +17,7 @@ library(janitor)
 
 Norway_session_logbook = 
   read.csv("data/Participant IDs and session progress.csv", header = T) %>%
+  # Name variable 'mini_language' for greater clarity
   rename(mini_language = language) %>%
   select(participant_LHQ3_ID, mini_language)
 
@@ -674,7 +675,9 @@ LHQ3 = LHQ3 %>%
 
 LHQ3_aggregate_scores = LHQ3_aggregate_scores %>%
   select(participant_LHQ3_ID, L1_Proficiency, L2_Proficiency, 
-         multilingual_language_diversity)
+         multilingual_language_diversity) %>%
+  # Make MLD numeric
+  mutate(multilingual_language_diversity = as.numeric(multilingual_language_diversity))
 
 LHQ3 = merge(LHQ3, LHQ3_aggregate_scores, 
              by = "participant_LHQ3_ID", all.x = TRUE) %>% 

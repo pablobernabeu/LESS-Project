@@ -22,8 +22,9 @@ source('data/preprocessing/import averaged EEG data.R')
 averaged_EEG_data <- 
   
   session_IDs_progress %>%
-  
-  full_join(LHQ3_aggregate_scores, by = "participant_LHQ3_ID", relationship = "many-to-many") %>%
+  # Remove session details to reduce data size
+  select(-contains(c('inspector', 'conductor', 'supervision'))) %>%
+  mutate(participant_lab_ID = as.factor(participant_lab_ID)) %>%
   
   full_join(session1_digit_span, by = "participant_home_ID", relationship = "many-to-many") %>%
   
@@ -31,7 +32,11 @@ averaged_EEG_data <-
   
   full_join(session1_ASRT, by = "participant_home_ID", relationship = "many-to-many") %>%
   
-  full_join(averaged_EEG_data, by = "participant_lab_ID", relationship = "many-to-many")
+  full_join(LHQ3_aggregate_scores, by = "participant_LHQ3_ID", relationship = "many-to-many") %>%
+  
+  full_join(averaged_EEG_data %>%
+              mutate(participant_lab_ID = as.factor(participant_lab_ID)), 
+            by = "participant_lab_ID", relationship = "many-to-many")
 
 # View(averaged_EEG_data)
 

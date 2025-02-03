@@ -8,7 +8,7 @@ library(ggplot2)
 library(ggtext)
 
 # Read in data
-source('data/preprocessing/import averaged EEG data.R')
+source('data/preprocessing/merge averaged EEG data.R')
 
 # Rename factor levels and remove ancillary violation condition 
 averaged_EEG_data <- averaged_EEG_data %>%
@@ -25,13 +25,13 @@ all_data <- list()
 
 for(i_session in unique(na.omit(averaged_EEG_data$session))) {
   for(i_grammatical_property in unique(na.omit(averaged_EEG_data$grammatical_property))) {
-    for(i_region in unique(na.omit(averaged_EEG_data$region))) {
+    for(i_brain_region in unique(na.omit(averaged_EEG_data$brain_region))) {
       
       # Create iteration data
       iteration_data <- averaged_EEG_data %>%
         filter(session == i_session,
                grammatical_property == i_grammatical_property,
-               region == i_region)
+               brain_region == i_brain_region)
       
       # Skip iteration if combination of factors does not exist in data set.
       # For instance, Session 2 only contains the property of gender agreement.
@@ -44,7 +44,7 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       
       # Filter data for the current combination of factors
       df2 <- aggregate(
-        amplitude ~ grammaticality * time * region * language,
+        amplitude ~ grammaticality * time * brain_region * language,
         iteration_data, 
         mean
       )
@@ -75,12 +75,12 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       # Create sanitized plot name
       plot_name <- 
         paste0(i_grammatical_property, '_Session', i_session, 
-               '_', str_to_sentence(i_region), ' region') %>%
+               '_', str_to_sentence(i_brain_region), ' brain_region') %>%
         gsub('[^[:alnum:]_]', '_', .)
       
       plot_title <- paste0(str_to_sentence(i_grammatical_property), '; ', 
                            'Session ', i_session, '; ', 
-                           str_to_sentence(i_region), ' region')
+                           str_to_sentence(i_brain_region), ' brain_region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.

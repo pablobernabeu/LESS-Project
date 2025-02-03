@@ -1,4 +1,5 @@
 
+
 # Preprocess alternating serial reaction time (session1_ASRT) task from Session 1
 
 library(dplyr)
@@ -161,17 +162,7 @@ session1_ASRT %>%
   group_by(has_Low) %>%
   summarize(count = n())
 
-
-# **********************
-# 
-# Most participants are missing data for low-probability trials, making 
-# the comparison between epoch 1 and epoch 5 impossible. Therefore, the 
-# results are reanalysed below as a whole, without the epoch bins. 
-# 
-# **********************
-
 gc() # Free unused memory
-
 
 # Get descriptives and plot distributions
 
@@ -218,20 +209,18 @@ session1_ASRT %>%
         legend.title = element_text(size = 12), legend.text = element_text(size = 11))
 
 
-# Calculate mean reaction time (RT) for each combination of participant, 
-# pattern/random type and triplet type.
+# Calculate high-low difference per participant, irrespective of pattern/random type
 session1_ASRT <- session1_ASRT %>% 
-  group_by(participant_home_ID, pattern_or_random, triplet_type) %>%
+  group_by(participant_home_ID, triplet_type) %>%
   summarize(mean_RT = mean(cumulative_RT, na.rm = TRUE)) %>%
   ungroup() %>%
   
-  # Pivot categorical values of triplet_type into independent columns.
-  pivot_wider(names_from = c(pattern_or_random, triplet_type), 
-              values_from = mean_RT) %>%
+  # Pivot categorical values of triplet_type into independent columns
+  pivot_wider(names_from = triplet_type, values_from = mean_RT) %>%
   
-  # Compute session1_ASRT effect (for the available participants) by subtracting 
-  # high-probability pattern trials from low-probability pattern trials.
-  mutate(session1_ASRT = pattern_ASRT_L - pattern_ASRT_H)
+  # Compute session1_ASRT effect by subtracting high-probability from 
+  # low-probability trials.
+  mutate(session1_ASRT = L - H)
 
 gc() # Free unused memory
 
@@ -243,7 +232,3 @@ session1_ASRT %>% filter(complete.cases(session1_ASRT)) %>%
 session1_ASRT <- session1_ASRT %>% 
   select(participant_home_ID, session1_ASRT)
 
-# Whereas pattern trials are sensitive to implicit learning, random trials are 
-# more related to motor and attentional processes. To obtain an accurate 
-# measure of implicit learning, the motor and attentional processes should be 
-# controlled for in the statistical analysis. 

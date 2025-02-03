@@ -1,4 +1,5 @@
 
+
 # Waveform plots using trial-by-trial data. This script only serves to 
 # verify that the trial-by-trial data was imported correctly into R. 
 
@@ -8,15 +9,22 @@ library(stringr)
 library(ggplot2)
 library(ggtext)
 
-# Read in data
-source('data/preprocessing/import trial-by-trial EEG data.R')
+# Free unused memory
+gc()
 
-# Aggregate data across trials
+# Load data
+source('data/preprocessing/merge trial-by-trial EEG data.R')
+
+# Aggregate data across trials and electrodes
+
 aggregated_EEG_data <- trialbytrial_EEG_data %>%
-  # Drop the trial column
-  select(-sentence_marker) %>%
+  
+  # Drop columns
+  select(-sentence_marker, -electrode, -time_window) %>%
+  
   # Group by all columns except amplitude
   group_by(across(-amplitude)) %>%
+  
   # Aggregate amplitude by mean
   summarise(amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop")
 
@@ -38,13 +46,13 @@ all_data = list()
 
 for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
   for(i_grammatical_property in unique(na.omit(aggregated_EEG_data$grammatical_property))) {
-    for(i_region in unique(na.omit(aggregated_EEG_data$region))) {
+    for(i_brain_region in unique(na.omit(aggregated_EEG_data$brain_region))) {
       
       # Create iteration data
       iteration_data = aggregated_EEG_data %>%
         filter(session == i_session,
                grammatical_property == i_grammatical_property,
-               region == i_region)
+               brain_region == i_brain_region)
       
       # Skip iteration if combination of factors does not exist in data set.
       # For instance, Session 2 only contains the property of gender agreement.
@@ -57,7 +65,7 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       
       # Filter data for the current combination of factors
       df2 = aggregate(
-        amplitude ~ grammaticality * time * region * language,
+        amplitude ~ grammaticality * time * brain_region * language,
         iteration_data, 
         mean
       )
@@ -88,12 +96,12 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       # Create sanitized plot name
       plot_name = 
         paste0(i_grammatical_property, '_Session', i_session, 
-               '_', str_to_sentence(i_region), ' region') %>%
+               '_', str_to_sentence(i_brain_region), ' brain_region') %>%
         gsub('[^[:alnum:]_]', '_', .)
       
       plot_title = paste0(str_to_sentence(i_grammatical_property), '; ', 
                           'Session ', i_session, '; ', 
-                          str_to_sentence(i_region), ' region')
+                          str_to_sentence(i_brain_region), ' brain_region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.
@@ -157,7 +165,7 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
           facet_wrap(~language_with_N, ncol = 1, )
       ) %>%
         
-        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/trial-by-trial/', 
+        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/trial-by-trial waveforms/', 
                create.dir = TRUE, width = 10, height = 8, dpi = 300, units = 'in')
     }
   }

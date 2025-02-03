@@ -4,11 +4,13 @@
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(stringr)
 library(data.table)
 
 # List all relevant .txt files in the directory
-txt_files <- list.files(pattern = "^\\d+_(S[123])_S10[123]\\.txt$", full.names = TRUE, 
-                        recursive = TRUE, path = 'data/raw data/EEG')
+files <- list.files(pattern = "^\\d+_(S[123])_S10[123]\\.txt$", 
+                    full.names = TRUE, recursive = TRUE, 
+                    path = 'data/raw data/EEG')
 
 # Step 1: Extract metadata from file paths and names
 metadata <- tibble(
@@ -64,16 +66,27 @@ process_file <- function(file, metadata_row) {
         time >= 400 & time <= 898 ~ '400_900',
         TRUE ~ NA_character_
       ),
-      region = case_when(
-        electrode %in% c('T7', 'C3', 'CP5') ~ 'left medial',
-        electrode %in% c('T8', 'C4', 'CP6') ~ 'right medial',
+      brain_region = case_when(
         electrode %in% c('Fp1', 'F3', 'F7', 'FT9', 'FC5') ~ 'left anterior',
         electrode %in% c('Fp2', 'F4', 'F8', 'FT10', 'FC6') ~ 'right anterior',
+        electrode %in% c('T7', 'C3', 'CP5') ~ 'left medial',
+        electrode %in% c('T8', 'C4', 'CP6') ~ 'right medial',
         electrode %in% c('P7', 'P3', 'O1') ~ 'left posterior',
         electrode %in% c('P8', 'P4', 'O2') ~ 'right posterior',
         electrode %in% c('Fz', 'FC1', 'FC2') ~ 'midline anterior',
         electrode %in% c('Cz', 'CP1', 'CP2') ~ 'midline medial',
         electrode %in% c('Pz', 'Oz') ~ 'midline posterior',
+        TRUE ~ NA_character_
+      ),
+      hemisphere = case_when(
+        str_detect(brain_region, 'left') ~ 'left',
+        str_detect(brain_region, 'right') ~ 'right',
+        TRUE ~ NA_character_
+      ),
+      caudality = case_when(
+        str_detect(brain_region, 'anterior') ~ 'anterior',
+        str_detect(brain_region, 'medial') ~ 'medial',
+        str_detect(brain_region, 'posterior') ~ 'posterior',
         TRUE ~ NA_character_
       ),
       
@@ -87,7 +100,10 @@ process_file <- function(file, metadata_row) {
       grammaticality = 
         case_when(grammaticality == 'S101' ~ 'Grammatical', 
                   grammaticality == 'S102' ~ 'Ungrammatical', 
-                  grammaticality == 'S103' ~ 'Ancillary violation')
+                  grammaticality == 'S103' ~ 'Ancillary violation'),
+      
+      # Convert character variables to factors
+      across(where(is.character), as.factor)
     )
   
   return(long_data)
@@ -96,7 +112,8 @@ process_file <- function(file, metadata_row) {
 # Step 3: Process all files and combine into a single data frame
 averaged_EEG_data <- bind_rows(
   lapply(seq_len(nrow(metadata)), function(i) {
-    process_file(metadata$file[i], metadata[i, ])
+    process_file(file = metadata$file[i], 
+                 metadata_row = metadata[i, ])
   })
 )
 
