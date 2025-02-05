@@ -39,20 +39,20 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       
       # Calculate sample size for each language group
       sample_sizes <- iteration_data %>% 
-        group_by(language) %>%
+        group_by(mini_language) %>%
         summarise(n = n_distinct(participant_home_ID), .groups = 'drop')
       
       # Filter data for the current combination of factors
       df2 <- aggregate(
-        amplitude ~ grammaticality * time * brain_region * language,
+        amplitude ~ grammaticality * time * brain_region * mini_language,
         iteration_data, 
         mean
       )
       
       # Merge the sample sizes into df2
       df2 <- df2 %>%
-        left_join(sample_sizes, by = 'language') %>%
-        mutate(language_with_N = paste0(language, ' (*n* = ', n, ')'))
+        left_join(sample_sizes, by = 'mini_language') %>%
+        mutate(mini_language_with_N = paste0(mini_language, ' (*n* = ', n, ')'))
       
       # Compute SD, SE, Confidence Intervals
       SD <- rep(NA, length(df2$time))       # vector SD per time
@@ -62,7 +62,7 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       
       for (i in 1:length(df2$time)) {
         something <- subset(iteration_data, time == df2$time[i] & 
-                              language == df2$language[i], 
+                              mini_language == df2$mini_language[i], 
                             select = amplitude)
         SE[i] <- std(something$amplitude)
         CIlower[i] <- df2$amplitude[i] - (SE[i] * 1.96)
@@ -75,7 +75,7 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       # Create sanitized plot name
       plot_name <- 
         paste0(i_grammatical_property, '_Session', i_session, 
-               '_', str_to_sentence(i_brain_region), ' brain_region') %>%
+               '_', str_to_sentence(i_brain_region), ' region') %>%
         gsub('[^[:alnum:]_]', '_', .)
       
       plot_title <- paste0(str_to_sentence(i_grammatical_property), '; ', 
@@ -83,10 +83,10 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
                            str_to_sentence(i_brain_region), ' brain_region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
-      # the default alphabetical order of language_with_N.
-      df2$language_with_N <- factor(
-        df2$language_with_N,
-        levels = rev(levels(factor(df2$language_with_N))) 
+      # the default alphabetical order of mini_language_with_N.
+      df2$mini_language_with_N <- factor(
+        df2$mini_language_with_N,
+        levels = rev(levels(factor(df2$mini_language_with_N))) 
       )
       
       # Map colours to grammaticality conditions
@@ -141,10 +141,10 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
                 panel.spacing = unit(0.5, 'cm')) + 
           
           # Facet by language
-          facet_wrap(~language_with_N, ncol = 1, )
+          facet_wrap(~mini_language_with_N, ncol = 1, )
       ) %>%
         
-        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/', 
+        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/waveforms/', 
                width = 10, height = 8, dpi = 300, units = 'in')
     }
   }

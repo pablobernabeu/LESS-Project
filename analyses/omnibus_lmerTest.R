@@ -73,29 +73,36 @@ system.time({
       grammaticality : hemisphere  +
       grammaticality : caudality  +
       
-      # RANDOM EFFECTS: maximal structure constructed following the guidelines of Brauer and Curtin (2018;
-      # https://psych.wisc.edu/Brauer/BrauerLab/wp-content/uploads/2014/04/Brauer-Curtin-2018-on-LMEMs.pdf).
+      # RANDOM EFFECTS: maximal structure constructed following the guidelines of Brauer and Curtin 
+      # (2018; http://doi.org/10.1037/met0000159).
       # Interactions only require random slopes if all variables involved vary within the same units.
-      # Double vertical bars (||) are used to remove correlations among random effects, with the aim of
-      # aiding the convergence of the model (i.e., Remedy 15 in Table 17 of Brauer & Curtin, 2018).
+      # Double vertical bars (||) are used to remove correlations among random effects, with the aim 
+      # of aiding the convergence of the model (i.e., Remedy 15 in Table 17 of Brauer & Curtin, 2018).
       
       # Random intercepts
       (1 | participant_lab_ID) + (1 | sentence_marker) +
       
       # In the random slopes below, the prefix `0 +` helps avoid redundant random intercepts 
       # (see https://github.com/lme4/lme4/issues/625) and reduces the random-effects
-      # structure (Brauer & Curtin, 2018).
+      # structure (Brauer & Curtin, 2018). Some random slopes omitted to aid convergence. 
+      # Random slopes not needed for interactions between a between-participants variable 
+      # and a between-items variable (Brauer & Curtin, 2018).
       
       # By-participant random slopes
       (0 + grammaticality || participant_lab_ID) + 
       (0 + session || participant_lab_ID) +
+      (0 + grammaticality : session || participant_lab_ID) +
       (0 + digit_span || participant_lab_ID) +
       (0 + stroop || participant_lab_ID) +
       (0 + ASRT || participant_lab_ID) +
       (0 + multilingual_language_diversity || participant_lab_ID) +
       
       # By-sentence random slopes
-      (0 + mini_language || sentence_marker),
+      (0 + mini_language || sentence_marker) +
+      (0 + digit_span || sentence_marker) +
+      (0 + stroop || sentence_marker) +
+      (0 + ASRT || sentence_marker) +
+      (0 + multilingual_language_diversity || sentence_marker),
     
     data = trialbytrial_EEG_data,
     

@@ -9,12 +9,6 @@ library(data.table)
 library(purrr)
 
 
-IDs_session_progress <- 
-  read.csv('data/Participant IDs and session progress.csv') %>%
-  # Name variable 'mini_language' for greater clarity
-  rename(mini_language = language)
-
-
 # Define file paths
 general_file_pattern <- "^\\d+_trialbytrial_(S[123])_S10[123]\\."
 
@@ -48,21 +42,7 @@ paired_files <- tibble(
     participant_lab_ID = sub(".*Export\\/([0-9]+)_.*", "\\1", base_path),
     session = sub(".*Session (\\d).*", "\\1", base_path),
     grammatical_property = sub(".*_(S[1-3])_.*", "\\1", base_path),
-    grammaticality = sub(".*_(S10[1-3])$", "\\1", base_path),
-    
-    # Translate markers to linguistic labels (see https://osf.io/974k8)
-    
-    grammatical_property = case_when(
-      grammatical_property == 'S1' ~ 'Gender agreement', 
-      grammatical_property == 'S2' ~ 'Differential object marking', 
-      grammatical_property == 'S3' ~ 'Verb-object number agreement',
-      .default = grammatical_property),
-    
-    grammaticality = case_when(
-      grammaticality == 'S101' ~ 'Grammatical', 
-      grammaticality == 'S102' ~ 'Ungrammatical', 
-      grammaticality == 'S103' ~ 'Ancillary violation',
-      .default = grammaticality)
+    grammaticality = sub(".*_(S10[1-3])$", "\\1", base_path)
   )
 
 # Initialize the output data frame
@@ -138,7 +118,11 @@ for (i in seq_len(nrow(paired_files))) {
       grammatical_property = as.factor(paired_files$grammatical_property[i]), 
       grammaticality = as.factor(paired_files$grammaticality[i]),
       time = rep(time_points, times = length(sentence_markers) * length(electrode_names)),
-      sentence_marker = as.factor(rep(rep(sentence_markers, each = 600), times = length(electrode_names)))
+      sentence_marker = as.factor(rep(rep(sentence_markers, each = length(time_points)), 
+                                      times = length(electrode_names))),
+      
+      # Convert character variables to factors
+      across(where(is.character), as.factor)
     ) %>%
     
     # Order variables

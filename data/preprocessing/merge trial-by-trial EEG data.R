@@ -21,6 +21,7 @@ source('data/preprocessing/import trial-by-trial EEG data.R')
 # Free unused memory
 gc()
 
+
 # Combine the data frames based on participants' IDs
 
 trialbytrial_EEG_data <-
@@ -42,9 +43,21 @@ trialbytrial_EEG_data <-
               mutate(participant_lab_ID = as.factor(participant_lab_ID)), 
             by = "participant_lab_ID", relationship = "many-to-many") %>%
   
-  # Create time windows, brain regions, etc.
-  
+  # Translate markers into labels and create time windows, brain regions, etc.
   mutate(
+    
+    grammatical_property = case_when(
+      grammatical_property == 'S1' ~ 'Gender agreement', 
+      grammatical_property == 'S2' ~ 'Differential object marking', 
+      grammatical_property == 'S3' ~ 'Verb-object number agreement',
+      .default = grammatical_property),
+    
+    grammaticality = case_when(
+      grammaticality == 'S101' ~ 'Grammatical', 
+      grammaticality == 'S102' ~ 'Ungrammatical', 
+      grammaticality == 'S103' ~ 'Ancillary violation',
+      .default = grammaticality),
+    
     time_window = case_when(
       time >= 200 & time <= 498 ~ '200_500',
       time >= 300 & time <= 598 ~ '300_600',

@@ -1,4 +1,5 @@
 
+
 # Importing averaged EEG data
 
 library(dplyr)
@@ -52,7 +53,9 @@ process_file <- function(file, metadata_row) {
   # Convert data to long format
   long_data <- as.data.frame(raw_data) %>%
     mutate(electrode = electrodes) %>%
-    pivot_longer(cols = -electrode, names_to = 'time', values_to = 'amplitude') %>%
+    pivot_longer(cols = -electrode, 
+                 names_to = 'time', 
+                 values_to = 'amplitude') %>%
     
     mutate(
       participant_lab_ID = as.integer(metadata_row$participant_lab_ID),
@@ -60,47 +63,6 @@ process_file <- function(file, metadata_row) {
       grammatical_property = metadata_row$grammatical_property,
       grammaticality = metadata_row$grammaticality,
       time = as.integer(time),
-      time_window = case_when(
-        time >= 200 & time <= 498 ~ '200_500',
-        time >= 300 & time <= 598 ~ '300_600',
-        time >= 400 & time <= 898 ~ '400_900',
-        TRUE ~ NA_character_
-      ),
-      brain_region = case_when(
-        electrode %in% c('Fp1', 'F3', 'F7', 'FT9', 'FC5') ~ 'left anterior',
-        electrode %in% c('Fp2', 'F4', 'F8', 'FT10', 'FC6') ~ 'right anterior',
-        electrode %in% c('T7', 'C3', 'CP5') ~ 'left medial',
-        electrode %in% c('T8', 'C4', 'CP6') ~ 'right medial',
-        electrode %in% c('P7', 'P3', 'O1') ~ 'left posterior',
-        electrode %in% c('P8', 'P4', 'O2') ~ 'right posterior',
-        electrode %in% c('Fz', 'FC1', 'FC2') ~ 'midline anterior',
-        electrode %in% c('Cz', 'CP1', 'CP2') ~ 'midline medial',
-        electrode %in% c('Pz', 'Oz') ~ 'midline posterior',
-        TRUE ~ NA_character_
-      ),
-      hemisphere = case_when(
-        str_detect(brain_region, 'left') ~ 'left',
-        str_detect(brain_region, 'right') ~ 'right',
-        TRUE ~ NA_character_
-      ),
-      caudality = case_when(
-        str_detect(brain_region, 'anterior') ~ 'anterior',
-        str_detect(brain_region, 'medial') ~ 'medial',
-        str_detect(brain_region, 'posterior') ~ 'posterior',
-        TRUE ~ NA_character_
-      ),
-      
-      # Translate markers to linguistic labels (see https://osf.io/974k8)
-      
-      grammatical_property = 
-        case_when(grammatical_property == 'S1' ~ 'Gender agreement', 
-                  grammatical_property == 'S2' ~ 'Differential object marking', 
-                  grammatical_property == 'S3' ~ 'Verb-object number agreement'),
-      
-      grammaticality = 
-        case_when(grammaticality == 'S101' ~ 'Grammatical', 
-                  grammaticality == 'S102' ~ 'Ungrammatical', 
-                  grammaticality == 'S103' ~ 'Ancillary violation'),
       
       # Convert character variables to factors
       across(where(is.character), as.factor)
@@ -122,3 +84,4 @@ print(summary(averaged_EEG_data))
 
 # Free unused memory
 gc()
+
