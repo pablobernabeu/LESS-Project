@@ -113,9 +113,9 @@ trialbytrial_EEG_data <-
     # https://doi.org/10.1037/met0000159).
     
     z_recoded_mini_language = scale(recoded_mini_language),
+    z_session1_digit_span = scale(session1_digit_span),
     z_session1_Stroop = scale(session1_Stroop),
     z_session1_ASRT = scale(session1_ASRT),
-    z_session1_digit_span = scale(session1_digit_span),
     z_multilingual_language_diversity = scale(multilingual_language_diversity),
     
     # Convert character variables to factors

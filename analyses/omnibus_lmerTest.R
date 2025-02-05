@@ -41,28 +41,7 @@ trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
   summarise(amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop")
 
 
-# Z-score amplitude around each participant's own mean to preserve individual differences 
-# (Faust et al., 1999; https://doi.org/10.1037/0033-2909.125.6.777)
-
-trialbytrial_EEG_data$z_RTclean <- scale_by(RTclean ~ Participant, trialbytrial_EEG_data)
-
-# Z-score between-participants predictors, following Brauer and Curtin (2018; 
-# https://doi.org/10.1037/met0000159).
-
-trialbytrial_EEG_data$stroop <- scale(trialbytrial_EEG_data$stroop)
-trialbytrial_EEG_data$ASRT <- scale(trialbytrial_EEG_data$ASRT)
-trialbytrial_EEG_data$digit_span <- scale(trialbytrial_EEG_data$digit_span)
-
-# Z-score between-items predictors around each participant's own mean, 
-# following Brauer and Curtin (2018; https://doi.org/10.1037/met0000159).
-
-trialbytrial_EEG_data$grammaticality <- scale_by(grammaticality ~ Participant, trialbytrial_EEG_data)
-trialbytrial_EEG_data$grammaticality <- scale_by(grammaticality ~ Participant, trialbytrial_EEG_data)
-trialbytrial_EEG_data$grammaticality <- scale_by(grammaticality ~ Participant, trialbytrial_EEG_data)
-trialbytrial_EEG_data$grammaticality <- scale_by(grammaticality ~ Participant, trialbytrial_EEG_data)
-trialbytrial_EEG_data$grammaticality <- scale_by(grammaticality ~ Participant, trialbytrial_EEG_data)
-
-# Model
+# MODEL
 # Measure running time
 system.time({
   
@@ -75,9 +54,9 @@ system.time({
       grammaticality + 
       session +
       mini_language + 
+      digit_span + 
       stroop + 
       ASRT + 
-      digit_span + 
       multilingual_language_diversity +
       time_window + 
       hemisphere + 
@@ -86,9 +65,9 @@ system.time({
       # Interactions 
       grammaticality : session + 
       grammaticality : mini_language + 
+      grammaticality : digit_span + 
       grammaticality : stroop + 
       grammaticality : ASRT + 
-      grammaticality : digit_span + 
       grammaticality : multilingual_language_diversity + 
       grammaticality : time_window +
       grammaticality : hemisphere  +
@@ -108,12 +87,15 @@ system.time({
       # structure (Brauer & Curtin, 2018).
       
       # By-participant random slopes
-      (0 + z_word_cooccurrence || participant_lab_ID) + 
-      (0 + z_visual_rating || participant_lab_ID) +
+      (0 + grammaticality || participant_lab_ID) + 
+      (0 + session || participant_lab_ID) +
+      (0 + digit_span || participant_lab_ID) +
+      (0 + stroop || participant_lab_ID) +
+      (0 + ASRT || participant_lab_ID) +
+      (0 + multilingual_language_diversity || participant_lab_ID) +
       
       # By-sentence random slopes
-      (0 + z_vocabulary_size || sentence_marker) + 
-      (0 + z_recoded_participant_gender || sentence_marker),
+      (0 + mini_language || sentence_marker),
     
     data = trialbytrial_EEG_data,
     
