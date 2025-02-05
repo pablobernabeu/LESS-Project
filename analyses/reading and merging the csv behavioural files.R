@@ -1,3 +1,6 @@
+library(dplyr)
+library(tidyr)
+
 # Function to extract the number that corresponds to each participant after "subject-"
 extract_number <- function(filename) {
   match <- gsub(".*subject-([0-9]+).*", "\\1", basename(filename))  # Extract number
@@ -22,7 +25,6 @@ for (file in Session2_file_list) {
 
 # Check extracted subject numbers (for debugging)
 Session2_subject_ids <- sapply(Session2_file_list, extract_number)
-print(Session2_subject_ids)  # Print extracted IDs to check correctness
 
 # Read all files into a list and add the extracted number as a column
 Session2_df_list <- lapply(seq_along(Session2_file_list), function(i) {
@@ -44,10 +46,8 @@ Session2_df_list <- lapply(Session2_df_list, function(df) {
 
 # Combine all data frames
 Session2_final_df <- do.call(rbind, Session2_df_list)
+Session2_final_df$Session <- "Session 2"
 
-
-View(Session2_final_df)
-colnames(Session2_final_df)
 
 #Session 3
 
@@ -62,7 +62,6 @@ for (file in Session3_file_list) {
 }
 
 Session3_subject_ids <- sapply(Session3_file_list, extract_number)
-print(Session3_subject_ids)  # Print extracted IDs to check correctness
 
 Session3_df_list <- lapply(seq_along(Session3_file_list), function(i) {
   Session3_df <- read.csv(Session3_file_list[i], stringsAsFactors = FALSE)
@@ -81,16 +80,7 @@ Session3_df_list <- lapply(Session3_df_list, function(Session3_df) {
 
 Session3_final_df <- do.call(rbind, Session3_df_list)
 
-
-colnames(Session3_final_df)
-
-
-
-
-
-
-
-
+Session3_final_df$Session <- "Session 3"
 
 
 # Session 4
@@ -107,7 +97,6 @@ for (file in Session4_file_list) {
 }
 
 Session4_subject_ids <- sapply(Session4_file_list, extract_number)
-print(Session4_subject_ids)  # Print extracted IDs to check correctness
 
 Session4_df_list <- lapply(seq_along(Session4_file_list), function(i) {
   Session4_df <- read.csv(Session4_file_list[i], stringsAsFactors = FALSE)
@@ -125,8 +114,7 @@ Session4_df_list <- lapply(Session4_df_list, function(Session4_df) {
 })
 
 Session4_final_df <- do.call(rbind, Session4_df_list)
-colnames(Session4_final_df)
-
+Session4_final_df$Session <- "Session 4"
 
 
 # Session 6
@@ -159,17 +147,7 @@ Session6_df_list <- lapply(Session6_df_list, function(Session6_df) {
   return(Session6_df)
 })
 Session6_final_df <- do.call(rbind, Session6_df_list)
-
-colnames(Session6_final_df)
-
-View(Session6_final_df)
-
-
-
-
-
-library(dplyr)
-library(tidyr)
+Session6_final_df$Session <- "Session 6"
 
 # Function to convert all columns to character
 convert_to_character <- function(df) {
@@ -190,4 +168,64 @@ combined_df <- bind_rows(
   Session6_final_df, 
   .id = "session"
 )
-View(combined_df)
+print(combined_df)
+
+clean_combined_df <- combined_df[, c("grammaticality", "grammatical_property",  
+             "session_part", "trial", "sentence_1", "sentence_2", "correct", "subject_id", "Session")]
+
+
+
+
+View(clean_combined_df)
+
+#splitting the participants into mini-language groups
+
+clean_combined_df <- clean_combined_df %>%
+  mutate(
+    subject_id = as.numeric(subject_id),  # Ensure subject_id is numeric
+    `Mini language` = ifelse(subject_id %% 2 == 1, "Mini-English", "Mini-Norwegian")
+  )
+
+#removing duplicate trials
+clean_combined_df <- clean_combined_df %>%
+  filter(trial != lag(trial, default = first(trial)))
+
+View(clean_combined_df)
+
+# Create a new data frame with only "gender agreement" in grammatical_property
+Gender_agreement_df <- clean_combined_df %>%
+  filter(grammatical_property == "gender agreement", session_part == "Experiment")
+View (Gender_agreement_df)
+
+Verb_object_agreement_df <- clean_combined_df %>%
+  filter(grammatical_property == "verb-object agreement")
+View (Verb_object_agreement_df)
+
+Differential_object_marking_df <- clean_combined_df %>%
+  filter(grammatical_property == "differential object marking")
+View (Verb_object_agreement_df)
+
+
+
+
+
+
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+
+# Recode grammaticality column
+Gender_agreement_df <- Gender_agreement_df %>%
+  mutate(grammaticality = ifelse(grammaticality %in% c("number violation", "gender violation"), 
+                                 "ungrammatical", 
+                                 grammaticality))
+
+# Create the violin plot
+ggplot(Gender_agreement_df, aes(x = as.factor(Session), y = correct, fill = grammaticality)) +
+  geom_violin(trim = FALSE, alpha = 0.5) +  # Violin plot with transparency
+  geom_jitter(width = 0.2, alpha = 0.3) +   # Add jitter for individual data points
+  labs(title = "Progression of Correct Responses per Session",
+       x = "Session",
+       y = "Correct Responses",
+       fill = "Grammaticality") +
+  theme_minimal()  # Use a clean theme
