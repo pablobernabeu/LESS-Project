@@ -1,5 +1,6 @@
 library(dplyr)
 library(tidyr)
+library(scales)
 
 # Function to extract the number that corresponds to each participant after "subject-"
 extract_number <- function(filename) {
@@ -46,7 +47,7 @@ Session2_df_list <- lapply(Session2_df_list, function(df) {
 
 # Combine all data frames
 Session2_final_df <- do.call(rbind, Session2_df_list)
-Session2_final_df$Session <- "Session 2"
+Session2_final_df$Session <- "1st session"
 
 
 #Session 3
@@ -80,7 +81,7 @@ Session3_df_list <- lapply(Session3_df_list, function(Session3_df) {
 
 Session3_final_df <- do.call(rbind, Session3_df_list)
 
-Session3_final_df$Session <- "Session 3"
+Session3_final_df$Session <- "2nd Session"
 
 
 # Session 4
@@ -114,7 +115,7 @@ Session4_df_list <- lapply(Session4_df_list, function(Session4_df) {
 })
 
 Session4_final_df <- do.call(rbind, Session4_df_list)
-Session4_final_df$Session <- "Session 4"
+Session4_final_df$Session <- "3rd Session"
 
 
 # Session 6
@@ -147,7 +148,9 @@ Session6_df_list <- lapply(Session6_df_list, function(Session6_df) {
   return(Session6_df)
 })
 Session6_final_df <- do.call(rbind, Session6_df_list)
-Session6_final_df$Session <- "Session 6"
+Session6_final_df$Session <- "4th Session"
+
+# combining the different session to make a joint data frame
 
 # Function to convert all columns to character
 convert_to_character <- function(df) {
@@ -190,12 +193,17 @@ clean_combined_df <- clean_combined_df %>%
 clean_combined_df <- clean_combined_df %>%
   filter(trial != lag(trial, default = first(trial)))
 
+
 View(clean_combined_df)
 
 # Create a new data frame with only "gender agreement" in grammatical_property
 Gender_agreement_df <- clean_combined_df %>%
   filter(grammatical_property == "gender agreement", session_part == "Experiment")
+
+#grouping the two ungrammatical conditions
+Gender_agreement_df$grammaticality[Gender_agreement_df$grammaticality %in% c("gender violation", "number violation")] <- "ungrammatical"
 View (Gender_agreement_df)
+
 
 Verb_object_agreement_df <- clean_combined_df %>%
   filter(grammatical_property == "verb-object agreement")
@@ -205,27 +213,100 @@ Differential_object_marking_df <- clean_combined_df %>%
   filter(grammatical_property == "differential object marking")
 View (Verb_object_agreement_df)
 
+# Convert 'correct' column to numeric if it's not already
+Gender_agreement_df$correct <- as.numeric(as.character(Gender_agreement_df$correct))
+Gender_agreement_df$"Mini language" <- as.factor(Gender_agreement_df$"Mini language")
+Gender_agreement_df$Session <- as.factor(Gender_agreement_df$Session)
+Gender_agreement_df$grammaticality <- as.factor(Gender_agreement_df$grammaticality)
 
 
+##############################################################
+
+############
+#
 
 
-
-# Load necessary libraries
-library(dplyr)
-library(ggplot2)
-
-# Recode grammaticality column
+# Join the summarized percentage back to the original data frame (Gender_agreement_df)
 Gender_agreement_df <- Gender_agreement_df %>%
-  mutate(grammaticality = ifelse(grammaticality %in% c("number violation", "gender violation"), 
-                                 "ungrammatical", 
-                                 grammaticality))
+  left_join(correct_percentage_grammaticality, by = c("Session", "grammaticality"))
 
-# Create the violin plot
-ggplot(Gender_agreement_df, aes(x = as.factor(Session), y = correct, fill = grammaticality)) +
-  geom_violin(trim = FALSE, alpha = 0.5) +  # Violin plot with transparency
-  geom_jitter(width = 0.2, alpha = 0.3) +   # Add jitter for individual data points
-  labs(title = "Progression of Correct Responses per Session",
+
+
+ggplot(Gender_agreement_df, aes(x = as.factor(Session), y = percentage_correct, fill = as.factor(grammaticality))) +
+  geom_violin(trim = FALSE, alpha = 0.6) +
+  labs(title = "Distribution of Correct Responses by Session and Mini-Language",
        x = "Session",
        y = "Correct Responses",
        fill = "Grammaticality") +
-  theme_minimal()  # Use a clean theme
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+##################
+
+
+ all useless from now on
+
+# Load the scales package
+
+
+library(scales)
+library(scales)
+
+# Summarize the total responses and correct responses per session, grammaticality, and Mini language
+correct_percentage_grammaticality <- Gender_agreement_df %>%
+  group_by(Session, grammaticality, `Mini language`) %>%
+  summarise(total_responses = n(),
+            correct_responses = sum(correct == 1),
+            percentage_correct = (correct_responses / total_responses) * 100, 
+            .groups = "drop")
+
+# Filter data for only Mini-Norwegian group
+mini_norwegian_data <- correct_percentage_grammaticality %>%
+  filter(`Mini language` == "Mini-Norwegian")
+
+# Plot the violin plot for Mini-Norwegian data only with y-axis in percentage format
+ggplot(mini_norwegian_data, aes(x = as.factor(Session), y = percentage_correct, fill = grammaticality)) +
+  geom_violin(trim = FALSE, alpha = 0.6) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 100)) +  # Correct scaling
+  labs(title = "Distribution of Correct Response Percentage for Mini-Norwegian by Grammaticality",
+       x = "Session",
+       y = "Percentage of Correct Responses",
+       fill = "Grammaticality") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+
+##########
+#TEST
+# Check the data for Mini-Norwegian group first
+mini_norwegian_data <- Gender_agreement_df %>%
+  filter(`Mini language` == "Mini-Norwegian")
+
+# Plot the violin plot for Mini-Norwegian data with raw correct response count
+ggplot(mini_norwegian_data, aes(x = as.factor(Session), y = correct, fill = grammaticality)) +
+  geom_violin(trim = FALSE, alpha = 0.6) +
+  labs(title = "Distribution of Correct Responses for Mini-Norwegian by Grammaticality",
+       x = "Session",
+       y = "Correct Responses",
+       fill = "Grammaticality") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+
+
+# Filter the data to only include correct responses (correct == 1) and by grammaticality
+correct_responses_grammaticality <- mini_norwegian_data %>%
+  filter(correct == 1, grammaticality %in% c("grammatical", "ungrammatical"))
+
+# Check the structure of the data before plotting
+summary(correct_responses_grammaticality)
+
+# Violin plot for correct responses by grammaticality, faceted by session
+ggplot(correct_responses_grammaticality, aes(x = grammaticality, y = correct, fill = grammaticality)) +
+  geom_violin(trim = FALSE, alpha = 0.6) +  # Violin plot for the distribution of correct responses
+  labs(title = "Distribution of Correct Responses for Mini-Norwegian by Grammaticality and Session",
+       x = "Grammaticality",
+       y = "Correct Responses (1 = Correct)",
+       fill = "Grammaticality") +
+  facet_wrap(~ Session) +  # Facet by session
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+
+
