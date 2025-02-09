@@ -3,11 +3,11 @@ library(dplyr)
 library(openxlsx)
 
 norway_logbook <- read.csv("data/Participant IDs and session progress.csv")
-LHQ3_Raw_Data <- read_excel("data/raw data/language history/LHQ3_Raw_Data.xlsx")
-colnames(LHQ3_Raw_Data) <- LHQ3_Raw_Data[1, ]
+LHQ3 Raw Data <- read_excel("data/raw data/language history/LHQ3 Raw Data.xlsx")
+colnames(LHQ3 Raw Data) <- LHQ3 Raw Data[1, ]
 
 norway_language <- norway_logbook[, c("participant_LHQ3_ID", "language")]
-participant_data <- merge(LHQ3_Raw_Data, norway_language, by.x = "\r\n0.Participant ID", by.y = "participant_LHQ3_ID", all = FALSE)
+participant_data <- merge(LHQ3 Raw Data, norway_language, by.x = "\r\n0.Participant ID", by.y = "participant_LHQ3_ID", all = FALSE)
 
 col_names <- colnames(participant_data)
 

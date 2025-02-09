@@ -1,6 +1,6 @@
 
 
-# Merge data aggregated across trials
+# Merge EEG data aggregated across trials
 
 library(dplyr)
 library(readxl)
@@ -154,14 +154,6 @@ averaged_EEG_data <-
   # Order variables
   select(amplitude, participant_lab_ID, session, grammatical_property, grammaticality, 
          electrode, brain_region, hemisphere, caudality, time, time_window, everything())
-
-# View(averaged_EEG_data)
-
-# Export to file (! TAKES A LOT OF TIME AND MEMORY !)
-# write.csv(averaged_EEG_data, 'data/final data/averaged_EEG_data.csv')
-
-# Read in data if necessary
-# averaged_EEG_data = read.csv('data/final data/averaged_EEG_data.csv')
 
 # Free unused memory
 gc()

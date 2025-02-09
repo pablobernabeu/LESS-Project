@@ -6,26 +6,22 @@
 # a header row split between two rows, with the first row containing merged cells. 
 # The preprocessing encapsulates each question in one column.
 
-
 library(dplyr)
 library(readxl)
-library(janitor)
 
-
-# Matching the participants' ID with the participants' number by using the Norway
+# Match participants' ID with the participants' number by using the Norway
 # session logbook as guide.
 
-Norway_session_logbook = 
+IDs_session_progress = 
   read.csv("data/Participant IDs and session progress.csv", header = T) %>%
   # Name variable 'mini_language' for greater clarity
   rename(mini_language = language) %>%
   select(participant_LHQ3_ID, mini_language)
 
-
 # Read the Excel file and treat the first row as regular text, as it is just 
 # stating the type of questionnaire used.
 
-LHQ3 = read_excel("data/raw data/language history/LHQ3 results raw.xlsx", 
+LHQ3 = read_excel("data/raw data/language history/LHQ3 Raw Data.xlsx", 
                   sheet = "Sheet1", col_names = FALSE, skip = 1)
 
 # Questions that correspond to a single-column answer are directly indexed
@@ -43,7 +39,7 @@ LHQ3[2, 307] = "Comments2"
 LHQ3[2, 308] = "Dialects"
 
 
-# Starting with Question 5. Parents' education 
+# Start with Question 5. Parents' education 
 # Update the value in column 6, row 1 to "parents_education"
 LHQ3[1, 6] = "parents_education"
 
@@ -91,9 +87,8 @@ LHQ3[2, 9:14] = lapply(LHQ3[2, 9:14], function(x) {
   paste(Q_L1_acq, x, sep = "_")
 })
 
-
 # View(LHQ3)
-# continuing as outlined for L2, L3, L4, and other questions
+# continue as outlined for L2, L3, L4, and other questions
 
 LHQ3[1, 15] = "L2_Acquisition"
 Q_L2_acq = LHQ3[1, 15]
@@ -605,9 +600,9 @@ LHQ3[2, 299:305] = lapply(LHQ3[2, 299:305], function(x) {
 })
 
 
-# Organising the data frame so it can be easily analysed, first by making the 
+# Organis the data frame so it can be easily analysed, first by making the 
 # question/condition the header.
-# Removing the first row which includes the shorthanded questions and NA 
+# Remove the first row which includes the shorthanded questions and NA 
 # values, making the more informative second row a header.
 
 LHQ3 = LHQ3[-1, ]
@@ -617,9 +612,9 @@ new_header = as.character(new_header)
 names(LHQ3) = new_header
 
 # Perform the left join using merge()
-LHQ3 = merge(LHQ3, Norway_session_logbook, by = "participant_LHQ3_ID", all.x = TRUE)
+LHQ3 = merge(LHQ3, IDs_session_progress, by = "participant_LHQ3_ID", all.x = TRUE)
 
-# Xalculate the average score for code-switching between languages for each 
+# Calculate the average score for code-switching between languages for each 
 # participant. NA values are ignored
 
 codeswitching = c("codeswitching_Frequency of mixing with family\nmembers", 
@@ -639,20 +634,19 @@ LHQ3[, codeswitching] =
 LHQ3[, codeswitching][is.na(LHQ3[, codeswitching])] = 0
 
 # Step 4: Calculate the row-wise average for the specified columns
-LHQ3$codeswitching_average = 
-  rowMeans(LHQ3[, codeswitching], na.rm = TRUE)
+LHQ3$codeswitching_average = rowMeans(LHQ3[, codeswitching], na.rm = TRUE)
 
 # View(LHQ3)
 
 # Import a set of variables that were computed in the LHQ3 platform, including 
 # proficiency scores and language Multilingual Language Diversity.
 # Remove the first row that reads "LHQ3" and creating new header.
-# Rename the Participant ID column.
+# Rename the first column (Participant ID).
 
 LHQ3_aggregate_scores = 
   read_excel("data/raw data/language history/LHQ3 Aggregate Scores.xlsx", 
              sheet = "Sheet1", col_names = FALSE, skip = 1) %>%
-  row_to_names(row_number = 1)
+  slice(-1) # Remove first row
 
 # View(LHQ3_aggregate_scores)
 
@@ -670,8 +664,7 @@ LHQ3_aggregate_scores = merge(LHQ3, LHQ3_aggregate_scores, by = "participant_LHQ
 # Combine the two data frames based on participant_LHQ3_ID.
 
 LHQ3 = LHQ3 %>%
-  select(participant_LHQ3_ID, mini_language, 
-         codeswitching_average)
+  select(participant_LHQ3_ID, mini_language, codeswitching_average)
 
 LHQ3_aggregate_scores = LHQ3_aggregate_scores %>%
   select(participant_LHQ3_ID, L1_Proficiency, L2_Proficiency, 
@@ -684,5 +677,5 @@ LHQ3 = merge(LHQ3, LHQ3_aggregate_scores,
   select(participant_LHQ3_ID, L1_Proficiency, L2_Proficiency, 
          multilingual_language_diversity)
 
-# View(LHQ3_final)
+# View(LHQ3)
 

@@ -4,7 +4,6 @@
 library(dplyr)
 library(tidyr)
 library(readr)
-library(janitor)
 
 # Path to files
 path <- 'data/raw data/executive functions/Session 1'
@@ -31,7 +30,7 @@ session1_Stroop <- rbind(
   filter(`Zone Type` == 'response_keyboard')
 
 # Clean column names
-colnames(session1_Stroop) <- make.names(colnames(session1_Stroop))
+colnames(session1_Stroop) <- make.names(colnames(session1_Stroop), unique = TRUE)
 print(colnames(session1_Stroop))
 
 
