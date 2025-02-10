@@ -106,11 +106,6 @@ averaged_EEG_data <-
       session == 6 ~ 3,
       TRUE ~ NA_real_
     ),
-    recoded_mini_language = case_when(
-      mini_language == 'Mini-English' ~ -0.5,
-      mini_language == 'Mini-Norwegian' ~ 0.5,
-      TRUE ~ NA_real_
-    ),
     recoded_hemisphere = case_when(
       hemisphere == 'left' ~ -0.5,
       hemisphere == 'right' ~ 0.5,
@@ -126,7 +121,6 @@ averaged_EEG_data <-
     # Z-score between-participants predictors, following Brauer and Curtin (2018; 
     # https://doi.org/10.1037/met0000159).
     
-    z_recoded_mini_language = scale(recoded_mini_language),
     z_session1_digit_span = scale(session1_digit_span),
     z_session1_Stroop = scale(session1_Stroop),
     z_session1_ASRT = scale(session1_ASRT),

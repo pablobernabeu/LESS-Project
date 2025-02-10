@@ -16,19 +16,25 @@ library(lmerTest)  # Compute p values
 # "Macroregions" refer to lateral and midline sets of electrodes, also used in González 
 # Alonso et al. (2020). 
 
-# Filter data to the Mini-Norwegian group (namely, even participant IDs), to the property of 
-# gender agreement (namely, marker S1), and to the appropriate macroregion.
+# Filter data to the Mini-Norwegian group (namely, even participant IDs), to the property 
+# of gender agreement (namely, marker S1), to the grammatical and ungrammatical trials 
+# (namely, markers S101 and S102), and to the appropriate time window and macroregion.
 
 # Load function
 source('data/R_functions/merge_trialbytrial_EEG_data.R') 
 
 EEG_genderAgr_MiniNor_300_600_lateral_data <- 
-  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S1_S10[123]\\.',
+  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S1_S10[12]\\.',
                               min_time = 300, max_time = 598, # 598 = time point up to 600 ms
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
                               aggregate_time_points = TRUE, 
-                              selected_macroregion = 'lateral')
+                              selected_macroregion = 'lateral') %>%
+  
+  select(z_amplitude, z_baseline_predictor, z_recoded_grammaticality, z_recoded_session,
+         z_session1_digit_span, z_session1_Stroop, z_session1_ASRT, 
+         z_multilingual_language_diversity, z_recoded_hemisphere, z_recoded_caudality,
+         participant_lab_ID, sentence_marker)
 
 # Compute baseline predictor following Alday (2019; http://doi.org/10.1111/psyp.13451).
 # Tutorial: https://mne.tools/stable/auto_tutorials/epochs/15_baseline_regression.html.
@@ -50,9 +56,9 @@ baseline_predictor <-
 EEG_genderAgr_MiniNor_300_600_lateral_data <- EEG_genderAgr_MiniNor_300_600_lateral_data %>%
   left_join(baseline_predictor, by = c('participant_lab_ID', 'brain_region', 'sentence_marker'))
 
-# # Save data to disk (caution: LARGE file!)
-# saveRDS(EEG_genderAgr_MiniNor_300_600_lateral_data, 
-#         'data/final data/EEG_genderAgr_MiniNor_300_600_lateral_data.rds')
+# Save data to disk (caution: LARGE file!)
+saveRDS(EEG_genderAgr_MiniNor_300_600_lateral_data, 
+        'data/final data/EEG_genderAgr_MiniNor_300_600_lateral_data.rds')
 
 # MODEL
 # Measure running time

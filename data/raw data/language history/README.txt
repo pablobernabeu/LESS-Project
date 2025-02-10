@@ -2,9 +2,11 @@
 
 Language history files comprise raw data and aggregate scores, which are downloaded from separate sections on the LHQ3 platform. 
 
-Furthermore, after downloading the LHQ3 files, folders specific to each mini-language group were created and populated with 
+For project-specific requirements, after downloading the LHQ3 files, the data was split by mini-language group through a script 
 
-group-specific data, extracted from the LHQ3 files. Thus, the data in the group-specific folders is the same as the data in the 
+located in "data/importation and preprocessing". The group-specific data was saved to Mini-English and Mini-Norwegian folders in 
 
-general files in the main "language history" folder. 
+"data/language history". This group-specific files do not contain any additional data over the main files in "data/language history". 
+
+The language history data used in the analyses is from the main files in "data/language history", not from the group-specific files.
 
