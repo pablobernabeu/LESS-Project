@@ -13,7 +13,7 @@ library(ggtext)
 gc()
 
 # Load data
-source('data/preprocessing/merge trial-by-trial EEG data.R')
+source('data/importation and preprocessing/merge trial-by-trial EEG data.R')
 
 # Aggregate data across trials and electrodes
 

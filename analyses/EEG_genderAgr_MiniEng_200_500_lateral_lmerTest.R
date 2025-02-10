@@ -9,7 +9,7 @@ library(dplyr)  # data wrangling
 library(RcppEigen)
 library(lme4)   # Mixed-effects models
 library(lmerTest)  # Compute p values
-# library(# MuMIn)   # R^2
+# library(MuMIn)   # R^2
 
 # Terminological note: "brain regions" refer to nine standard sets of electrodes that were 
 # used in González Alonso et al. (2020; https://doi.org/10.1016/j.jneuroling.2020.100939). 

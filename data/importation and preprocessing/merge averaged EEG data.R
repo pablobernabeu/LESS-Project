@@ -11,13 +11,13 @@ session_IDs_progress <-
   # Name variable 'mini_language' for greater clarity
   rename(mini_language = language)
 
-source('data/preprocessing/preprocess digit span task.R')
-source('data/preprocessing/preprocess Stroop task.R')
-source('data/preprocessing/preprocess alternating serial reaction time task.R')
+source('data/importation and preprocessing/preprocess digit span task.R')
+source('data/importation and preprocessing/preprocess Stroop task.R')
+source('data/importation and preprocessing/preprocess alternating serial reaction time task.R')
 
-source('data/preprocessing/preprocess Language History Questionnaire.R')
+source('data/importation and preprocessing/preprocess Language History Questionnaire.R')
 
-source('data/preprocessing/import averaged EEG data.R')
+source('data/importation and preprocessing/import averaged EEG data.R')
 
 # Free unused memory
 gc()

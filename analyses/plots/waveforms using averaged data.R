@@ -1,4 +1,5 @@
 
+
 # Waveform plots
 
 library(dplyr)
@@ -8,7 +9,7 @@ library(ggplot2)
 library(ggtext)
 
 # Read in data
-source('data/preprocessing/merge averaged EEG data.R')
+source('data/importation and preprocessing/merge averaged EEG data.R')
 
 # Rename factor levels and remove ancillary violation condition 
 averaged_EEG_data <- averaged_EEG_data %>%
@@ -80,7 +81,7 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
       
       plot_title <- paste0(str_to_sentence(i_grammatical_property), '; ', 
                            'Session ', i_session, '; ', 
-                           str_to_sentence(i_brain_region), ' brain_region')
+                           str_to_sentence(i_brain_region), ' region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of mini_language_with_N.
@@ -152,3 +153,4 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
 
 # Free unused memory
 gc()
+

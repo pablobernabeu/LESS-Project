@@ -20,11 +20,11 @@ merge_trialbytrial_EEG_data <-
       select(-contains(c('inspector', 'conductor', 'supervision', 'date', 'time'))) %>%
       mutate(participant_lab_ID = as.factor(participant_lab_ID))
     
-    source('data/preprocessing/preprocess digit span task.R')
-    source('data/preprocessing/preprocess Stroop task.R')
-    source('data/preprocessing/preprocess alternating serial reaction time task.R')
+    source('data/importation and preprocessing/preprocess digit span task.R')
+    source('data/importation and preprocessing/preprocess Stroop task.R')
+    source('data/importation and preprocessing/preprocess alternating serial reaction time task.R')
     
-    source('data/preprocessing/preprocess Language History Questionnaire.R')
+    source('data/importation and preprocessing/preprocess Language History Questionnaire.R')
     
     source('data/R_functions/import_trialbytrial_EEG_data.R')
     trialbytrial_EEG_data = import_trialbytrial_EEG_data(EEG_file_pattern = EEG_file_pattern,
