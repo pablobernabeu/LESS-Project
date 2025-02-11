@@ -2,9 +2,11 @@ library(dplyr)
 library(tidyr)
 library(scales)
 library(ggplot2)
-library(introdataviz)  # Ensure this is loaded
+library(introdataviz) 
+library(patchwork)
+
 # how to install the introdataviz package to get split and half violin plots
-devtools::install_github("psyteachr/introdataviz")
+#devtools::install_github("psyteachr/introdataviz")
 
 
 # Function to extract the number that corresponds to each participant after "subject-"
@@ -52,7 +54,7 @@ Session2_df_list <- lapply(Session2_df_list, function(df) {
 
 # Combine all data frames
 Session2_final_df <- do.call(rbind, Session2_df_list)
-Session2_final_df$Session <- "1st session"
+Session2_final_df$Session <- "session 2"
 
 
 #Session 3
@@ -86,7 +88,7 @@ Session3_df_list <- lapply(Session3_df_list, function(Session3_df) {
 
 Session3_final_df <- do.call(rbind, Session3_df_list)
 
-Session3_final_df$Session <- "2nd Session"
+Session3_final_df$Session <- "Session 3"
 
 
 # Session 4
@@ -120,7 +122,7 @@ Session4_df_list <- lapply(Session4_df_list, function(Session4_df) {
 })
 
 Session4_final_df <- do.call(rbind, Session4_df_list)
-Session4_final_df$Session <- "3rd Session"
+Session4_final_df$Session <- "Session 4"
 
 
 # Session 6
@@ -153,7 +155,7 @@ Session6_df_list <- lapply(Session6_df_list, function(Session6_df) {
   return(Session6_df)
 })
 Session6_final_df <- do.call(rbind, Session6_df_list)
-Session6_final_df$Session <- "4th Session"
+Session6_final_df$Session <- "Session 6"
 
 # combining the different session to make a joint data frame
 
@@ -176,12 +178,12 @@ combined_df <- bind_rows(
   Session6_final_df, 
   .id = "session"
 )
-print(combined_df)
 
 clean_combined_df <- combined_df[, c("grammaticality", "grammatical_property",  
                                      "session_part", "trial", "sentence_1", "sentence_2", "correct", "subject_id", "Session")]
 
 
+#View(clean_combined_df)
 #splitting the participants into mini-language groups
 
 clean_combined_df <- clean_combined_df %>%
@@ -195,61 +197,309 @@ clean_combined_df <- clean_combined_df %>%
   filter(trial != lag(trial, default = first(trial)))
 
 
-#View(clean_combined_df)
+#Plotting for gender agreement
 
 # Create a new data frame with only "gender agreement" in grammatical_property
 Gender_agreement_df <- clean_combined_df %>%
   filter(grammatical_property == "gender agreement", session_part == "Experiment")
 
 #grouping the two ungrammatical conditions
-Gender_agreement_df$grammaticality[Gender_agreement_df$grammaticality %in% c("gender violation", "number violation")] <- "ungrammatical"
-#View (Gender_agreement_df)
+Gender_agreement_df$grammaticality[Gender_agreement_df$grammaticality %in% c("gender violation")] <- "Ungrammatical"
+Gender_agreement_df$grammaticality[Gender_agreement_df$grammaticality == "grammatical"] <- "Grammatical"
 
-
-Verb_object_agreement_df <- clean_combined_df %>%
-  filter(grammatical_property == "verb-object agreement")
-#View (Verb_object_agreement_df)
-
-Differential_object_marking_df <- clean_combined_df %>%
-  filter(grammatical_property == "differential object marking")
-#View (Verb_object_agreement_df)
-
-# Convert 'correct' column to numeric if it's not already
 Gender_agreement_df$correct <- as.numeric(as.character(Gender_agreement_df$correct))
 Gender_agreement_df$"Mini language" <- as.factor(Gender_agreement_df$"Mini language")
 Gender_agreement_df$Session <- as.factor(Gender_agreement_df$Session)
 Gender_agreement_df$grammaticality <- as.factor(Gender_agreement_df$grammaticality)
 
+# Add accuracy as a new column in Gender_agreement_df
+Gender_agreement_df <- Gender_agreement_df %>%
+ group_by(subject_id, grammaticality) %>%
+mutate(accuracy = mean(correct)) %>%
+ungroup()
+
+Gender_agreement_df_violin <- Gender_agreement_df %>%
+  filter(grammaticality %in% c("Grammatical", "Ungrammatical"))
+
+
+Norwegian_plot_gender <- Gender_agreement_df_violin %>%
+  filter(`Mini language` == "Mini-Norwegian") 
+  ggplot(aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .2, alpha = 1, fatten = NULL, show.legend = FALSE, outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.095), colour = "white") +
+  scale_x_discrete(name = "", labels = c("Session 2", "Session 3", "Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")
+  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-Norwegian") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold") 
+  )
+
+print(Norwegian_plot_gender)
+
+
+English_plot_gender <- Gender_agreement_df_violin %>%
+  filter(`Mini language` == "Mini-English") %>% 
+  ggplot(aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .2, alpha = 1, fatten = NULL, show.legend = FALSE, outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.095), colour = "white") +
+  scale_x_discrete(name = "", labels = c("Session 2", "Session 3", "Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")
+  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-English") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold") +
+      facet_wrap(~`Mini language`, ncol = 1)
+  )
+
+
+# Display the plot
+print(English_plot_gender)
+
+facet_wrap(~'mini language', ncol = 1)
+
+# Combine the plots and add a title
+Gender_agreement_plot <- Norwegian_plot_gender / English_plot_gender + 
+  plot_annotation(title = "Accuracy on gender agreement in the experiment"+
+                    facet_wrap(~`Mini language`, ncol = 1)
+  )
+
+# Display the combined plot
+print(Gender_agreement_plot)
+
+#ggsave(filename = paste0(Gender_agreement_plot, '.png'), path = 'analyses/plots/Nhavioural data', 
+#      width = 10, height = 8, dpi = 300, units = 'in')
+
+######################################
+
+###### plotting for Differential object marking
+
+Differential_object_marking_df <- clean_combined_df %>%
+  filter(grammatical_property == "differential object marking")
+
+
+# Convert 'correct' column to numeric if it's not already
+Differential_object_marking_df$correct <- as.numeric(as.character(Differential_object_marking_df$correct))
+Differential_object_marking_df$"Mini language" <- as.factor(Differential_object_marking_df$"Mini language")
+Differential_object_marking_df$Session <- as.factor(Differential_object_marking_df$Session)
+Differential_object_marking_df$grammaticality <- as.factor(Differential_object_marking_df$grammaticality)
+
+# Separate Norwegian group data frame
+#Norwegian_DOM_df <- Differential_object_marking_df %>%
+ # filter(`Mini language` == "Mini-Norwegian", grammaticality %in% c("Grammatical", "Ungrammatical"))
+
+# Add accuracy as a new column in Differential_object_marking_df_violin
+Differential_object_marking_df_violin <- Differential_object_marking_df %>%
+  group_by(subject_id, grammaticality) %>%
+  mutate(accuracy = mean(correct)) %>%
+  ungroup()
+# Add "Grammatical" as a valid factor level if it's missing
+Differential_object_marking_df_violin$grammaticality <- factor(Differential_object_marking_df_violin$grammaticality, 
+                                                               levels = c("Ungrammatical", "grammatical", "Grammatical"))
+
+#grouping the two ungrammatical conditions
+Differential_object_marking_df_violin$grammaticality[Differential_object_marking_df$grammaticality %in% c("DOM violation")] <- "Ungrammatical"
+
+Differential_object_marking_df_violin$grammaticality[Differential_object_marking_df_violin$grammaticality == "grammatical"] <- "Grammatical"
 
 
 
-# separate norwegian group data frame
-Norwegian_df <- Gender_agreement_df %>%
-  filter(`Mini language` == "Mini-Norwegian")
+# separate English group data frame
+#English_DOM_df <- Differential_object_marking_df %>%
+ # filter(`Mini language` == "Mini-Norwegian", grammaticality %in% c("Grammatical", "Ungrammatical"))
+
+# Add accuracy as a new column in English_DOM_df
+#English_DOM_df <- English_DOM_df %>%
+ # group_by(subject_id, grammaticality) %>%
+#  mutate(accuracy = mean(correct)) %>%
+ # ungroup()
+########
+
+# Ensure that the Session variable is a factor with all the necessary levels
+Differential_object_marking_df_violin$Session <- factor(Differential_object_marking_df_violin$Session, levels = c("Session 3", "Session 4", "Session 6"))
+
+# Now create the plot
+Norwegian_plot_DOM <- Differential_object_marking_df_violin %>%
+  filter(`Mini language` == "Mini-English") %>% 
+  ggplot (aes(x = Session, y = accuracy * 100, fill = grammaticality)) + 
+  ggplot(Differential_object_marking_df_violin, aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .2, alpha = 1, fatten = NULL, show.legend = FALSE, outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.175)) +
+  scale_x_discrete(name = "", labels = c("Session 3", "Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")
+  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-Norwegian") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold") 
+  )
+
+print(Norwegian_plot_DOM)
+
+English_plot_DOM <- ggplot(Differential_object_marking_df, aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .2, alpha = 1, fatten = NULL, show.legend = FALSE, outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.175)) +
+  scale_x_discrete(name = "", labels = c("Session 3", "Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")
+  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-English") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold")  
+  )
+
+# Print the plot
+#print(English_plot_DOM)
+
+
+# Combine the plots and add a title
+DOM_plot <- Norwegian_plot_DOM / English_plot_DOM + 
+  plot_annotation(title = "Accuracy on differential object marking in the experiment")
+
+# Display the combined plot
+print(DOM_plot)
+
+#ggsave(filename = paste0(VOA_plot, '.png'), path = 'analyses/plots/Nhavioural data', 
+#      width = 10, height = 8, dpi = 300, units = 'in')
+
+###########################
+#Plotting for Verb object agreement
+
+Verb_object_agreement_df <- clean_combined_df %>%
+  filter(grammatical_property == "verb-object agreement")
+#View (Verb_object_agreement_df)
+
+#grouping the two ungrammatical conditions
+Verb_object_agreement_df$grammaticality[Verb_object_agreement_df$grammaticality %in% c("VOA violation")] <- "Ungrammatical"
+#View (Verb_object_agreement_df)
+
+# Add "Grammatical" as a valid factor level if it's missing
+Verb_object_agreement_df$grammaticality <- factor(Verb_object_agreement_df$grammaticality, 
+                                                  levels = c("Ungrammatical", "grammatical", "Grammatical"))
+
+# Replace "grammatical" with "Grammatical"
+Verb_object_agreement_df$grammaticality[Verb_object_agreement_df$grammaticality == "grammatical"] <- "Grammatical"
+
+# Convert 'correct' column to numeric if it's not already
+Verb_object_agreement_df$correct <- as.numeric(as.character(Verb_object_agreement_df$correct))
+Verb_object_agreement_df$"Mini language" <- as.factor(Verb_object_agreement_df$"Mini language")
+Verb_object_agreement_df$Session <- as.factor(Verb_object_agreement_df$Session)
+Verb_object_agreement_df$grammaticality <- as.factor(Verb_object_agreement_df$grammaticality)
+
+# Separate Norwegian group data frame
+Norwegian_VOA_df <- Verb_object_agreement_df %>%
+  filter(`Mini language` == "Mini-Norwegian", grammaticality %in% c("Grammatical", "Ungrammatical"))
+
 # Ensure that Session is a factor
-Norwegian_df$Session <- factor(Norwegian_df$Session)
+Norwegian_VOA_df$Session <- factor(Norwegian_VOA_df$Session)
 
-#View(Norwegian_df)
 
-library(dplyr)
-
-# Add accuracy as a new column in Norwegian_df
-Norwegian_df <- Norwegian_df %>%
+# Add accuracy as a new column in Norwegian_VOA_df
+Norwegian_VOA_df <- Norwegian_VOA_df %>%
   group_by(subject_id, grammaticality) %>%
   mutate(accuracy = mean(correct)) %>%
   ungroup()
 
-# View the updated dataframe
-print(Norwegian_df)
-##############################################################
+# separate English group data frame
+English_VOA_df <- Verb_object_agreement_df %>%
+  filter(`Mini language` == "Mini-Norwegian", grammaticality %in% c("Grammatical", "Ungrammatical"))
 
-ggplot(Norwegian_df, aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  # Multiply accuracy by 100 for percentage
-  introdataviz::geom_split_violin(alpha = .7, trim = TRUE) +
-  geom_boxplot(width = .2, alpha = .6, fatten = NULL, show.legend = FALSE) +
-  stat_summary(geom = "pointrange", fun.data = "mean_se", show.legend = FALSE) +
-  scale_x_discrete(name = "", labels = c("Session 2", "Session 3", "Session 4", "Session 6")) +
-  scale_y_continuous(name = "Accuracy (%)", breaks = seq(0, 120, by = 20), limits = c(0, 100)) +  # Change y-axis limits and labels
-  scale_fill_manual(values = c("grammatical" = "forestgreen", "ungrammatical" = "firebrick"), name = "Grammaticality") +
-  ggtitle("Accuracy on gender agreement in the experiment  
-          in Mini-Norwegian") +  # Added title
-  theme_minimal()
+# Ensure that Session is a factor
+English_VOA_df$Session <- factor(English_VOA_df$Session)
+
+
+# Add accuracy as a new column in English_VOA_df
+English_VOA_df <- English_VOA_df %>%
+  group_by(subject_id, grammaticality) %>%
+  mutate(accuracy = mean(correct)) %>%
+  ungroup()
+########
+Norwegian_plot_VOA <- ggplot(Norwegian_VOA_df, aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .2, alpha = 1, fatten = NULL, show.legend = FALSE, outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.175)) +
+  scale_x_discrete(name = "", labels = c("Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")
+  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-Norwegian") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold")   # Title customization
+  )
+
+#print(Norwegian_plot_VOA)
+
+English_plot_VOA <- ggplot(English_VOA_df, aes(x = Session, y = accuracy * 100, fill = grammaticality)) +  
+  introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE) +
+  geom_boxplot(width = .1, alpha = 1, fatten = NULL, show.legend = FALSE,outlier.shape = NA) +
+  stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = F, position = position_dodge(.095), colour = "white") +
+  scale_x_discrete(name = "", labels = c("Session 4", "Session 6")) +
+  scale_y_continuous(
+    name = "Accuracy", 
+    breaks = seq(0, 100, by = 20), 
+    limits = c(0, 100),
+    labels = function(x) paste0(x, "%")  ) +  
+  scale_fill_manual(values = c("Grammatical" = "forestgreen", "Ungrammatical" = "firebrick1"), name = "Grammaticality") +
+  ggtitle("Mini-English") +  
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
+    axis.title.y = element_text(size = 11, face = "bold")  # Title customization
+  )
+
+
+# Display the plot
+print(English_plot_VOA)
+
+# Combine the plots and add a title
+VOA_plot <- Norwegian_plot_VOA / English_plot_VOA + 
+  plot_annotation(title = "Accuracy on Verb Object agreement in the experiment")
+
+# Save as PNG
+#ggsave(plot, filename = paste0(plot_name, '.png'), path = 'analyses/plots/waveforms/', 
+#      create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
+
+# Save as PDF
+#ggsave(plot, filename = paste0(plot_name, '.pdf'), path = 'analyses/plots/waveforms/', 
+#      create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
+# Display the combined plot
+print(VOA_plot)
+
+#ggsave(filename = paste0(VOA_plot, '.png'), path = 'analyses/plots/Nhavioural data', 
+#      width = 10, height = 8, dpi = 300, units = 'in')
