@@ -28,7 +28,7 @@ merge_trialbytrial_EEG_data <-
     
     source('data/R_functions/import_trialbytrial_EEG_data.R')
     trialbytrial_EEG_data = import_trialbytrial_EEG_data(EEG_file_pattern = EEG_file_pattern,
-                                                         min_time = min_time, 
+                                                         min_time = min_time,
                                                          max_time = max_time,
                                                          aggregate_electrodes = aggregate_electrodes,
                                                          aggregate_time_points = aggregate_time_points,

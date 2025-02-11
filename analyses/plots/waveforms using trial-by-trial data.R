@@ -12,8 +12,10 @@ library(ggtext)
 # Free unused memory
 gc()
 
-# Load data
-source('data/importation and preprocessing/merge trial-by-trial EEG data.R')
+# Load function
+source('data/R_functions/merge_trialbytrial_EEG_data.R') 
+
+trialbytrial_EEG_data <- merge_trialbytrial_EEG_data(aggregate_electrodes = TRUE)
 
 # Aggregate data across trials and electrodes
 
@@ -31,9 +33,9 @@ aggregated_EEG_data <- trialbytrial_EEG_data %>%
 # View the aggregated data
 head(aggregated_EEG_data)
 
-# Rename factor levels and remove ancillary violation condition 
-aggregated_EEG_data = aggregated_EEG_data %>%
-  filter(!grammaticality == 'Ancillary violation')
+# # Remove ancillary violation condition 
+# averaged_EEG_data <- averaged_EEG_data %>%
+#   filter(!grammaticality == 'Ancillary violation')
 
 # Define standard error function
 std = function(x) sd(x) / sqrt(length(x))
@@ -58,7 +60,7 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       # For instance, Session 2 only contains the property of gender agreement.
       if( nrow(iteration_data) == 0 ) next
       
-      # Calculate sample size for each language group
+      # Calculate sample size for each mini-language group
       sample_sizes = iteration_data %>% 
         group_by(language) %>%
         summarise(n = n_distinct(participant_home_ID), .groups = 'drop')
@@ -111,62 +113,66 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       )
       
       # Map colours to grammaticality conditions
-      group_colours = c('Grammatical' = 'forestgreen', 
-                        'Ungrammatical' = 'firebrick1')
+      group_colours <- c('Grammatical' = 'forestgreen', 
+                         'Ungrammatical' = 'firebrick1',
+                         'Ancillary violation' = 'grey80')
       
-      # Create and export plot
-      (
-        ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
-          
-          geom_ribbon(aes(ymin = CIL, ymax = CIU, fill = grammaticality), 
-                      alpha = 0.15, colour = NA) +
-          geom_line(linewidth = 0.5, alpha = .9) +
-          
-          scale_x_continuous(expand = c(0, 0), breaks = pretty(df2$time, n = 5)) + 
-          
-          # Reverse Y axis to follow standard EEG format
-          scale_y_continuous(trans = 'reverse', expand = c(0, 0), 
-                             breaks = pretty(df2$amplitude, n = 5)) +  
-          
-          scale_color_manual(values = group_colours) +
-          scale_fill_manual(values = group_colours) +
-          
-          guides(color = guide_legend(
-            override.aes = list(size = 5, shape = 15, alpha = .7)
-          )) +
-          
-          ggtitle(plot_title) +
-          
-          # Lines at x = 0 and y = 0
-          geom_vline(xintercept = 0, linewidth = 0.5, colour = 'grey60') +
-          geom_segment(x = min(df2$time), y = 0, 
-                       xend = max(df2$time), yend = 0, 
-                       linewidth = 0.5, color = 'grey60') +
-          
-          labs(x = 'Time (ms)', y = 'Amplitude (μV)') +
-          
-          theme_bw() +
-          theme(axis.title = element_text(size = 14),
-                axis.text = element_text(size = 12),
-                legend.position = 'top', legend.justification = 'center',
-                legend.title = element_blank(), 
-                legend.text = 
-                  element_text(size = 14, margin = margin(r = 10, l = 3, unit = 'pt')),
-                legend.key.width = unit(1.2, 'cm'),
-                legend.key.height = unit(0.5, 'cm'),
-                plot.title = element_text(size = 16, hjust = 0.5, 
-                                          margin = margin(t = 4, b = 6, unit = 'pt')),
-                panel.border = element_blank(),
-                strip.background = element_rect(fill = 'grey92', colour = 'grey70'),
-                strip.text = element_markdown(size = 14, face = 'bold'), 
-                panel.spacing = unit(0.5, 'cm')) + 
-          
-          # Facet by language
-          facet_wrap(~language_with_N, ncol = 1, )
-      ) %>%
+      # PLOT
+      plot <- ggplot(df2, aes(x = time, y = amplitude, color = grammaticality)) +
+        geom_ribbon(aes(ymin = CIL, ymax = CIU, fill = grammaticality), 
+                    alpha = 0.15, colour = NA) +
+        geom_line(linewidth = 0.5, alpha = .9) +
+        scale_x_continuous(expand = c(0, 0), breaks = pretty(df2$time, n = 5)) + 
         
-        ggsave(filename = paste0(plot_name, '.png'), path = 'analyses/plots/trial-by-trial waveforms/', 
-               create.dir = TRUE, width = 10, height = 8, dpi = 300, units = 'in')
+        # Reverse Y axis to follow standard EEG format
+        scale_y_continuous(trans = 'reverse', expand = c(0, 0), 
+                           breaks = pretty(df2$amplitude, n = 5)) +  
+        
+        scale_color_manual(values = group_colours) +
+        scale_fill_manual(values = group_colours) +
+        
+        guides(color = guide_legend(
+          override.aes = list(size = 5, shape = 15, alpha = .7)
+        )) +
+        
+        ggtitle(plot_title) +
+        
+        # Lines at x = 0 and y = 0
+        geom_vline(xintercept = 0, linewidth = 0.5, colour = 'grey60') +
+        geom_segment(x = min(df2$time), y = 0, 
+                     xend = max(df2$time), yend = 0, 
+                     linewidth = 0.5, color = 'grey60') +
+        
+        labs(x = 'Time (ms)', y = 'Amplitude (μV)') +
+        
+        theme_bw() +
+        theme(axis.title = element_text(size = 14),
+              axis.text = element_text(size = 12),
+              legend.position = 'top', legend.justification = 'center',
+              legend.title = element_blank(), 
+              legend.text = 
+                element_text(size = 14, margin = margin(r = 10, l = 3, unit = 'pt')),
+              legend.key.width = unit(1.2, 'cm'),
+              legend.key.height = unit(0.5, 'cm'),
+              plot.title = element_text(size = 16, hjust = 0.5, 
+                                        margin = margin(t = 4, b = 6, unit = 'pt')),
+              panel.border = element_blank(),
+              strip.background = element_rect(fill = 'grey92', colour = 'grey70'),
+              strip.text = element_markdown(size = 14, face = 'bold'), 
+              panel.spacing = unit(0.5, 'cm')) + 
+        
+        # Facet by mini-language group
+        facet_wrap(~mini_language_with_N, ncol = 1)
+      
+      # Save as PNG
+      ggsave(plot, filename = paste0(plot_name, '.png'), 
+             path = 'analyses/plots/trial-by-trial waveforms/', create.dir = TRUE, 
+             width = 9, height = 8, dpi = 300, units = 'in')
+      
+      # Save as PDF
+      ggsave(plot, filename = paste0(plot_name, '.pdf'), 
+             path = 'analyses/plots/trial-by-trial waveforms/', create.dir = TRUE, 
+             width = 9, height = 8, dpi = 300, units = 'in')
     }
   }
 }
