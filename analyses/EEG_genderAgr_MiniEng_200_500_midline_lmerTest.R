@@ -29,12 +29,7 @@ EEG_genderAgr_MiniEng_200_500_midline_data <-
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
                               aggregate_time_points = TRUE, 
-                              selected_macroregion = 'midline') %>%
-  
-  select(z_amplitude, z_baseline_predictor, z_recoded_grammaticality, z_recoded_session,
-         z_session1_digit_span, z_session1_Stroop, z_session1_ASRT, 
-         z_multilingual_language_diversity, z_recoded_hemisphere, z_recoded_caudality,
-         participant_lab_ID, sentence_marker)
+                              selected_macroregion = 'midline')
 
 # Compute baseline predictor following Alday (2019; http://doi.org/10.1111/psyp.13451).
 # Tutorial: https://mne.tools/stable/auto_tutorials/epochs/15_baseline_regression.html.
@@ -54,9 +49,15 @@ baseline_predictor <-
 
 # Import baseline predictor to main data set
 EEG_genderAgr_MiniEng_200_500_midline_data <- EEG_genderAgr_MiniEng_200_500_midline_data %>%
-  left_join(baseline_predictor, by = c('participant_lab_ID', 'brain_region', 'sentence_marker'))
+  left_join(baseline_predictor, by = c('participant_lab_ID', 'brain_region', 'sentence_marker')) %>%
+  
+  # Select variables
+  select(z_amplitude, z_baseline_predictor, z_recoded_grammaticality, z_recoded_session,
+         z_session1_digit_span, z_session1_Stroop, z_session1_ASRT, 
+         z_multilingual_language_diversity, z_recoded_hemisphere, z_recoded_caudality,
+         participant_lab_ID, sentence_marker)
 
-# Save data to disk (caution: LARGE file!)
+# Save data to disk
 saveRDS(EEG_genderAgr_MiniEng_200_500_midline_data, 
         'data/final data/EEG_genderAgr_MiniEng_200_500_midline_data.rds')
 
