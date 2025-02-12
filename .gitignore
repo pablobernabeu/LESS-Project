@@ -1,11 +1,10 @@
 stimulus_preparation/external_corpora/nowac-1.1.lemma.frek.sort_alf_frek.txt
-data/final data/merged_data.csv
-analyses/results/*
+data/merged data/*
+analyses/EEG/results/*
 *.mp4
 *.eeg
 *.wksp2
 *.Rdata
 *.Rhistory
 .Rproj.user
-.Rproj.user/*
 dekstop.ini

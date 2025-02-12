@@ -134,7 +134,7 @@ import_trialbytrial_EEG_data <-
       cat("Processed file:", txt_file, "\n")
     }
     
-    # Tidy up variables
+    # Translate markers into labels and create time windows, brain regions, etc.
     trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
       mutate(
         grammatical_property = as.character(case_when(
@@ -146,7 +146,15 @@ import_trialbytrial_EEG_data <-
         grammaticality = as.character(case_when(
           grammaticality == 'S101' ~ 'Grammatical', 
           grammaticality == 'S102' ~ 'Ungrammatical', 
-          grammaticality == 'S103' ~ 'Ancillary violation',
+          
+          # Ancillary violation conditions varying by grammatical property
+          
+          grammatical_property == 'Gender agreement' & 
+            grammaticality == 'S103' ~ 'Number agreement violation',
+          
+          !grammatical_property == 'Gender agreement' & 
+            grammaticality == 'S103' ~ 'Article location violation',
+          
           TRUE ~ NA_character_
         )),
         time_window = as.character(case_when(
@@ -190,7 +198,8 @@ import_trialbytrial_EEG_data <-
         
         recoded_grammaticality = as.numeric(case_when(
           grammaticality == 'Grammatical' ~ 0.5,
-          grammaticality == 'Ancillary violation' ~ 0,
+          grammaticality == 'Number agreement violation' ~ 0,
+          grammaticality == 'Article location violation' ~ 0,
           grammaticality == 'Ungrammatical' ~ -0.5,
           TRUE ~ NA_real_
         )),

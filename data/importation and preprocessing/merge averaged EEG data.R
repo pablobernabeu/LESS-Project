@@ -44,79 +44,7 @@ averaged_EEG_data <-
               mutate(participant_lab_ID = as.factor(participant_lab_ID)), 
             by = "participant_lab_ID", relationship = "many-to-many") %>%
   
-  # Translate markers into labels and create time windows, brain regions, etc.
   mutate(
-    
-    grammatical_property = case_when(
-      grammatical_property == 'S1' ~ 'Gender agreement', 
-      grammatical_property == 'S2' ~ 'Differential object marking', 
-      grammatical_property == 'S3' ~ 'Verb-object number agreement',
-      .default = grammatical_property),
-    
-    grammaticality = case_when(
-      grammaticality == 'S101' ~ 'Grammatical', 
-      grammaticality == 'S102' ~ 'Ungrammatical', 
-      grammaticality == 'S103' ~ 'Ancillary violation',
-      .default = grammaticality),
-    
-    time_window = case_when(
-      time >= 200 & time <= 498 ~ '200_500',
-      time >= 300 & time <= 598 ~ '300_600',
-      time >= 400 & time <= 898 ~ '400_900',
-      TRUE ~ NA_character_
-    ),
-    brain_region = case_when(
-      electrode %in% c('Fp1', 'F3', 'F7', 'FT9', 'FC5') ~ 'left anterior',
-      electrode %in% c('Fp2', 'F4', 'F8', 'FT10', 'FC6') ~ 'right anterior',
-      electrode %in% c('T7', 'C3', 'CP5') ~ 'left medial',
-      electrode %in% c('T8', 'C4', 'CP6') ~ 'right medial',
-      electrode %in% c('P7', 'P3', 'O1') ~ 'left posterior',
-      electrode %in% c('P8', 'P4', 'O2') ~ 'right posterior',
-      electrode %in% c('Fz', 'FC1', 'FC2') ~ 'midline anterior',
-      electrode %in% c('Cz', 'CP1', 'CP2') ~ 'midline medial',
-      electrode %in% c('Pz', 'Oz') ~ 'midline posterior',
-      TRUE ~ NA_character_
-    ),
-    hemisphere = case_when(
-      str_detect(brain_region, 'left') ~ 'left',
-      str_detect(brain_region, 'right') ~ 'right',
-      TRUE ~ NA_character_
-    ),
-    caudality = case_when(
-      str_detect(brain_region, 'anterior') ~ 'anterior',
-      str_detect(brain_region, 'medial') ~ 'medial',
-      str_detect(brain_region, 'posterior') ~ 'posterior',
-      TRUE ~ NA_character_
-    ),
-    
-    # Recode dichotomous predictors (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
-    # Session is specifically recoded following Michael Clark's recommendation at 
-    # https://m-clark.github.io/sem/growth-curves.html#numbering-the-time-points.
-    
-    recoded_grammaticality = case_when(
-      grammaticality == 'ungrammatical' ~ -0.5,
-      grammaticality == 'ancillary violation' ~ 0,
-      grammaticality == 'grammatical' ~ 0.5,
-      TRUE ~ NA_real_
-    ),
-    recoded_session = case_when(
-      session == 2 ~ 0,
-      session == 3 ~ 1,
-      session == 4 ~ 2,
-      session == 6 ~ 3,
-      TRUE ~ NA_real_
-    ),
-    recoded_hemisphere = case_when(
-      hemisphere == 'left' ~ -0.5,
-      hemisphere == 'right' ~ 0.5,
-      TRUE ~ NA_real_
-    ),
-    recoded_caudality = case_when(
-      caudality == 'anterior' ~ -0.5,
-      caudality == 'medial' ~ 0,
-      caudality == 'posterior' ~ 0.5,
-      TRUE ~ NA_real_
-    ),
     
     # Z-score between-participants predictors, following Brauer and Curtin (2018; 
     # https://doi.org/10.1037/met0000159).
