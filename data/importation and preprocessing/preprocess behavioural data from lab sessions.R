@@ -19,7 +19,7 @@ extract_number <- function(filename) {
 ######loading data from all sessions
 #Session 2
 # List all CSV files in the directory
-Session2_file_list <- list.files(path = "data/raw data/EEG/Session 2/Raw", 
+Session2_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 2", 
                                  pattern = "*.csv", full.names = TRUE)
 
 # Loop through each file and fix the first line
@@ -56,11 +56,13 @@ Session2_df_list <- lapply(Session2_df_list, function(df) {
 # Combine all data frames
 Session2_final_df <- do.call(rbind, Session2_df_list)
 Session2_final_df$Session <- "session 2"
+Session2_final_df <- Session2_final_df %>%
+  mutate(grammatical_property = ifelse(session_part == "Test", "gender agreement", grammatical_property))
 
 
 #Session 3
 
-Session3_file_list <- list.files(path = "data/raw data/EEG/Session 3/Raw", 
+Session3_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 3", 
                                  pattern = "*.csv", full.names = TRUE)
 
 for (file in Session3_file_list) {
@@ -89,13 +91,13 @@ Session3_df_list <- lapply(Session3_df_list, function(Session3_df) {
 })
 
 Session3_final_df <- do.call(rbind, Session3_df_list)
-
 Session3_final_df$Session <- "Session 3"
-
+Session3_final_df <- Session3_final_df %>%
+  mutate(grammatical_property = ifelse(session_part == "Test", "differential object marking", grammatical_property))
 
 # Session 4
 
-Session4_file_list <- list.files(path = "data/raw data/EEG/Session 4/Raw", 
+Session4_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 4", 
                                  pattern = "*.csv", full.names = TRUE)
 
 
@@ -126,11 +128,12 @@ Session4_df_list <- lapply(Session4_df_list, function(Session4_df) {
 
 Session4_final_df <- do.call(rbind, Session4_df_list)
 Session4_final_df$Session <- "Session 4"
-
+Session4_final_df <- Session4_final_df %>%
+  mutate(grammatical_property = ifelse(session_part == "Test", "verb-object agreement", grammatical_property))
 
 # Session 6
 
-Session6_file_list <- list.files(path = "data/raw data/EEG/Session 6/Raw", 
+Session6_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 6", 
                                  pattern = "*.csv", full.names = TRUE)
 
 for (file in Session6_file_list) {
@@ -575,7 +578,9 @@ Gender_agreement_boxplot_df_violin$facet_group <- factor(
 )
 
 # Now plot the violin plot, faceting by `facet_group` (mini_language)
-Gender_agreement_boxplot <- ggplot(Gender_agreement_boxplot_df_violin,
+Gender_agreement_boxplot <- ggplot(Gender_agreement_boxplot_df_violin %>%
+                                     mutate(grammaticality = factor(grammaticality, 
+                                                                    levels = c("Grammatical", "Ungrammatical", "Number\nviolation"))),
                                 aes(x = Session, y = accuracy * 100, 
                                     fill = grammaticality, 
                                     color = grammaticality)) +  
@@ -636,14 +641,14 @@ Gender_agreement_boxplot <- ggplot(Gender_agreement_boxplot_df_violin,
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
 
-print(Gender_agreement_detailed_plot)
+print(Gender_agreement_boxplot)
 
 ggsave("Gender_agreement_boxplot.png", plot = Gender_agreement_boxplot, width = 7, height = 10, dpi = 300)
 
 
 ################
 ## differential object marking
-DOM_experiment_boxplot_df <- DOM_experiment_df %>%
+DOM_experiment_boxplot_df <- Differential_object_marking_df %>%
   filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement"))
 
 # Create the facet_group variable in the dataset
@@ -657,7 +662,9 @@ DOM_experiment_boxplot_df$facet_group <- factor(
 )
 
 
-DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df,
+DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
+                                   mutate(grammaticality = factor(grammaticality, 
+                                                                  levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement"))),
                                    aes(x = Session, y = accuracy * 100, 
                                        fill = grammaticality, 
                                        color = grammaticality)) +  
@@ -736,7 +743,9 @@ Verb_object_agreement_df_boxplot$facet_group <- factor(Verb_object_agreement_df_
   levels = c("Mini-Norwegian", setdiff(unique(Verb_object_agreement_df_boxplot$facet_group), "Mini-Norwegian")))
 
 
-Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot,
+Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
+                                          mutate(grammaticality = factor(grammaticality, 
+                                                                         levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement"))),
                                  aes(x = Session, y = accuracy * 100, 
                                      fill = grammaticality, 
                                      color = grammaticality)) +  
@@ -804,7 +813,7 @@ ggsave("Verb_object_agreement_boxplot.png", plot = Verb_object_agreement_boxplot
 ########################################
 ###################################################
 #######################################################
-#Plotting for behavioural data during testing
+#Plotting for behavioural data during training 
 
 # gender agreement
 
