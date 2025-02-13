@@ -123,17 +123,17 @@ system.time({
 })
 
 saveRDS(EEG_genderAgr_MiniNor_400_900_midline_lmerTest, 
-        'EEG/analyses/results/EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
+        'analyses/EEG/results/EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
 
 # Calculate p values using Satterthwaite method (Luke, 2017; 
 # https://doi.org/10.3758/s13428-016-0809-y)
 summary(EEG_genderAgr_MiniNor_400_900_midline_lmerTest, ddf = 'Satterthwaite') %>%
-  saveRDS('EEG/analyses/results/Satterthwaite_summary_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
+  saveRDS('analyses/EEG/results/Satterthwaite_summary_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
 
 # Calculate R^2. The result must be interpreted with caution as it differs from the 
 # traditional R^2 (Nakagawa et al., 2017; https://doi.org/10.1098/rsif.2017.0213)
 # MuMIn::r.squaredGLMM(EEG_genderAgr_MiniNor_400_900_midline_lmerTest) %>%
-#   saveRDS('EEG/analyses/results/Nakagawa2017_R2_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
+#   saveRDS('analyses/EEG/results/Nakagawa2017_R2_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
 
 # Calculate 95% confidence intervals of fixed effects
 lme4::confint.merMod(
@@ -141,9 +141,9 @@ lme4::confint.merMod(
   # Compute 95% CIs for every effect, as well as for the intercept
   parm = rownames(summary(EEG_genderAgr_MiniNor_400_900_midline_lmerTest)$coefficients)
 ) %>%
-  saveRDS('EEG/analyses/results/confint_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
+  saveRDS('analyses/EEG/results/confint_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
 
 # Save random effects
 lme4::ranef(EEG_genderAgr_MiniNor_400_900_midline_lmerTest) %>%
-  saveRDS('EEG/analyses/results/ranef_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
+  saveRDS('analyses/EEG/results/ranef_EEG_genderAgr_MiniNor_400_900_midline_lmerTest.rds')
 

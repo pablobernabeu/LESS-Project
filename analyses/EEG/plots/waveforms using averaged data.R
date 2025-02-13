@@ -160,11 +160,11 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
         facet_wrap(~mini_language_with_N, ncol = 1)
       
       # Save as PNG
-      ggsave(plot, filename = paste0(plot_name, '.png'), path = 'EEG/analyses/plots/waveforms/', 
+      ggsave(plot, filename = paste0(plot_name, '.png'), path = 'analyses/EEG/plots/waveforms/', 
              create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
       
       # Save as PDF
-      ggsave(plot, filename = paste0(plot_name, '.pdf'), path = 'EEG/analyses/plots/waveforms/', 
+      ggsave(plot, filename = paste0(plot_name, '.pdf'), path = 'analyses/EEG/plots/waveforms/', 
              create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
     }
   }
