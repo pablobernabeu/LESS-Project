@@ -11,6 +11,7 @@ plot_95_confidence_intervals =
   function( model_summary, confidence_intervals, show_intercept = TRUE, 
             select_effects = NULL, order_effects = NULL, 
             x_title = 'Estimate', axis_text_size = 9, 
+            remove_y_axis = FALSE, # useful for combining plots side by side
             
             # If interaction_symbol_x = TRUE, replace double colons with times 
             # symbols followed by line breaks and indentation. Then, replace 
@@ -41,12 +42,14 @@ plot_95_confidence_intervals =
     
     # If show_intercept = FALSE, remove it
     if(isFALSE(show_intercept)) {
-      model_summary = model_summary %>% filter(!Effect == '(Intercept)')
+      model_summary = model_summary %>% 
+        filter(!Effect == '(Intercept)')
     }
     
     # If select_effects was supplied, apply it and order effects accordingly
     if(!is.null(select_effects)) {
-      model_summary = model_summary %>% filter(Effect %in% select_effects) %>%
+      model_summary = model_summary %>% 
+        filter(Effect %in% select_effects) %>%
         arrange(factor(Effect, levels = select_effects))
     }
     
@@ -69,9 +72,8 @@ plot_95_confidence_intervals =
     model_summary$Effect = 
       factor(model_summary$Effect, levels = model_summary$Effect)
     
-    # Plot
-    
-    model_summary %>%
+    # PLOT
+    plot <- model_summary %>%
       ggplot(aes(x = Estimate, 
                  # Override default, bottom-up order on Y-axis
                  y = fct_rev(Effect))) + 
@@ -92,15 +94,24 @@ plot_95_confidence_intervals =
       xlab(x_title) +
       
       theme_minimal() +
-      theme(axis.title.x = ggtext::element_markdown(size = axis_text_size, 
-                                                    margin = 
-                                                      margin(t = axis_text_size * 0.8)), 
-            axis.text.x = element_text(size = axis_text_size * 0.9, 
-                                       margin = margin(t = axis_text_size * 0.5)), 
-            axis.title.y = element_blank(), 
-            axis.text.y = ggtext::element_markdown(size = axis_text_size),
-            axis.ticks.x = element_line(),
-            panel.grid.major.y = element_line(colour = 'grey85'))
+      theme(
+        axis.title.x = ggtext::element_markdown(
+          size = axis_text_size, margin = margin(t = axis_text_size * 0.8)
+        ), 
+        axis.text.x = element_text(
+          size = axis_text_size * 0.9, margin = margin(t = axis_text_size * 0.5)
+        ), 
+        axis.title.y = element_blank(), 
+        axis.text.y = ggtext::element_markdown(size = axis_text_size),
+        axis.ticks.x = element_line(),
+        panel.grid.major.y = element_line(colour = 'grey85')
+      )
     
+    if(remove_y_axis) {
+      plot <- plot + 
+        theme(axis.text.y = element_blank())
+    }
+    
+    return(plot)
   }
 

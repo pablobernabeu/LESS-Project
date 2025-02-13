@@ -19,7 +19,7 @@ EEG_genderAgr_MiniNor_300_600_midline_data <-
   readRDS('data/merged data/EEG_genderAgr_MiniNor_300_600_midline_data.rds')
 
 EEG_genderAgr_MiniNor_300_600_midline_lmerTest <- 
-  readRDS('EEG/analyses/results/EEG_genderAgr_MiniNor_300_600_midline_lmerTest.rds')
+  readRDS('analyses/EEG/results/EEG_genderAgr_MiniNor_300_600_midline_lmerTest.rds')
 
 # Load custom function for plotting interactions that involve 
 # numerically-recoded variables.

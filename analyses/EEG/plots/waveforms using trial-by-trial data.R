@@ -183,12 +183,12 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       
       # Save as PNG
       ggsave(plot, filename = paste0(plot_name, '.png'), 
-             path = 'EEG/analyses/plots/trial-by-trial waveforms/', create.dir = TRUE, 
+             path = 'analyses/EEG/plots/trial-by-trial waveforms/', create.dir = TRUE, 
              width = 9, height = 8, dpi = 300, units = 'in')
       
       # Save as PDF
       ggsave(plot, filename = paste0(plot_name, '.pdf'), 
-             path = 'EEG/analyses/plots/trial-by-trial waveforms/', create.dir = TRUE, 
+             path = 'analyses/EEG/plots/trial-by-trial waveforms/', create.dir = TRUE, 
              width = 9, height = 8, dpi = 300, units = 'in')
     }
   }
