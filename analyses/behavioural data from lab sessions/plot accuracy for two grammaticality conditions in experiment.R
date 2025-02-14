@@ -187,9 +187,8 @@ combined_df <- bind_rows(
 )
 
 clean_combined_df <- combined_df[, c("grammaticality", "grammatical_property",  
-                                     "session_part", "trial", "sentence_1", 
-                                     "sentence_2", "correct", "subject_id",
-                                     "Session")]
+                                     "session_part", "trial", "response_time", 
+                                     "correct", "subject_id", "Session")]
 
 
 #View(clean_combined_df)

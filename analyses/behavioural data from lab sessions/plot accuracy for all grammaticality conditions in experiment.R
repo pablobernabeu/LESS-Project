@@ -14,23 +14,24 @@ source("analyses/behavioural data from lab sessions/plot accuracy for two gramma
 
 
 # Gender agreement
+Gender_agreement_df$facet_group <- Gender_agreement_df$mini_language
 
-Gender_agreement_boxplot_df_violin <- Gender_agreement_df %>%
+Gender_agreement_boxplot_df <- Gender_agreement_df %>%
   filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Number\nviolation"))
 
 
 # Create the facet_group variable in the dataset
-Gender_agreement_boxplot_df_violin$facet_group <- Gender_agreement_boxplot_df_violin$mini_language  # Use mini_language for faceting
+Gender_agreement_boxplot_df$facet_group <- Gender_agreement_boxplot_df$mini_language  # Use mini_language for faceting
 
 # Ensure the 'facet_group' factor is ordered with "Mini-Norwegian" first
-Gender_agreement_boxplot_df_violin$facet_group <- factor(
-  Gender_agreement_boxplot_df_violin$facet_group,
+Gender_agreement_boxplot_df$facet_group <- factor(
+  Gender_agreement_boxplot_df$facet_group,
   levels = c("Mini-Norwegian", 
-             setdiff(unique(Gender_agreement_boxplot_df_violin$facet_group), "Mini-Norwegian"))
+             setdiff(unique(Gender_agreement_boxplot_df$facet_group), "Mini-Norwegian"))
 )
 
 # Now plot the violin plot, faceting by `facet_group` (mini_language)
-Gender_agreement_boxplot <- ggplot(Gender_agreement_boxplot_df_violin %>%
+Gender_agreement_boxplot <- ggplot(Gender_agreement_boxplot_df %>%
                                      mutate(grammaticality = factor(grammaticality, 
                                                                     levels = c("Grammatical", "Ungrammatical", "Number\nviolation"))),
                                    aes(x = Session, y = accuracy * 100, 

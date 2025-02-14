@@ -11,8 +11,7 @@ library(ggtext)
 
 #Plotting for behavioural data during training 
 
-source("analyses/behavioural data from lab sessions/plot accuracy for 
-       two grammaticality conditions in experiment.R")
+source("analyses/behavioural data from lab sessions/plot accuracy for two grammaticality conditions in experiment.R")
 
 # gender agreement
 
