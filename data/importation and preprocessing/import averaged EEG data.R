@@ -5,7 +5,6 @@
 library(dplyr)
 library(tidyr)
 library(stringr)
-library(stringr)
 library(data.table)
 
 # List all relevant .txt files in the directory

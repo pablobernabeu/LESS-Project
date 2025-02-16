@@ -1,15 +1,14 @@
+
+
+# Plot accuracy for grammatical and ungrammatical conditions in the experiment
+
 library(dplyr)
 library(tidyr)
 library(scales)
 library(ggplot2)
-library(introdataviz) 
+library(introdataviz) # from devtools::install_github("psyteachr/introdataviz")
 library(patchwork)
 library(ggtext)
-# how to install the introdataviz package to get split and half violin plots
-#devtools::install_github("psyteachr/introdataviz")
-
-# the ggsave commands are disabled and found at lines 335, 446, 556
-
 
 # Function to extract the number that corresponds to each participant after "subject-"
 extract_number <- function(filename) {
