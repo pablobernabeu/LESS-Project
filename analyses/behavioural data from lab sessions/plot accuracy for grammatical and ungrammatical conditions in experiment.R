@@ -5,10 +5,12 @@
 library(dplyr)
 library(tidyr)
 library(scales)
+install.packages("patchwork")
 library(ggplot2)
 library(introdataviz) # from devtools::install_github("psyteachr/introdataviz")
 library(patchwork)
 library(ggtext)
+install.packages("ggtext")
 
 # Function to extract the number that corresponds to each participant after "subject-"
 extract_number <- function(filename) {
