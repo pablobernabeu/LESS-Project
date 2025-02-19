@@ -10,7 +10,7 @@ library(ggtext)
 # Creating boxplots for behavioural data during the experiment
 
 
-source("analyses/behavioural data from lab sessions/plot accuracy for two grammaticality conditions in experiment.R")
+source("data/importation and preprocessing/import and preprocess behavioural data from lab sessions.R")
 
 
 # Gender agreement
