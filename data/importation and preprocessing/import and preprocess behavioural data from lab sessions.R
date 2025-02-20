@@ -59,6 +59,11 @@ behavioural_lab_data <- behavioural_lab_data %>%
   distinct(trial, .keep_all = TRUE) %>%  # Removing duplicate trials
   mutate(across(everything(), as.character))  # Convert all columns to character for binding
 
+# Standardize the values
+behavioural_lab_data <- behavioural_lab_data %>%
+  mutate(grammatical_property = ifelse(tolower(grammatical_property) == "differential object marking", 
+                                       "Differential object marking", 
+                                       grammatical_property))
 
 behavioural_lab_data <- behavioural_lab_data %>%
   mutate(
@@ -81,6 +86,7 @@ behavioural_lab_data_accuracy <- behavioural_lab_data %>%
   group_by(subject_id, grammaticality, grammatical_property, session_part) %>%
   mutate(accuracy = mean(correct, na.rm = TRUE)) %>%  
   ungroup()
+behavioural_lab_data$accuracy <- as.numeric(as.character(behavioural_lab_data$accuracy))
 
 # Set limit to reaction times to create the RT data frame
 behavioural_lab_data_RT <- behavioural_lab_data %>%
