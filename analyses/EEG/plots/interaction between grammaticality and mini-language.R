@@ -12,8 +12,8 @@ library(patchwork)
 # A minimal amount of raw data is imported below, just enough to extract the 
 # match between the original variables and the numerically-recoded versions. 
 
-# Load function
-source('data/R_functions/merge_trialbytrial_EEG_data.R')
+# # Load function
+# source('data/R_functions/merge_trialbytrial_EEG_data.R')
 
 EEG_genderAgr_MiniNor_300_600_midline_data <- 
   readRDS('data/merged data/EEG_genderAgr_MiniNor_300_600_midline_data.rds')
