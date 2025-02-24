@@ -43,27 +43,24 @@ behavioural_lab_data <- bind_rows(
 behavioural_lab_data <- behavioural_lab_data %>%
   mutate(
     grammatical_property = case_when(
-      session == "2" ~ "Gender agreement",
-      session == "3" ~ "Differential object marking",
-      session == "4" ~ "Verb-object number agreement",
-      TRUE ~ grammatical_property
+      is.na(grammatical_property) & session == "2" ~ "Gender agreement",
+      is.na(grammatical_property) & session == "3" ~ "Differential object marking",
+      is.na(grammatical_property) & session == "4" ~ "Verb-object agreement",
+      TRUE ~ grammatical_property  # Keep existing values unchanged
     ),
+    grammatical_property = str_to_title(grammatical_property),  # Capitalize each word
     subject_id = as.numeric(subject_nr),
-    #  `Mini language` = if_else(subject_id %% 2 == 1, "Mini-English", "Mini-Norwegian"),
     grammaticality = recode(
       grammaticality,
-      "article location violation" = "Article\nmisplacement",
-      "number violation" = "Number\nviolation"
+      "article location violation" = "Article\nMisplacement",
+      "number violation" = "Number\nViolation"
     )
   ) %>%
   distinct(trial, .keep_all = TRUE) %>%  # Removing duplicate trials
   mutate(across(everything(), as.character))  # Convert all columns to character for binding
 
-# Standardize the values
-behavioural_lab_data <- behavioural_lab_data %>%
-  mutate(grammatical_property = ifelse(tolower(grammatical_property) == "differential object marking", 
-                                       "Differential object marking", 
-                                       grammatical_property))
+
+# Standardise the values                               
 
 behavioural_lab_data <- behavioural_lab_data %>%
   mutate(
