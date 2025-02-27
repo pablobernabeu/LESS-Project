@@ -176,8 +176,8 @@ batch_plot_95_confidence_intervals <- function(excluded_variables = NULL) {
         # Save combined plot
         
         combined_plot_file <- 
-          paste0('analyses/EEG/plots/confint_Satterthwaite_summary_EEG_genderAgr_'
-                 , gsub('&ndash;', '_', time_window), '_', macroregion, '_combined.png')
+          paste0('analyses/EEG/plots/general model plots/confint_Satterthwaite_summary_EEG_genderAgr_',
+                 gsub('&ndash;', '_', time_window), '_', macroregion, '_combined.png')
         message("Saving combined plot: ", combined_plot_file)
         ggsave(filename = combined_plot_file, plot = combined_plot, width = 9, 
                height = 5.5, dpi = 900)
