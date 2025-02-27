@@ -9,8 +9,8 @@ library(data.table)
 
 # List all relevant .txt files in the directory
 files <- list.files(pattern = "^subject-\\d+\\.csv$", 
-                    full.names = TRUE, recursive = TRUE, 
-                    path = 'data/raw data/behavioural data from lab sessions')
+                    path = 'data/raw data/behavioural data from lab sessions', 
+                    full.names = TRUE, recursive = TRUE)
 
 # Extract metadata from file paths and names
 metadata <- tibble(
