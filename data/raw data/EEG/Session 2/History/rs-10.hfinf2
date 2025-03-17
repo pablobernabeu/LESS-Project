@@ -7,12 +7,12 @@
   <Sequences>1</Sequences>
   <Nodes>
     <string>rs-10/Raw Data</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1/New Reference</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1/New Reference/Filters</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1/New Reference/Filters/Ocular Correction ICA</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1/New Reference/Filters/Ocular Correction ICA/Segmentation S10</string>
-    <string>rs-10/Raw Data/Raw Data Inspection 1/New Reference/Filters/Ocular Correction ICA/Segmentation S12</string>
+    <string>rs-10/Raw Data/Raw Data Inspection</string>
+    <string>rs-10/Raw Data/Raw Data Inspection/New Reference</string>
+    <string>rs-10/Raw Data/Raw Data Inspection/New Reference/Filters</string>
+    <string>rs-10/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA</string>
+    <string>rs-10/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S10</string>
+    <string>rs-10/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S12</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
