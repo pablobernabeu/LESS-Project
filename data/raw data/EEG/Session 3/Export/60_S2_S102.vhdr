@@ -1,0 +1,144 @@
+BrainVision Data Exchange Header File Version 2.0
+; Data created from history path: 60/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S2/Baseline Correction/Artifact Rejection/Segmentation S102/Average
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=60_S2_S102.txt
+DataFormat=ASCII
+; Data orientation: VECTORIZED=ch1,pt1, ch1,pt2..., MULTIPLEXED=ch1,pt1, ch2,pt1 ...
+DataOrientation=VECTORIZED
+DataType=TIMEDOMAIN
+NumberOfChannels=31
+DataPoints=600
+; Sampling interval in microseconds if time domain (convert to Hertz:
+; 1000000 / SamplingInterval) or in Hertz if frequency domain:
+SamplingInterval=2000
+SegmentationType=MARKERBASED
+SegmentDataPoints=600
+Averaged=YES
+AveragedSegments=29
+
+[User Infos]
+; Each entry: Prop<Number>=<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+
+[ASCII Infos]
+; Decimal symbol for floating point numbers: the header file always uses a dot (.),
+; however the data file might use a different one
+DecimalSymbol=,
+; SkipLines, SkipColumns: leading lines and columns with additional information.
+SkipLines=0
+SkipColumns=1
+
+[Channel Infos]
+; Each entry: Ch<Channel number>=<Name>,<Reference channel name>,
+; <Resolution in "Unit">,<Unit>, Future extensions...
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in channel names are coded as "\1".
+Ch1=Fp1,mastoids,,µV
+Ch2=Fz,mastoids,,µV
+Ch3=F3,mastoids,,µV
+Ch4=F7,mastoids,,µV
+Ch5=FT9,mastoids,,µV
+Ch6=FC5,mastoids,,µV
+Ch7=FC1,mastoids,,µV
+Ch8=C3,mastoids,,µV
+Ch9=T7,mastoids,,µV
+Ch10=CP5,mastoids,,µV
+Ch11=CP1,mastoids,,µV
+Ch12=Pz,mastoids,,µV
+Ch13=P3,mastoids,,µV
+Ch14=P7,mastoids,,µV
+Ch15=O1,mastoids,,µV
+Ch16=Oz,mastoids,,µV
+Ch17=O2,mastoids,,µV
+Ch18=P4,mastoids,,µV
+Ch19=P8,mastoids,,µV
+Ch20=CP6,mastoids,,µV
+Ch21=CP2,mastoids,,µV
+Ch22=Cz,mastoids,,µV
+Ch23=C4,mastoids,,µV
+Ch24=T8,mastoids,,µV
+Ch25=FT10,mastoids,,µV
+Ch26=FC6,mastoids,,µV
+Ch27=FC2,mastoids,,µV
+Ch28=F4,mastoids,,µV
+Ch29=F8,mastoids,,µV
+Ch30=Fp2,mastoids,,µV
+Ch31=FCz,mastoids,,µV
+
+[Channel User Infos]
+; Each entry: Prop<Number>=Ch<ChannelNumber>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to channels using their channel number.
+Prop1=Ch1,int,BrainVision.ChannelAveragedSegments,29
+Prop2=Ch2,int,BrainVision.ChannelAveragedSegments,29
+Prop3=Ch3,int,BrainVision.ChannelAveragedSegments,29
+Prop4=Ch4,int,BrainVision.ChannelAveragedSegments,29
+Prop5=Ch5,int,BrainVision.ChannelAveragedSegments,29
+Prop6=Ch6,int,BrainVision.ChannelAveragedSegments,29
+Prop7=Ch7,int,BrainVision.ChannelAveragedSegments,29
+Prop8=Ch8,int,BrainVision.ChannelAveragedSegments,29
+Prop9=Ch9,int,BrainVision.ChannelAveragedSegments,29
+Prop10=Ch10,int,BrainVision.ChannelAveragedSegments,29
+Prop11=Ch11,int,BrainVision.ChannelAveragedSegments,29
+Prop12=Ch12,int,BrainVision.ChannelAveragedSegments,29
+Prop13=Ch13,int,BrainVision.ChannelAveragedSegments,29
+Prop14=Ch14,int,BrainVision.ChannelAveragedSegments,29
+Prop15=Ch15,int,BrainVision.ChannelAveragedSegments,29
+Prop16=Ch16,int,BrainVision.ChannelAveragedSegments,29
+Prop17=Ch17,int,BrainVision.ChannelAveragedSegments,29
+Prop18=Ch18,int,BrainVision.ChannelAveragedSegments,29
+Prop19=Ch19,int,BrainVision.ChannelAveragedSegments,29
+Prop20=Ch20,int,BrainVision.ChannelAveragedSegments,29
+Prop21=Ch21,int,BrainVision.ChannelAveragedSegments,29
+Prop22=Ch22,int,BrainVision.ChannelAveragedSegments,29
+Prop23=Ch23,int,BrainVision.ChannelAveragedSegments,29
+Prop24=Ch24,int,BrainVision.ChannelAveragedSegments,29
+Prop25=Ch25,int,BrainVision.ChannelAveragedSegments,29
+Prop26=Ch26,int,BrainVision.ChannelAveragedSegments,29
+Prop27=Ch27,int,BrainVision.ChannelAveragedSegments,29
+Prop28=Ch28,int,BrainVision.ChannelAveragedSegments,29
+Prop29=Ch29,int,BrainVision.ChannelAveragedSegments,29
+Prop30=Ch30,int,BrainVision.ChannelAveragedSegments,29
+Prop31=Ch31,int,BrainVision.ChannelAveragedSegments,29
+
+[Coordinates]
+; Each entry: Ch<Channel number>=<Radius>,<Theta>,<Phi>
+Ch1=1,-90,-72
+Ch2=1,45,90
+Ch3=1,-60,-51
+Ch4=1,-90,-36
+Ch5=1,-113,-18
+Ch6=1,-69,-22
+Ch7=1,-31,-46
+Ch8=1,-45,0
+Ch9=1,-90,0
+Ch10=1,-69,21
+Ch11=1,-31,46
+Ch12=1,45,-90
+Ch13=1,-60,51
+Ch14=1,-90,36
+Ch15=1,-90,72
+Ch16=1,90,-90
+Ch17=1,90,-72
+Ch18=1,60,-51
+Ch19=1,90,-36
+Ch20=1,69,-21
+Ch21=1,31,-46
+Ch22=1,0,0
+Ch23=1,45,0
+Ch24=1,90,0
+Ch25=1,113,18
+Ch26=1,69,21
+Ch27=1,31,46
+Ch28=1,60,51
+Ch29=1,90,36
+Ch30=1,90,72
+Ch31=1,23,90
