@@ -3,8 +3,8 @@ BrainVision Data Exchange Header File Version 1.0
 
 [Common Infos]
 Codepage=UTF-8
-DataFile=61-experiment.eeg
-MarkerFile=61-experiment.vmrk
+DataFile=61.eeg
+MarkerFile=61.vmrk
 DataFormat=BINARY
 ; Data orientation: MULTIPLEXED=ch1,pt1, ch2,pt1 ...
 DataOrientation=MULTIPLEXED
@@ -163,7 +163,7 @@ Disabled
 
 
 Data/Gnd/Ref Electrodes Selected Impedance Measurement Range: 10 - 60 kOhm
-Impedance [kOhm] at 11:54:16 :
+Impedance [kOhm] at 10:46:55 :
 Fp1:          0
 Fz:           2
 F3:           0
@@ -175,19 +175,19 @@ C3:           0
 T7:           0
 TP9:          2
 CP5:          1
-CP1:          1
-Pz:           1
+CP1:          2
+Pz:           2
 P3:           2
 P7:           2
 O1:           1
 Oz:           1
-O2:           0
+O2:           1
 P4:           1
 P8:           0
 TP10:         2
 CP6:          1
-CP2:          1
-Cz:           3
+CP2:          2
+Cz:           4
 C4:           1
 T8:           0
 FT10:         0
