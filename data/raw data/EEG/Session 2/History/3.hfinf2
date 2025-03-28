@@ -27,6 +27,12 @@
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact rejection tbt/Segmentation S102 tbt/S1_S102_tbt_Average</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact rejection tbt/Segmentation S103 tbt</string>
     <string>3/Raw Data/Raw Data Inspection/New Reference/Filters/Ocular Correction ICA/Segmentation S1/Artifact rejection tbt/Segmentation S103 tbt/S1_S103_tbt_Average</string>
+    <string>3/Raw Data/Raw Data Inspection RS</string>
+    <string>3/Raw Data/Raw Data Inspection RS/New Reference</string>
+    <string>3/Raw Data/Raw Data Inspection RS/New Reference/Filters</string>
+    <string>3/Raw Data/Raw Data Inspection RS/New Reference/Filters/Ocular Correction ICA</string>
+    <string>3/Raw Data/Raw Data Inspection RS/New Reference/Filters/Ocular Correction ICA/Segmentation S10</string>
+    <string>3/Raw Data/Raw Data Inspection RS/New Reference/Filters/Ocular Correction ICA/Segmentation S12</string>
   </Nodes>
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
@@ -50,6 +56,12 @@
     <guid>8966bd50-5d9b-4406-8c3b-d5fc8d1b998b</guid>
     <guid>d67d7c4a-4755-48b9-bbd8-2572b1e16f2e</guid>
     <guid>cb036a1a-d461-4a36-9b91-5d69042d8d60</guid>
+    <guid>82be8e2b-4ec5-4471-8ef1-1a582472a50e</guid>
+    <guid>e3139f6b-a0d0-474d-a349-83da524517bb</guid>
+    <guid>a1eff52f-a0b4-41cc-a63d-4d437e2c4f29</guid>
+    <guid>285950e3-d2a5-44bc-a7ba-924a8cddac1d</guid>
+    <guid>6a794ec3-42cb-4a9e-97d6-e253e6afba70</guid>
+    <guid>c984b8b5-2ae3-4023-8094-4c91f164b8ff</guid>
   </TIDs>
   <ReaderID>36e2964e-25a7-1bd2-855e-00a005a0a376</ReaderID>
   <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
