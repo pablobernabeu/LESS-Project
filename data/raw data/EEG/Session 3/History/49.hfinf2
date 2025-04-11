@@ -8,8 +8,6 @@
   <Nodes>
     <string>49/Raw Data</string>
     <string>49/Raw Data/Raw Data Inspection</string>
-    <string>49/Raw Data/Raw Data Inspection/New Reference</string>
-    <string>49/Raw Data/Raw Data Inspection/New Reference/Filters</string>
     <string>49/Raw Data/Raw Data Inspection/Topographic Interpolation</string>
     <string>49/Raw Data/Raw Data Inspection/Topographic Interpolation/New Reference</string>
     <string>49/Raw Data/Raw Data Inspection/Topographic Interpolation/New Reference/Filters</string>
@@ -44,8 +42,6 @@
   <TIDs>
     <guid>00000000-0000-0000-0000-000000000000</guid>
     <guid>bb984c88-1bba-445a-87bf-e889c2993095</guid>
-    <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
-    <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
     <guid>86884710-73f2-4182-a84a-8ae7ee272664</guid>
     <guid>ce6c39ba-e13f-434f-b7d1-0dc9b013936c</guid>
     <guid>0d2c3520-3c91-4ad3-94bb-0bfe404926f5</guid>
