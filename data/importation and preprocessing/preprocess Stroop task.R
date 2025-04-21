@@ -9,7 +9,7 @@ library(readr)
 path <- 'data/raw data/executive functions/Session 1'
 
 # Read in and combine the files
-session1_Stroop <- rbind( 
+session1_Stroop <- bind_rows( 
   read_csv(file.path(path, 'Stroop 1.csv')),
   read_csv(file.path(path, 'Stroop 2.csv')),
   read_csv(file.path(path, 'Stroop 3.csv')),

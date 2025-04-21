@@ -8,16 +8,27 @@ library(readr)
 library(ggplot2)
 
 # Path to files
-path <- "data/raw data/executive functions/Session 1"
+path <- 'data/raw data/executive functions/Session 1'
+
+# Function for coercing response column to character class
+coerce_response_character <- function(file) {
+  df <- readr::read_csv(file)
+  
+  if ('Response' %in% names(df)) {
+    df$Response <- as.character(df$Response)
+  }
+  
+  return(df)
+}
 
 # Read in and combine the files
-session1_digit_span <- rbind( 
-  read_csv(file.path(path, "digit span 1.csv")),
-  read_csv(file.path(path, "digit span 2.csv")),
-  read_csv(file.path(path, "digit span 3.csv")),
-  read_csv(file.path(path, "qdvg4 digit span.csv")),
-  read_csv(file.path(path, "wbij5 digit span.csv")),
-  read_csv(file.path(path, "xqls8 digit span.csv")) 
+session1_digit_span <- bind_rows( 
+  coerce_response_character(file.path(path, 'digit span 1.csv')),
+  coerce_response_character(file.path(path, 'digit span 2.csv')),
+  coerce_response_character(file.path(path, 'digit span 3.csv')),
+  coerce_response_character(file.path(path, 'qdvg4 digit span.csv')),
+  coerce_response_character(file.path(path, 'wbij5 digit span.csv')),
+  coerce_response_character(file.path(path, 'xqls8 digit span.csv'))
 ) %>%
   
   # Rename columns

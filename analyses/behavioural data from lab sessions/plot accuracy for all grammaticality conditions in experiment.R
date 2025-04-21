@@ -1,3 +1,7 @@
+
+
+# Display the behavioural results from the experiment using boxplots
+
 library(dplyr)
 library(tidyr)
 library(scales)
@@ -6,37 +10,30 @@ library(introdataviz)
 library(patchwork)
 library(ggtext)
 
-# the ggsave commands are disabled and found at lines 97, 179, 261
-# Creating boxplots for behavioural data during the experiment
-
-
 source("data/importation and preprocessing/import and preprocess behavioural data from lab sessions.R")
-
-
-
-
 
 # Gender agreement
 behavioural_lab_data$facet_group <- behavioural_lab_data$grammatical_property
 
 #Gender_agreement_boxplot_df <- Gender_agreement_df %>%
- # filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Number\nviolation"))
+# filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Number\nviolation"))
 
 
 # Ensure the 'facet_group' factor is ordered with "Mini-Norwegian" first
 #Gender_agreement_boxplot_df$facet_group <- factor(
- # Gender_agreement_boxplot_df$facet_group,
-  #levels = c("Mini-Norwegian", 
-   #          setdiff(unique(Gender_agreement_boxplot_df$facet_group), "Mini-Norwegian"))
+# Gender_agreement_boxplot_df$facet_group,
+#levels = c("Mini-Norwegian", 
+#          setdiff(unique(Gender_agreement_boxplot_df$facet_group), "Mini-Norwegian"))
 #)
 
 # Now plot the plot, faceting by `facet_group` (mini_language)
 behavioural_lab_data_boxplot <- ggplot(behavioural_lab_data %>%
-                                     mutate(grammaticality = factor(grammaticality)),
-                                                                    #levels = c("Grammatical", "Ungrammatical", "Number\nviolation"))),
-                                   aes(x = Session, y = accuracy * 100, 
-                                       fill = grammaticality, 
-                                       color = grammaticality)) +  
+                                         mutate(grammaticality = factor(grammaticality)),
+                                       #levels = c("Grammatical", "Ungrammatical", 
+                                       # "Number\nviolation"))),
+                                       aes(x = Session, y = accuracy * 100, 
+                                           fill = grammaticality, 
+                                           color = grammaticality)) +  
   geom_boxplot(width = .6, alpha = 1, fatten = NULL, show.legend = TRUE, 
                outlier.shape = NA) +
   stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = FALSE, 
@@ -54,7 +51,7 @@ behavioural_lab_data_boxplot <- ggplot(behavioural_lab_data %>%
   ) +  
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("Accuracy on gender agreement in the experiment") +  # Updated title
+  ggtitle("Accuracy on gender agreement in the experiment") +  
   
   # Customize the plot with your specified theme
   theme_minimal() +
@@ -65,16 +62,16 @@ behavioural_lab_data_boxplot <- ggplot(behavioural_lab_data %>%
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border
@@ -89,14 +86,13 @@ behavioural_lab_data_boxplot <- ggplot(behavioural_lab_data %>%
     legend.key = element_rect(fill = "gray90", color = NA),  # Background for legend keys
     legend.box.spacing = unit(1, "cm"),  # Space between legend items
     legend.margin = margin(20, 5, 0.001, 5),
-    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) # Reduced margin around the legend (adjust to your preference)
+    # Reduced margin around the legend (adjust to your preference)
+    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) 
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-
-print(behavioural_lab_data_boxplot)
-
-#ggsave("Gender_agreement_boxplot.png", plot = Gender_agreement_boxplot, width = 7, height = 10, dpi = 300)
+# ggsave("Gender_agreement_boxplot.png", plot = Gender_agreement_boxplot, 
+#        width = 7, height = 10, dpi = 300)
 
 
 ################
@@ -105,7 +101,7 @@ DOM_experiment_boxplot_df <- Differential_object_marking_df %>%
   filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement"))
 
 # Create the facet_group variable in the dataset
-DOM_experiment_boxplot_df$facet_group <- DOM_experiment_boxplot_df$mini_language  # Use mini_language for faceting
+DOM_experiment_boxplot_df$facet_group <- DOM_experiment_boxplot_df$mini_language
 
 # Ensure the 'facet_group' factor is ordered with "Mini-Norwegian" first
 DOM_experiment_boxplot_df$facet_group <- factor(
@@ -115,12 +111,14 @@ DOM_experiment_boxplot_df$facet_group <- factor(
 )
 
 
-DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
-                                   mutate(grammaticality = factor(grammaticality, 
-                                                                  levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement"))),
-                                 aes(x = Session, y = accuracy * 100, 
-                                     fill = grammaticality, 
-                                     color = grammaticality)) +  
+DOM_experiment_boxplot <- 
+  ggplot(DOM_experiment_boxplot_df %>%
+           mutate(grammaticality = factor(grammaticality, 
+                                          levels = c("Grammatical", "Ungrammatical", 
+                                                     "Article\nmisplacement"))),
+         aes(x = Session, y = accuracy * 100, 
+             fill = grammaticality, 
+             color = grammaticality)) +  
   geom_boxplot(width = .6, alpha = 1, fatten = NULL, show.legend = TRUE, 
                outlier.shape = NA) +
   stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = FALSE, 
@@ -128,7 +126,8 @@ DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
   scale_x_discrete(
     name = "", 
     labels = c("Session 3", "Session 4", "Session 6"),
-    expand = expansion(mult = c(0.1, 0.1))  # Adjust space on both sides of the axis (mult)
+    # Adjust space on both sides of the axis (mult)
+    expand = expansion(mult = c(0.1, 0.1))  
   ) +
   scale_y_continuous(
     name = "Accuracy", 
@@ -138,7 +137,7 @@ DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
   ) +  
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("Accuracy on differential object marking in the experiment") +  # Updated title
+  ggtitle("Accuracy on differential object marking in the experiment") + 
   
   # Customize the plot with your specified theme
   theme_minimal() +
@@ -149,16 +148,16 @@ DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border
@@ -173,11 +172,11 @@ DOM_experiment_boxplot <- ggplot(DOM_experiment_boxplot_df %>%
     legend.key = element_rect(fill = "gray90", color = NA),  # Background for legend keys
     legend.box.spacing = unit(1, "cm"),  # Space between legend items
     legend.margin = margin(20, 5, 0.001, 5),
-    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) # Reduced margin around the legend (adjust to your preference)
+    # Reduced margin around the legend (adjust to your preference)
+    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) 
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-print(DOM_experiment_boxplot)
 #ggsave("DOM_experiment_boxplot.png", plot = DOM_experiment_boxplot, 
 #       width = 7, height = 10, dpi = 300)
 
@@ -189,19 +188,25 @@ Verb_object_agreement_df_boxplot <- Verb_object_agreement_df %>%
 
 
 # Create the facet_group variable in the dataset
-Verb_object_agreement_df_boxplot$facet_group <- Verb_object_agreement_df_boxplot$mini_language  # Use mini_language for faceting
+Verb_object_agreement_df_boxplot$facet_group <- 
+  Verb_object_agreement_df_boxplot$mini_language
 
 # Ensure the 'facet_group' factor is ordered with "Mini-Norwegian" first
-Verb_object_agreement_df_boxplot$facet_group <- factor(Verb_object_agreement_df_boxplot$facet_group,
-                                                       levels = c("Mini-Norwegian", setdiff(unique(Verb_object_agreement_df_boxplot$facet_group), "Mini-Norwegian")))
+Verb_object_agreement_df_boxplot$facet_group <- 
+  factor(Verb_object_agreement_df_boxplot$facet_group,
+         levels = c("Mini-Norwegian", 
+                    setdiff(unique(Verb_object_agreement_df_boxplot$facet_group), 
+                            "Mini-Norwegian")))
 
 
-Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
-                                          mutate(grammaticality = factor(grammaticality, 
-                                                                         levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement"))),
-                                        aes(x = Session, y = accuracy * 100, 
-                                            fill = grammaticality, 
-                                            color = grammaticality)) +  
+Verb_object_agreement_boxplot <- 
+  ggplot(Verb_object_agreement_df_boxplot %>%
+           mutate(grammaticality = factor(grammaticality, 
+                                          levels = c("Grammatical", "Ungrammatical", 
+                                                     "Article\nmisplacement"))),
+         aes(x = Session, y = accuracy * 100, 
+             fill = grammaticality, 
+             color = grammaticality)) +  
   geom_boxplot(width = .6, alpha = 1, fatten = NULL, show.legend = TRUE, 
                outlier.shape = NA) +
   stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = FALSE, 
@@ -209,7 +214,7 @@ Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
   scale_x_discrete(
     name = "", 
     labels = c("Session 3", "Session 4", "Session 6"),
-    expand = expansion(mult = c(0.1, 0.1))  # Adjust space on both sides of the axis (mult)
+    expand = expansion(mult = c(0.1, 0.1))  
   ) +
   scale_y_continuous(
     name = "Accuracy", 
@@ -219,7 +224,7 @@ Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
   ) +  
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("Accuracy on verb object agreement in the experiment") +  # Updated title
+  ggtitle("Accuracy on verb object agreement in the experiment") +
   
   # Customize the plot with your specified theme
   theme_minimal() +
@@ -230,16 +235,16 @@ Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border
@@ -254,11 +259,10 @@ Verb_object_agreement_boxplot <- ggplot(Verb_object_agreement_df_boxplot %>%
     legend.key = element_rect(fill = "gray90", color = NA),  # Background for legend keys
     legend.box.spacing = unit(1, "cm"),  # Space between legend items
     legend.margin = margin(20, 5, 0.001, 5),
-    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) # Reduced margin around the legend (adjust to your preference)
+    # Reduced margin around the legend (adjust to your preference)
+    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) 
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-print(Verb_object_agreement_boxplot)
-
 #ggsave("Verb_object_agreement_boxplot.png", plot = Verb_object_agreement_boxplot, 
-   #    width = 7, height = 10, dpi = 300)
+#    width = 7, height = 10, dpi = 300)

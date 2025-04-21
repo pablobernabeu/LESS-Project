@@ -17,7 +17,7 @@ library(lmerTest)  # Compute p values
 # Alonso et al. (2020). 
 
 # Filter data to the Mini-Norwegian group (namely, even participant IDs), to the property 
-# of gender agreement (namely, marker S1), to the grammatical and ungrammatical trials 
+# of gender agreement (i.e., marker S1), to the grammatical and ungrammatical trials 
 # (namely, markers S101 and S102), and to the appropriate time window and macroregion.
 
 # Load function

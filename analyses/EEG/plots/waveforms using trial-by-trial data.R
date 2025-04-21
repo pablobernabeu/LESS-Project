@@ -15,7 +15,9 @@ gc()
 # Load function
 source('data/R_functions/merge_trialbytrial_EEG_data.R') 
 
-trialbytrial_EEG_data <- merge_trialbytrial_EEG_data(aggregate_electrodes = TRUE)
+trialbytrial_EEG_data <- 
+  
+  merge_trialbytrial_EEG_data(aggregate_electrodes = TRUE)
 
 # Aggregate data across trials and electrodes
 
@@ -28,7 +30,7 @@ aggregated_EEG_data <- trialbytrial_EEG_data %>%
   group_by(across(-amplitude)) %>%
   
   # Aggregate amplitude by mean
-  summarise(amplitude = mean(amplitude, na.rm = TRUE), .groups = "drop")
+  summarise(amplitude = mean(amplitude, na.rm = TRUE), .groups = 'drop')
 
 # View the aggregated data
 head(aggregated_EEG_data)
@@ -43,12 +45,15 @@ std = function(x) sd(x) / sqrt(length(x))
 # Initialize an empty list to store all data
 all_data = list()
 
+# Open a PDF device to save all plots to one file
+pdf('analyses/EEG/plots/waveforms/all_waveforms.pdf', width = 9, height = 8)
+
 # Create plots by iterating over factors. They'll be saved to disk one by one, 
 # taking several minutes.
 
-for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
-  for(i_grammatical_property in unique(na.omit(aggregated_EEG_data$grammatical_property))) {
-    for(i_brain_region in unique(na.omit(aggregated_EEG_data$brain_region))) {
+for(i_grammatical_property in levels(averaged_EEG_data$grammatical_property)) {
+  for(i_session in levels(averaged_EEG_data$session)) {
+    for(i_brain_region in levels(averaged_EEG_data$brain_region)) {
       
       # Create iteration data
       iteration_data = aggregated_EEG_data %>%
@@ -86,8 +91,8 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       
       for (i in 1:length(df2$time)) {
         something <- subset(iteration_data, time == df2$time[i] & 
-                             mini_language == df2$mini_language[i], 
-                           select = amplitude)
+                              mini_language == df2$mini_language[i], 
+                            select = amplitude)
         SE[i] <- std(something$amplitude)
         CIlower[i] <- df2$amplitude[i] - (SE[i] * 1.96)
         CIupper[i] <- df2$amplitude[i] + (SE[i] * 1.96)
@@ -103,8 +108,8 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
         gsub('[^[:alnum:]_]', '_', .)
       
       plot_title <- paste0(str_to_sentence(i_grammatical_property), '; ', 
-                          'Session ', i_session, '; ', 
-                          str_to_sentence(i_brain_region), ' region')
+                           'Session ', i_session, '; ', 
+                           str_to_sentence(i_brain_region), ' region')
       
       # Ensure 'Mini-Norwegian' appears in the upper facet by reversing 
       # the default alphabetical order of language_with_N.
@@ -156,9 +161,7 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
         
         # Lines at x = 0 and y = 0
         geom_vline(xintercept = 0, linewidth = 0.5, colour = 'grey60') +
-        geom_segment(x = min(df2$time), y = 0, 
-                     xend = max(df2$time), yend = 0, 
-                     linewidth = 0.5, color = 'grey60') +
+        geom_hline(yintercept = 0, linewidth = 0.5, color = 'grey60') +
         
         labs(x = 'Time (ms)', y = 'Amplitude (μV)') +
         
@@ -190,9 +193,15 @@ for(i_session in unique(na.omit(aggregated_EEG_data$session))) {
       ggsave(plot, filename = paste0(plot_name, '.pdf'), 
              path = 'analyses/EEG/plots/trial-by-trial waveforms/', create.dir = TRUE, 
              width = 9, height = 8, dpi = 300, units = 'in')
+      
+      # Also print to multi-page PDF
+      print(plot)
     }
   }
 }
+
+# Close PDF device
+dev.off()
 
 # Free unused memory
 gc()

@@ -22,15 +22,13 @@ source('data/importation and preprocessing/import averaged EEG data.R')
 # Free unused memory
 gc()
 
-
-# Combine the data frames based on participants' IDs
-
-averaged_EEG_data <- 
+# Combine data frames based on participants' IDs
+averaged_EEG_data <- session_IDs_progress %>%
   
-  session_IDs_progress %>%
+  mutate(participant_lab_ID = as.factor(participant_lab_ID)) %>%
+  
   # Remove session details to reduce data size
   select(-contains(c('inspector', 'conductor', 'supervision'))) %>%
-  mutate(participant_lab_ID = as.factor(participant_lab_ID)) %>%
   
   full_join(session1_digit_span, by = "participant_home_ID", relationship = "many-to-many") %>%
   

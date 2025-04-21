@@ -17,7 +17,7 @@ library(lmerTest)  # Compute p values
 # Alonso et al. (2020). 
 
 # Filter data to the Mini-English group (namely, odd participant IDs), to the property of 
-# gender agreement (namely, marker S1), to the grammatical and ungrammatical trials 
+# gender agreement (i.e., marker S1), to the grammatical and ungrammatical trials 
 # (namely, markers S101 and S102), and to the appropriate time window and macroregion.
 
 # Load function
@@ -126,6 +126,9 @@ system.time({
 
 saveRDS(EEG_genderAgr_MiniEng_200_500_lateral_lmerTest, 
         'analyses/EEG/results/EEG_genderAgr_MiniEng_200_500_lateral_lmerTest.rds')
+
+EEG_genderAgr_MiniEng_200_500_lateral_lmerTest <-
+  readRDS('analyses/EEG/results/EEG_genderAgr_MiniEng_200_500_lateral_lmerTest.rds')
 
 # Calculate p values using Satterthwaite method (Luke, 2017; 
 # https://doi.org/10.3758/s13428-016-0809-y)

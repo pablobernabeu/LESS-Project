@@ -1,4 +1,7 @@
-# plotting the reaction time across conditions and sessions in the behavioural data from the lab sessions
+
+
+# Plot reaction time across conditions and sessions in the 
+# behavioural data from the lab sessions.
 
 source("analyses/behavioural data from lab sessions/plot accuracy in test.R")
 
@@ -41,7 +44,7 @@ Gender_agreement_RT <- ggplot(Gender_agreement_RT_df  %>%
   ) +  
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("RTs on gender agreement in the experiment") +  # Updated title
+  ggtitle("RTs on gender agreement in the experiment") +  
   
   # Customize the plot with your specified theme
   theme_minimal() +
@@ -52,16 +55,16 @@ Gender_agreement_RT <- ggplot(Gender_agreement_RT_df  %>%
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border

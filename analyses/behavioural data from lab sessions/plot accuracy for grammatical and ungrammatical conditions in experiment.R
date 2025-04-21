@@ -5,12 +5,10 @@
 library(dplyr)
 library(tidyr)
 library(scales)
-install.packages("patchwork")
 library(ggplot2)
 library(introdataviz) # from devtools::install_github("psyteachr/introdataviz")
 library(patchwork)
 library(ggtext)
-install.packages("ggtext")
 
 # Function to extract the number that corresponds to each participant after "subject-"
 extract_number <- function(filename) {
@@ -22,15 +20,15 @@ extract_number <- function(filename) {
 ######loading data from all sessions
 #Session 2
 # List all CSV files in the directory
-Session2_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 2", 
-                                 pattern = "*.csv", full.names = TRUE)
+Session2_file_list <- list.files(
+  path = "data/raw data/behavioural data from lab sessions/Session 2", 
+  pattern = "*.csv", full.names = TRUE
+)
 
 # Loop through each file and fix the first line
 for (file in Session2_file_list) {
   file_content <- readLines(file)  # Read the file as text
-  
   file_content[1] <- gsub("\\.", ",", file_content[1])  # Fix only the header row
-  
   writeLines(file_content, file)  # Overwrite the file with corrected header
 }
 
@@ -60,13 +58,16 @@ Session2_df_list <- lapply(Session2_df_list, function(df) {
 Session2_final_df <- do.call(rbind, Session2_df_list)
 Session2_final_df$Session <- "session 2"
 Session2_final_df <- Session2_final_df %>%
-  mutate(grammatical_property = ifelse(session_part == "Test", "gender agreement", grammatical_property))
+  mutate(grammatical_property = ifelse(session_part == "Test", "gender agreement", 
+                                       grammatical_property))
 
 
 #Session 3
 
-Session3_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 3", 
-                                 pattern = "*.csv", full.names = TRUE)
+Session3_file_list <- list.files(
+  path = "data/raw data/behavioural data from lab sessions/Session 3", 
+  pattern = "*.csv", full.names = TRUE
+)
 
 for (file in Session3_file_list) {
   file_content <- readLines(file)  # Read the file as text
@@ -97,12 +98,15 @@ Session3_final_df <- do.call(rbind, Session3_df_list)
 Session3_final_df$Session <- "Session 3"
 Session3_final_df <- Session3_final_df %>%
   mutate(grammatical_property = ifelse(session_part == "Test", 
-                                       "differential object marking", grammatical_property))
+                                       "differential object marking", 
+                                       grammatical_property))
 
 # Session 4
 
-Session4_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 4", 
-                                 pattern = "*.csv", full.names = TRUE)
+Session4_file_list <- list.files(
+  path = "data/raw data/behavioural data from lab sessions/Session 4", 
+  pattern = "*.csv", full.names = TRUE
+)
 
 
 for (file in Session4_file_list) {
@@ -138,8 +142,10 @@ Session4_final_df <- Session4_final_df %>%
 
 # Session 6
 
-Session6_file_list <- list.files(path = "data/raw data/behavioural data from lab sessions/Session 6", 
-                                 pattern = "*.csv", full.names = TRUE)
+Session6_file_list <- list.files(
+  path = "data/raw data/behavioural data from lab sessions/Session 6", 
+  pattern = "*.csv", full.names = TRUE
+)
 
 for (file in Session6_file_list) {
   file_content <- readLines(file)  
@@ -228,8 +234,7 @@ grammaticality_colours <- c(
 
 ###########################################################
 
-#Plotting for all sessions during the experiment
-# for gender agreement
+# Plot experiment part of gender agreement across sessions
 
 Gender_agreement_df <- clean_combined_df %>%
   filter(grammatical_property == "gender agreement", session_part == "Experiment")
@@ -273,7 +278,8 @@ Gender_agreement_plot <- ggplot(Gender_agreement_df_violin,
                                     fill = grammaticality, 
                                     color = grammaticality)) +  
   introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE,
-                                  position = position_dodge(width = 0.1)  # Adjust width to change space between levels on the x-axis
+                                  # Adjust width to change space between levels on the x-axis
+                                  position = position_dodge(width = 0.1)  
   ) +
   geom_boxplot(width = .1, alpha = 1, fatten = NULL, show.legend = FALSE, 
                outlier.shape = NA) +
@@ -292,7 +298,7 @@ Gender_agreement_plot <- ggplot(Gender_agreement_df_violin,
   ) +  
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("Accuracy on gender agreement in the experiment") +  # Updated title
+  ggtitle("Accuracy on gender agreement in the experiment") +  
   theme_minimal() +
   theme(
     axis.title = element_text(size = 14),
@@ -301,16 +307,15 @@ Gender_agreement_plot <- ggplot(Gender_agreement_df_violin,
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
-      size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      size = 14, margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border
@@ -329,20 +334,22 @@ Gender_agreement_plot <- ggplot(Gender_agreement_df_violin,
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-print(Gender_agreement_plot)
-#ggsave("gender_agreement_experiment_plot.png", plot = Gender_agreement_plot, width = 7, height = 10, dpi = 300)
+# ggsave("gender_agreement_experiment_plot.png", plot = Gender_agreement_plot, 
+#        width = 7, height = 10, dpi = 300)
 
 
 ######################################
 ###### Differential object marking 
 
 Differential_object_marking_df <- clean_combined_df %>%
-  filter(grammatical_property == "differential object marking", session_part == "Experiment")
+  filter(grammatical_property == "differential object marking", 
+         session_part == "Experiment")
 
 
 
-Differential_object_marking_df$grammaticality[Differential_object_marking_df$grammaticality %in% 
-                                                c("DOM violation")] <- "Ungrammatical"
+Differential_object_marking_df$grammaticality[
+  Differential_object_marking_df$grammaticality %in% 
+    c("DOM violation")] <- "Ungrammatical"
 
 Differential_object_marking_df <- Differential_object_marking_df %>%
   mutate(grammaticality = case_when(
@@ -350,10 +357,17 @@ Differential_object_marking_df <- Differential_object_marking_df %>%
     TRUE ~ grammaticality
   ))
 
-Differential_object_marking_df$correct <- as.numeric(as.character(Differential_object_marking_df$correct))
-Differential_object_marking_df$"Mini language" <- as.factor(Differential_object_marking_df$"mini_language")
-Differential_object_marking_df$Session <- as.factor(Differential_object_marking_df$Session)
-Differential_object_marking_df$grammaticality <- as.factor(Differential_object_marking_df$grammaticality)
+Differential_object_marking_df$correct <- 
+  as.numeric(as.character(Differential_object_marking_df$correct))
+
+Differential_object_marking_df$"Mini language" <- 
+  as.factor(Differential_object_marking_df$"mini_language")
+
+Differential_object_marking_df$Session <- 
+  as.factor(Differential_object_marking_df$Session)
+
+Differential_object_marking_df$grammaticality <- 
+  as.factor(Differential_object_marking_df$grammaticality)
 
 Differential_object_marking_df <- Differential_object_marking_df %>%
   group_by(subject_id, grammaticality) %>%
@@ -364,13 +378,15 @@ Differential_object_marking_df_violin <- Differential_object_marking_df %>%
   filter(grammaticality %in% c("Grammatical", "Ungrammatical"))
 
 
-
-Differential_object_marking_df_violin$facet_group <- Differential_object_marking_df_violin$mini_language  # Use mini_language for faceting
+# Use mini_language for faceting
+Differential_object_marking_df_violin$facet_group <- 
+  Differential_object_marking_df_violin$mini_language  
 
 Differential_object_marking_df_violin$facet_group <- factor(
   Differential_object_marking_df_violin$facet_group,
   levels = c("Mini-Norwegian", 
-             setdiff(unique(Differential_object_marking_df_violin$facet_group), "Mini-Norwegian"))
+             setdiff(unique(Differential_object_marking_df_violin$facet_group), 
+                     "Mini-Norwegian"))
 )
 
 DOM_experiment_plot <- ggplot(Differential_object_marking_df_violin, 
@@ -405,7 +421,7 @@ DOM_experiment_plot <- ggplot(Differential_object_marking_df_violin,
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
       margin = margin(r = 10, l = 3, unit = 'pt')  
@@ -413,15 +429,12 @@ DOM_experiment_plot <- ggplot(Differential_object_marking_df_violin,
     legend.key.width = unit(1.2, 'cm'), 
     legend.key.height = unit(0.5, 'cm'),  
     plot.title = element_text(
-      size = 16, 
-      hjust = 0.5,  # Center the title
+      size = 16, hjust = 0.5,
       margin = margin(t = 12, b = 1, unit = 'pt') 
     ),
     panel.border = element_blank(), 
     strip.background = element_rect(
-      fill = 'gray90', 
-      colour = 'gray70', 
-      linewidth = 0.5  
+      fill = 'gray90', colour = 'gray70', linewidth = 0.5  
     ),
     strip.text = element_text(size = 14, face = 'bold'), 
     panel.spacing = unit(0.5, 'cm'), 
@@ -433,10 +446,8 @@ DOM_experiment_plot <- ggplot(Differential_object_marking_df_violin,
   ) +
   facet_wrap(~facet_group, ncol = 1)  
 
-
-print(DOM_experiment_plot)
 #ggsave("DOM_experiment_plot.png", plot = DOM_experiment_plot, 
-  #     width = 7, height = 10, dpi = 300)
+#     width = 7, height = 10, dpi = 300)
 
 
 ###########################################
@@ -471,19 +482,22 @@ Verb_object_agreement_df_violin <- Verb_object_agreement_df %>%
 
 
 # Create the facet_group variable in the dataset
-Verb_object_agreement_df_violin$facet_group <- Verb_object_agreement_df_violin$mini_language  # Use mini_language for faceting
+Verb_object_agreement_df_violin$facet_group <- Verb_object_agreement_df_violin$mini_language  
 
 # Ensure the 'facet_group' factor is ordered with "Mini-Norwegian" first
 Verb_object_agreement_df_violin$facet_group <- factor(
   Verb_object_agreement_df_violin$facet_group,
-  levels = c("Mini-Norwegian", setdiff(unique(Verb_object_agreement_df_violin$facet_group), "Mini-Norwegian"))
+  levels = c("Mini-Norwegian", setdiff(unique(Verb_object_agreement_df_violin$facet_group),
+                                       "Mini-Norwegian"))
 )
 
 # Now plot the violin plot, faceting by `facet_group` (mini_language)
-VOA_plot <- ggplot(Verb_object_agreement_df_violin, aes(x = Session, y = accuracy 
-                                                        * 100, fill = grammaticality, color = grammaticality)) +  
+VOA_plot <- ggplot(Verb_object_agreement_df_violin, 
+                   aes(x = Session, y = accuracy * 100, 
+                       fill = grammaticality, color = grammaticality)) +  
   introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE,
-                                  position = position_dodge(width = 0.1)  # Adjust width to change space between levels on the x-axis
+                                  # Adjust width to change space between levels on the x-axis
+                                  position = position_dodge(width = 0.1)  
   ) +
   geom_boxplot(width = .1, alpha = 1, fatten = NULL, show.legend = FALSE, 
                outlier.shape = NA) +
@@ -513,16 +527,16 @@ VOA_plot <- ggplot(Verb_object_agreement_df_violin, aes(x = Session, y = accurac
     axis.text.x = element_text(size = 16),
     legend.position = 'top',  # Move legend to the top
     legend.justification = 'center',  # Center legend
-    legend.title = element_blank(),  # No legend title
+    legend.title = element_blank(),  
     legend.text = element_text(
       size = 14, 
-      margin = margin(r = 10, l = 3, unit = 'pt')  # Spacing around legend text
+      margin = margin(r = 10, l = 3, unit = 'pt')  
     ),
     legend.key.width = unit(1.2, 'cm'),  # Adjust width of legend keys
     legend.key.height = unit(0.5, 'cm'),  # Adjust height of legend keys
     plot.title = element_text(
       size = 16, 
-      hjust = 0.5,  # Center the title
+      hjust = 0.5,  
       margin = margin(t = 12, b = 1, unit = 'pt')  # Add margin to title
     ),
     panel.border = element_blank(),  # Remove panel border
@@ -537,11 +551,10 @@ VOA_plot <- ggplot(Verb_object_agreement_df_violin, aes(x = Session, y = accurac
     legend.key = element_rect(fill = "gray90", color = NA),  # Background for legend keys
     legend.box.spacing = unit(1, "cm"),  # Space between legend items
     legend.margin = margin(20, 5, 0.001, 5),
-    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) # Reduced margin around the legend (adjust to your preference)
+    # Reduced margin around the legend (adjust to your preference)
+    plot.margin = margin(t = 1, b = 1, l = 10, r = 10) 
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-
-print(VOA_plot)
 #ggsave("VOA_plot.png", plot = VOA_plot, width = 7, height = 10, dpi = 300)
 

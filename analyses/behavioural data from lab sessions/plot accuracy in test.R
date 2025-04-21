@@ -1,15 +1,14 @@
+
+
+# Plot results from the the tests
+
 library(dplyr)
 library(tidyr)
 library(scales)
 library(ggplot2)
-library(introdataviz) 
+library(introdataviz) # devtools::install_github("psyteachr/introdataviz")
 library(patchwork)
 library(ggtext)
-
-# the ggsave command is disabled and found at line 90
-
-
-#Plotting for behavioural data during training 
 
 source("analyses/behavioural data from lab sessions/plot accuracy for two grammaticality conditions in experiment.R")
 

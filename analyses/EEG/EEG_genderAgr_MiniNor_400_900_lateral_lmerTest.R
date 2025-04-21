@@ -17,7 +17,7 @@ library(lmerTest)  # Compute p values
 # Alonso et al. (2020). 
 
 # Filter data to the Mini-Norwegian group (namely, even participant IDs), to the property 
-# of gender agreement (namely, marker S1), to the grammatical and ungrammatical trials 
+# of gender agreement (i.e., marker S1), to the grammatical and ungrammatical trials 
 # (namely, markers S101 and S102), and to the appropriate time window and macroregion.
 
 # Load function
@@ -25,7 +25,7 @@ source('data/R_functions/merge_trialbytrial_EEG_data.R')
 
 EEG_genderAgr_MiniNor_400_900_lateral_data <- 
   merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S1_S10[12]\\.',
-                              min_time = 400, max_time = 898, # 898 = time point up to 900 ms
+                              min_time = 400, max_time = 400, # 400 = time point up to 900 ms
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
                               aggregate_time_points = TRUE, 

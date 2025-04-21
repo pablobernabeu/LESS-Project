@@ -137,9 +137,10 @@ averaged_EEG_data <- averaged_EEG_data %>%
     # https://m-clark.github.io/sem/growth-curves.html#numbering-the-time-points.
     
     recoded_grammaticality = case_when(
-      grammaticality == 'ungrammatical' ~ -0.5,
-      grammaticality == 'ancillary violation' ~ 0,
-      grammaticality == 'grammatical' ~ 0.5,
+      grammaticality == 'Grammatical' ~ 0.5,
+      grammaticality == 'Number agreement violation' ~ 0,
+      grammaticality == 'Article location violation' ~ 0,
+      grammaticality == 'Ungrammatical' ~ -0.5,
       TRUE ~ NA_real_
     ),
     recoded_session = case_when(
@@ -159,6 +160,20 @@ averaged_EEG_data <- averaged_EEG_data %>%
       caudality == 'medial' ~ 0,
       caudality == 'posterior' ~ 0.5,
       TRUE ~ NA_real_
+    ),
+    
+    # Set factor levels
+    session = factor(session, levels = c(2, 3, 4, 6)),
+    grammatical_property = factor(
+      grammatical_property, 
+      levels = c('Gender agreement', 'Differential object marking', 
+                 'Verb-object number agreement')
+    ),
+    brain_region = factor(
+      brain_region, 
+      levels = c('left anterior', 'midline anterior', 'right anterior', 
+                 'left medial', 'midline medial', 'right medial', 
+                 'left posterior', 'midline posterior', 'right posterior')
     )
   )
 

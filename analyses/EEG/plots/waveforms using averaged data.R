@@ -1,6 +1,6 @@
 
 
-# Waveform plots
+# Save waveform plots individually as well as in a single PDF document
 
 library(dplyr)
 library(tidyr)
@@ -11,22 +11,21 @@ library(ggtext)
 # Read in data
 source('data/importation and preprocessing/merge averaged EEG data.R')
 
-# # Remove ancillary violation condition 
-# averaged_EEG_data <- averaged_EEG_data %>%
-#   filter(!grammaticality == 'Ancillary violation')
-
 # Define standard error function
 std <- function(x) sd(x) / sqrt(length(x))
 
 # Initialize an empty list to store all data
 all_data <- list()
 
+# Open a PDF device to save all plots to one file
+pdf('analyses/EEG/plots/waveforms/all_waveforms.pdf', width = 9, height = 8)
+
 # Create plots by iterating over factors. They'll be saved to disk one by one, 
 # taking several minutes.
 
-for(i_session in unique(na.omit(averaged_EEG_data$session))) {
-  for(i_grammatical_property in unique(na.omit(averaged_EEG_data$grammatical_property))) {
-    for(i_brain_region in unique(na.omit(averaged_EEG_data$brain_region))) {
+for(i_grammatical_property in levels(averaged_EEG_data$grammatical_property)) {
+  for(i_session in levels(averaged_EEG_data$session)) {
+    for(i_brain_region in levels(averaged_EEG_data$brain_region)) {
       
       # Create iteration data
       iteration_data <- averaged_EEG_data %>%
@@ -134,9 +133,7 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
         
         # Lines at x = 0 and y = 0
         geom_vline(xintercept = 0, linewidth = 0.5, colour = 'grey60') +
-        geom_segment(x = min(df2$time), y = 0, 
-                     xend = max(df2$time), yend = 0, 
-                     linewidth = 0.5, color = 'grey60') +
+        geom_hline(yintercept = 0, linewidth = 0.5, color = 'grey60') +
         
         labs(x = 'Time (ms)', y = 'Amplitude (μV)') +
         
@@ -160,15 +157,23 @@ for(i_session in unique(na.omit(averaged_EEG_data$session))) {
         facet_wrap(~mini_language_with_N, ncol = 1)
       
       # Save as PNG
-      ggsave(plot, filename = paste0(plot_name, '.png'), path = 'analyses/EEG/plots/waveforms/', 
+      ggsave(plot, filename = paste0(plot_name, '.png'),
+             path = 'analyses/EEG/plots/waveforms/',
+             create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
+
+      # Save as PDF
+      ggsave(plot, filename = paste0(plot_name, '.pdf'),
+             path = 'analyses/EEG/plots/waveforms/',
              create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
       
-      # Save as PDF
-      ggsave(plot, filename = paste0(plot_name, '.pdf'), path = 'analyses/EEG/plots/waveforms/', 
-             create.dir = TRUE, width = 9, height = 8, dpi = 300, units = 'in')
+      # Also print to multi-page PDF
+      print(plot)
     }
   }
 }
+
+# Close PDF device
+dev.off()
 
 # Free unused memory
 gc()

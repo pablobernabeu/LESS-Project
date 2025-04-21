@@ -3,7 +3,7 @@
 merge_trialbytrial_EEG_data <- 
   
   # Default file pattern catches all data
-  function(EEG_file_pattern = "^\\d+_trialbytrial_S[123]_S10[123]\\.",
+  function(EEG_file_pattern = '^\\d+_trialbytrial_S[123]_S10[123]\\.',
            min_time = -100, max_time = 1100,
            include_baseline = TRUE,
            aggregate_electrodes = FALSE,
@@ -27,16 +27,34 @@ merge_trialbytrial_EEG_data <-
     source('data/importation and preprocessing/preprocess Language History Questionnaire.R')
     
     source('data/R_functions/import_trialbytrial_EEG_data.R')
-    trialbytrial_EEG_data = import_trialbytrial_EEG_data(EEG_file_pattern = EEG_file_pattern,
-                                                         min_time = min_time,
-                                                         max_time = max_time,
-                                                         aggregate_electrodes = aggregate_electrodes,
-                                                         aggregate_time_points = aggregate_time_points,
-                                                         include_baseline = include_baseline,
-                                                         selected_macroregion = selected_macroregion)
+    trialbytrial_EEG_data <- 
+      import_trialbytrial_EEG_data(EEG_file_pattern = EEG_file_pattern,
+                                   min_time = min_time,
+                                   max_time = max_time,
+                                   aggregate_electrodes = aggregate_electrodes,
+                                   aggregate_time_points = aggregate_time_points,
+                                   include_baseline = include_baseline,
+                                   selected_macroregion = selected_macroregion)
     
     # Free unused memory
     gc()
+    
+    # Set factor levels
+    trialbytrial_EEG_data <- trialbytrial_EEG_data %>% 
+      mutate(
+        grammatical_property = factor(
+          grammatical_property, 
+          levels = c('Gender agreement', 'Differential object marking', 
+                     'Verb-object number agreement')
+        ),
+        brain_region = factor(
+          brain_region, 
+          levels = c('left anterior', 'midline anterior', 'right anterior', 
+                     'left medial', 'midline medial', 'right medial', 
+                     'left posterior', 'midline posterior', 'right posterior')
+        ),
+        session = factor(session, levels = c(2, 3, 4, 6))
+      )
     
     # Combine the data frames based on participants' IDs
     
@@ -45,15 +63,15 @@ merge_trialbytrial_EEG_data <-
       trialbytrial_EEG_data %>% 
       mutate(participant_lab_ID = as.factor(participant_lab_ID)) %>% 
       
-      left_join(IDs_session_progress, by = "participant_lab_ID") %>%
+      left_join(IDs_session_progress, by = 'participant_lab_ID') %>%
       
-      left_join(session1_digit_span, by = "participant_home_ID", relationship = "many-to-many") %>%
+      left_join(session1_digit_span, by = 'participant_home_ID', relationship = 'many-to-many') %>%
       
-      left_join(session1_Stroop, by = "participant_home_ID", relationship = "many-to-many") %>%
+      left_join(session1_Stroop, by = 'participant_home_ID', relationship = 'many-to-many') %>%
       
-      left_join(session1_ASRT, by = "participant_home_ID", relationship = "many-to-many") %>%
+      left_join(session1_ASRT, by = 'participant_home_ID', relationship = 'many-to-many') %>%
       
-      left_join(LHQ3_aggregate_scores, by = "participant_LHQ3_ID", relationship = "many-to-many") %>%
+      left_join(LHQ3_aggregate_scores, by = 'participant_LHQ3_ID', relationship = 'many-to-many') %>%
       
       # Translate markers into labels and create time windows, brain regions, etc.
       mutate(
@@ -96,7 +114,7 @@ merge_trialbytrial_EEG_data <-
     # Replace empty cells with NAs and remove rows that have NAs in all columns
     trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
       mutate(across(where(is.factor), as.character),
-             across(where(is.character), ~ na_if(.x, "")),
+             across(where(is.character), ~ na_if(.x, '')),
              # Convert character variables to factors
              across(where(is.character), as.factor)) %>%
       filter(if_any(everything(), ~ !is.na(.)))

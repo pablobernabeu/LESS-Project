@@ -125,20 +125,20 @@ system.time({
 })
 
 saveRDS(EEG_VONA_MiniEng_300_600_lateral_lmerTest, 
-        'analyses/results/EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+        'analyses/EEG/results/EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 
 EEG_VONA_MiniEng_300_600_lateral_lmerTest <-
-  readRDS('analyses/results/EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+  readRDS('analyses/EEG/results/EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 
 # Calculate p values using Satterthwaite method (Luke, 2017; 
 # https://doi.org/10.3758/s13428-016-0809-y)
 summary(EEG_VONA_MiniEng_300_600_lateral_lmerTest, ddf = 'Satterthwaite') %>%
-  saveRDS('analyses/results/Satterthwaite_summary_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+  saveRDS('analyses/EEG/results/Satterthwaite_summary_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 
 # Calculate R^2. The result must be interpreted with caution as it differs from the 
 # traditional R^2 (Nakagawa et al., 2017; https://doi.org/10.1098/rsif.2017.0213)
 # MuMIn::r.squaredGLMM(EEG_VONA_MiniEng_300_600_lateral_lmerTest) %>%
-#   saveRDS('analyses/results/Nakagawa2017_R2_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+#   saveRDS('analyses/EEG/results/Nakagawa2017_R2_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 
 # Calculate 95% confidence intervals of fixed effects
 lme4::confint.merMod(
@@ -146,9 +146,9 @@ lme4::confint.merMod(
   # Compute 95% CIs for every effect, as well as for the intercept
   parm = rownames(summary(EEG_VONA_MiniEng_300_600_lateral_lmerTest)$coefficients)
 ) %>%
-  saveRDS('analyses/results/confint_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+  saveRDS('analyses/EEG/results/confint_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 
 # Save random effects
 lme4::ranef(EEG_VONA_MiniEng_300_600_lateral_lmerTest) %>%
-  saveRDS('analyses/results/ranef_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
+  saveRDS('analyses/EEG/results/ranef_EEG_VONA_MiniEng_300_600_lateral_lmerTest.rds')
 

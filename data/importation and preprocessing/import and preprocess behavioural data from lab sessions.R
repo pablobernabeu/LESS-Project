@@ -1,5 +1,8 @@
 
-# Import and preprocess behavioural data from lab sessions
+# Import and preprocess behavioural data from lab sessions, namely, from the test, 
+# the experiment and the final control tasks. This data does not include the data 
+# from the home sessions, which are preprocessed instead in other scripts in the 
+# current directory.
 
 library(dplyr)
 library(readr)

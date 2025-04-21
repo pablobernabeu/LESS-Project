@@ -12,7 +12,7 @@ library(ggplot2)
 path <- 'data/raw data/executive functions/Session 1'
 
 # Read in and combine the files
-session1_ASRT <- rbind( 
+session1_ASRT <- bind_rows( 
   read_csv(file.path(path, 'serial reaction time 1.csv')),
   read_csv(file.path(path, 'serial reaction time 2.csv')),
   read_csv(file.path(path, 'serial reaction time 3.csv')),
