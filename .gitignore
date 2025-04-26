@@ -3,6 +3,7 @@ data/merged data/*
 analyses/EEG/results/*
 presentations
 *.mp4
+*2025.zip
 *.eeg
 *.wksp2
 *.Rdata
