@@ -8,14 +8,9 @@ library(readr)
 # Path to files
 path <- 'data/raw data/executive functions/Session 1'
 
-# Read in and combine the files
-session1_Stroop <- bind_rows( 
-  read_csv(file.path(path, 'Stroop 1.csv')),
-  read_csv(file.path(path, 'Stroop 2.csv')),
-  read_csv(file.path(path, 'Stroop 3.csv')),
-  read_csv(file.path(path, 'qdvg4 Stroop.csv')),
-  read_csv(file.path(path, 'wbij5 Stroop.csv')),
-  read_csv(file.path(path, 'xqls8 Stroop.csv')) 
+# Read in all Stroop files and combine them
+session1_Stroop <- bind_rows(
+  lapply(list.files(path = path, pattern = 'Stroop', full.names = TRUE), read_csv)
 ) %>%
   
   # Rename columns
@@ -42,10 +37,6 @@ print(colnames(session1_Stroop))
 # Three SDs is a typical cut-off (e.g., https://doi.org/10.3758/s13428-012-0304-z). 
 # At the end, the percentage of data trimmed out is presented. Based on 
 # preliminary data, this percentage is expected to be around 5%. 
-
-# Create empty dataframe using column 
-# names from the original data set.
-trimmed_session1_Stroop <- session1_Stroop[0,]
 
 trimmed_session1_Stroop <- session1_Stroop %>%
   
@@ -80,7 +71,7 @@ session1_Stroop <- trimmed_session1_Stroop
 session1_Stroop <- session1_Stroop %>%
   select(rt, participant_home_ID, Correct, Incorrect, Congruency, Zone.Type) %>%
   
-  # Filter to remove rows where Zone.Type is not 'response'
+  # Filter to rows containing the responses
   filter(Zone.Type == 'response_keyboard') %>%
   
   # Filter and clean the data by removing NAs and ensuring congruency is a factor
@@ -99,5 +90,6 @@ session1_Stroop <- session1_Stroop %>%
   group_by(participant_home_ID) %>%
   pivot_wider(names_from = Congruency, values_from = mean_reaction_time_Stroop) %>%
   mutate(session1_Stroop = incongruent - congruent) %>%
+  ungroup() %>%
   select(participant_home_ID, session1_Stroop) %>%
-  ungroup()
+  filter(!is.na(participant_home_ID)) # Remove rows without participant ID

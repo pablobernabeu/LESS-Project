@@ -25,7 +25,7 @@ source('data/R_functions/merge_trialbytrial_EEG_data.R')
 
 EEG_genderAgr_MiniNor_400_900_lateral_data <- 
   merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S1_S10[12]\\.',
-                              min_time = 400, max_time = 400, # 400 = time point up to 900 ms
+                              min_time = 400, max_time = 898, # 898 = time point up to 900 ms
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
                               aggregate_time_points = TRUE, 

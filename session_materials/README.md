@@ -130,12 +130,20 @@ in the left sidebar of the OpenSesame interface.
 ### Participant-specific parameters
 
 Each participant was assigned certain parameters in advance, including the mini-language, the order 
-of the resting-state parts, and the stimulus lists. The code that was used to create this assignment 
-is available in the `stimulus_preparation` folder. 
+of the resting-state parts, and the stimulus lists. For instance, in the Norwegian site, odd-numbered 
+participants (i.e., 1, 3, 5...) belong to the Mini-English group, whereas even-numbered participants 
+belong to the Mini-Norwegian group. 
 
-Due to the pre-assignment of the parameters, there is a fixed set of participant IDs that can be 
-used in OpenSesame. These identification numbers range between 1 and 96. If an ID outside of this 
-range is used, the OpenSesame session does not run.
+* [Participant-specific parameters for Norwegian site](https://github.com/pablobernabeu/materials_L3_transfer_longitudinal/blob/main/session_materials/parameters%20per%20participant/Norway%20site%2C%20parameters%20per%20participant.csv)
+
+* [Participant-specific parameters for Spanish site](https://github.com/pablobernabeu/materials_L3_transfer_longitudinal/blob/main/session_materials/parameters%20per%20participant/Spain%20site%2C%20parameters%20per%20participant.csv)
+
+Due to this pre-assignment, the number of participant IDs that can be used in OpenSesame is 
+determined by the number of participants available in each of the files above. 
+
+The code used to assign these parameters is available in the `stimulus_preparation` folder inside 
+[materials_L3_transfer_longitudinal.zip](https://osf.io/wbjyr). The file can also be consulted more 
+directly [on GitHub](https://github.com/pablobernabeu/materials_L3_transfer_longitudinal/blob/main/stimulus_preparation/participant_parameters.R). 
 
 ### Versions
 

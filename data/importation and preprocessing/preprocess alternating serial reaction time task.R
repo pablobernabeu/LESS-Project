@@ -11,14 +11,11 @@ library(ggplot2)
 # Path to files
 path <- 'data/raw data/executive functions/Session 1'
 
-# Read in and combine the files
-session1_ASRT <- bind_rows( 
-  read_csv(file.path(path, 'serial reaction time 1.csv')),
-  read_csv(file.path(path, 'serial reaction time 2.csv')),
-  read_csv(file.path(path, 'serial reaction time 3.csv')),
-  read_csv(file.path(path, 'qdvg4 serial reaction time.csv')),
-  read_csv(file.path(path, 'wbij5 serial reaction time.csv')),
-  read_csv(file.path(path, 'xqls8 serial reaction time.csv')) 
+# Read in all serial reaction time files and combine them
+session1_ASRT <- bind_rows(
+  lapply(list.files(path = path, pattern = 'serial reaction time', 
+                    full.names = TRUE), 
+         read_csv)
 ) %>%
   
   # Rename columns
@@ -73,10 +70,6 @@ session1_ASRT %>%
 # Three SDs is a typical cut-off (e.g., https://doi.org/10.3758/s13428-012-0304-z). 
 # At the end, the percentage of data trimmed out is presented. Based on 
 # preliminary data, this percentage is expected to be around 5%. 
-
-# Create empty dataframe using column 
-# names from the original data set.
-trimmed_ASRT <- session1_ASRT[0,]
 
 trimmed_ASRT <- session1_ASRT %>%
   
@@ -228,7 +221,8 @@ gc() # Free unused memory
 session1_ASRT %>% filter(complete.cases(session1_ASRT)) %>% 
   summarise(n_distinct(participant_home_ID)) %>% pull
 
-# Select the relevant columns
+# Select the relevant columns and remove rows without participant ID
 session1_ASRT <- session1_ASRT %>% 
-  select(participant_home_ID, session1_ASRT)
+  select(participant_home_ID, session1_ASRT) %>% 
+  filter(!is.na(participant_home_ID)) 
 

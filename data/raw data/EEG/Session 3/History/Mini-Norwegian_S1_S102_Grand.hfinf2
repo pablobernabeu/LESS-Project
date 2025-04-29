@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>Mini-Norwegian_S1_S102_Grand/Raw Data</string>
+  </Nodes>
+  <TIDs>
+    <guid>06b0556e-8d68-4997-85b9-d66183737257</guid>
+  </TIDs>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>pbe044</User>
+  <Computer>SVHUM-HSL-P170</Computer>
+</HistoryInfoFile>

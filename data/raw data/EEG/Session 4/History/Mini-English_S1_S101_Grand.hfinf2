@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<HistoryInfoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppendedFiles />
+  <Sequence>1</Sequence>
+  <Sequences>1</Sequences>
+  <Nodes>
+    <string>Mini-English_S1_S101_Grand/Raw Data</string>
+    <string>Mini-English_S1_S101_Grand/Raw Data/Diff. Waves</string>
+    <string>Mini-English_S1_S101_Grand/Raw Data/Diff. Waves 2</string>
+  </Nodes>
+  <TIDs>
+    <guid>64541b84-4d2f-47f7-a61c-b29439d33dc3</guid>
+    <guid>619266b1-8564-4ae2-94a7-53d7a9f18e9e</guid>
+    <guid>2d68b15d-3d9c-4843-b291-3d39bca348e7</guid>
+  </TIDs>
+  <ReaderID>5e37bb44-4bb9-11d2-8597-004005a09876</ReaderID>
+  <RegistrationID>00000000-0000-0000-0000-000000000000</RegistrationID>
+  <User>pbe044</User>
+  <Computer>SVHUM-HSL-P170</Computer>
+</HistoryInfoFile>
