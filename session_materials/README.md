@@ -117,15 +117,19 @@ in the `list` column in the stimulus files.
 
 ### Software
 
-[OpenSesame Version 3.3.14](https://osdoc.cogsci.nl/3.3) was used to present the stimuli and to 
-collect behavioural responses. This version can be downloaded 
-[here](https://github.com/open-cogsci/OpenSesame/releases/download/release%2F3.3.14/opensesame_3.3.14-py37-win64-1.exe).
+OpenSesame (version 3.3.14) was used to present the stimuli and to collect behavioural responses.
+
+- **Download version 3.3.14** from [the current OSF repository](https://osf.io/download/2nd8p) or from
+[OpenSesame's GitHub repository](https://github.com/open-cogsci/OpenSesame/releases/download/release%2F3.3.14/opensesame_3.3.14-py37-win64-1.exe).
+
+- [Read details on this version](https://osf.io/974k8/wiki/Materials%20and%20procedure/?edit&view&menu)
+(please do not download the program from this webpage, as it provides a different version).
+
 The OpenSesame materials of the current study may not be readily compatible with later versions of 
 the software, although they could be adapted if necessary.
 
 The experimenters are advised to avoid inadvertently moving or modifying any of the OpenSesame items 
 in the left sidebar of the OpenSesame interface. 
-
 
 ### Participant-specific parameters
 
