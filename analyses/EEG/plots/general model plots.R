@@ -2,12 +2,12 @@
 # General model plots with confidence intervals. Names of variables 
 # adjusted in script 'plot_95_confidence_intervals.R'.
 
-require(dplyr)
-require(stringr)
-require(ggplot2)
-require(grid)
-require(ggtext)
-require(patchwork)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(grid)
+library(ggtext)
+library(patchwork)
 
 source('analyses/R_functions/plot_95_confidence_intervals.R')
 
