@@ -1,6 +1,5 @@
 
-
-import_trialbytrial_EEG_data <- 
+import_trialbytrial_EEG_data <-
   
   # Default file pattern catches all data
   function(EEG_file_pattern = '^\\d+_trialbytrial_S[123]_S10[123]\\.',
@@ -18,15 +17,15 @@ import_trialbytrial_EEG_data <-
     
     # List all relevant .txt files in the directory
     txt_files <- list.files(
-      pattern = paste0(EEG_file_pattern, 'txt$'), 
-      full.names = TRUE, recursive = TRUE, 
+      pattern = paste0(EEG_file_pattern, 'txt$'),
+      full.names = TRUE, recursive = TRUE,
       path = 'data/raw data/EEG'
     )
     
     # List all relevant .vmrk files in the directory
     vmrk_files <- list.files(
-      pattern = paste0(EEG_file_pattern, 'vmrk$'), 
-      full.names = TRUE, recursive = TRUE, 
+      pattern = paste0(EEG_file_pattern, 'vmrk$'),
+      full.names = TRUE, recursive = TRUE,
       path = 'data/raw data/EEG'
     )
     
@@ -40,7 +39,7 @@ import_trialbytrial_EEG_data <-
           vmrk_file = vmrk_files,
           base_path = sub('\\.vmrk$', '', vmrk_files) # path without file extension
         ),
-        by = 'base_path', 
+        by = 'base_path',
       ) %>%
       mutate(
         participant_lab_ID = sub('.*Export\\/([0-9]+)_.*', '\\1', base_path),
@@ -83,8 +82,8 @@ import_trialbytrial_EEG_data <-
       
       # Extract electrode names and data
       parsed_lines <- lapply(raw_file_content, function(line) strsplit(line, '\\s+')[[1]])
-      electrode_names <- sapply(parsed_lines, `[[`, 1)  # First word of each line
-      data_values <- do.call(rbind, lapply(parsed_lines, function(x) x[-1]))  # Remaining numbers
+      electrode_names <- sapply(parsed_lines, `[[`, 1) # First word of each line
+      data_values <- do.call(rbind, lapply(parsed_lines, function(x) x[-1])) # Remaining numbers
       
       # Check for parsing issues
       if (any(is.na(data_values))) {
@@ -123,12 +122,16 @@ import_trialbytrial_EEG_data <-
           grammatical_property = as.character(paired_files$grammatical_property[i]),
           grammaticality = as.character(paired_files$grammaticality[i]),
           time = as.numeric(rep(time_points, times = length(sentence_markers) * length(electrode_names))),
-          sentence_marker = as.character(rep(rep(sentence_markers, each = length(time_points)), 
+          sentence_marker = as.character(rep(rep(sentence_markers, each = length(time_points)),
                                              times = length(electrode_names)))
         )
       
       # Incrementally append the reshaped data to the main output data frame
       trialbytrial_EEG_data <- bind_rows(trialbytrial_EEG_data, reshaped_data)
+      
+      # --- START OF CHANGE ---
+      assign("trialbytrial_EEG_data_temp", trialbytrial_EEG_data, envir = .GlobalEnv)
+      # --- END OF CHANGE ---
       
       # Print progress
       cat('Processed file:', txt_file, '\n')
@@ -138,21 +141,21 @@ import_trialbytrial_EEG_data <-
     trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
       mutate(
         grammatical_property = as.character(case_when(
-          grammatical_property == 'S1' ~ 'Gender agreement', 
-          grammatical_property == 'S2' ~ 'Differential object marking', 
+          grammatical_property == 'S1' ~ 'Gender agreement',
+          grammatical_property == 'S2' ~ 'Differential object marking',
           grammatical_property == 'S3' ~ 'Verb-object number agreement',
           TRUE ~ NA_character_
         )),
         grammaticality = as.character(case_when(
-          grammaticality == 'S101' ~ 'Grammatical', 
-          grammaticality == 'S102' ~ 'Ungrammatical', 
+          grammaticality == 'S101' ~ 'Grammatical',
+          grammaticality == 'S102' ~ 'Ungrammatical',
           
           # Ancillary violation conditions varying by grammatical property
           
-          grammatical_property == 'Gender agreement' & 
+          grammatical_property == 'Gender agreement' &
             grammaticality == 'S103' ~ 'Number agreement violation',
           
-          grammatical_property != 'Gender agreement' & 
+          grammatical_property != 'Gender agreement' &
             grammaticality == 'S103' ~ 'Article location violation',
           
           TRUE ~ NA_character_
@@ -193,7 +196,7 @@ import_trialbytrial_EEG_data <-
         )),
         
         # Recode dichotomous predictors (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
-        # Session is specifically recoded following Michael Clark's recommendation at 
+        # Session is specifically recoded following Michael Clark's recommendation at
         # https://m-clark.github.io/sem/growth-curves.html#numbering-the-time-points.
         
         recoded_grammaticality = as.numeric(case_when(
@@ -235,28 +238,28 @@ import_trialbytrial_EEG_data <-
         )),
         
         # Z-score predictor (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
-        # This z-scoring is not done per participant because sessions vary between 
-        # participants due to some drop-outs. Furthermore, z-scoring within participants 
-        # would produce NAs for those participants that dropped out after the first lab 
-        # session.  
+        # This z-scoring is not done per participant because sessions vary between
+        # participants due to some drop-outs. Furthermore, z-scoring within participants
+        # would produce NAs for those participants that dropped out after the first lab
+        # session.
         
-        z_recoded_session = ifelse(is.na(recoded_session) | recoded_session == '', NA, 
+        z_recoded_session = ifelse(is.na(recoded_session) | recoded_session == '', NA,
                                    as.numeric(scale(recoded_session)))
       )
     
     if(include_baseline) {
       trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
         filter(time < 0 | time >= min_time & time <= max_time) %>%
-        mutate(time_window = case_when(time < 0 ~ 'baseline', 
+        mutate(time_window = case_when(time < 0 ~ 'baseline',
                                        TRUE ~ time_window))
     } else {
       trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
         filter(time >= min_time & time <= max_time)
     }
     
-    # Z-score amplitude around each participant's own mean to preserve individual 
+    # Z-score amplitude around each participant's own mean to preserve individual
     # differences (Faust et al., 1999; https://doi.org/10.1037/0033-2909.125.6.777)
-    # Similarly, z-score between-items predictors around each participant's own mean, 
+    # Similarly, z-score between-items predictors around each participant's own mean,
     # (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
     
     trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
@@ -264,16 +267,16 @@ import_trialbytrial_EEG_data <-
       mutate(
         z_amplitude = ifelse(is.na(amplitude) | amplitude == '', NA, as.numeric(scale(amplitude))),
         
-        z_recoded_grammaticality = ifelse(is.na(recoded_grammaticality) | recoded_grammaticality == '', NA, 
+        z_recoded_grammaticality = ifelse(is.na(recoded_grammaticality) | recoded_grammaticality == '', NA,
                                           as.numeric(scale(recoded_grammaticality))),
         
-        z_recoded_brain_region = ifelse(is.na(recoded_brain_region) | recoded_brain_region == '', NA, 
+        z_recoded_brain_region = ifelse(is.na(recoded_brain_region) | recoded_brain_region == '', NA,
                                         as.numeric(scale(recoded_brain_region))),
         
-        z_recoded_hemisphere = ifelse(is.na(recoded_hemisphere) | recoded_hemisphere == '', NA, 
+        z_recoded_hemisphere = ifelse(is.na(recoded_hemisphere) | recoded_hemisphere == '', NA,
                                       as.numeric(scale(recoded_hemisphere))),
         
-        z_recoded_caudality = ifelse(is.na(recoded_caudality) | recoded_caudality == '', NA, 
+        z_recoded_caudality = ifelse(is.na(recoded_caudality) | recoded_caudality == '', NA,
                                      as.numeric(scale(recoded_caudality)))
       ) %>%
       ungroup()
@@ -319,14 +322,14 @@ import_trialbytrial_EEG_data <-
       mutate(
         session = factor(session, levels = c(2, 3, 4, 6)),
         grammatical_property = factor(
-          grammatical_property, 
-          levels = c('Gender agreement', 'Differential object marking', 
+          grammatical_property,
+          levels = c('Gender agreement', 'Differential object marking',
                      'Verb-object number agreement')
         ),
         brain_region = factor(
-          brain_region, 
-          levels = c('left anterior', 'midline anterior', 'right anterior', 
-                     'left medial', 'midline medial', 'right medial', 
+          brain_region,
+          levels = c('left anterior', 'midline anterior', 'right anterior',
+                     'left medial', 'midline medial', 'right medial',
                      'left posterior', 'midline posterior', 'right posterior')
         )
       )
@@ -339,4 +342,3 @@ import_trialbytrial_EEG_data <-
     
     return(trialbytrial_EEG_data)
   }
-
