@@ -38,3 +38,29 @@ plot1 <- alias_interaction_plot(
   theme(plot.tag.position = c(0, 1), 
         legend.position = c(.9, .82))
 
+
+plot2 =
+  deciles_interaction_plot(
+    model = EEG_genderAgr_MiniNor_300_600_midline_lmerTest,
+    x = 'z_recoded_grammaticality',
+    fill = 'z_session1_Stroop',
+    fill_nesting_factor = 'participant_lab_ID',
+    x_title = 'Grammaticality (*z*)',
+    y_title = 'Predicted amplitude (*z*)',
+    fill_title = 'Stroop<br>(*z*, deciles)'
+  ) +
+  theme(plot.tag.position = c(0, 1))
+
+
+plot3 =
+  deciles_interaction_plot(
+    model = EEG_genderAgr_MiniNor_300_600_midline_lmerTest,
+    x = 'z_recoded_grammaticality',
+    fill = 'z_session1_digit_span',
+    fill_nesting_factor = 'participant_lab_ID',
+    x_title = 'Grammaticality (*z*)',
+    y_title = 'Predicted amplitude (*z*)',
+    fill_title = 'Digit span<br>(*z*, deciles)'
+  ) +
+  theme(plot.tag.position = c(0, 1))
+
