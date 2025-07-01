@@ -7,10 +7,10 @@
 The study consists of six sessions. 
 
 - **Session 1. Measurement of individual differences in executive functions and language history.**
-  This session is performed by participants online and on their own. The session for the Norwegian
-  site is available [here](https://app.gorilla.sc/openmaterials/782880). The session for the Spanish 
-  site is available [here](https://app.gorilla.sc/openmaterials/782877). In both sites, the session 
-  comprises the following parts:
+  This session is performed by participants online and on their own, and lasts approximately 1.5 hours.
+  The session for the Norwegian site is available [here](https://app.gorilla.sc/openmaterials/782880).
+  The session for the Spanish site is available [here](https://app.gorilla.sc/openmaterials/782877).
+  In both sites, the session comprises the following parts:
 
   - **1.1. Basic participant data** collected in Gorilla
   
@@ -44,10 +44,9 @@ The study consists of six sessions.
 
   - **Session 2. Resting-state EEG, followed by work on the property of gender agreement.** This is a 
     lab-based session that closely resembles the procedure of
-    [González Alonso et al. (2020)](https://doi.org/10.1016/j.jneuroling.2020.100939)). Session 2 is
-    similar to the session implemented by González Alonso et al. (2020), bar two main differences.
-    Session 2 begins with a measurement of the resting-state EEG, and it does not include a gender
-    assignment task at the end. The session comprises the following parts:
+    [González Alonso et al. (2020)](https://doi.org/10.1016/j.jneuroling.2020.100939)), except for two main differences.
+    Firstly, the session begins with a measurement of resting-state EEG activity. Secondly, the session does not include
+    a gender assignment task at the end. The session lasts approximately 2.5 hours, and comprises the following parts:
 	
     - 2.1. Resting-state EEG
     - 2.2. Pre-training
@@ -58,7 +57,7 @@ The study consists of six sessions.
 #### ⏱ *One-week delay*
 
   - **Session 3. Differential object marking and the previous grammatical property.** 
-    This is a lab-based session comprising the following parts:
+    This lab-based session lasts approximately 2.5 hours, and comprises the following parts:
 
     - 3.1. Pre-training
     - 3.2. Training
@@ -68,7 +67,7 @@ The study consists of six sessions.
 #### ⏱ *One-week delay*
 
   - **Session 4. Verb-object number agreement and the previous grammatical properties.** 
-    This is a lab-based session comprising the following parts:
+    This lab-based session lasts approximately 2.5 hours, and comprises the following parts:
 
     - 4.1. Training
     	- 4.1a. Test
@@ -77,12 +76,14 @@ The study consists of six sessions.
 #### ⏱ *One-week delay*
 
   - **Session 5. Retest of the cognitive battery that was administered in Session 1**, 
-    similarly performed by participants online and on their own.
+    similarly performed by participants online and on their own. This home-based session
+    lasts approximately one hour. 
 
 #### ⏱ *Four-month delay*
 
   - **Session 6. Retest of all properties, followed by control tests in the relevant 
-    natural languages.** The session comprises the following parts:
+    natural languages.** This lab-based session lasts approximately 2.5 hours, and
+    comprises the following parts:
 
     - 6.1. Experiment
     
