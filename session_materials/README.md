@@ -67,7 +67,7 @@ The study consists of six sessions.
 #### ⏱ *One-week delay*
 
   - **Session 4. Verb-object number agreement and the previous grammatical properties.** 
-    This lab-based session lasts approximately 2.5 hours, and comprises the following parts:
+    This lab-based session lasts approximately 3 hours, and comprises the following parts:
 
     - 4.1. Training
     	- 4.1a. Test
