@@ -12,7 +12,7 @@ library(readxl)
 # Match participants' ID with the participants' number by using the Norway
 # session logbook as guide.
 
-IDs_session_progress = 
+participant_IDs <-
   read.csv("data/Participant IDs and session progress.csv", header = T) %>%
   # Name variable 'mini_language' for greater clarity
   rename(mini_language = language) %>%
@@ -612,7 +612,7 @@ new_header = as.character(new_header)
 names(LHQ3) = new_header
 
 # Perform the left join using merge()
-LHQ3 = merge(LHQ3, IDs_session_progress, by = "participant_LHQ3_ID", all.x = TRUE)
+LHQ3 = merge(LHQ3, participant_IDs, by = "participant_LHQ3_ID", all.x = TRUE)
 
 # Calculate the average score for code-switching between languages for each 
 # participant. NA values are ignored

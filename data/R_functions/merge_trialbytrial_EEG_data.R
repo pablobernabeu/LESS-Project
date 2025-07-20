@@ -58,9 +58,8 @@ merge_trialbytrial_EEG_data <-
     
     # Combine the data frames based on participants' IDs
     
-    trialbytrial_EEG_data <-
+    trialbytrial_EEG_data <- trialbytrial_EEG_data %>% 
       
-      trialbytrial_EEG_data %>% 
       mutate(participant_lab_ID = as.factor(participant_lab_ID)) %>% 
       
       left_join(IDs_session_progress, by = 'participant_lab_ID') %>%

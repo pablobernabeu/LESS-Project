@@ -1,9 +1,12 @@
+
 # Display the behavioural results from the experiment using boxplots
 
 library(dplyr)
 library(tidyr)
 library(scales)
 library(ggplot2)
+# install.packages("devtools")
+# devtools::install_github("psyteachr/introdataviz")
 library(introdataviz)
 library(patchwork)
 library(ggtext)

@@ -51,30 +51,34 @@ behavioural_lab_data <- bind_rows(
     process_file(file = metadata$file[i], metadata_row = metadata[i, ])
   })
 ) %>%
-  # Rename to avoid confusion
+  # Rename to avoid confusion and standardize session naming
   rename(mini_language = language) %>%
   mutate(
+    # Standardize session variable to lowercase
+    session = paste("session", session),
     # In the logfiles from the test task, the grammatical property field was
     # unspecified. There is no uncertainty, however, as the tests for the
     # three grammatical properties were sequentially administered across
-    # sessions, as detailed below.
+    # Sessions, as detailed below.
     grammatical_property = case_when(
-      is.na(grammatical_property) & session == "2" ~ "Gender agreement",
-      is.na(grammatical_property) & session == "3" ~ "Differential object marking",
-      is.na(grammatical_property) & session == "4" ~ "Verb-object agreement",
-      TRUE ~ grammatical_property
+      is.na(grammatical_property) & str_detect(session, "2") ~ "gender agreement",
+      is.na(grammatical_property) & str_detect(session, "3") ~ "differential object marking",
+      is.na(grammatical_property) & str_detect(session, "4") ~ "verb object agreement",
+      TRUE ~ str_to_lower(grammatical_property)
     ),
-    grammatical_property = str_to_sentence(grammatical_property),
     participant_lab_ID = as.numeric(subject_nr),
     grammaticality = recode(
       grammaticality,
-      "article location violation" = "Article\nMisplacement",
-      "number violation" = "Number\nViolation"
+      "article location violation" = "Article\nmisplacement",
+      "number violation" = "Number\nviolation"
     )
   ) %>%
   mutate(
     correct = as.numeric(as.character(correct)),
+    response_time = as.numeric(as.character(response_time)),
     across(c(mini_language, session, grammaticality), as.factor),
+    # Set mini-language groups based on participant ID
+    mini_language = ifelse(participant_lab_ID %% 2 == 1, "Mini-English", "Mini-Norwegian"),
     grammaticality = case_when(
       grammaticality == "grammatical" ~ "Grammatical",
       grammaticality %in% c(
@@ -91,10 +95,8 @@ behavioural_lab_data <- bind_rows(
   ) %>%
   mutate(accuracy = mean(correct, na.rm = TRUE)) %>%
   ungroup() %>%
-  mutate(as.numeric(as.character(accuracy))) %>%
-  # Set limit to reaction times to create the RT data frame
+  # Filter reaction times and remove duplicate trials
   filter(response_time > 200 & response_time < 4000) %>%
-  mutate(response_time = as.numeric(as.character(response_time)))
 
 # Remove duplicate trials per participant when trial != 0. This
 # is necessary because trial numbers are sometimes repeated in
