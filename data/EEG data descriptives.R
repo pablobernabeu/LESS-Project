@@ -24,7 +24,7 @@ EEG_trial_count <-
   summarise(n_trials = n_distinct(sentence_marker), .groups = "drop")
 
 # Save trial count data to disk (and read it back in)
-saveRDS('data/EEG_trial_count.rds', EEG_trial_count)
+saveRDS(EEG_trial_count, 'data/EEG_trial_count.rds')
 # EEG_trial_count <- readRDS('data/EEG_trial_count.rds')
 
 # Order factor levels
