@@ -3,7 +3,7 @@
 #SBATCH --account=nn10008k
 #SBATCH --job-name=EEG_Data_Descriptives
 #SBATCH --partition=bigmem
-#SBATCH --mem=400G
+#SBATCH --mem=1000G
 #SBATCH --ntasks=1
 #SBATCH --time=7-0:00:00
 #SBATCH -o EEG_data_descriptives.out 

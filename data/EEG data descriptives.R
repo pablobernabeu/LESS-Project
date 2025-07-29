@@ -20,7 +20,8 @@ trialbytrial_EEG_data <-
 # Count trials across participants, sessions and experimental conditions
 EEG_trial_count <- 
   trialbytrial_EEG_data %>%
-  group_by(mini_language, participant_lab_ID, session, grammatical_property, grammaticality) %>%
+  group_by(mini_language, participant_lab_ID, session, grammatical_property, 
+           grammaticality) %>%
   summarise(n_trials = n_distinct(sentence_marker), .groups = "drop")
 
 # Save trial count data to disk (and read it back in)
@@ -33,10 +34,26 @@ EEG_trial_count$grammaticality <-
          levels = c('Grammatical', 'Ungrammatical', 'Number agreement violation',
                     'Article location violation', ''))
 
-# Count trials across experimental conditions
+# Count trials and calculate percentage of discarded trials, considering that  
+# the experiment contained 48 trials per condition.
+
+EEG_trial_count %>%
+  summarise(discarded_trials = paste0(round(100 - (mean(n_trials) / 48 * 100), 2), '%'),
+            kept_trials_mean = round(mean(n_trials), 2),
+            kept_trials_SD = round(sd(n_trials), 2))
+
+# Count trials across sessions and experimental conditions
 EEG_trial_count %>%
   group_by(mini_language, session, grammatical_property, grammaticality) %>%
-  summarise(min_trials = min(n_trials), max_trials = max(n_trials),
-            mean_trials = mean(n_trials)) %>%
+  reframe(discarded_trials = paste0(round(100 - (mean(n_trials) / 48 * 100), 2), '%'),
+          kept_trials_mean = round(mean(n_trials), 2),
+          kept_trials_SD = round(sd(n_trials), 2)) %>%
+  rename('Mini-language' = mini_language,
+         'Session' = session,
+         'Grammatical property' = grammatical_property,
+         'Grammaticality' = grammaticality,
+         'Discarded trials' = discarded_trials,
+         'Mean retained trials' = kept_trials_mean,
+         'SD retained trials' = kept_trials_SD) %>%
   kable()
 
