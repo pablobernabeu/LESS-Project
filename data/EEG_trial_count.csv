@@ -1,0 +1,1338 @@
+"mini_language","participant_lab_ID","session","grammatical_property","grammaticality","n_trials"
+"Mini-English","1","2","Gender agreement","Grammatical",26
+"Mini-English","1","2","Gender agreement","Number agreement violation",25
+"Mini-English","1","2","Gender agreement","Ungrammatical",26
+"Mini-English","11","2","Gender agreement","Grammatical",27
+"Mini-English","11","2","Gender agreement","Number agreement violation",29
+"Mini-English","11","2","Gender agreement","Ungrammatical",22
+"Mini-English","11","3","Differential object marking","Article location violation",26
+"Mini-English","11","3","Differential object marking","Grammatical",32
+"Mini-English","11","3","Differential object marking","Ungrammatical",28
+"Mini-English","11","3","Gender agreement","Grammatical",34
+"Mini-English","11","3","Gender agreement","Number agreement violation",25
+"Mini-English","11","3","Gender agreement","Ungrammatical",28
+"Mini-English","11","6","Differential object marking","Article location violation",29
+"Mini-English","11","6","Differential object marking","Grammatical",35
+"Mini-English","11","6","Differential object marking","Ungrammatical",37
+"Mini-English","11","6","Gender agreement","Grammatical",30
+"Mini-English","11","6","Gender agreement","Number agreement violation",27
+"Mini-English","11","6","Gender agreement","Ungrammatical",41
+"Mini-English","11","6","Verb-object number agreement","Article location violation",31
+"Mini-English","11","6","Verb-object number agreement","Grammatical",35
+"Mini-English","11","6","Verb-object number agreement","Ungrammatical",36
+"Mini-English","13","2","Gender agreement","Grammatical",22
+"Mini-English","13","2","Gender agreement","Number agreement violation",31
+"Mini-English","13","2","Gender agreement","Ungrammatical",32
+"Mini-English","13","3","Differential object marking","Article location violation",26
+"Mini-English","13","3","Differential object marking","Grammatical",32
+"Mini-English","13","3","Differential object marking","Ungrammatical",33
+"Mini-English","13","3","Gender agreement","Grammatical",22
+"Mini-English","13","3","Gender agreement","Number agreement violation",30
+"Mini-English","13","3","Gender agreement","Ungrammatical",26
+"Mini-English","13","4","Differential object marking","Article location violation",34
+"Mini-English","13","4","Differential object marking","Grammatical",33
+"Mini-English","13","4","Differential object marking","Ungrammatical",29
+"Mini-English","13","4","Gender agreement","Grammatical",40
+"Mini-English","13","4","Gender agreement","Number agreement violation",39
+"Mini-English","13","4","Gender agreement","Ungrammatical",32
+"Mini-English","13","4","Verb-object number agreement","Article location violation",24
+"Mini-English","13","4","Verb-object number agreement","Grammatical",31
+"Mini-English","13","4","Verb-object number agreement","Ungrammatical",25
+"Mini-English","13","6","Differential object marking","Article location violation",32
+"Mini-English","13","6","Differential object marking","Grammatical",29
+"Mini-English","13","6","Differential object marking","Ungrammatical",32
+"Mini-English","13","6","Gender agreement","Grammatical",32
+"Mini-English","13","6","Gender agreement","Number agreement violation",33
+"Mini-English","13","6","Gender agreement","Ungrammatical",34
+"Mini-English","13","6","Verb-object number agreement","Article location violation",34
+"Mini-English","13","6","Verb-object number agreement","Grammatical",24
+"Mini-English","13","6","Verb-object number agreement","Ungrammatical",36
+"Mini-English","15","2","Gender agreement","Grammatical",29
+"Mini-English","15","2","Gender agreement","Number agreement violation",30
+"Mini-English","15","2","Gender agreement","Ungrammatical",29
+"Mini-English","15","3","Differential object marking","Article location violation",39
+"Mini-English","15","3","Differential object marking","Grammatical",31
+"Mini-English","15","3","Differential object marking","Ungrammatical",36
+"Mini-English","15","3","Gender agreement","Grammatical",35
+"Mini-English","15","3","Gender agreement","Number agreement violation",29
+"Mini-English","15","3","Gender agreement","Ungrammatical",34
+"Mini-English","15","4","Differential object marking","Article location violation",30
+"Mini-English","15","4","Differential object marking","Grammatical",33
+"Mini-English","15","4","Differential object marking","Ungrammatical",31
+"Mini-English","15","4","Gender agreement","Grammatical",38
+"Mini-English","15","4","Gender agreement","Number agreement violation",32
+"Mini-English","15","4","Gender agreement","Ungrammatical",34
+"Mini-English","15","4","Verb-object number agreement","Article location violation",32
+"Mini-English","15","4","Verb-object number agreement","Grammatical",38
+"Mini-English","15","4","Verb-object number agreement","Ungrammatical",35
+"Mini-English","15","6","Differential object marking","Article location violation",33
+"Mini-English","15","6","Differential object marking","Grammatical",34
+"Mini-English","15","6","Differential object marking","Ungrammatical",33
+"Mini-English","15","6","Gender agreement","Grammatical",31
+"Mini-English","15","6","Gender agreement","Number agreement violation",32
+"Mini-English","15","6","Gender agreement","Ungrammatical",33
+"Mini-English","15","6","Verb-object number agreement","Article location violation",35
+"Mini-English","15","6","Verb-object number agreement","Grammatical",29
+"Mini-English","15","6","Verb-object number agreement","Ungrammatical",37
+"Mini-English","17","2","Gender agreement","Grammatical",37
+"Mini-English","17","2","Gender agreement","Number agreement violation",27
+"Mini-English","17","2","Gender agreement","Ungrammatical",31
+"Mini-English","17","3","Differential object marking","Article location violation",33
+"Mini-English","17","3","Differential object marking","Grammatical",37
+"Mini-English","17","3","Differential object marking","Ungrammatical",35
+"Mini-English","17","3","Gender agreement","Number agreement violation",34
+"Mini-English","17","3","Gender agreement","Ungrammatical",36
+"Mini-English","17","4","Differential object marking","Article location violation",37
+"Mini-English","17","4","Differential object marking","Grammatical",32
+"Mini-English","17","4","Differential object marking","Ungrammatical",30
+"Mini-English","17","4","Gender agreement","Grammatical",33
+"Mini-English","17","4","Gender agreement","Number agreement violation",33
+"Mini-English","17","4","Gender agreement","Ungrammatical",29
+"Mini-English","17","4","Verb-object number agreement","Article location violation",32
+"Mini-English","17","4","Verb-object number agreement","Grammatical",29
+"Mini-English","17","4","Verb-object number agreement","Ungrammatical",33
+"Mini-English","17","6","Differential object marking","Article location violation",27
+"Mini-English","17","6","Differential object marking","Grammatical",36
+"Mini-English","17","6","Differential object marking","Ungrammatical",40
+"Mini-English","17","6","Gender agreement","Grammatical",29
+"Mini-English","17","6","Gender agreement","Number agreement violation",33
+"Mini-English","17","6","Gender agreement","Ungrammatical",33
+"Mini-English","17","6","Verb-object number agreement","Article location violation",37
+"Mini-English","17","6","Verb-object number agreement","Grammatical",33
+"Mini-English","17","6","Verb-object number agreement","Ungrammatical",29
+"Mini-English","19","2","Gender agreement","Grammatical",40
+"Mini-English","19","2","Gender agreement","Number agreement violation",37
+"Mini-English","19","2","Gender agreement","Ungrammatical",31
+"Mini-English","19","3","Differential object marking","Grammatical",34
+"Mini-English","19","3","Differential object marking","Ungrammatical",30
+"Mini-English","19","3","Gender agreement","Grammatical",36
+"Mini-English","19","3","Gender agreement","Number agreement violation",32
+"Mini-English","19","3","Gender agreement","Ungrammatical",36
+"Mini-English","19","4","Differential object marking","Article location violation",36
+"Mini-English","19","4","Differential object marking","Grammatical",29
+"Mini-English","19","4","Differential object marking","Ungrammatical",30
+"Mini-English","19","4","Gender agreement","Grammatical",34
+"Mini-English","19","4","Gender agreement","Number agreement violation",29
+"Mini-English","19","4","Gender agreement","Ungrammatical",36
+"Mini-English","19","4","Verb-object number agreement","Article location violation",34
+"Mini-English","19","4","Verb-object number agreement","Grammatical",23
+"Mini-English","19","4","Verb-object number agreement","Ungrammatical",31
+"Mini-English","19","6","Differential object marking","Article location violation",35
+"Mini-English","19","6","Differential object marking","Grammatical",30
+"Mini-English","19","6","Differential object marking","Ungrammatical",34
+"Mini-English","19","6","Gender agreement","Grammatical",29
+"Mini-English","19","6","Gender agreement","Number agreement violation",34
+"Mini-English","19","6","Gender agreement","Ungrammatical",33
+"Mini-English","19","6","Verb-object number agreement","Article location violation",37
+"Mini-English","19","6","Verb-object number agreement","Grammatical",36
+"Mini-English","19","6","Verb-object number agreement","Ungrammatical",33
+"Mini-English","21","2","Gender agreement","Grammatical",13
+"Mini-English","21","2","Gender agreement","Number agreement violation",16
+"Mini-English","21","2","Gender agreement","Ungrammatical",14
+"Mini-English","21","3","Differential object marking","Article location violation",29
+"Mini-English","21","3","Differential object marking","Grammatical",37
+"Mini-English","21","3","Differential object marking","Ungrammatical",29
+"Mini-English","21","3","Gender agreement","Grammatical",38
+"Mini-English","21","3","Gender agreement","Number agreement violation",31
+"Mini-English","21","3","Gender agreement","Ungrammatical",36
+"Mini-English","21","4","Differential object marking","Article location violation",25
+"Mini-English","21","4","Differential object marking","Grammatical",23
+"Mini-English","21","4","Differential object marking","Ungrammatical",25
+"Mini-English","21","4","Gender agreement","Grammatical",27
+"Mini-English","21","4","Gender agreement","Number agreement violation",24
+"Mini-English","21","4","Gender agreement","Ungrammatical",23
+"Mini-English","21","4","Verb-object number agreement","Article location violation",29
+"Mini-English","21","4","Verb-object number agreement","Grammatical",22
+"Mini-English","21","4","Verb-object number agreement","Ungrammatical",26
+"Mini-English","21","6","Differential object marking","Article location violation",39
+"Mini-English","21","6","Differential object marking","Grammatical",36
+"Mini-English","21","6","Differential object marking","Ungrammatical",37
+"Mini-English","21","6","Gender agreement","Grammatical",34
+"Mini-English","21","6","Gender agreement","Number agreement violation",34
+"Mini-English","21","6","Gender agreement","Ungrammatical",30
+"Mini-English","21","6","Verb-object number agreement","Article location violation",39
+"Mini-English","21","6","Verb-object number agreement","Grammatical",36
+"Mini-English","21","6","Verb-object number agreement","Ungrammatical",36
+"Mini-English","23","2","Gender agreement","Grammatical",39
+"Mini-English","23","2","Gender agreement","Number agreement violation",35
+"Mini-English","23","2","Gender agreement","Ungrammatical",34
+"Mini-English","23","3","Differential object marking","Article location violation",39
+"Mini-English","23","3","Differential object marking","Grammatical",33
+"Mini-English","23","3","Differential object marking","Ungrammatical",33
+"Mini-English","23","3","Gender agreement","Grammatical",38
+"Mini-English","23","3","Gender agreement","Number agreement violation",29
+"Mini-English","23","3","Gender agreement","Ungrammatical",36
+"Mini-English","23","4","Differential object marking","Article location violation",26
+"Mini-English","23","4","Differential object marking","Grammatical",23
+"Mini-English","23","4","Differential object marking","Ungrammatical",21
+"Mini-English","23","4","Gender agreement","Grammatical",23
+"Mini-English","23","4","Gender agreement","Number agreement violation",21
+"Mini-English","23","4","Gender agreement","Ungrammatical",19
+"Mini-English","23","4","Verb-object number agreement","Article location violation",28
+"Mini-English","23","4","Verb-object number agreement","Grammatical",25
+"Mini-English","23","4","Verb-object number agreement","Ungrammatical",25
+"Mini-English","23","6","Differential object marking","Article location violation",32
+"Mini-English","23","6","Differential object marking","Grammatical",30
+"Mini-English","23","6","Differential object marking","Ungrammatical",37
+"Mini-English","23","6","Gender agreement","Grammatical",36
+"Mini-English","23","6","Gender agreement","Number agreement violation",31
+"Mini-English","23","6","Gender agreement","Ungrammatical",35
+"Mini-English","23","6","Verb-object number agreement","Article location violation",33
+"Mini-English","23","6","Verb-object number agreement","Grammatical",31
+"Mini-English","23","6","Verb-object number agreement","Ungrammatical",36
+"Mini-English","25","2","Gender agreement","Grammatical",32
+"Mini-English","25","2","Gender agreement","Number agreement violation",31
+"Mini-English","25","2","Gender agreement","Ungrammatical",32
+"Mini-English","25","3","Differential object marking","Article location violation",30
+"Mini-English","25","3","Differential object marking","Grammatical",26
+"Mini-English","25","3","Differential object marking","Ungrammatical",30
+"Mini-English","25","3","Gender agreement","Grammatical",27
+"Mini-English","25","3","Gender agreement","Number agreement violation",33
+"Mini-English","25","3","Gender agreement","Ungrammatical",34
+"Mini-English","25","4","Differential object marking","Article location violation",31
+"Mini-English","25","4","Differential object marking","Grammatical",33
+"Mini-English","25","4","Differential object marking","Ungrammatical",36
+"Mini-English","25","4","Gender agreement","Grammatical",34
+"Mini-English","25","4","Gender agreement","Number agreement violation",37
+"Mini-English","25","4","Gender agreement","Ungrammatical",32
+"Mini-English","25","4","Verb-object number agreement","Article location violation",29
+"Mini-English","25","4","Verb-object number agreement","Grammatical",37
+"Mini-English","25","4","Verb-object number agreement","Ungrammatical",36
+"Mini-English","25","6","Differential object marking","Article location violation",33
+"Mini-English","25","6","Differential object marking","Grammatical",30
+"Mini-English","25","6","Differential object marking","Ungrammatical",30
+"Mini-English","25","6","Gender agreement","Grammatical",33
+"Mini-English","25","6","Gender agreement","Number agreement violation",34
+"Mini-English","25","6","Gender agreement","Ungrammatical",34
+"Mini-English","25","6","Verb-object number agreement","Article location violation",31
+"Mini-English","25","6","Verb-object number agreement","Grammatical",32
+"Mini-English","25","6","Verb-object number agreement","Ungrammatical",38
+"Mini-English","27","2","Gender agreement","Grammatical",33
+"Mini-English","27","2","Gender agreement","Number agreement violation",36
+"Mini-English","27","2","Gender agreement","Ungrammatical",33
+"Mini-English","27","3","Differential object marking","Article location violation",35
+"Mini-English","27","3","Differential object marking","Grammatical",39
+"Mini-English","27","3","Differential object marking","Ungrammatical",33
+"Mini-English","27","3","Gender agreement","Grammatical",34
+"Mini-English","27","3","Gender agreement","Number agreement violation",31
+"Mini-English","27","3","Gender agreement","Ungrammatical",30
+"Mini-English","27","4","Differential object marking","Article location violation",33
+"Mini-English","27","4","Differential object marking","Grammatical",31
+"Mini-English","27","4","Differential object marking","Ungrammatical",34
+"Mini-English","27","4","Gender agreement","Grammatical",35
+"Mini-English","27","4","Gender agreement","Number agreement violation",33
+"Mini-English","27","4","Gender agreement","Ungrammatical",34
+"Mini-English","27","4","Verb-object number agreement","Article location violation",32
+"Mini-English","27","4","Verb-object number agreement","Grammatical",37
+"Mini-English","27","4","Verb-object number agreement","Ungrammatical",32
+"Mini-English","27","6","Differential object marking","Article location violation",32
+"Mini-English","27","6","Differential object marking","Grammatical",31
+"Mini-English","27","6","Differential object marking","Ungrammatical",32
+"Mini-English","27","6","Gender agreement","Grammatical",34
+"Mini-English","27","6","Gender agreement","Number agreement violation",30
+"Mini-English","27","6","Gender agreement","Ungrammatical",33
+"Mini-English","27","6","Verb-object number agreement","Article location violation",38
+"Mini-English","27","6","Verb-object number agreement","Grammatical",34
+"Mini-English","27","6","Verb-object number agreement","Ungrammatical",31
+"Mini-English","29","2","Gender agreement","Grammatical",41
+"Mini-English","29","2","Gender agreement","Number agreement violation",30
+"Mini-English","29","2","Gender agreement","Ungrammatical",35
+"Mini-English","29","3","Differential object marking","Article location violation",35
+"Mini-English","29","3","Differential object marking","Grammatical",40
+"Mini-English","29","3","Differential object marking","Ungrammatical",34
+"Mini-English","29","3","Gender agreement","Grammatical",31
+"Mini-English","29","3","Gender agreement","Number agreement violation",33
+"Mini-English","29","3","Gender agreement","Ungrammatical",31
+"Mini-English","29","4","Differential object marking","Article location violation",32
+"Mini-English","29","4","Differential object marking","Grammatical",37
+"Mini-English","29","4","Differential object marking","Ungrammatical",38
+"Mini-English","29","4","Gender agreement","Grammatical",29
+"Mini-English","29","4","Gender agreement","Number agreement violation",32
+"Mini-English","29","4","Gender agreement","Ungrammatical",35
+"Mini-English","29","4","Verb-object number agreement","Article location violation",39
+"Mini-English","29","4","Verb-object number agreement","Grammatical",39
+"Mini-English","29","4","Verb-object number agreement","Ungrammatical",32
+"Mini-English","29","6","Differential object marking","Article location violation",34
+"Mini-English","29","6","Differential object marking","Grammatical",36
+"Mini-English","29","6","Differential object marking","Ungrammatical",37
+"Mini-English","29","6","Gender agreement","Grammatical",35
+"Mini-English","29","6","Gender agreement","Number agreement violation",34
+"Mini-English","29","6","Gender agreement","Ungrammatical",33
+"Mini-English","29","6","Verb-object number agreement","Article location violation",31
+"Mini-English","29","6","Verb-object number agreement","Grammatical",30
+"Mini-English","29","6","Verb-object number agreement","Ungrammatical",30
+"Mini-English","3","2","Gender agreement","Grammatical",27
+"Mini-English","3","2","Gender agreement","Number agreement violation",24
+"Mini-English","3","2","Gender agreement","Ungrammatical",22
+"Mini-English","3","4","Differential object marking","Article location violation",30
+"Mini-English","3","4","Differential object marking","Grammatical",25
+"Mini-English","3","4","Differential object marking","Ungrammatical",24
+"Mini-English","3","4","Gender agreement","Grammatical",21
+"Mini-English","3","4","Gender agreement","Number agreement violation",26
+"Mini-English","3","4","Gender agreement","Ungrammatical",25
+"Mini-English","3","4","Verb-object number agreement","Article location violation",28
+"Mini-English","3","4","Verb-object number agreement","Grammatical",27
+"Mini-English","3","4","Verb-object number agreement","Ungrammatical",29
+"Mini-English","3","6","Differential object marking","Article location violation",33
+"Mini-English","3","6","Differential object marking","Grammatical",31
+"Mini-English","3","6","Differential object marking","Ungrammatical",33
+"Mini-English","3","6","Gender agreement","Grammatical",33
+"Mini-English","3","6","Gender agreement","Number agreement violation",32
+"Mini-English","3","6","Gender agreement","Ungrammatical",31
+"Mini-English","3","6","Verb-object number agreement","Article location violation",35
+"Mini-English","3","6","Verb-object number agreement","Grammatical",31
+"Mini-English","3","6","Verb-object number agreement","Ungrammatical",34
+"Mini-English","31","2","Gender agreement","Grammatical",33
+"Mini-English","31","2","Gender agreement","Number agreement violation",34
+"Mini-English","31","2","Gender agreement","Ungrammatical",32
+"Mini-English","31","3","Differential object marking","Article location violation",34
+"Mini-English","31","3","Differential object marking","Grammatical",37
+"Mini-English","31","3","Differential object marking","Ungrammatical",30
+"Mini-English","31","3","Gender agreement","Grammatical",31
+"Mini-English","31","3","Gender agreement","Number agreement violation",30
+"Mini-English","31","3","Gender agreement","Ungrammatical",36
+"Mini-English","31","4","Differential object marking","Article location violation",36
+"Mini-English","31","4","Differential object marking","Grammatical",33
+"Mini-English","31","4","Differential object marking","Ungrammatical",38
+"Mini-English","31","4","Gender agreement","Grammatical",37
+"Mini-English","31","4","Gender agreement","Number agreement violation",33
+"Mini-English","31","4","Gender agreement","Ungrammatical",34
+"Mini-English","31","4","Verb-object number agreement","Article location violation",33
+"Mini-English","31","4","Verb-object number agreement","Grammatical",36
+"Mini-English","31","4","Verb-object number agreement","Ungrammatical",28
+"Mini-English","31","6","Differential object marking","Article location violation",35
+"Mini-English","31","6","Differential object marking","Grammatical",34
+"Mini-English","31","6","Differential object marking","Ungrammatical",31
+"Mini-English","31","6","Gender agreement","Grammatical",34
+"Mini-English","31","6","Gender agreement","Number agreement violation",35
+"Mini-English","31","6","Gender agreement","Ungrammatical",37
+"Mini-English","31","6","Verb-object number agreement","Article location violation",36
+"Mini-English","31","6","Verb-object number agreement","Grammatical",27
+"Mini-English","31","6","Verb-object number agreement","Ungrammatical",34
+"Mini-English","33","2","Gender agreement","Grammatical",39
+"Mini-English","33","2","Gender agreement","Number agreement violation",39
+"Mini-English","33","2","Gender agreement","Ungrammatical",37
+"Mini-English","33","3","Differential object marking","Article location violation",30
+"Mini-English","33","3","Differential object marking","Grammatical",32
+"Mini-English","33","3","Differential object marking","Ungrammatical",37
+"Mini-English","33","3","Gender agreement","Grammatical",37
+"Mini-English","33","3","Gender agreement","Number agreement violation",39
+"Mini-English","33","3","Gender agreement","Ungrammatical",35
+"Mini-English","33","4","Differential object marking","Article location violation",18
+"Mini-English","33","4","Differential object marking","Grammatical",15
+"Mini-English","33","4","Differential object marking","Ungrammatical",10
+"Mini-English","33","4","Gender agreement","Grammatical",12
+"Mini-English","33","4","Gender agreement","Number agreement violation",17
+"Mini-English","33","4","Gender agreement","Ungrammatical",13
+"Mini-English","33","4","Verb-object number agreement","Article location violation",15
+"Mini-English","33","4","Verb-object number agreement","Grammatical",13
+"Mini-English","33","4","Verb-object number agreement","Ungrammatical",16
+"Mini-English","33","6","Differential object marking","Article location violation",34
+"Mini-English","33","6","Differential object marking","Grammatical",31
+"Mini-English","33","6","Differential object marking","Ungrammatical",35
+"Mini-English","33","6","Gender agreement","Grammatical",30
+"Mini-English","33","6","Gender agreement","Number agreement violation",34
+"Mini-English","33","6","Gender agreement","Ungrammatical",36
+"Mini-English","33","6","Verb-object number agreement","Article location violation",35
+"Mini-English","33","6","Verb-object number agreement","Grammatical",29
+"Mini-English","33","6","Verb-object number agreement","Ungrammatical",37
+"Mini-English","35","2","Gender agreement","Grammatical",28
+"Mini-English","35","2","Gender agreement","Number agreement violation",35
+"Mini-English","35","2","Gender agreement","Ungrammatical",35
+"Mini-English","37","2","Gender agreement","Grammatical",37
+"Mini-English","37","2","Gender agreement","Number agreement violation",36
+"Mini-English","37","2","Gender agreement","Ungrammatical",34
+"Mini-English","37","3","Differential object marking","Article location violation",36
+"Mini-English","37","3","Differential object marking","Grammatical",35
+"Mini-English","37","3","Differential object marking","Ungrammatical",33
+"Mini-English","37","3","Gender agreement","Grammatical",34
+"Mini-English","37","3","Gender agreement","Number agreement violation",33
+"Mini-English","37","3","Gender agreement","Ungrammatical",32
+"Mini-English","37","4","Differential object marking","Article location violation",39
+"Mini-English","37","4","Differential object marking","Grammatical",31
+"Mini-English","37","4","Differential object marking","Ungrammatical",35
+"Mini-English","37","4","Gender agreement","Grammatical",33
+"Mini-English","37","4","Gender agreement","Number agreement violation",36
+"Mini-English","37","4","Gender agreement","Ungrammatical",29
+"Mini-English","37","4","Verb-object number agreement","Article location violation",39
+"Mini-English","37","4","Verb-object number agreement","Grammatical",36
+"Mini-English","37","4","Verb-object number agreement","Ungrammatical",35
+"Mini-English","37","6","Differential object marking","Article location violation",34
+"Mini-English","37","6","Differential object marking","Grammatical",35
+"Mini-English","37","6","Differential object marking","Ungrammatical",34
+"Mini-English","37","6","Gender agreement","Grammatical",35
+"Mini-English","37","6","Gender agreement","Number agreement violation",40
+"Mini-English","37","6","Gender agreement","Ungrammatical",39
+"Mini-English","37","6","Verb-object number agreement","Article location violation",38
+"Mini-English","37","6","Verb-object number agreement","Grammatical",32
+"Mini-English","37","6","Verb-object number agreement","Ungrammatical",38
+"Mini-English","39","2","Gender agreement","Grammatical",36
+"Mini-English","39","2","Gender agreement","Number agreement violation",33
+"Mini-English","39","2","Gender agreement","Ungrammatical",27
+"Mini-English","39","3","Differential object marking","Article location violation",41
+"Mini-English","39","3","Differential object marking","Grammatical",32
+"Mini-English","39","3","Differential object marking","Ungrammatical",28
+"Mini-English","39","3","Gender agreement","Grammatical",38
+"Mini-English","39","3","Gender agreement","Number agreement violation",33
+"Mini-English","39","3","Gender agreement","Ungrammatical",31
+"Mini-English","39","4","Differential object marking","Article location violation",29
+"Mini-English","39","4","Differential object marking","Grammatical",33
+"Mini-English","39","4","Differential object marking","Ungrammatical",32
+"Mini-English","39","4","Gender agreement","Grammatical",32
+"Mini-English","39","4","Gender agreement","Number agreement violation",39
+"Mini-English","39","4","Gender agreement","Ungrammatical",31
+"Mini-English","39","4","Verb-object number agreement","Article location violation",36
+"Mini-English","39","4","Verb-object number agreement","Grammatical",32
+"Mini-English","39","4","Verb-object number agreement","Ungrammatical",39
+"Mini-English","41","2","Gender agreement","Grammatical",36
+"Mini-English","41","2","Gender agreement","Number agreement violation",36
+"Mini-English","41","2","Gender agreement","Ungrammatical",36
+"Mini-English","41","3","Differential object marking","Article location violation",31
+"Mini-English","41","3","Differential object marking","Grammatical",33
+"Mini-English","41","3","Differential object marking","Ungrammatical",37
+"Mini-English","41","3","Gender agreement","Grammatical",29
+"Mini-English","41","3","Gender agreement","Number agreement violation",36
+"Mini-English","41","3","Gender agreement","Ungrammatical",39
+"Mini-English","41","4","Differential object marking","Article location violation",38
+"Mini-English","41","4","Differential object marking","Grammatical",37
+"Mini-English","41","4","Differential object marking","Ungrammatical",34
+"Mini-English","41","4","Gender agreement","Grammatical",35
+"Mini-English","41","4","Gender agreement","Number agreement violation",30
+"Mini-English","41","4","Gender agreement","Ungrammatical",34
+"Mini-English","41","4","Verb-object number agreement","Article location violation",34
+"Mini-English","41","4","Verb-object number agreement","Grammatical",33
+"Mini-English","41","4","Verb-object number agreement","Ungrammatical",31
+"Mini-English","43","2","Gender agreement","Grammatical",35
+"Mini-English","43","2","Gender agreement","Number agreement violation",34
+"Mini-English","43","2","Gender agreement","Ungrammatical",28
+"Mini-English","43","3","Differential object marking","Article location violation",32
+"Mini-English","43","3","Differential object marking","Grammatical",33
+"Mini-English","43","3","Differential object marking","Ungrammatical",26
+"Mini-English","43","3","Gender agreement","Grammatical",31
+"Mini-English","43","3","Gender agreement","Number agreement violation",33
+"Mini-English","43","3","Gender agreement","Ungrammatical",28
+"Mini-English","43","4","Differential object marking","Article location violation",38
+"Mini-English","43","4","Differential object marking","Grammatical",32
+"Mini-English","43","4","Differential object marking","Ungrammatical",29
+"Mini-English","43","4","Gender agreement","Grammatical",38
+"Mini-English","43","4","Gender agreement","Number agreement violation",30
+"Mini-English","43","4","Gender agreement","Ungrammatical",31
+"Mini-English","43","4","Verb-object number agreement","Article location violation",37
+"Mini-English","43","4","Verb-object number agreement","Grammatical",34
+"Mini-English","43","4","Verb-object number agreement","Ungrammatical",37
+"Mini-English","43","6","Differential object marking","Article location violation",30
+"Mini-English","43","6","Differential object marking","Grammatical",41
+"Mini-English","43","6","Differential object marking","Ungrammatical",27
+"Mini-English","43","6","Gender agreement","Grammatical",32
+"Mini-English","43","6","Gender agreement","Number agreement violation",36
+"Mini-English","43","6","Gender agreement","Ungrammatical",33
+"Mini-English","43","6","Verb-object number agreement","Article location violation",28
+"Mini-English","43","6","Verb-object number agreement","Grammatical",30
+"Mini-English","43","6","Verb-object number agreement","Ungrammatical",35
+"Mini-English","45","2","Gender agreement","Grammatical",30
+"Mini-English","45","2","Gender agreement","Number agreement violation",34
+"Mini-English","45","2","Gender agreement","Ungrammatical",39
+"Mini-English","47","2","Gender agreement","Grammatical",35
+"Mini-English","47","2","Gender agreement","Number agreement violation",40
+"Mini-English","47","2","Gender agreement","Ungrammatical",34
+"Mini-English","47","3","Differential object marking","Article location violation",35
+"Mini-English","47","3","Differential object marking","Grammatical",34
+"Mini-English","47","3","Differential object marking","Ungrammatical",31
+"Mini-English","47","3","Gender agreement","Grammatical",34
+"Mini-English","47","3","Gender agreement","Number agreement violation",26
+"Mini-English","47","3","Gender agreement","Ungrammatical",35
+"Mini-English","47","4","Differential object marking","Article location violation",26
+"Mini-English","47","4","Differential object marking","Grammatical",26
+"Mini-English","47","4","Differential object marking","Ungrammatical",27
+"Mini-English","47","4","Gender agreement","Grammatical",31
+"Mini-English","47","4","Gender agreement","Number agreement violation",23
+"Mini-English","47","4","Gender agreement","Ungrammatical",25
+"Mini-English","47","4","Verb-object number agreement","Article location violation",24
+"Mini-English","47","4","Verb-object number agreement","Grammatical",23
+"Mini-English","47","4","Verb-object number agreement","Ungrammatical",26
+"Mini-English","49","2","Gender agreement","Grammatical",34
+"Mini-English","49","2","Gender agreement","Number agreement violation",36
+"Mini-English","49","2","Gender agreement","Ungrammatical",31
+"Mini-English","49","3","Differential object marking","Article location violation",29
+"Mini-English","49","3","Differential object marking","Grammatical",32
+"Mini-English","49","3","Differential object marking","Ungrammatical",30
+"Mini-English","49","3","Gender agreement","Grammatical",39
+"Mini-English","49","3","Gender agreement","Number agreement violation",36
+"Mini-English","49","3","Gender agreement","Ungrammatical",36
+"Mini-English","49","4","Differential object marking","Article location violation",31
+"Mini-English","49","4","Differential object marking","Grammatical",35
+"Mini-English","49","4","Differential object marking","Ungrammatical",36
+"Mini-English","49","4","Gender agreement","Grammatical",30
+"Mini-English","49","4","Gender agreement","Number agreement violation",31
+"Mini-English","49","4","Gender agreement","Ungrammatical",36
+"Mini-English","49","4","Verb-object number agreement","Article location violation",30
+"Mini-English","49","4","Verb-object number agreement","Grammatical",27
+"Mini-English","49","4","Verb-object number agreement","Ungrammatical",28
+"Mini-English","5","2","Gender agreement","Grammatical",29
+"Mini-English","5","2","Gender agreement","Number agreement violation",26
+"Mini-English","5","2","Gender agreement","Ungrammatical",26
+"Mini-English","5","3","Differential object marking","Article location violation",28
+"Mini-English","5","3","Differential object marking","Grammatical",21
+"Mini-English","5","3","Differential object marking","Ungrammatical",26
+"Mini-English","5","3","Gender agreement","Grammatical",25
+"Mini-English","5","3","Gender agreement","Number agreement violation",34
+"Mini-English","5","3","Gender agreement","Ungrammatical",21
+"Mini-English","5","4","Differential object marking","Article location violation",29
+"Mini-English","5","4","Differential object marking","Grammatical",26
+"Mini-English","5","4","Differential object marking","Ungrammatical",28
+"Mini-English","5","4","Gender agreement","Grammatical",27
+"Mini-English","5","4","Gender agreement","Number agreement violation",31
+"Mini-English","5","4","Gender agreement","Ungrammatical",27
+"Mini-English","5","4","Verb-object number agreement","Article location violation",26
+"Mini-English","5","4","Verb-object number agreement","Grammatical",22
+"Mini-English","5","4","Verb-object number agreement","Ungrammatical",30
+"Mini-English","5","6","Differential object marking","Article location violation",14
+"Mini-English","5","6","Differential object marking","Grammatical",19
+"Mini-English","5","6","Differential object marking","Ungrammatical",24
+"Mini-English","5","6","Gender agreement","Grammatical",21
+"Mini-English","5","6","Gender agreement","Number agreement violation",22
+"Mini-English","5","6","Gender agreement","Ungrammatical",20
+"Mini-English","5","6","Verb-object number agreement","Article location violation",23
+"Mini-English","5","6","Verb-object number agreement","Grammatical",17
+"Mini-English","5","6","Verb-object number agreement","Ungrammatical",24
+"Mini-English","51","2","Gender agreement","Grammatical",32
+"Mini-English","51","2","Gender agreement","Number agreement violation",38
+"Mini-English","51","2","Gender agreement","Ungrammatical",34
+"Mini-English","51","3","Differential object marking","Article location violation",35
+"Mini-English","51","3","Differential object marking","Grammatical",30
+"Mini-English","51","3","Differential object marking","Ungrammatical",30
+"Mini-English","51","3","Gender agreement","Grammatical",32
+"Mini-English","51","3","Gender agreement","Number agreement violation",40
+"Mini-English","51","3","Gender agreement","Ungrammatical",33
+"Mini-English","51","4","Differential object marking","Article location violation",42
+"Mini-English","51","4","Differential object marking","Grammatical",34
+"Mini-English","51","4","Differential object marking","Ungrammatical",24
+"Mini-English","51","4","Gender agreement","Grammatical",30
+"Mini-English","51","4","Gender agreement","Number agreement violation",34
+"Mini-English","51","4","Gender agreement","Ungrammatical",32
+"Mini-English","51","4","Verb-object number agreement","Article location violation",32
+"Mini-English","51","4","Verb-object number agreement","Grammatical",33
+"Mini-English","51","4","Verb-object number agreement","Ungrammatical",34
+"Mini-English","53","2","Gender agreement","Grammatical",31
+"Mini-English","53","2","Gender agreement","Number agreement violation",36
+"Mini-English","53","2","Gender agreement","Ungrammatical",29
+"Mini-English","53","3","Differential object marking","Article location violation",38
+"Mini-English","53","3","Differential object marking","Grammatical",37
+"Mini-English","53","3","Differential object marking","Ungrammatical",33
+"Mini-English","53","3","Gender agreement","Grammatical",33
+"Mini-English","53","3","Gender agreement","Number agreement violation",30
+"Mini-English","53","3","Gender agreement","Ungrammatical",34
+"Mini-English","53","4","Differential object marking","Article location violation",37
+"Mini-English","53","4","Differential object marking","Grammatical",36
+"Mini-English","53","4","Differential object marking","Ungrammatical",33
+"Mini-English","53","4","Gender agreement","Grammatical",36
+"Mini-English","53","4","Gender agreement","Number agreement violation",36
+"Mini-English","53","4","Gender agreement","Ungrammatical",34
+"Mini-English","53","4","Verb-object number agreement","Article location violation",36
+"Mini-English","53","4","Verb-object number agreement","Grammatical",38
+"Mini-English","53","4","Verb-object number agreement","Ungrammatical",39
+"Mini-English","55","2","Gender agreement","Grammatical",29
+"Mini-English","55","2","Gender agreement","Number agreement violation",36
+"Mini-English","55","2","Gender agreement","Ungrammatical",40
+"Mini-English","55","3","Differential object marking","Article location violation",30
+"Mini-English","55","3","Differential object marking","Grammatical",29
+"Mini-English","55","3","Differential object marking","Ungrammatical",32
+"Mini-English","55","3","Gender agreement","Grammatical",35
+"Mini-English","55","3","Gender agreement","Number agreement violation",35
+"Mini-English","55","3","Gender agreement","Ungrammatical",30
+"Mini-English","55","4","Differential object marking","Article location violation",32
+"Mini-English","55","4","Differential object marking","Grammatical",37
+"Mini-English","55","4","Differential object marking","Ungrammatical",31
+"Mini-English","55","4","Gender agreement","Grammatical",38
+"Mini-English","55","4","Gender agreement","Number agreement violation",34
+"Mini-English","55","4","Gender agreement","Ungrammatical",36
+"Mini-English","55","4","Verb-object number agreement","Article location violation",36
+"Mini-English","55","4","Verb-object number agreement","Grammatical",31
+"Mini-English","55","4","Verb-object number agreement","Ungrammatical",39
+"Mini-English","57","2","Gender agreement","Grammatical",38
+"Mini-English","57","2","Gender agreement","Number agreement violation",34
+"Mini-English","57","2","Gender agreement","Ungrammatical",35
+"Mini-English","57","3","Differential object marking","Article location violation",28
+"Mini-English","57","3","Differential object marking","Grammatical",27
+"Mini-English","57","3","Differential object marking","Ungrammatical",29
+"Mini-English","57","3","Gender agreement","Grammatical",33
+"Mini-English","57","3","Gender agreement","Number agreement violation",30
+"Mini-English","57","3","Gender agreement","Ungrammatical",30
+"Mini-English","57","4","Differential object marking","Article location violation",41
+"Mini-English","57","4","Differential object marking","Grammatical",35
+"Mini-English","57","4","Differential object marking","Ungrammatical",34
+"Mini-English","57","4","Gender agreement","Grammatical",36
+"Mini-English","57","4","Gender agreement","Number agreement violation",33
+"Mini-English","57","4","Gender agreement","Ungrammatical",31
+"Mini-English","57","4","Verb-object number agreement","Article location violation",34
+"Mini-English","57","4","Verb-object number agreement","Grammatical",34
+"Mini-English","57","4","Verb-object number agreement","Ungrammatical",33
+"Mini-English","59","2","Gender agreement","Grammatical",30
+"Mini-English","59","2","Gender agreement","Number agreement violation",37
+"Mini-English","59","2","Gender agreement","Ungrammatical",31
+"Mini-English","59","3","Differential object marking","Article location violation",30
+"Mini-English","59","3","Differential object marking","Grammatical",34
+"Mini-English","59","3","Differential object marking","Ungrammatical",35
+"Mini-English","59","3","Gender agreement","Grammatical",31
+"Mini-English","59","3","Gender agreement","Number agreement violation",29
+"Mini-English","59","3","Gender agreement","Ungrammatical",30
+"Mini-English","61","2","Gender agreement","Grammatical",35
+"Mini-English","61","2","Gender agreement","Number agreement violation",34
+"Mini-English","61","2","Gender agreement","Ungrammatical",34
+"Mini-English","61","3","Differential object marking","Article location violation",33
+"Mini-English","61","3","Differential object marking","Grammatical",32
+"Mini-English","61","3","Differential object marking","Ungrammatical",35
+"Mini-English","61","3","Gender agreement","Grammatical",41
+"Mini-English","61","3","Gender agreement","Number agreement violation",31
+"Mini-English","61","3","Gender agreement","Ungrammatical",34
+"Mini-English","61","4","Differential object marking","Article location violation",30
+"Mini-English","61","4","Differential object marking","Grammatical",32
+"Mini-English","61","4","Differential object marking","Ungrammatical",36
+"Mini-English","61","4","Gender agreement","Grammatical",36
+"Mini-English","61","4","Gender agreement","Number agreement violation",33
+"Mini-English","61","4","Gender agreement","Ungrammatical",37
+"Mini-English","61","4","Verb-object number agreement","Article location violation",30
+"Mini-English","61","4","Verb-object number agreement","Grammatical",36
+"Mini-English","61","4","Verb-object number agreement","Ungrammatical",35
+"Mini-English","63","2","Gender agreement","Grammatical",38
+"Mini-English","63","2","Gender agreement","Number agreement violation",28
+"Mini-English","63","2","Gender agreement","Ungrammatical",36
+"Mini-English","65","2","Gender agreement","Grammatical",31
+"Mini-English","65","2","Gender agreement","Number agreement violation",31
+"Mini-English","65","2","Gender agreement","Ungrammatical",34
+"Mini-English","65","3","Differential object marking","Article location violation",38
+"Mini-English","65","3","Differential object marking","Grammatical",34
+"Mini-English","65","3","Differential object marking","Ungrammatical",37
+"Mini-English","65","3","Gender agreement","Grammatical",30
+"Mini-English","65","3","Gender agreement","Number agreement violation",35
+"Mini-English","65","3","Gender agreement","Ungrammatical",41
+"Mini-English","65","4","Differential object marking","Article location violation",39
+"Mini-English","65","4","Differential object marking","Grammatical",32
+"Mini-English","65","4","Differential object marking","Ungrammatical",34
+"Mini-English","65","4","Gender agreement","Grammatical",31
+"Mini-English","65","4","Gender agreement","Number agreement violation",34
+"Mini-English","65","4","Gender agreement","Ungrammatical",33
+"Mini-English","65","4","Verb-object number agreement","Article location violation",36
+"Mini-English","65","4","Verb-object number agreement","Grammatical",38
+"Mini-English","65","4","Verb-object number agreement","Ungrammatical",36
+"Mini-English","7","2","Gender agreement","Grammatical",23
+"Mini-English","7","2","Gender agreement","Number agreement violation",19
+"Mini-English","7","2","Gender agreement","Ungrammatical",16
+"Mini-English","7","3","Differential object marking","Article location violation",22
+"Mini-English","7","3","Differential object marking","Grammatical",25
+"Mini-English","7","3","Differential object marking","Ungrammatical",20
+"Mini-English","7","3","Gender agreement","Grammatical",24
+"Mini-English","7","3","Gender agreement","Number agreement violation",27
+"Mini-English","7","3","Gender agreement","Ungrammatical",27
+"Mini-English","7","4","Differential object marking","Article location violation",27
+"Mini-English","7","4","Differential object marking","Grammatical",29
+"Mini-English","7","4","Differential object marking","Ungrammatical",25
+"Mini-English","7","4","Gender agreement","Grammatical",25
+"Mini-English","7","4","Gender agreement","Number agreement violation",21
+"Mini-English","7","4","Gender agreement","Ungrammatical",38
+"Mini-English","7","4","Verb-object number agreement","Article location violation",30
+"Mini-English","7","4","Verb-object number agreement","Grammatical",21
+"Mini-English","7","4","Verb-object number agreement","Ungrammatical",27
+"Mini-English","7","6","Differential object marking","Article location violation",37
+"Mini-English","7","6","Differential object marking","Grammatical",33
+"Mini-English","7","6","Differential object marking","Ungrammatical",28
+"Mini-English","7","6","Gender agreement","Grammatical",30
+"Mini-English","7","6","Gender agreement","Number agreement violation",37
+"Mini-English","7","6","Gender agreement","Ungrammatical",36
+"Mini-English","7","6","Verb-object number agreement","Article location violation",34
+"Mini-English","7","6","Verb-object number agreement","Grammatical",32
+"Mini-English","7","6","Verb-object number agreement","Ungrammatical",37
+"Mini-English","9","2","Gender agreement","Grammatical",28
+"Mini-English","9","2","Gender agreement","Number agreement violation",28
+"Mini-English","9","2","Gender agreement","Ungrammatical",24
+"Mini-English","9","3","Differential object marking","Article location violation",27
+"Mini-English","9","3","Differential object marking","Grammatical",26
+"Mini-English","9","3","Differential object marking","Ungrammatical",27
+"Mini-English","9","3","Gender agreement","Grammatical",28
+"Mini-English","9","3","Gender agreement","Number agreement violation",26
+"Mini-English","9","3","Gender agreement","Ungrammatical",25
+"Mini-English","9","4","Differential object marking","Article location violation",17
+"Mini-English","9","4","Differential object marking","Grammatical",15
+"Mini-English","9","4","Differential object marking","Ungrammatical",17
+"Mini-English","9","4","Gender agreement","Grammatical",16
+"Mini-English","9","4","Gender agreement","Number agreement violation",12
+"Mini-English","9","4","Gender agreement","Ungrammatical",13
+"Mini-English","9","4","Verb-object number agreement","Article location violation",17
+"Mini-English","9","4","Verb-object number agreement","Grammatical",14
+"Mini-English","9","4","Verb-object number agreement","Ungrammatical",12
+"Mini-English","9","6","Differential object marking","Article location violation",12
+"Mini-English","9","6","Differential object marking","Grammatical",10
+"Mini-English","9","6","Differential object marking","Ungrammatical",14
+"Mini-English","9","6","Gender agreement","Grammatical",10
+"Mini-English","9","6","Gender agreement","Number agreement violation",13
+"Mini-English","9","6","Gender agreement","Ungrammatical",10
+"Mini-English","9","6","Verb-object number agreement","Article location violation",7
+"Mini-English","9","6","Verb-object number agreement","Grammatical",9
+"Mini-English","9","6","Verb-object number agreement","Ungrammatical",8
+"Mini-Norwegian","10","2","Gender agreement","Grammatical",29
+"Mini-Norwegian","10","2","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","10","2","Gender agreement","Ungrammatical",24
+"Mini-Norwegian","10","3","Differential object marking","Article location violation",33
+"Mini-Norwegian","10","3","Differential object marking","Grammatical",21
+"Mini-Norwegian","10","3","Differential object marking","Ungrammatical",22
+"Mini-Norwegian","10","3","Gender agreement","Grammatical",38
+"Mini-Norwegian","10","3","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","10","3","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","10","4","Differential object marking","Article location violation",27
+"Mini-Norwegian","10","4","Differential object marking","Grammatical",33
+"Mini-Norwegian","10","4","Differential object marking","Ungrammatical",25
+"Mini-Norwegian","10","4","Gender agreement","Grammatical",26
+"Mini-Norwegian","10","4","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","10","4","Gender agreement","Ungrammatical",27
+"Mini-Norwegian","10","4","Verb-object number agreement","Article location violation",28
+"Mini-Norwegian","10","4","Verb-object number agreement","Grammatical",25
+"Mini-Norwegian","10","4","Verb-object number agreement","Ungrammatical",26
+"Mini-Norwegian","10","6","Differential object marking","Article location violation",29
+"Mini-Norwegian","10","6","Differential object marking","Grammatical",34
+"Mini-Norwegian","10","6","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","10","6","Gender agreement","Grammatical",33
+"Mini-Norwegian","10","6","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","10","6","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","10","6","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","10","6","Verb-object number agreement","Grammatical",34
+"Mini-Norwegian","10","6","Verb-object number agreement","Ungrammatical",39
+"Mini-Norwegian","12","2","Gender agreement","Grammatical",22
+"Mini-Norwegian","12","2","Gender agreement","Number agreement violation",25
+"Mini-Norwegian","12","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","12","3","Differential object marking","Article location violation",22
+"Mini-Norwegian","12","3","Differential object marking","Grammatical",27
+"Mini-Norwegian","12","3","Differential object marking","Ungrammatical",26
+"Mini-Norwegian","12","3","Gender agreement","Grammatical",22
+"Mini-Norwegian","12","3","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","12","3","Gender agreement","Ungrammatical",26
+"Mini-Norwegian","12","4","Differential object marking","Article location violation",33
+"Mini-Norwegian","12","4","Differential object marking","Grammatical",37
+"Mini-Norwegian","12","4","Differential object marking","Ungrammatical",33
+"Mini-Norwegian","12","4","Gender agreement","Grammatical",32
+"Mini-Norwegian","12","4","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","12","4","Gender agreement","Ungrammatical",41
+"Mini-Norwegian","12","4","Verb-object number agreement","Article location violation",36
+"Mini-Norwegian","12","4","Verb-object number agreement","Grammatical",32
+"Mini-Norwegian","12","4","Verb-object number agreement","Ungrammatical",38
+"Mini-Norwegian","12","6","Differential object marking","Article location violation",33
+"Mini-Norwegian","12","6","Differential object marking","Grammatical",32
+"Mini-Norwegian","12","6","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","12","6","Gender agreement","Grammatical",35
+"Mini-Norwegian","12","6","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","12","6","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","12","6","Verb-object number agreement","Article location violation",33
+"Mini-Norwegian","12","6","Verb-object number agreement","Grammatical",35
+"Mini-Norwegian","12","6","Verb-object number agreement","Ungrammatical",29
+"Mini-Norwegian","14","2","Gender agreement","Grammatical",27
+"Mini-Norwegian","14","2","Gender agreement","Number agreement violation",25
+"Mini-Norwegian","14","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","14","3","Differential object marking","Article location violation",27
+"Mini-Norwegian","14","3","Differential object marking","Grammatical",27
+"Mini-Norwegian","14","3","Differential object marking","Ungrammatical",26
+"Mini-Norwegian","14","3","Gender agreement","Number agreement violation",25
+"Mini-Norwegian","14","4","Differential object marking","Article location violation",32
+"Mini-Norwegian","14","4","Differential object marking","Grammatical",26
+"Mini-Norwegian","14","4","Differential object marking","Ungrammatical",27
+"Mini-Norwegian","14","4","Gender agreement","Grammatical",34
+"Mini-Norwegian","14","4","Gender agreement","Number agreement violation",28
+"Mini-Norwegian","14","4","Gender agreement","Ungrammatical",27
+"Mini-Norwegian","14","4","Verb-object number agreement","Article location violation",29
+"Mini-Norwegian","14","4","Verb-object number agreement","Grammatical",27
+"Mini-Norwegian","14","4","Verb-object number agreement","Ungrammatical",29
+"Mini-Norwegian","14","6","Differential object marking","Article location violation",32
+"Mini-Norwegian","14","6","Differential object marking","Grammatical",31
+"Mini-Norwegian","14","6","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","14","6","Gender agreement","Grammatical",36
+"Mini-Norwegian","14","6","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","14","6","Gender agreement","Ungrammatical",30
+"Mini-Norwegian","14","6","Verb-object number agreement","Article location violation",33
+"Mini-Norwegian","14","6","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","14","6","Verb-object number agreement","Ungrammatical",40
+"Mini-Norwegian","16","2","Gender agreement","Grammatical",20
+"Mini-Norwegian","16","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","16","2","Gender agreement","Ungrammatical",23
+"Mini-Norwegian","16","3","Differential object marking","Article location violation",28
+"Mini-Norwegian","16","3","Differential object marking","Grammatical",36
+"Mini-Norwegian","16","3","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","16","3","Gender agreement","Grammatical",26
+"Mini-Norwegian","16","3","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","16","3","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","16","4","Differential object marking","Article location violation",37
+"Mini-Norwegian","16","4","Differential object marking","Grammatical",33
+"Mini-Norwegian","16","4","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","16","4","Gender agreement","Grammatical",34
+"Mini-Norwegian","16","4","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","16","4","Gender agreement","Ungrammatical",25
+"Mini-Norwegian","16","4","Verb-object number agreement","Article location violation",39
+"Mini-Norwegian","16","4","Verb-object number agreement","Grammatical",43
+"Mini-Norwegian","16","4","Verb-object number agreement","Ungrammatical",36
+"Mini-Norwegian","16","6","Differential object marking","Article location violation",15
+"Mini-Norwegian","16","6","Differential object marking","Grammatical",12
+"Mini-Norwegian","16","6","Differential object marking","Ungrammatical",13
+"Mini-Norwegian","16","6","Gender agreement","Grammatical",11
+"Mini-Norwegian","16","6","Gender agreement","Number agreement violation",17
+"Mini-Norwegian","16","6","Gender agreement","Ungrammatical",7
+"Mini-Norwegian","16","6","Verb-object number agreement","Article location violation",10
+"Mini-Norwegian","16","6","Verb-object number agreement","Grammatical",10
+"Mini-Norwegian","16","6","Verb-object number agreement","Ungrammatical",9
+"Mini-Norwegian","18","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","18","2","Gender agreement","Number agreement violation",42
+"Mini-Norwegian","18","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","18","3","Differential object marking","Article location violation",32
+"Mini-Norwegian","18","3","Differential object marking","Grammatical",28
+"Mini-Norwegian","18","3","Differential object marking","Ungrammatical",29
+"Mini-Norwegian","18","3","Gender agreement","Grammatical",35
+"Mini-Norwegian","18","3","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","18","3","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","18","4","Differential object marking","Article location violation",39
+"Mini-Norwegian","18","4","Differential object marking","Grammatical",40
+"Mini-Norwegian","18","4","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","18","4","Gender agreement","Grammatical",28
+"Mini-Norwegian","18","4","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","18","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","18","4","Verb-object number agreement","Article location violation",35
+"Mini-Norwegian","18","4","Verb-object number agreement","Grammatical",31
+"Mini-Norwegian","18","4","Verb-object number agreement","Ungrammatical",34
+"Mini-Norwegian","18","6","Differential object marking","Article location violation",32
+"Mini-Norwegian","18","6","Differential object marking","Grammatical",32
+"Mini-Norwegian","18","6","Differential object marking","Ungrammatical",28
+"Mini-Norwegian","18","6","Gender agreement","Grammatical",31
+"Mini-Norwegian","18","6","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","18","6","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","18","6","Verb-object number agreement","Article location violation",27
+"Mini-Norwegian","18","6","Verb-object number agreement","Grammatical",31
+"Mini-Norwegian","18","6","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","20","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","20","2","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","20","2","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","20","3","Differential object marking","Article location violation",31
+"Mini-Norwegian","20","3","Differential object marking","Grammatical",33
+"Mini-Norwegian","20","3","Differential object marking","Ungrammatical",24
+"Mini-Norwegian","20","3","Gender agreement","Grammatical",36
+"Mini-Norwegian","20","3","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","20","3","Gender agreement","Ungrammatical",30
+"Mini-Norwegian","20","4","Differential object marking","Article location violation",30
+"Mini-Norwegian","20","4","Differential object marking","Grammatical",29
+"Mini-Norwegian","20","4","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","20","4","Gender agreement","Grammatical",31
+"Mini-Norwegian","20","4","Gender agreement","Number agreement violation",39
+"Mini-Norwegian","20","4","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","20","4","Verb-object number agreement","Article location violation",30
+"Mini-Norwegian","20","4","Verb-object number agreement","Grammatical",37
+"Mini-Norwegian","20","4","Verb-object number agreement","Ungrammatical",34
+"Mini-Norwegian","20","6","Differential object marking","Article location violation",30
+"Mini-Norwegian","20","6","Differential object marking","Grammatical",35
+"Mini-Norwegian","20","6","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","20","6","Gender agreement","Grammatical",38
+"Mini-Norwegian","20","6","Gender agreement","Number agreement violation",39
+"Mini-Norwegian","20","6","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","20","6","Verb-object number agreement","Article location violation",39
+"Mini-Norwegian","20","6","Verb-object number agreement","Grammatical",32
+"Mini-Norwegian","20","6","Verb-object number agreement","Ungrammatical",31
+"Mini-Norwegian","22","2","Gender agreement","Grammatical",37
+"Mini-Norwegian","22","2","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","22","2","Gender agreement","Ungrammatical",27
+"Mini-Norwegian","22","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","22","3","Differential object marking","Grammatical",34
+"Mini-Norwegian","22","3","Differential object marking","Ungrammatical",38
+"Mini-Norwegian","22","3","Gender agreement","Grammatical",39
+"Mini-Norwegian","22","3","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","22","3","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","22","4","Differential object marking","Article location violation",32
+"Mini-Norwegian","22","4","Differential object marking","Grammatical",31
+"Mini-Norwegian","22","4","Differential object marking","Ungrammatical",38
+"Mini-Norwegian","22","4","Gender agreement","Grammatical",32
+"Mini-Norwegian","22","4","Gender agreement","Number agreement violation",24
+"Mini-Norwegian","22","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","22","4","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","22","4","Verb-object number agreement","Grammatical",31
+"Mini-Norwegian","22","4","Verb-object number agreement","Ungrammatical",36
+"Mini-Norwegian","22","6","Differential object marking","Article location violation",12
+"Mini-Norwegian","22","6","Differential object marking","Grammatical",18
+"Mini-Norwegian","22","6","Differential object marking","Ungrammatical",23
+"Mini-Norwegian","22","6","Gender agreement","Grammatical",23
+"Mini-Norwegian","22","6","Gender agreement","Number agreement violation",25
+"Mini-Norwegian","22","6","Gender agreement","Ungrammatical",23
+"Mini-Norwegian","22","6","Verb-object number agreement","Article location violation",21
+"Mini-Norwegian","22","6","Verb-object number agreement","Grammatical",22
+"Mini-Norwegian","22","6","Verb-object number agreement","Ungrammatical",22
+"Mini-Norwegian","24","2","Gender agreement","Grammatical",37
+"Mini-Norwegian","24","2","Gender agreement","Number agreement violation",46
+"Mini-Norwegian","24","2","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","24","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","24","3","Differential object marking","Grammatical",33
+"Mini-Norwegian","24","3","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","24","3","Gender agreement","Grammatical",25
+"Mini-Norwegian","24","3","Gender agreement","Number agreement violation",38
+"Mini-Norwegian","24","3","Gender agreement","Ungrammatical",38
+"Mini-Norwegian","24","4","Differential object marking","Article location violation",30
+"Mini-Norwegian","24","4","Differential object marking","Grammatical",31
+"Mini-Norwegian","24","4","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","24","4","Gender agreement","Grammatical",35
+"Mini-Norwegian","24","4","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","24","4","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","24","4","Verb-object number agreement","Article location violation",40
+"Mini-Norwegian","24","4","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","24","4","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","24","6","Differential object marking","Article location violation",34
+"Mini-Norwegian","24","6","Differential object marking","Grammatical",41
+"Mini-Norwegian","24","6","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","24","6","Gender agreement","Grammatical",35
+"Mini-Norwegian","24","6","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","24","6","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","24","6","Verb-object number agreement","Article location violation",31
+"Mini-Norwegian","24","6","Verb-object number agreement","Grammatical",40
+"Mini-Norwegian","24","6","Verb-object number agreement","Ungrammatical",40
+"Mini-Norwegian","26","2","Gender agreement","Grammatical",28
+"Mini-Norwegian","26","2","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","26","2","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","26","3","Differential object marking","Article location violation",37
+"Mini-Norwegian","26","3","Differential object marking","Grammatical",35
+"Mini-Norwegian","26","3","Differential object marking","Ungrammatical",28
+"Mini-Norwegian","26","3","Gender agreement","Grammatical",37
+"Mini-Norwegian","26","3","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","26","3","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","26","4","Differential object marking","Article location violation",39
+"Mini-Norwegian","26","4","Differential object marking","Grammatical",35
+"Mini-Norwegian","26","4","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","26","4","Gender agreement","Grammatical",40
+"Mini-Norwegian","26","4","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","26","4","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","26","4","Verb-object number agreement","Article location violation",29
+"Mini-Norwegian","26","4","Verb-object number agreement","Grammatical",32
+"Mini-Norwegian","26","4","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","26","6","Differential object marking","Article location violation",32
+"Mini-Norwegian","26","6","Differential object marking","Grammatical",35
+"Mini-Norwegian","26","6","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","26","6","Gender agreement","Grammatical",29
+"Mini-Norwegian","26","6","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","26","6","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","26","6","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","26","6","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","26","6","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","28","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","28","2","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","28","2","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","28","3","Differential object marking","Article location violation",36
+"Mini-Norwegian","28","3","Differential object marking","Grammatical",35
+"Mini-Norwegian","28","3","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","28","3","Gender agreement","Grammatical",36
+"Mini-Norwegian","28","3","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","28","3","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","28","4","Differential object marking","Article location violation",37
+"Mini-Norwegian","28","4","Differential object marking","Grammatical",29
+"Mini-Norwegian","28","4","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","28","4","Gender agreement","Grammatical",35
+"Mini-Norwegian","28","4","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","28","4","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","28","4","Verb-object number agreement","Article location violation",36
+"Mini-Norwegian","28","4","Verb-object number agreement","Grammatical",34
+"Mini-Norwegian","28","4","Verb-object number agreement","Ungrammatical",36
+"Mini-Norwegian","30","2","Gender agreement","Grammatical",28
+"Mini-Norwegian","30","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","30","2","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","30","3","Differential object marking","Article location violation",29
+"Mini-Norwegian","30","3","Differential object marking","Grammatical",31
+"Mini-Norwegian","30","3","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","30","3","Gender agreement","Grammatical",34
+"Mini-Norwegian","30","3","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","30","3","Gender agreement","Ungrammatical",27
+"Mini-Norwegian","30","4","Differential object marking","Article location violation",29
+"Mini-Norwegian","30","4","Differential object marking","Grammatical",38
+"Mini-Norwegian","30","4","Differential object marking","Ungrammatical",40
+"Mini-Norwegian","30","4","Gender agreement","Grammatical",39
+"Mini-Norwegian","30","4","Gender agreement","Number agreement violation",39
+"Mini-Norwegian","30","4","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","30","4","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","30","4","Verb-object number agreement","Grammatical",40
+"Mini-Norwegian","30","4","Verb-object number agreement","Ungrammatical",36
+"Mini-Norwegian","30","6","Differential object marking","Article location violation",36
+"Mini-Norwegian","30","6","Differential object marking","Grammatical",27
+"Mini-Norwegian","30","6","Differential object marking","Ungrammatical",33
+"Mini-Norwegian","30","6","Gender agreement","Grammatical",35
+"Mini-Norwegian","30","6","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","30","6","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","30","6","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","30","6","Verb-object number agreement","Grammatical",39
+"Mini-Norwegian","30","6","Verb-object number agreement","Ungrammatical",37
+"Mini-Norwegian","32","2","Gender agreement","Grammatical",32
+"Mini-Norwegian","32","2","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","32","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","32","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","32","3","Differential object marking","Grammatical",37
+"Mini-Norwegian","32","3","Differential object marking","Ungrammatical",39
+"Mini-Norwegian","32","3","Gender agreement","Grammatical",29
+"Mini-Norwegian","32","3","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","32","3","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","32","4","Differential object marking","Article location violation",37
+"Mini-Norwegian","32","4","Differential object marking","Grammatical",35
+"Mini-Norwegian","32","4","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","32","4","Gender agreement","Grammatical",28
+"Mini-Norwegian","32","4","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","32","4","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","32","4","Verb-object number agreement","Article location violation",39
+"Mini-Norwegian","32","4","Verb-object number agreement","Grammatical",38
+"Mini-Norwegian","32","4","Verb-object number agreement","Ungrammatical",32
+"Mini-Norwegian","32","6","Differential object marking","Article location violation",9
+"Mini-Norwegian","32","6","Differential object marking","Grammatical",13
+"Mini-Norwegian","32","6","Differential object marking","Ungrammatical",13
+"Mini-Norwegian","32","6","Gender agreement","Grammatical",16
+"Mini-Norwegian","32","6","Gender agreement","Number agreement violation",10
+"Mini-Norwegian","32","6","Gender agreement","Ungrammatical",10
+"Mini-Norwegian","32","6","Verb-object number agreement","Article location violation",9
+"Mini-Norwegian","32","6","Verb-object number agreement","Grammatical",9
+"Mini-Norwegian","32","6","Verb-object number agreement","Ungrammatical",13
+"Mini-Norwegian","34","2","Gender agreement","Grammatical",31
+"Mini-Norwegian","34","2","Gender agreement","Number agreement violation",38
+"Mini-Norwegian","34","2","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","34","3","Differential object marking","Article location violation",35
+"Mini-Norwegian","34","3","Differential object marking","Grammatical",37
+"Mini-Norwegian","34","3","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","34","3","Gender agreement","Grammatical",36
+"Mini-Norwegian","34","3","Gender agreement","Number agreement violation",40
+"Mini-Norwegian","34","3","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","34","4","Differential object marking","Article location violation",31
+"Mini-Norwegian","34","4","Differential object marking","Grammatical",41
+"Mini-Norwegian","34","4","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","34","4","Gender agreement","Grammatical",38
+"Mini-Norwegian","34","4","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","34","4","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","34","6","Differential object marking","Article location violation",33
+"Mini-Norwegian","34","6","Differential object marking","Grammatical",35
+"Mini-Norwegian","34","6","Differential object marking","Ungrammatical",31
+"Mini-Norwegian","34","6","Gender agreement","Grammatical",35
+"Mini-Norwegian","34","6","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","34","6","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","34","6","Verb-object number agreement","Article location violation",35
+"Mini-Norwegian","34","6","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","34","6","Verb-object number agreement","Ungrammatical",37
+"Mini-Norwegian","36","2","Gender agreement","Grammatical",33
+"Mini-Norwegian","36","2","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","36","2","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","36","3","Differential object marking","Article location violation",28
+"Mini-Norwegian","36","3","Differential object marking","Grammatical",24
+"Mini-Norwegian","36","3","Differential object marking","Ungrammatical",24
+"Mini-Norwegian","36","3","Gender agreement","Grammatical",23
+"Mini-Norwegian","36","3","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","36","3","Gender agreement","Ungrammatical",18
+"Mini-Norwegian","36","4","Differential object marking","Article location violation",31
+"Mini-Norwegian","36","4","Differential object marking","Grammatical",26
+"Mini-Norwegian","36","4","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","36","4","Gender agreement","Grammatical",35
+"Mini-Norwegian","36","4","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","36","4","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","36","4","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","36","4","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","36","4","Verb-object number agreement","Ungrammatical",34
+"Mini-Norwegian","36","6","Differential object marking","Article location violation",38
+"Mini-Norwegian","36","6","Differential object marking","Grammatical",35
+"Mini-Norwegian","36","6","Differential object marking","Ungrammatical",30
+"Mini-Norwegian","36","6","Gender agreement","Grammatical",31
+"Mini-Norwegian","36","6","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","36","6","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","36","6","Verb-object number agreement","Article location violation",35
+"Mini-Norwegian","36","6","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","36","6","Verb-object number agreement","Ungrammatical",31
+"Mini-Norwegian","38","2","Gender agreement","Grammatical",33
+"Mini-Norwegian","38","2","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","38","2","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","38","3","Differential object marking","Article location violation",36
+"Mini-Norwegian","38","3","Differential object marking","Grammatical",33
+"Mini-Norwegian","38","3","Differential object marking","Ungrammatical",31
+"Mini-Norwegian","38","3","Gender agreement","Grammatical",34
+"Mini-Norwegian","38","3","Gender agreement","Number agreement violation",38
+"Mini-Norwegian","38","3","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","38","4","Differential object marking","Article location violation",35
+"Mini-Norwegian","38","4","Differential object marking","Grammatical",37
+"Mini-Norwegian","38","4","Differential object marking","Ungrammatical",40
+"Mini-Norwegian","38","4","Gender agreement","Grammatical",35
+"Mini-Norwegian","38","4","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","38","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","38","4","Verb-object number agreement","Article location violation",39
+"Mini-Norwegian","38","4","Verb-object number agreement","Grammatical",37
+"Mini-Norwegian","38","4","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","38","6","Differential object marking","Article location violation",35
+"Mini-Norwegian","38","6","Differential object marking","Grammatical",30
+"Mini-Norwegian","38","6","Differential object marking","Ungrammatical",36
+"Mini-Norwegian","38","6","Gender agreement","Grammatical",32
+"Mini-Norwegian","38","6","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","38","6","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","38","6","Verb-object number agreement","Article location violation",38
+"Mini-Norwegian","38","6","Verb-object number agreement","Grammatical",38
+"Mini-Norwegian","38","6","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","40","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","40","2","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","40","2","Gender agreement","Ungrammatical",27
+"Mini-Norwegian","40","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","40","3","Differential object marking","Grammatical",37
+"Mini-Norwegian","40","3","Differential object marking","Ungrammatical",33
+"Mini-Norwegian","40","3","Gender agreement","Grammatical",37
+"Mini-Norwegian","40","3","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","40","3","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","40","4","Differential object marking","Article location violation",28
+"Mini-Norwegian","40","4","Differential object marking","Grammatical",26
+"Mini-Norwegian","40","4","Differential object marking","Ungrammatical",38
+"Mini-Norwegian","40","4","Gender agreement","Grammatical",38
+"Mini-Norwegian","40","4","Gender agreement","Number agreement violation",28
+"Mini-Norwegian","40","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","40","4","Verb-object number agreement","Article location violation",38
+"Mini-Norwegian","40","4","Verb-object number agreement","Grammatical",30
+"Mini-Norwegian","40","4","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","40","6","Differential object marking","Article location violation",30
+"Mini-Norwegian","40","6","Differential object marking","Grammatical",33
+"Mini-Norwegian","40","6","Differential object marking","Ungrammatical",30
+"Mini-Norwegian","40","6","Gender agreement","Grammatical",25
+"Mini-Norwegian","40","6","Gender agreement","Number agreement violation",27
+"Mini-Norwegian","40","6","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","40","6","Verb-object number agreement","Article location violation",28
+"Mini-Norwegian","40","6","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","40","6","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","42","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","42","2","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","42","2","Gender agreement","Ungrammatical",38
+"Mini-Norwegian","42","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","42","3","Differential object marking","Grammatical",31
+"Mini-Norwegian","42","3","Differential object marking","Ungrammatical",27
+"Mini-Norwegian","42","3","Gender agreement","Grammatical",33
+"Mini-Norwegian","42","3","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","42","3","Gender agreement","Ungrammatical",40
+"Mini-Norwegian","42","4","Differential object marking","Article location violation",39
+"Mini-Norwegian","42","4","Differential object marking","Grammatical",34
+"Mini-Norwegian","42","4","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","42","4","Gender agreement","Grammatical",34
+"Mini-Norwegian","42","4","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","42","4","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","42","4","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","42","4","Verb-object number agreement","Grammatical",37
+"Mini-Norwegian","42","4","Verb-object number agreement","Ungrammatical",41
+"Mini-Norwegian","42","6","Differential object marking","Article location violation",35
+"Mini-Norwegian","42","6","Differential object marking","Grammatical",28
+"Mini-Norwegian","42","6","Differential object marking","Ungrammatical",45
+"Mini-Norwegian","42","6","Gender agreement","Grammatical",31
+"Mini-Norwegian","42","6","Gender agreement","Number agreement violation",26
+"Mini-Norwegian","42","6","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","42","6","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","42","6","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","42","6","Verb-object number agreement","Ungrammatical",38
+"Mini-Norwegian","44","2","Gender agreement","Grammatical",33
+"Mini-Norwegian","44","2","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","44","2","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","44","3","Differential object marking","Article location violation",38
+"Mini-Norwegian","44","3","Differential object marking","Grammatical",30
+"Mini-Norwegian","44","3","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","44","3","Gender agreement","Grammatical",32
+"Mini-Norwegian","44","3","Gender agreement","Number agreement violation",37
+"Mini-Norwegian","44","3","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","44","4","Differential object marking","Article location violation",33
+"Mini-Norwegian","44","4","Differential object marking","Grammatical",36
+"Mini-Norwegian","44","4","Differential object marking","Ungrammatical",28
+"Mini-Norwegian","44","4","Gender agreement","Grammatical",29
+"Mini-Norwegian","44","4","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","44","4","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","44","4","Verb-object number agreement","Article location violation",36
+"Mini-Norwegian","44","4","Verb-object number agreement","Grammatical",35
+"Mini-Norwegian","44","4","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","46","2","Gender agreement","Grammatical",29
+"Mini-Norwegian","46","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","46","2","Gender agreement","Ungrammatical",25
+"Mini-Norwegian","48","2","Gender agreement","Grammatical",30
+"Mini-Norwegian","48","2","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","48","2","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","48","3","Differential object marking","Article location violation",35
+"Mini-Norwegian","48","3","Differential object marking","Grammatical",34
+"Mini-Norwegian","48","3","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","48","3","Gender agreement","Grammatical",32
+"Mini-Norwegian","48","3","Gender agreement","Number agreement violation",28
+"Mini-Norwegian","48","3","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","48","4","Differential object marking","Article location violation",34
+"Mini-Norwegian","48","4","Differential object marking","Grammatical",30
+"Mini-Norwegian","48","4","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","48","4","Gender agreement","Grammatical",36
+"Mini-Norwegian","48","4","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","48","4","Gender agreement","Ungrammatical",39
+"Mini-Norwegian","48","4","Verb-object number agreement","Article location violation",36
+"Mini-Norwegian","48","4","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","48","4","Verb-object number agreement","Ungrammatical",33
+"Mini-Norwegian","50","2","Gender agreement","Grammatical",33
+"Mini-Norwegian","50","2","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","50","2","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","50","3","Differential object marking","Article location violation",33
+"Mini-Norwegian","50","3","Differential object marking","Grammatical",30
+"Mini-Norwegian","50","3","Differential object marking","Ungrammatical",25
+"Mini-Norwegian","50","3","Gender agreement","Grammatical",29
+"Mini-Norwegian","50","3","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","50","3","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","50","4","Differential object marking","Article location violation",37
+"Mini-Norwegian","50","4","Differential object marking","Grammatical",32
+"Mini-Norwegian","50","4","Differential object marking","Ungrammatical",30
+"Mini-Norwegian","50","4","Gender agreement","Grammatical",33
+"Mini-Norwegian","50","4","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","50","4","Gender agreement","Ungrammatical",41
+"Mini-Norwegian","50","4","Verb-object number agreement","Article location violation",35
+"Mini-Norwegian","50","4","Verb-object number agreement","Grammatical",32
+"Mini-Norwegian","50","4","Verb-object number agreement","Ungrammatical",32
+"Mini-Norwegian","52","2","Gender agreement","Grammatical",30
+"Mini-Norwegian","52","2","Gender agreement","Number agreement violation",32
+"Mini-Norwegian","52","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","52","3","Differential object marking","Article location violation",30
+"Mini-Norwegian","52","3","Differential object marking","Grammatical",32
+"Mini-Norwegian","52","3","Differential object marking","Ungrammatical",27
+"Mini-Norwegian","52","3","Gender agreement","Grammatical",26
+"Mini-Norwegian","52","3","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","52","3","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","52","4","Differential object marking","Article location violation",32
+"Mini-Norwegian","52","4","Differential object marking","Grammatical",32
+"Mini-Norwegian","52","4","Differential object marking","Ungrammatical",26
+"Mini-Norwegian","52","4","Gender agreement","Grammatical",28
+"Mini-Norwegian","52","4","Gender agreement","Number agreement violation",22
+"Mini-Norwegian","52","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","52","4","Verb-object number agreement","Article location violation",30
+"Mini-Norwegian","52","4","Verb-object number agreement","Grammatical",26
+"Mini-Norwegian","52","4","Verb-object number agreement","Ungrammatical",34
+"Mini-Norwegian","54","2","Gender agreement","Grammatical",37
+"Mini-Norwegian","54","2","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","54","2","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","54","3","Differential object marking","Article location violation",38
+"Mini-Norwegian","54","3","Differential object marking","Grammatical",31
+"Mini-Norwegian","54","3","Differential object marking","Ungrammatical",28
+"Mini-Norwegian","54","3","Gender agreement","Grammatical",33
+"Mini-Norwegian","54","3","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","54","3","Gender agreement","Ungrammatical",37
+"Mini-Norwegian","54","4","Differential object marking","Article location violation",38
+"Mini-Norwegian","54","4","Differential object marking","Grammatical",34
+"Mini-Norwegian","54","4","Differential object marking","Ungrammatical",37
+"Mini-Norwegian","54","4","Gender agreement","Grammatical",37
+"Mini-Norwegian","54","4","Gender agreement","Number agreement violation",24
+"Mini-Norwegian","54","4","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","54","4","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","54","4","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","54","4","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","56","2","Gender agreement","Grammatical",30
+"Mini-Norwegian","56","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","56","2","Gender agreement","Ungrammatical",36
+"Mini-Norwegian","56","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","56","3","Differential object marking","Grammatical",29
+"Mini-Norwegian","56","3","Differential object marking","Ungrammatical",29
+"Mini-Norwegian","56","3","Gender agreement","Grammatical",34
+"Mini-Norwegian","56","3","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","56","3","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","56","4","Differential object marking","Article location violation",32
+"Mini-Norwegian","56","4","Differential object marking","Grammatical",36
+"Mini-Norwegian","56","4","Differential object marking","Ungrammatical",32
+"Mini-Norwegian","56","4","Gender agreement","Grammatical",31
+"Mini-Norwegian","56","4","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","56","4","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","56","4","Verb-object number agreement","Article location violation",39
+"Mini-Norwegian","56","4","Verb-object number agreement","Grammatical",37
+"Mini-Norwegian","56","4","Verb-object number agreement","Ungrammatical",34
+"Mini-Norwegian","58","2","Gender agreement","Grammatical",30
+"Mini-Norwegian","58","2","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","58","2","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","58","3","Differential object marking","Article location violation",35
+"Mini-Norwegian","58","3","Differential object marking","Grammatical",34
+"Mini-Norwegian","58","3","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","58","3","Gender agreement","Grammatical",32
+"Mini-Norwegian","58","3","Gender agreement","Number agreement violation",28
+"Mini-Norwegian","58","3","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","58","4","Differential object marking","Article location violation",33
+"Mini-Norwegian","58","4","Differential object marking","Grammatical",34
+"Mini-Norwegian","58","4","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","58","4","Gender agreement","Grammatical",34
+"Mini-Norwegian","58","4","Gender agreement","Number agreement violation",34
+"Mini-Norwegian","58","4","Gender agreement","Ungrammatical",35
+"Mini-Norwegian","58","4","Verb-object number agreement","Article location violation",41
+"Mini-Norwegian","58","4","Verb-object number agreement","Grammatical",29
+"Mini-Norwegian","58","4","Verb-object number agreement","Ungrammatical",36
+"Mini-Norwegian","6","2","Gender agreement","Grammatical",26
+"Mini-Norwegian","6","2","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","6","2","Gender agreement","Ungrammatical",22
+"Mini-Norwegian","6","3","Differential object marking","Article location violation",30
+"Mini-Norwegian","6","3","Differential object marking","Grammatical",31
+"Mini-Norwegian","6","3","Differential object marking","Ungrammatical",26
+"Mini-Norwegian","6","3","Gender agreement","Grammatical",25
+"Mini-Norwegian","6","3","Gender agreement","Number agreement violation",25
+"Mini-Norwegian","6","3","Gender agreement","Ungrammatical",26
+"Mini-Norwegian","6","4","Differential object marking","Article location violation",25
+"Mini-Norwegian","6","4","Differential object marking","Grammatical",30
+"Mini-Norwegian","6","4","Differential object marking","Ungrammatical",27
+"Mini-Norwegian","6","4","Gender agreement","Grammatical",29
+"Mini-Norwegian","6","4","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","6","4","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","6","4","Verb-object number agreement","Article location violation",27
+"Mini-Norwegian","6","4","Verb-object number agreement","Grammatical",27
+"Mini-Norwegian","6","4","Verb-object number agreement","Ungrammatical",24
+"Mini-Norwegian","6","6","Differential object marking","Article location violation",31
+"Mini-Norwegian","6","6","Differential object marking","Grammatical",32
+"Mini-Norwegian","6","6","Differential object marking","Ungrammatical",34
+"Mini-Norwegian","6","6","Gender agreement","Grammatical",31
+"Mini-Norwegian","6","6","Gender agreement","Number agreement violation",38
+"Mini-Norwegian","6","6","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","6","6","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","6","6","Verb-object number agreement","Grammatical",36
+"Mini-Norwegian","6","6","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","60","2","Gender agreement","Grammatical",29
+"Mini-Norwegian","60","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","60","2","Gender agreement","Ungrammatical",29
+"Mini-Norwegian","60","3","Differential object marking","Article location violation",34
+"Mini-Norwegian","60","3","Differential object marking","Grammatical",37
+"Mini-Norwegian","60","3","Differential object marking","Ungrammatical",29
+"Mini-Norwegian","60","3","Gender agreement","Grammatical",28
+"Mini-Norwegian","60","3","Gender agreement","Number agreement violation",30
+"Mini-Norwegian","60","3","Gender agreement","Ungrammatical",32
+"Mini-Norwegian","60","4","Differential object marking","Article location violation",33
+"Mini-Norwegian","60","4","Differential object marking","Grammatical",40
+"Mini-Norwegian","60","4","Differential object marking","Ungrammatical",37
+"Mini-Norwegian","60","4","Gender agreement","Grammatical",39
+"Mini-Norwegian","60","4","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","60","4","Gender agreement","Ungrammatical",31
+"Mini-Norwegian","60","4","Verb-object number agreement","Article location violation",37
+"Mini-Norwegian","60","4","Verb-object number agreement","Grammatical",33
+"Mini-Norwegian","60","4","Verb-object number agreement","Ungrammatical",32
+"Mini-Norwegian","62","2","Gender agreement","Grammatical",33
+"Mini-Norwegian","62","2","Gender agreement","Number agreement violation",31
+"Mini-Norwegian","62","2","Gender agreement","Ungrammatical",28
+"Mini-Norwegian","62","3","Differential object marking","Article location violation",33
+"Mini-Norwegian","62","3","Differential object marking","Grammatical",34
+"Mini-Norwegian","62","3","Differential object marking","Ungrammatical",37
+"Mini-Norwegian","62","3","Gender agreement","Grammatical",32
+"Mini-Norwegian","62","3","Gender agreement","Number agreement violation",36
+"Mini-Norwegian","62","3","Gender agreement","Ungrammatical",33
+"Mini-Norwegian","62","4","Differential object marking","Article location violation",36
+"Mini-Norwegian","62","4","Differential object marking","Grammatical",35
+"Mini-Norwegian","62","4","Differential object marking","Ungrammatical",35
+"Mini-Norwegian","62","4","Gender agreement","Grammatical",40
+"Mini-Norwegian","62","4","Gender agreement","Number agreement violation",35
+"Mini-Norwegian","62","4","Gender agreement","Ungrammatical",38
+"Mini-Norwegian","62","4","Verb-object number agreement","Article location violation",34
+"Mini-Norwegian","62","4","Verb-object number agreement","Grammatical",34
+"Mini-Norwegian","62","4","Verb-object number agreement","Ungrammatical",35
+"Mini-Norwegian","64","2","Gender agreement","Grammatical",35
+"Mini-Norwegian","64","2","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","64","2","Gender agreement","Ungrammatical",34
+"Mini-Norwegian","8","2","Gender agreement","Grammatical",24
+"Mini-Norwegian","8","2","Gender agreement","Number agreement violation",20
+"Mini-Norwegian","8","2","Gender agreement","Ungrammatical",23
+"Mini-Norwegian","8","3","Differential object marking","Article location violation",30
+"Mini-Norwegian","8","3","Differential object marking","Grammatical",27
+"Mini-Norwegian","8","3","Differential object marking","Ungrammatical",26
+"Mini-Norwegian","8","3","Gender agreement","Grammatical",31
+"Mini-Norwegian","8","3","Gender agreement","Number agreement violation",29
+"Mini-Norwegian","8","3","Gender agreement","Ungrammatical",24
+"Mini-Norwegian","8","4","Differential object marking","Article location violation",25
+"Mini-Norwegian","8","4","Differential object marking","Grammatical",30
+"Mini-Norwegian","8","4","Differential object marking","Ungrammatical",29
+"Mini-Norwegian","8","4","Gender agreement","Grammatical",25
+"Mini-Norwegian","8","4","Gender agreement","Number agreement violation",24
+"Mini-Norwegian","8","4","Gender agreement","Ungrammatical",26
+"Mini-Norwegian","8","4","Verb-object number agreement","Article location violation",27
+"Mini-Norwegian","8","4","Verb-object number agreement","Grammatical",31
+"Mini-Norwegian","8","4","Verb-object number agreement","Ungrammatical",30
+"Mini-Norwegian","8","6","Differential object marking","Article location violation",33
+"Mini-Norwegian","8","6","Differential object marking","Grammatical",33
+"Mini-Norwegian","8","6","Differential object marking","Ungrammatical",37
+"Mini-Norwegian","8","6","Gender agreement","Grammatical",32
+"Mini-Norwegian","8","6","Gender agreement","Number agreement violation",33
+"Mini-Norwegian","8","6","Gender agreement","Ungrammatical",37
+"Mini-Norwegian","8","6","Verb-object number agreement","Article location violation",32
+"Mini-Norwegian","8","6","Verb-object number agreement","Grammatical",37
+"Mini-Norwegian","8","6","Verb-object number agreement","Ungrammatical",31
