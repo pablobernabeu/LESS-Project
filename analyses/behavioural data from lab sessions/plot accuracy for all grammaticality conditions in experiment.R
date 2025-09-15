@@ -100,7 +100,7 @@ behavioural_lab_data_boxplot <- ggplot(
   ) +
   facet_wrap(~facet_group, ncol = 1) # Facet by mini_language without sample size
 
-# ggsave("Gender_agreement_boxplot.png", plot = Gender_agreement_boxplot,
+# ggsave("analyses/behavioural data from lab sessions/plots/Gender_agreement_boxplot.png", plot = Gender_agreement_boxplot,
 #        width = 7, height = 10, dpi = 300)
 
 
@@ -199,11 +199,11 @@ DOM_experiment_boxplot <-
   ) +
   facet_wrap(~facet_group, ncol = 1) # Facet by mini_language without sample size
 
-# ggsave("DOM_experiment_boxplot.png", plot = DOM_experiment_boxplot,
+# ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_boxplot.png", plot = DOM_experiment_boxplot,
 #       width = 7, height = 10, dpi = 300)
 
 ########################
-#### for verb object agreement
+#### for verb-object agreement
 
 Verb_object_agreement_df_boxplot <- Verb_object_agreement_df %>%
   filter(grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement"))
@@ -262,7 +262,7 @@ Verb_object_agreement_boxplot <-
   ) +
   scale_color_manual(values = grammaticality_colours) +
   scale_fill_manual(values = grammaticality_colours) +
-  ggtitle("Accuracy on verb object agreement in the experiment") +
+  ggtitle("Accuracy on verb-object agreement in the experiment") +
 
   # Customize the plot with your specified theme
   theme_minimal() +
@@ -302,5 +302,5 @@ Verb_object_agreement_boxplot <-
   ) +
   facet_wrap(~facet_group, ncol = 1) # Facet by mini_language without sample size
 
-# ggsave("Verb_object_agreement_boxplot.png", plot = Verb_object_agreement_boxplot,
-#    width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/Verb_object_agreement_boxplot.png", 
+  plot = Verb_object_agreement_boxplot, width = 7, height = 10, dpi = 300)

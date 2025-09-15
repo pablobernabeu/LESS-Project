@@ -99,6 +99,7 @@ print(test_accuracy_plot)
 
 
 
-#ggsave("test_accuracy_plot.png", plot = test_accuracy_plot, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/test_accuracy_plot.png", 
+       plot = test_accuracy_plot, width = 7, height = 10, dpi = 300)
 
 

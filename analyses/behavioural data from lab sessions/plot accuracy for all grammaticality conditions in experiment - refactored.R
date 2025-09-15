@@ -122,10 +122,10 @@ DOM_experiment_boxplot <- behavioural_lab_data %>%
 
 print(DOM_experiment_boxplot)
 
-# Verb object agreement plot
+# Verb-object agreement plot
 verb_object_agreement_boxplot <- behavioural_lab_data %>%
   filter(
-    grammatical_property == "verb object agreement",
+    grammatical_property == "verb-object agreement",
     session_part == "Experiment",
     grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement")
   ) %>%
@@ -133,16 +133,18 @@ verb_object_agreement_boxplot <- behavioural_lab_data %>%
     levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement")
   )) %>%
   create_accuracy_boxplot(
-    title = "Accuracy on verb object agreement in the experiment",
-    session_labels = c("Session 3", "Session 4", "Session 6")
+    title = "Accuracy on verb-object agreement in the experiment",
+    session_labels = c("Session 4", "Session 6")
   )
 
 print(verb_object_agreement_boxplot)
 
 # Optional: Save plots
-# ggsave("gender_agreement_boxplot.png", plot = gender_agreement_boxplot,
-#        width = 7, height = 10, dpi = 300)
-# ggsave("DOM_experiment_boxplot.png", plot = DOM_experiment_boxplot,
-#        width = 7, height = 10, dpi = 300)
-# ggsave("verb_object_agreement_boxplot.png", plot = verb_object_agreement_boxplot,
-#        width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_boxplot.png", 
+       plot = gender_agreement_boxplot, width = 7, height = 10, dpi = 300)
+
+ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_boxplot.png", 
+       plot = DOM_experiment_boxplot, width = 7, height = 10, dpi = 300)
+
+ggsave("analyses/behavioural data from lab sessions/plots/verb_object_agreement_boxplot.png", 
+       plot = verb_object_agreement_boxplot, width = 7, height = 10, dpi = 300)

@@ -120,10 +120,10 @@ DOM_RT <- behavioural_lab_data %>%
 
 print(DOM_RT)
 
-# Verb object agreement RT plot
+# Verb-object agreement RT plot
 VOA_RT <- behavioural_lab_data %>%
   filter(
-    grammatical_property == "verb object agreement",
+    grammatical_property == "verb-object agreement",
     session_part == "Experiment", 
     grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement")
   ) %>%
@@ -131,7 +131,7 @@ VOA_RT <- behavioural_lab_data %>%
     levels = c("Grammatical", "Ungrammatical", "Article\nmisplacement")
   )) %>%
   create_rt_boxplot(
-    title = "RTs on verb object agreement in the experiment",
+    title = "RTs on verb-object agreement in the experiment",
     session_labels = c("Session 3", "Session 4", "Session 6")
   )
 
@@ -181,9 +181,9 @@ gender_agreement_raincloud <- behavioural_lab_data %>%
 # print(gender_agreement_raincloud)
 
 # Optional: Save plots
-# ggsave("gender_agreement_RT.png", plot = gender_agreement_RT,
-#        width = 7, height = 10, dpi = 300)
-# ggsave("DOM_RT.png", plot = DOM_RT,
-#        width = 7, height = 10, dpi = 300)
-# ggsave("VOA_RT.png", plot = VOA_RT,
-#        width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_RT.png", 
+  plot = gender_agreement_RT, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/DOM_RT.png", 
+  plot = DOM_RT, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/VOA_RT.png", 
+       plot = VOA_RT, width = 7, height = 10, dpi = 300)

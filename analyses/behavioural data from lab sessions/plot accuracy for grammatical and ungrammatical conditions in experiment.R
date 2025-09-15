@@ -336,7 +336,7 @@ Gender_agreement_plot <- ggplot(Gender_agreement_df_violin,
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-# ggsave("gender_agreement_experiment_plot.png", plot = Gender_agreement_plot, 
+# ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_experiment_plot.png", plot = Gender_agreement_plot, 
 #        width = 7, height = 10, dpi = 300)
 
 
@@ -448,12 +448,12 @@ DOM_experiment_plot <- ggplot(Differential_object_marking_df_violin,
   ) +
   facet_wrap(~facet_group, ncol = 1)  
 
-#ggsave("DOM_experiment_plot.png", plot = DOM_experiment_plot, 
-#     width = 7, height = 10, dpi = 300)
+#ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_plot.png", plot = DOM_experiment_plot, 
+#       width = 7, height = 10, dpi = 300)
 
 
 ###########################################
-#### verb object agreement
+#### verb-object agreement
 
 Verb_object_agreement_df <- clean_combined_df %>%
   filter(grammatical_property == "verb-object agreement", session_part == "Experiment")
@@ -558,5 +558,5 @@ VOA_plot <- ggplot(Verb_object_agreement_df_violin,
   ) +
   facet_wrap(~facet_group, ncol = 1)  # Facet by mini_language without sample size
 
-#ggsave("VOA_plot.png", plot = VOA_plot, width = 7, height = 10, dpi = 300)
+#ggsave("analyses/behavioural data from lab sessions/plots/VOA_plot.png", plot = VOA_plot, width = 7, height = 10, dpi = 300)
 

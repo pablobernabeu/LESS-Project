@@ -113,23 +113,25 @@ DOM_experiment_plot <- behavioural_lab_data %>%
 
 print(DOM_experiment_plot)
 
-# Verb object agreement plot
+# Verb-object agreement plot
 VOA_plot <- behavioural_lab_data %>%
   filter(
-    grammatical_property == "verb object agreement",
+    grammatical_property == "verb-object agreement",
     session_part == "Experiment"
   ) %>%
   create_split_violin_plot(
-    title = "Accuracy on verb object agreement in the experiment",
+    title = "Accuracy on verb-object agreement in the experiment",
     session_labels = c("Session 3", "Session 4", "Session 6")
   )
 
 print(VOA_plot)
 
 # Optional: Save plots
-# ggsave("gender_agreement_experiment_plot.png", plot = gender_agreement_plot, 
-#        width = 7, height = 10, dpi = 300)
-# ggsave("DOM_experiment_plot.png", plot = DOM_experiment_plot, 
-#        width = 7, height = 10, dpi = 300)
-# ggsave("VOA_plot.png", plot = VOA_plot, 
-#        width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_experiment_plot.png", 
+       plot = gender_agreement_plot, width = 7, height = 10, dpi = 300)
+
+ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_plot.png", 
+       plot = DOM_experiment_plot, width = 7, height = 10, dpi = 300)
+
+ggsave("analyses/behavioural data from lab sessions/plots/VOA_plot.png", 
+       plot = VOA_plot, width = 7, height = 10, dpi = 300)

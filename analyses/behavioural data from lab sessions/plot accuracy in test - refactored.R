@@ -83,5 +83,5 @@ test_accuracy_plot <- behavioural_lab_data %>%
 print(test_accuracy_plot)
 
 # Optional: Save plot
-# ggsave("test_accuracy_plot.png", plot = test_accuracy_plot, 
-#        width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/test_accuracy_plot.png", 
+       plot = test_accuracy_plot, width = 7, height = 10, dpi = 300)
