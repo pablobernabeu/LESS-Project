@@ -235,16 +235,7 @@ import_trialbytrial_EEG_data <-
           caudality == 'medial' ~ 0,
           caudality == 'posterior' ~ -0.5,
           TRUE ~ NA_real_
-        )),
-        
-        # Z-score predictor (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
-        # This z-scoring is not done per participant because sessions vary between
-        # participants due to some drop-outs. Furthermore, z-scoring within participants
-        # would produce NAs for those participants that dropped out after the first lab
-        # session.
-        
-        z_recoded_session = ifelse(is.na(recoded_session) | recoded_session == '', NA,
-                                   as.numeric(scale(recoded_session)))
+        ))
       )
     
     if(include_baseline) {
@@ -259,25 +250,13 @@ import_trialbytrial_EEG_data <-
     
     # Z-score amplitude around each participant's own mean to preserve individual
     # differences (Faust et al., 1999; https://doi.org/10.1037/0033-2909.125.6.777)
-    # Similarly, z-score between-items predictors around each participant's own mean,
-    # (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
+    # Similarly, z-score continuous between-items predictors around each participant's 
+    # own mean (Brauer & Curtin, 2018; https://doi.org/10.1037/met0000159).
     
     trialbytrial_EEG_data <- trialbytrial_EEG_data %>%
       group_by(participant_lab_ID) %>%
       mutate(
-        z_amplitude = ifelse(is.na(amplitude) | amplitude == '', NA, as.numeric(scale(amplitude))),
-        
-        z_recoded_grammaticality = ifelse(is.na(recoded_grammaticality) | recoded_grammaticality == '', NA,
-                                          as.numeric(scale(recoded_grammaticality))),
-        
-        z_recoded_brain_region = ifelse(is.na(recoded_brain_region) | recoded_brain_region == '', NA,
-                                        as.numeric(scale(recoded_brain_region))),
-        
-        z_recoded_hemisphere = ifelse(is.na(recoded_hemisphere) | recoded_hemisphere == '', NA,
-                                      as.numeric(scale(recoded_hemisphere))),
-        
-        z_recoded_caudality = ifelse(is.na(recoded_caudality) | recoded_caudality == '', NA,
-                                     as.numeric(scale(recoded_caudality)))
+        z_amplitude = ifelse(is.na(amplitude) | amplitude == '', NA, as.numeric(scale(amplitude)))
       ) %>%
       ungroup()
     

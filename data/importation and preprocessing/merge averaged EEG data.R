@@ -44,7 +44,7 @@ averaged_EEG_data <- session_IDs_progress %>%
   
   mutate(
     
-    # Z-score between-participants predictors, following Brauer and Curtin (2018; 
+    # Z-score continuous between-participants predictors, following Brauer and Curtin (2018; 
     # https://doi.org/10.1037/met0000159).
     
     z_session1_digit_span = scale(session1_digit_span),
@@ -62,13 +62,7 @@ averaged_EEG_data <- session_IDs_progress %>%
   # following Brauer and Curtin (2018; https://doi.org/10.1037/met0000159).
   
   group_by(participant_lab_ID) %>%
-  mutate(
-    z_amplitude = scale(amplitude),
-    z_recoded_grammaticality = scale(recoded_grammaticality),
-    z_recoded_session = scale(recoded_session),
-    z_recoded_hemisphere = scale(recoded_hemisphere),
-    z_recoded_caudality = scale(recoded_caudality)
-  ) %>%
+  mutate(z_amplitude = scale(amplitude)) %>%
   ungroup() %>%
   
   # Order variables

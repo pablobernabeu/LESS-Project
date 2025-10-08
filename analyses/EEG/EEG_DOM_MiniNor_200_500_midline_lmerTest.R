@@ -72,21 +72,21 @@ system.time({
       z_baseline_predictor +
       
       # Independent variables
-      z_recoded_grammaticality +
-      z_recoded_session +
+      recoded_grammaticality +
+      recoded_session +
       z_session1_digit_span +
       z_session1_Stroop +
       z_session1_ASRT +
       z_multilingual_language_diversity +
-      z_recoded_caudality  +
+      recoded_caudality  +
       
       # Interactions
-      z_recoded_grammaticality : z_recoded_session +
-      z_recoded_grammaticality : z_session1_digit_span +
-      z_recoded_grammaticality : z_session1_Stroop +
-      z_recoded_grammaticality : z_session1_ASRT +
-      z_recoded_grammaticality : z_multilingual_language_diversity +
-      z_recoded_grammaticality : z_recoded_caudality  +
+      recoded_grammaticality : recoded_session +
+      recoded_grammaticality : z_session1_digit_span +
+      recoded_grammaticality : z_session1_Stroop +
+      recoded_grammaticality : z_session1_ASRT +
+      recoded_grammaticality : z_multilingual_language_diversity +
+      recoded_grammaticality : recoded_caudality  +
       
       # RANDOM EFFECTS: maximal structure constructed following the guidelines of Brauer and Curtin 
       # (2018; http://doi.org/10.1037/met0000159).
@@ -105,8 +105,8 @@ system.time({
       # interactions with Grammaticality.
       
       # By-participant random slopes for between-items variables
-      (0 + z_recoded_grammaticality || participant_lab_ID) +
-      (0 + z_recoded_session || participant_lab_ID) +
+      (0 + recoded_grammaticality || participant_lab_ID) +
+      (0 + recoded_session || participant_lab_ID) +
       
       # By-sentence random slopes for between-participants variables
       (0 + z_session1_digit_span || sentence_marker) +

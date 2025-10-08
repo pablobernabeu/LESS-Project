@@ -1,7 +1,8 @@
 
 
-# Analysis of EEG data for differential object marking in Mini-Norwegian group, within time window of 
-# 400-900 ms and within midline electrodes.
+
+# Analysis of EEG data for verb-object number agreement within time window of 400-900 ms and 
+# within midline electrodes.
 
 library(dplyr)  # data wrangling
 # The following lme4-relevant package was installed before lme4 to avoid a conflict 
@@ -13,18 +14,18 @@ library(lmerTest)  # Compute p values
 
 # Terminological note: "brain regions" refer to nine standard sets of electrodes that were 
 # used in González Alonso et al. (2020; https://doi.org/10.1016/j.jneuroling.2020.100939). 
-# "Macroregions" refer to midline and midline sets of electrodes, also used in González 
+# "Macroregions" refer to lateral and midline sets of electrodes, also used in González 
 # Alonso et al. (2020). 
 
-# Filter data to the Mini-Norwegian group (namely, even participant IDs), to the property 
-# of differential object marking (i.e., marker S2), to the grammatical and ungrammatical trials 
-# (namely, markers S101 and S102), and to the appropriate time window and macroregion.
+# Filter data to the property of verb-object number agreement (i.e., marker S3), to the grammatical 
+# and ungrammatical trials (namely, markers S101 and S102), and to the appropriate time 
+# window and macroregion.
 
 # Load function
 source('data/R_functions/merge_trialbytrial_EEG_data.R') 
 
-EEG_DOM_MiniNor_400_900_midline_data <- 
-  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S2_S10[12]\\.',
+EEG_VONA_400_900_midline_data <- 
+  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*_trialbytrial_S3_S10[12]\\.',
                               min_time = 400, max_time = 898, # 898 = time point up to 900 ms
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
@@ -37,7 +38,7 @@ EEG_DOM_MiniNor_400_900_midline_data <-
 # It is then z-scored per participant. 
 
 baseline_predictor <- 
-  EEG_DOM_MiniNor_400_900_midline_data %>% 
+  EEG_VONA_400_900_midline_data %>% 
   filter(time_window == 'baseline') %>%
   group_by(participant_lab_ID, brain_region, sentence_marker) %>%
   summarise(
@@ -48,22 +49,23 @@ baseline_predictor <-
   mutate(z_baseline_predictor = scale(baseline_predictor))
 
 # Import baseline predictor to main data set
-EEG_DOM_MiniNor_400_900_midline_data <- EEG_DOM_MiniNor_400_900_midline_data %>%
+EEG_VONA_400_900_midline_data <- EEG_VONA_400_900_midline_data %>%
   left_join(baseline_predictor, by = c('participant_lab_ID', 'brain_region', 'sentence_marker')) %>%
   
   # Select variables
-  select(contains(c('amplitude', 'baseline', 'grammaticality', 'session', 'multilingual', 
-                    'hemisphere', 'caudality', 'participant_lab_ID', 'sentence_marker')))
+  select(contains(c('amplitude', 'baseline', 'mini_language', 'grammaticality', 'session', 
+                    'multilingual', 'caudality', 'participant_lab_ID', 
+                    'sentence_marker')))
 
 # Save data to disk
-saveRDS(EEG_DOM_MiniNor_400_900_midline_data, 
-        'data/merged data/EEG_DOM_MiniNor_400_900_midline_data.rds')
+saveRDS(EEG_VONA_400_900_midline_data, 
+        'data/merged data/EEG_VONA_400_900_midline_data.rds')
 
 # MODEL
 # Measure running time
 system.time({
   
-  EEG_DOM_MiniNor_400_900_midline_lmerTest <- lmerTest::lmer(
+  EEG_VONA_400_900_midline_lmerTest <- lmerTest::lmer(
     
     # Dependent variable
     z_amplitude ~ 
@@ -72,6 +74,7 @@ system.time({
       z_baseline_predictor +
       
       # Independent variables
+      recoded_mini_language +
       recoded_grammaticality +
       recoded_session +
       z_session1_digit_span +
@@ -81,7 +84,12 @@ system.time({
       recoded_caudality  +
       
       # Interactions
-      recoded_grammaticality : recoded_session +
+      recoded_mini_language : recoded_session +
+      recoded_mini_language : z_session1_digit_span +
+      recoded_mini_language : z_session1_Stroop +
+      recoded_mini_language : z_multilingual_language_diversity +
+      recoded_mini_language : recoded_grammaticality +
+      recoded_grammaticality : z_session1_ASRT +
       recoded_grammaticality : z_session1_digit_span +
       recoded_grammaticality : z_session1_Stroop +
       recoded_grammaticality : z_session1_ASRT +
@@ -112,9 +120,13 @@ system.time({
       (0 + z_session1_digit_span || sentence_marker) +
       (0 + z_session1_Stroop || sentence_marker) +
       (0 + z_session1_ASRT || sentence_marker) +
-      (0 + z_multilingual_language_diversity || sentence_marker),
+      (0 + z_multilingual_language_diversity || sentence_marker) +
+      (0 + recoded_mini_language : z_session1_digit_span || sentence_marker) +
+      (0 + recoded_mini_language : z_session1_Stroop || sentence_marker) +
+      (0 + recoded_mini_language : z_session1_ASRT || sentence_marker) +
+      (0 + recoded_mini_language : z_multilingual_language_diversity || sentence_marker),
     
-    data = EEG_DOM_MiniNor_400_900_midline_data,
+    data = EEG_VONA_400_900_midline_data,
     
     # Set maximum number of iterations to 1m to facilitate convergence 
     # (Brauer & Curtin, 2018; Singmann & Kellen, 2019)
@@ -122,28 +134,28 @@ system.time({
   )
 })
 
-saveRDS(EEG_DOM_MiniNor_400_900_midline_lmerTest, 
-        'analyses/EEG/results/EEG_DOM_MiniNor_400_900_midline_lmerTest.rds')
+saveRDS(EEG_VONA_400_900_midline_lmerTest, 
+        'analyses/EEG/results/EEG_VONA_400_900_midline_lmerTest.rds')
 
 # Calculate p values using Satterthwaite method (Luke, 2017; 
 # https://doi.org/10.3758/s13428-016-0809-y)
-summary(EEG_DOM_MiniNor_400_900_midline_lmerTest, ddf = 'Satterthwaite') %>%
-  saveRDS('analyses/EEG/results/Satterthwaite_summary_EEG_DOM_MiniNor_400_900_midline_lmerTest.rds')
+summary(EEG_VONA_400_900_midline_lmerTest, ddf = 'Satterthwaite') %>%
+  saveRDS('analyses/EEG/results/Satterthwaite_summary_EEG_VONA_400_900_midline_lmerTest.rds')
 
 # Calculate R^2. The result must be interpreted with caution as it differs from the 
 # traditional R^2 (Nakagawa et al., 2017; https://doi.org/10.1098/rsif.2017.0213)
-# MuMIn::r.squaredGLMM(EEG_DOM_MiniNor_400_900_midline_lmerTest) %>%
-#   saveRDS('analyses/EEG/results/Nakagawa2017_R2_EEG_DOM_MiniNor_400_900_midline_lmerTest.rds')
+# MuMIn::r.squaredGLMM(EEG_VONA_400_900_midline_lmerTest) %>%
+#   saveRDS('analyses/EEG/results/Nakagawa2017_R2_EEG_VONA_400_900_midline_lmerTest.rds')
 
 # Calculate 95% confidence intervals of fixed effects
 lme4::confint.merMod(
-  EEG_DOM_MiniNor_400_900_midline_lmerTest, method = 'Wald',
+  EEG_VONA_400_900_midline_lmerTest, method = 'Wald',
   # Compute 95% CIs for every effect, as well as for the intercept
-  parm = rownames(summary(EEG_DOM_MiniNor_400_900_midline_lmerTest)$coefficients)
+  parm = rownames(summary(EEG_VONA_400_900_midline_lmerTest)$coefficients)
 ) %>%
-  saveRDS('analyses/EEG/results/confint_EEG_DOM_MiniNor_400_900_midline_lmerTest.rds')
+  saveRDS('analyses/EEG/results/confint_EEG_VONA_400_900_midline_lmerTest.rds')
 
 # Save random effects
-lme4::ranef(EEG_DOM_MiniNor_400_900_midline_lmerTest) %>%
-  saveRDS('analyses/EEG/results/ranef_EEG_DOM_MiniNor_400_900_midline_lmerTest.rds')
+lme4::ranef(EEG_VONA_400_900_midline_lmerTest) %>%
+  saveRDS('analyses/EEG/results/ranef_EEG_VONA_400_900_midline_lmerTest.rds')
 

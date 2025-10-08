@@ -1,3 +1,88 @@
 {
-    "r.lsp.promptToInstall": false
+    // R executable paths
+    "r.rterm.windows": "C:\\Users\\pablob\\AppData\\Local\\Programs\\R\\R-4.5.1\\bin\\x64\\R.exe",
+    "r.rpath.windows": "C:\\Users\\pablob\\AppData\\Local\\Programs\\R\\R-4.5.1\\bin\\x64\\R.exe",
+    
+    // R terminal settings for better execution
+    "r.rterm.option": [
+        "--no-save",
+        "--no-restore",
+        "--interactive"
+    ],
+    "r.alwaysUseActiveTerminal": true,
+    "r.bracketedPaste": true,
+    "r.rtermSendDelay": 0,
+    "r.sessionWatcher": true,
+    "r.source.focus": "terminal",
+    "r.source.encoding": "UTF-8",
+    "r.selection.autoAdvance": true,
+    
+    // R Language Server settings
+    "r.lsp.enabled": true,
+    "r.lsp.diagnostics": true,
+    "r.lsp.debug": false,
+    
+    // R completion settings
+    "r.completion.enabled": true,
+    "r.completion.includeBasePackages": true,
+    "r.completion.includeAttachedPackages": true,
+    "r.completion.showHelp": true,
+    
+    // R workspace settings
+    "r.session.levelOfObjectDetail": "Detailed",
+    "r.workspaceViewer.showObjectSize": true,
+    "r.helpPanel.enableSyntaxHighlighting": true,
+    "r.helpPanel.rHelpViewColumn": "Two",
+    "r.plot.useHttpgd": false,
+    
+    // Editor settings for better R experience
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.tabCompletion": "on",
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    
+    // Terminal integration
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.shellIntegration.enabled": false,
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.terminal.sendSequence",
+        "workbench.action.terminal.kill",
+        "workbench.action.terminal.killEditor",
+        "terminal.sendSequence"
+    ],
+    "terminal.integrated.windowsEnableConpty": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.sendKeybindingsToShell": false,
+    "terminal.integrated.profiles.windows": {
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        }
+    },
+    
+    // Auto-formatting settings for R files
+    "[r]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": false,
+        "editor.formatOnPaste": true,
+        "editor.defaultFormatter": "REditorSupport.r"
+    },
+    "r.lsp.formatting.style": "tidyverse",
+    "r.lsp.formatting.indentSize": 2,
+    "r.lsp.formatting.tabSize": 2,
+    "r.lsp.formatting.insertSpaces": true
 }

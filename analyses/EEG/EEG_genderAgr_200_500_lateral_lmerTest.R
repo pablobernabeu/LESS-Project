@@ -24,7 +24,7 @@ library(lmerTest)  # Compute p values
 source('data/R_functions/merge_trialbytrial_EEG_data.R') 
 
 EEG_genderAgr_200_500_lateral_data <- 
-  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*[02468]_trialbytrial_S1_S10[12]\\.',
+  merge_trialbytrial_EEG_data(EEG_file_pattern = '^\\d*_trialbytrial_S1_S10[12]\\.',
                               min_time = 200, max_time = 498, # 498 = time point up to 500 ms
                               include_baseline = TRUE,
                               aggregate_electrodes = TRUE, 
@@ -73,29 +73,29 @@ system.time({
       z_baseline_predictor +
       
       # Independent variables
-      z_recoded_mini_language +
-      z_recoded_grammaticality +
-      z_recoded_session +
+      recoded_mini_language +
+      recoded_grammaticality +
+      recoded_session +
       z_session1_digit_span +
       z_session1_Stroop +
       z_session1_ASRT +
       z_multilingual_language_diversity +
-      z_recoded_hemisphere  +
-      z_recoded_caudality  +
+      recoded_hemisphere  +
+      recoded_caudality  +
       
       # Interactions
-      z_recoded_mini_language : z_recoded_session +
-      z_recoded_mini_language : z_session1_digit_span +
-      z_recoded_mini_language : z_session1_Stroop +
-      z_recoded_mini_language : z_multilingual_language_diversity +
-      z_recoded_mini_language : z_recoded_grammaticality +
-      z_recoded_grammaticality : z_session1_ASRT +
-      z_recoded_grammaticality : z_session1_digit_span +
-      z_recoded_grammaticality : z_session1_Stroop +
-      z_recoded_grammaticality : z_session1_ASRT +
-      z_recoded_grammaticality : z_multilingual_language_diversity +
-      z_recoded_grammaticality : z_recoded_hemisphere  +
-      z_recoded_grammaticality : z_recoded_caudality  +
+      recoded_mini_language : recoded_session +
+      recoded_mini_language : z_session1_digit_span +
+      recoded_mini_language : z_session1_Stroop +
+      recoded_mini_language : z_multilingual_language_diversity +
+      recoded_mini_language : recoded_grammaticality +
+      recoded_grammaticality : z_session1_ASRT +
+      recoded_grammaticality : z_session1_digit_span +
+      recoded_grammaticality : z_session1_Stroop +
+      recoded_grammaticality : z_session1_ASRT +
+      recoded_grammaticality : z_multilingual_language_diversity +
+      recoded_grammaticality : recoded_hemisphere  +
+      recoded_grammaticality : recoded_caudality  +
       
       # RANDOM EFFECTS: maximal structure constructed following the guidelines of Brauer and Curtin 
       # (2018; http://doi.org/10.1037/met0000159).
@@ -114,18 +114,18 @@ system.time({
       # interactions with Grammaticality.
       
       # By-participant random slopes for between-items variables
-      (0 + z_recoded_grammaticality || participant_lab_ID) +
-      (0 + z_recoded_session || participant_lab_ID) +
+      (0 + recoded_grammaticality || participant_lab_ID) +
+      (0 + recoded_session || participant_lab_ID) +
       
       # By-sentence random slopes for between-participants variables
       (0 + z_session1_digit_span || sentence_marker) +
       (0 + z_session1_Stroop || sentence_marker) +
       (0 + z_session1_ASRT || sentence_marker) +
       (0 + z_multilingual_language_diversity || sentence_marker) +
-      (0 + z_recoded_mini_language : z_session1_digit_span || sentence_marker) +
-      (0 + z_recoded_mini_language : z_session1_Stroop || sentence_marker) +
-      (0 + z_recoded_mini_language : z_session1_ASRT || sentence_marker) +
-      (0 + z_recoded_mini_language : z_multilingual_language_diversity || sentence_marker),
+      (0 + recoded_mini_language : z_session1_digit_span || sentence_marker) +
+      (0 + recoded_mini_language : z_session1_Stroop || sentence_marker) +
+      (0 + recoded_mini_language : z_session1_ASRT || sentence_marker) +
+      (0 + recoded_mini_language : z_multilingual_language_diversity || sentence_marker),
     
     data = EEG_genderAgr_200_500_lateral_data,
     
