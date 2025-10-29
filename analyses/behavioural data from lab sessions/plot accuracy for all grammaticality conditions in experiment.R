@@ -1,4 +1,3 @@
-
 # Display the behavioural results from the experiment using boxplots
 
 library(dplyr)
@@ -251,7 +250,7 @@ Verb_object_agreement_boxplot <-
   ) +
   scale_x_discrete(
     name = "",
-    labels = c("Session 3", "Session 4", "Session 6"),
+    labels = c("Session 4", "Session 6"),
     expand = expansion(mult = c(0.1, 0.1))
   ) +
   scale_y_continuous(
@@ -302,5 +301,6 @@ Verb_object_agreement_boxplot <-
   ) +
   facet_wrap(~facet_group, ncol = 1) # Facet by mini_language without sample size
 
-ggsave("analyses/behavioural data from lab sessions/plots/Verb_object_agreement_boxplot.png", 
-  plot = Verb_object_agreement_boxplot, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/Verb_object_agreement_boxplot.png",
+  plot = Verb_object_agreement_boxplot, width = 7, height = 10, dpi = 300
+)

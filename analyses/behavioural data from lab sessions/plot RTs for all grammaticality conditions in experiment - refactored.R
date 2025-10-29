@@ -1,4 +1,4 @@
-# Plot reaction time across conditions and sessions in the 
+# Plot reaction time across conditions and sessions in the
 # behavioural data from the lab sessions.
 
 library(dplyr)
@@ -56,8 +56,10 @@ create_rt_boxplot <- function(data, title, session_labels, y_breaks = seq(0, 270
         grammaticality = factor(grammaticality),
         facet_group = factor(
           mini_language,
-          levels = c("Mini-Norwegian", 
-                    setdiff(unique(mini_language), "Mini-Norwegian"))
+          levels = c(
+            "Mini-Norwegian",
+            setdiff(unique(mini_language), "Mini-Norwegian")
+          )
         )
       ),
     aes(x = session, y = response_time, fill = grammaticality, color = grammaticality)
@@ -94,8 +96,9 @@ gender_agreement_RT <- behavioural_lab_data %>%
     session_part == "Experiment",
     grammaticality %in% c("Grammatical", "Ungrammatical", "Number\nviolation")
   ) %>%
-  mutate(grammaticality = factor(grammaticality, 
-                                levels = c("Grammatical", "Ungrammatical", "Number\nviolation"))) %>%
+  mutate(grammaticality = factor(grammaticality,
+    levels = c("Grammatical", "Ungrammatical", "Number\nviolation")
+  )) %>%
   create_rt_boxplot(
     title = "RTs on gender agreement in the experiment",
     session_labels = c("Session 2", "Session 3", "Session 4", "Session 6")
@@ -124,7 +127,7 @@ print(DOM_RT)
 VOA_RT <- behavioural_lab_data %>%
   filter(
     grammatical_property == "verb-object agreement",
-    session_part == "Experiment", 
+    session_part == "Experiment",
     grammaticality %in% c("Grammatical", "Ungrammatical", "Article\nmisplacement")
   ) %>%
   mutate(grammaticality = factor(grammaticality,
@@ -132,7 +135,7 @@ VOA_RT <- behavioural_lab_data %>%
   )) %>%
   create_rt_boxplot(
     title = "RTs on verb-object agreement in the experiment",
-    session_labels = c("Session 3", "Session 4", "Session 6")
+    session_labels = c("Session 4", "Session 6")
   )
 
 print(VOA_RT)
@@ -148,42 +151,60 @@ gender_agreement_raincloud <- behavioural_lab_data %>%
   ) %>%
   ggplot(aes(x = response_time, y = session, fill = mini_language)) +
   # clouds
-  introdataviz::geom_flat_violin(trim = FALSE, alpha = 0.4,
-                                position = position_nudge(x = rain_height + .05)) +
+  introdataviz::geom_flat_violin(
+    trim = FALSE, alpha = 0.4,
+    position = position_nudge(x = rain_height + .05)
+  ) +
   # rain
-  geom_point(aes(colour = grammaticality), size = 2, alpha = .5, show.legend = FALSE, 
-             position = position_jitter(width = rain_height, height = 0)) +
+  geom_point(aes(colour = grammaticality),
+    size = 2, alpha = .5, show.legend = FALSE,
+    position = position_jitter(width = rain_height, height = 0)
+  ) +
   scale_color_manual(values = grammaticality_colours) +
-  geom_boxplot(width = rain_height, alpha = 0.4, show.legend = FALSE, 
-               outlier.shape = NA,
-               position = position_nudge(x = -rain_height * 2)) +
+  geom_boxplot(
+    width = rain_height, alpha = 0.4, show.legend = FALSE,
+    outlier.shape = NA,
+    position = position_nudge(x = -rain_height * 2)
+  ) +
   # mean and SE point in the cloud
-  stat_summary(fun.data = mean_cl_normal, mapping = aes(color = grammaticality), show.legend = FALSE,
-               position = position_nudge(x = rain_height * 3)) +
+  stat_summary(
+    fun.data = mean_cl_normal, mapping = aes(color = grammaticality), show.legend = FALSE,
+    position = position_nudge(x = rain_height * 3)
+  ) +
   # adjust layout
   scale_x_discrete(name = "", expand = c(rain_height * 3, 0, 0, 0.7)) +
-  scale_y_continuous(name = "Reaction time (ms)",
-                     breaks = seq(200, 800, 100), 
-                     limits = c(200, 800)) +
+  scale_y_continuous(
+    name = "Reaction time (ms)",
+    breaks = seq(200, 800, 100),
+    limits = c(200, 800)
+  ) +
   coord_flip() +
-  facet_wrap(~factor(mini_language, 
-                     levels = c("Mini-Norwegian", "Mini-English"), 
-                     labels = c("Mini-Norwegian", "Mini-English")), 
-             nrow = 2) +
+  facet_wrap(
+    ~ factor(mini_language,
+      levels = c("Mini-Norwegian", "Mini-English"),
+      labels = c("Mini-Norwegian", "Mini-English")
+    ),
+    nrow = 2
+  ) +
   # custom colours and theme
   scale_fill_brewer(palette = "Dark2", name = "Language group") +
   scale_colour_brewer(palette = "Dark2") +
   theme_minimal() +
-  theme(panel.grid.major.y = element_blank(),
-        legend.position.inside = c(0.8, 0.8),
-        legend.background = element_rect(fill = "white", color = "white"))
+  theme(
+    panel.grid.major.y = element_blank(),
+    legend.position.inside = c(0.8, 0.8),
+    legend.background = element_rect(fill = "white", color = "white")
+  )
 
 # print(gender_agreement_raincloud)
 
 # Optional: Save plots
-ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_RT.png", 
-  plot = gender_agreement_RT, width = 7, height = 10, dpi = 300)
-ggsave("analyses/behavioural data from lab sessions/plots/DOM_RT.png", 
-  plot = DOM_RT, width = 7, height = 10, dpi = 300)
-ggsave("analyses/behavioural data from lab sessions/plots/VOA_RT.png", 
-       plot = VOA_RT, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_RT.png",
+  plot = gender_agreement_RT, width = 7, height = 10, dpi = 300
+)
+ggsave("analyses/behavioural data from lab sessions/plots/DOM_RT.png",
+  plot = DOM_RT, width = 7, height = 10, dpi = 300
+)
+ggsave("analyses/behavioural data from lab sessions/plots/VOA_RT.png",
+  plot = VOA_RT, width = 7, height = 10, dpi = 300
+)

@@ -58,18 +58,26 @@ create_split_violin_plot <- function(data, title, session_labels) {
       mutate(
         facet_group = factor(
           mini_language,
-          levels = c("Mini-Norwegian", 
-                    setdiff(unique(mini_language), "Mini-Norwegian"))
+          levels = c(
+            "Mini-Norwegian",
+            setdiff(unique(mini_language), "Mini-Norwegian")
+          )
         )
       ),
     aes(x = session, y = accuracy * 100, color = grammaticality)
   ) +
-    introdataviz::geom_split_violin(alpha = 0.4, trim = TRUE,
-                                   position = position_dodge(width = 0.1)) +
-    geom_boxplot(width = .1, alpha = 1, fatten = NULL, show.legend = FALSE, 
-                 outlier.shape = NA) +
-    stat_summary(fun.data = "mean_se", geom = "pointrange", show.legend = FALSE,
-                 position = position_dodge(width = 0.1), colour = "white") +
+    introdataviz::geom_split_violin(
+      alpha = 0.4, trim = TRUE,
+      position = position_dodge(width = 0.1)
+    ) +
+    geom_boxplot(
+      width = .1, alpha = 1, fatten = NULL, show.legend = FALSE,
+      outlier.shape = NA
+    ) +
+    stat_summary(
+      fun.data = "mean_se", geom = "pointrange", show.legend = FALSE,
+      position = position_dodge(width = 0.1), colour = "white"
+    ) +
     scale_x_discrete(
       name = "",
       labels = session_labels,
@@ -121,17 +129,20 @@ VOA_plot <- behavioural_lab_data %>%
   ) %>%
   create_split_violin_plot(
     title = "Accuracy on verb-object agreement in the experiment",
-    session_labels = c("Session 3", "Session 4", "Session 6")
+    session_labels = c("Session 4", "Session 6")
   )
 
 print(VOA_plot)
 
 # Optional: Save plots
-ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_experiment_plot.png", 
-       plot = gender_agreement_plot, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/gender_agreement_experiment_plot.png",
+  plot = gender_agreement_plot, width = 7, height = 10, dpi = 300
+)
 
-ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_plot.png", 
-       plot = DOM_experiment_plot, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/DOM_experiment_plot.png",
+  plot = DOM_experiment_plot, width = 7, height = 10, dpi = 300
+)
 
-ggsave("analyses/behavioural data from lab sessions/plots/VOA_plot.png", 
-       plot = VOA_plot, width = 7, height = 10, dpi = 300)
+ggsave("analyses/behavioural data from lab sessions/plots/VOA_plot.png",
+  plot = VOA_plot, width = 7, height = 10, dpi = 300
+)
