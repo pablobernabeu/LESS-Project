@@ -3,15 +3,26 @@
 # the number of models and implements family-wise error rate correction for post-hoc
 # contrasts using the Holm-Bonferroni method via emmeans.
 
+# Environment-aware package loading:
+# - Local: use renv for reproducibility
+# - HPC container: use conda-installed packages
+if (file.exists("/opt/less/start.sh")) {
+    # Running in container - disable renv, use conda packages
+    Sys.setenv(RENV_CONFIG_AUTOLOADER_ENABLED = "FALSE")
+    cat("Running in HPC container - using conda-installed packages\n")
+} else if (file.exists("renv/activate.R")) {
+    # Running locally - use renv
+    cat("Running locally - using renv for package management\n")
+}
+
 library(dplyr) # data wrangling
 library(emmeans) # post-hoc contrasts with multiple comparison correction
 # The following lme4-relevant package was installed before lme4 to avoid a conflict
 # noted at https://cran.r-project.org/web/packages/lme4/lme4.pdf
 library(RcppEigen)
-library(lme4) # Mixed-effects models
+library(lme4) # Mixed-effects models (includes allFit function)
 library(lmerTest) # Compute p values
 library(MuMIn) # R^2
-library(allFit) # Convergence diagnostics
 
 # Source custom diagnostic functions
 source("https://raw.githubusercontent.com/pablobernabeu/language-sensorimotor-simulation-PhD-thesis/main/R_functions/residuals_plot.R")
